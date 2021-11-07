@@ -134,7 +134,7 @@ In this task, you will use Visual Studio Code to review the console app.
     * Allfiles
       * Labs
           * 16-Automate IoT Device Management with Azure IoT Hub
-            * Starter
+            * Final
               * FWUpdateDevice
 
 1. Click **FWUpdateDevice**, and then click **Select Folder**.
