@@ -47,7 +47,7 @@ In this lab, you will set up the base developer tools for your development envir
 
 ### Exercise 1: Install Developer Tools and Products
 
-> **Important**: The tools and products associated with this Exercise are pre-installed on the virtual machine created for this course. Before continuing, check with your course Instructor to understand if you will be completing labs using the hosted lab VM environment or setting up the dev environment locally on your PC.
+> **Important**: The tools and products associated with this Exercise are pre-installed on the virtual machine created for this course.
 
 #### Task 1: Install .NET Core
 
@@ -193,6 +193,8 @@ The Visual Studio Code and Azure CLI tools both support an Azure IoT extension t
 
 #### Task 1: Install Visual Studio Code Extensions
 
+> **Important**: The tools and products associated with this Task are pre-installed on the virtual machine created for this course.
+
 1. Open Visual Studio Code.
 
 1. On the left side of the Visual Studio Code window, click **Extensions**.
@@ -210,6 +212,8 @@ The Visual Studio Code and Azure CLI tools both support an Azure IoT extension t
 
 #### Task 2: Install Azure CLI Extension - local environment
 
+> **Important**: The tools and products associated with this Task are pre-installed on the virtual machine created for this course.
+
 1. Open a new command-line / terminal window, to install the Azure IoT CLI extensions locally.
 
     For example, you can use the Windows **Command Prompt** command-line application.
@@ -225,7 +229,6 @@ The Visual Studio Code and Azure CLI tools both support an Azure IoT extension t
     ```bash
     az extension add --name timeseriesinsights
     ```
-
 
 #### Task 3: Configure cloud shell storage
 
