@@ -47,7 +47,7 @@ This lab assumes that the following Azure resources are available:
 
 | Resource Type | Resource Name |
 | :-- | :-- |
-| Resource Group | @lab.CloudResourceGroup(ResourceGroup1).Name |
+| Resource Group | rg-az220 |
 | IoT Hub | iot-az220-training-{your-id} |
 
 To ensure these resources are available, complete the following tasks.
@@ -62,17 +62,17 @@ To ensure these resources are available, complete the following tasks.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
-1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+1. In the **Resource group** dropdown, select **rg-az220**.
 
-    > **NOTE**: If **@lab.CloudResourceGroup(ResourceGroup1).Name** is not listed:
+    > **NOTE**: If **rg-az220** is not listed:
     >
     > 1. Under the **Resource group** dropdown, click **Create new**.
-    > 1. Under **Name**, enter **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+    > 1. Under **Name**, enter **rg-az220**.
     > 1. Click **OK**.
 
 1. Under **Instance details**, in the **Region** dropdown, select the region closest to you.
 
-    > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
+    > **NOTE**: If the **rg-az220** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
 1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
 
@@ -113,7 +113,7 @@ In this task, you will enable **Azure Defender for IoT** for your IoT Hub.
 
 1. On your Azure dashboard, click **iot-az220-training-{your-id}**.
 
-    The @lab.CloudResourceGroup(ResourceGroup1).Name resource group tile on your dashboard should have a link to your IoT Hub.
+    The rg-az220 resource group tile on your dashboard should have a link to your IoT Hub.
 
 1. On the left-side menu, under **Security**, and then click **Overview**.
 
@@ -154,7 +154,7 @@ In this task, you will take a quick look at the workspace configuration of Log A
 
 1. Under **Subscription**, ensure that the Subscription you are using for this course is selected.
 
-1. In the **Resource group** dropdown, click **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+1. In the **Resource group** dropdown, click **rg-az220**.
 
 1. In the **Location** dropdown, select the Azure Region closest to you, or the region where your Azure IoT Hub is provisioned.
 
@@ -192,12 +192,12 @@ In this task, you will create a Virtual Machine that will represent your IoT dev
 
 1. On the **Create a virtual machine** blade, in the **Subscription** dropdown, ensure that the subscription you are using for this course is selected.
 
-1. In the **Resource group** dropdown, click **@lab.CloudResourceGroup(ResourceGroup1).Namevm**.
+1. In the **Resource group** dropdown, click **rg-az220vm**.
 
-    > **Note**: A single resource group is being used to track and manage all of the Virtual Machine resources created during this course. If the **@lab.CloudResourceGroup(ResourceGroup1).Namevm** resource group has not already been created, use the following instructions to create it now:
+    > **Note**: A single resource group is being used to track and manage all of the Virtual Machine resources created during this course. If the **rg-az220vm** resource group has not already been created, use the following instructions to create it now:
 
     * Under the **Resource group** dropdown, click **Create new**.
-    * In the context menu, under **Name**, type **@lab.CloudResourceGroup(ResourceGroup1).Namevm** and then click **OK**
+    * In the context menu, under **Name**, type **rg-az220vm** and then click **OK**
 
     > **Note**: You may encounter guidance that suggests creating a separate resource group for each of your VMs. Having a separate resource group for each VM can help you to manage any addition resources that you add to the VM. For the simple manner in which you use VMs in this course, having separate resource groups for each VM is not necessary or practical.
 
@@ -244,7 +244,7 @@ As a device must be registered with your IoT hub before it can connect, let's cr
 
 1. On the Azure portal menu, click **Dashboard**.
 
-1. On your @lab.CloudResourceGroup(ResourceGroup1).Name resource group tile, click **iot-az220-training-{your-id}**.
+1. On your rg-az220 resource group tile, click **iot-az220-training-{your-id}**.
 
     There are plenty of other ways to open your IoT Hub blade, use whatever method you prefer.
 
@@ -534,7 +534,7 @@ In addition to automatic relationship detection, you can also pick and choose wh
     > **Note:**
     > You can add resources from multiple subscriptions to your security solution.
 
-1. In the **Resource groups** dropdown, click **@lab.CloudResourceGroup(ResourceGroup1).Namevm**.
+1. In the **Resource groups** dropdown, click **rg-az220vm**.
 
     You should now have two Resource Groups selected. Notice that the Resources list has updated to reflect the additional resources in the resource group you just added.
 

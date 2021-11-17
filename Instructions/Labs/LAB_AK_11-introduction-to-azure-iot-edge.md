@@ -41,7 +41,7 @@ This lab assumes that the following Azure resources are available:
 
 | Resource Type | Resource Name |
 | :-- | :-- |
-| Resource Group | @lab.CloudResourceGroup(ResourceGroup1).Name |
+| Resource Group | rg-az220 |
 | IoT Hub | iot-az220-training-{your-id} |
 
 To ensure these resources are available, complete the following tasks.
@@ -56,17 +56,17 @@ To ensure these resources are available, complete the following tasks.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
-1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+1. In the **Resource group** dropdown, select **rg-az220**.
 
-    > **NOTE**: If **@lab.CloudResourceGroup(ResourceGroup1).Name** is not listed:
+    > **NOTE**: If **rg-az220** is not listed:
     >
     > 1. Under the **Resource group** dropdown, click **Create new**.
-    > 1. Under **Name**, enter **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+    > 1. Under **Name**, enter **rg-az220**.
     > 1. Click **OK**.
 
 1. Under **Instance details**, in the **Region** dropdown, select the region closest to you.
 
-    > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
+    > **NOTE**: If the **rg-az220** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
 1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
 
@@ -186,7 +186,7 @@ In this task, you will use an ARM (Azure Resource Manager) Template to provision
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
-1. In the **Resource group** dropdown, select  create and enter **@lab.CloudResourceGroup(ResourceGroup1).Namevm**.
+1. In the **Resource group** dropdown, select  create and enter **rg-az220vm**.
 
 1. In the **Region** field, enter the same location you have used earlier.
 
@@ -493,7 +493,7 @@ Now that the tempSensor module is deployed and running on the IoT Edge device, w
 
 1. On the **Create storage account** blade, ensure that the Subscription dropdown is displaying the subscription that you are using for this course.
 
-1. In the **Resource group** dropdown, click **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+1. In the **Resource group** dropdown, click **rg-az220**.
 
 1. In the **Storage account name** textbox, enter **az220store{your-id}**.
 
@@ -525,7 +525,7 @@ Now that the tempSensor module is deployed and running on the IoT Edge device, w
 
 1. On the **New Stream Analytics job** blade, in the **Job name** field, enter **asa-az220-training-{your-id}**
 
-1. In the **Resource group** dropdown, click **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+1. In the **Resource group** dropdown, click **rg-az220**.
 
 1. In the **Location** dropdown, select the same Azure Region used for the Storage Account and Azure IoT Hub.
 

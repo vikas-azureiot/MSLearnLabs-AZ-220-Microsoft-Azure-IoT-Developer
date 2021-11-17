@@ -47,7 +47,7 @@ This lab assumes that the following Azure resources are available:
 
 | Resource Type | Resource Name |
 | :-- | :-- |
-| Resource Group | @lab.CloudResourceGroup(ResourceGroup1).Name |
+| Resource Group | rg-az220 |
 | IoT Hub | iot-az220-training-{your-id} |
 
 To ensure these resources are available, complete the following tasks.
@@ -62,17 +62,17 @@ To ensure these resources are available, complete the following tasks.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
-1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+1. In the **Resource group** dropdown, select **rg-az220**.
 
-    > **NOTE**: If **@lab.CloudResourceGroup(ResourceGroup1).Name** is not listed:
+    > **NOTE**: If **rg-az220** is not listed:
     >
     > 1. Under the **Resource group** dropdown, click **Create new**.
-    > 1. Under **Name**, enter **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+    > 1. Under **Name**, enter **rg-az220**.
     > 1. Click **OK**.
 
 1. Under **Instance details**, in the **Region** dropdown, select the region closest to you.
 
-    > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
+    > **NOTE**: If the **rg-az220** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
 1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
 
@@ -102,7 +102,7 @@ In this task, you will use Azure IoT Hub to create a new IoT Edge device identit
 
 1. If necessary, log in to your Azure portal using your Azure account credentials, and then navigate to your Azure Dashboard.
 
-1. On the **@lab.CloudResourceGroup(ResourceGroup1).Name** resource group tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+1. On the **rg-az220** resource group tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
 
 1. On the **iot-az220-training-{your-id}** blade, on the left-side menu under **Automatic Device Management**, click **IoT Edge**.
 
@@ -177,7 +177,7 @@ In this task, you will use an ARM (Azure Resource Manager) Template to provision
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
-1. In the **Resource group** dropdown, select  create and enter **@lab.CloudResourceGroup(ResourceGroup1).Namevm**.
+1. In the **Resource group** dropdown, select  create and enter **rg-az220vm**.
 
 1. In the **Region** field, enter the same location you have used earlier.
 
@@ -229,11 +229,11 @@ In this task, you will configure the Network Security Group (NSG) that secures a
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
-1. On your Azure dashboard, locate the **@lab.CloudResourceGroup(ResourceGroup1).Namevm** resource group tile.
+1. On your Azure dashboard, locate the **rg-az220vm** resource group tile.
 
     Notice that your resource group tile includes a link to the associated Network security group.
 
-1. On the **@lab.CloudResourceGroup(ResourceGroup1).Namevm** resource group tile, click **nsg-vm-az220-training-gw0001-{your-id}**.
+1. On the **rg-az220vm** resource group tile, click **nsg-vm-az220-training-gw0001-{your-id}**.
 
 1. On the **Network security group** blade, on the left-side menu under **Settings**, click **Inbound security rules**.
 
@@ -290,13 +290,13 @@ In this exercise, you will explore the **vm-az220-training-gw0001-{your-id}** Vi
 
     You can check the Notification pane in the Azure portal.
 
-1. Verify that your **@lab.CloudResourceGroup(ResourceGroup1).Namevm** resource group has been pinned to your Azure dashboard.
+1. Verify that your **rg-az220vm** resource group has been pinned to your Azure dashboard.
 
     To pin your resource group to the dashboard, navigate to your Azure dashboard, and then complete the following:
 
     * On the Azure portal menu, click **Resource groups**.
-    * On the **Resource groups** blade, under **Name**, locate the **@lab.CloudResourceGroup(ResourceGroup1).Namevm** resource group.
-    * On the **@lab.CloudResourceGroup(ResourceGroup1).Namevm** row, on the right side of the blade, click **...** and then click **Pin to dashboard**.
+    * On the **Resource groups** blade, under **Name**, locate the **rg-az220vm** resource group.
+    * On the **rg-az220vm** row, on the right side of the blade, click **...** and then click **Pin to dashboard**.
 
     You may want to edit your dashboard to make the RG tiles and listed resources more accessible.
 

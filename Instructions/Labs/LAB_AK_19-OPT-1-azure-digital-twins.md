@@ -58,7 +58,7 @@ This lab assumes that the following Azure resources are available:
 
 | Resource Type  | Resource Name                |
 | :------------- | :--------------------------- |
-| Resource Group | @lab.CloudResourceGroup(ResourceGroup1).Name                     |
+| Resource Group | rg-az220                     |
 | IoT Hub        | iot-az220-training-{your-id} |
 | TSI            | tsi-az220-training-{your-id} |
 | TSI Access Policy | access1                   |
@@ -75,17 +75,17 @@ To ensure these resources are available, complete the following tasks.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
-1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+1. In the **Resource group** dropdown, select **rg-az220**.
 
-    > **NOTE**: If **@lab.CloudResourceGroup(ResourceGroup1).Name** is not listed:
+    > **NOTE**: If **rg-az220** is not listed:
     >
     > 1. Under the **Resource group** dropdown, click **Create new**.
-    > 1. Under **Name**, enter **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+    > 1. Under **Name**, enter **rg-az220**.
     > 1. Click **OK**.
 
 1. Under **Instance details**, in the **Region** dropdown, select the region closest to you.
 
-    > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
+    > **NOTE**: If the **rg-az220** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
 1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
 
@@ -152,7 +152,7 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
 
     > **Note**: Your account must have the administrator role for the subscription
 
-1. For the **Resource group**, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+1. For the **Resource group**, select **rg-az220**.
 
 1. In the **Location** dropdown, select the region where your Azure IoT Hub is provisioned.
 
@@ -174,7 +174,7 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
 
 1. Add the name of the Azure Digital Twins instance to the file - **adt-az220-training-{your-id}**
 
-1. Add the resource group to the file - **@lab.CloudResourceGroup(ResourceGroup1).Name**
+1. Add the resource group to the file - **rg-az220**
 
 1. In your browser, return to the Digital Twins instance **Overview** pane.
 
@@ -1875,7 +1875,7 @@ The function app context also provides an environment for managing app settings 
 1. At the Cloud Shell command prompt, to create an Azure Function App, enter the following command:
 
     ```bash
-    az functionapp create --resource-group @lab.CloudResourceGroup(ResourceGroup1).Name --consumption-plan-location {your-location} --name func-az220-hub2adt-training-{your-id} --storage-account staz220training{your-id} --functions-version 3
+    az functionapp create --resource-group rg-az220 --consumption-plan-location {your-location} --name func-az220-hub2adt-training-{your-id} --storage-account staz220training{your-id} --functions-version 3
     ```
 
     > **Note**: Remember to replace the **{your-location}** and **{your-id}** tokens above.
@@ -1885,7 +1885,7 @@ The function app context also provides an environment for managing app settings 
 1. To create (assign) the system-managed identity for the function app and display the associated principal Id, enter the following command:
 
     ```bash
-    az functionapp identity assign -g @lab.CloudResourceGroup(ResourceGroup1).Name -n func-az220-hub2adt-training-{your-id} --query principalId -o tsv
+    az functionapp identity assign -g rg-az220 -n func-az220-hub2adt-training-{your-id} --query principalId -o tsv
     ```
 
     > **Note**: Remember to replace the **{your-id}** token above.
@@ -1911,7 +1911,7 @@ The function app context also provides an environment for managing app settings 
 1. In order to supply the Azure Digital Twin instance URL to the Azure Function App as an environment variable, enter the following command:
 
     ```bash
-    az functionapp config appsettings set -g @lab.CloudResourceGroup(ResourceGroup1).Name -n func-az220-hub2adt-training-{your-id} --settings "ADT_SERVICE_URL={adt-url}"
+    az functionapp config appsettings set -g rg-az220 -n func-az220-hub2adt-training-{your-id} --settings "ADT_SERVICE_URL={adt-url}"
     ```
 
     > **Note**: Remember to replace the **{your-id}** and **{adt-url}** tokens above. The **{adt-url}** value was saved to the **adt-connection.txt** file in an earlier task and will be similar to `https://adt-az220-training-dm030821.api.eus.digitaltwins.azure.net`.
@@ -2227,7 +2227,7 @@ In this exercise, the IoT Hub created by the setup script will be configured to 
 
 1. In the **Select Azure Function** pane, under **Subscription**, ensure the correct subscription is selected.
 
-1. Under **Resource group**, ensure **@lab.CloudResourceGroup(ResourceGroup1).Name** is selected.
+1. Under **Resource group**, ensure **rg-az220** is selected.
 
 1. Under **Function app**, select **func-az220-hub2adt-training-{your-id}**.
 
@@ -2725,7 +2725,7 @@ Event Grid is an Azure service that helps you route and deliver events coming fr
 
 1. On the **Create Topic** blade, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
-1. To the right of **Resource group**, open the dropdown, and then click **@lab.CloudResourceGroup(ResourceGroup1).Name**
+1. To the right of **Resource group**, open the dropdown, and then click **rg-az220**
 
 1. In the **Topic Details** section, in the **Name** field, enter **evgt-az220-adtoutput**.
 
@@ -3096,7 +3096,7 @@ The function is deployed, but it still needs to subscribe to the event.
 
 1. In the **Select Azure Function** pane, under **Subscription**, ensure that the correct subscription is selected.
 
-1. Under **Resource group**, ensure that  **@lab.CloudResourceGroup(ResourceGroup1).Name** is selected.
+1. Under **Resource group**, ensure that  **rg-az220** is selected.
 
 1. Under **Function app**, select **func-az220-hub2adt-training-{your-id}**.
 
@@ -3244,7 +3244,7 @@ An Event Hubs namespace provides DNS integrated network endpoints and a range of
 
 1. On the **Create Namespace** blade, in the **Subscription** dropdown, ensure that the Azure subscription that you are using for this course is selected.
 
-1. To the right of **Resource group**, open the dropdown, and then click **@lab.CloudResourceGroup(ResourceGroup1).Name**
+1. To the right of **Resource group**, open the dropdown, and then click **rg-az220**
 
 1. In the **Namespace name** field, enter **evhns-az220-training-{your-id}**.
 
@@ -3411,7 +3411,7 @@ This time, the Event Hub and authorization rule will be created using the Azure 
 1. To create the Event Hub between the Azure Function and TSI, enter the following command:
 
     ```powershell
-    az eventhubs eventhub create --name evh-az220-func2tsi --resource-group @lab.CloudResourceGroup(ResourceGroup1).Name --namespace-name evhns-az220-training-{your-id}
+    az eventhubs eventhub create --name evh-az220-func2tsi --resource-group rg-az220 --namespace-name evhns-az220-training-{your-id}
     ```
 
     Remember to replace **{your-id}**.
@@ -3419,7 +3419,7 @@ This time, the Event Hub and authorization rule will be created using the Azure 
 1. To create an authorization rule with listen and send permissions on the new Event Hub, enter the folowing command:
 
     ```powershell
-    az eventhubs eventhub authorization-rule create --rights Listen Send --resource-group @lab.CloudResourceGroup(ResourceGroup1).Name  --eventhub-name evh-az220-func2tsi --name TSIHubPolicy --namespace-name evhns-az220-training-{your-id}
+    az eventhubs eventhub authorization-rule create --rights Listen Send --resource-group rg-az220  --eventhub-name evh-az220-func2tsi --name TSIHubPolicy --namespace-name evhns-az220-training-{your-id}
     ```
 
     Remember to replace **{your-id}**.
@@ -3427,7 +3427,7 @@ This time, the Event Hub and authorization rule will be created using the Azure 
 1. To retrieve the primary connection string for the authorization rule, enter the following command:
 
     ```powershell
-    az eventhubs eventhub authorization-rule keys list --resource-group @lab.CloudResourceGroup(ResourceGroup1).Name --eventhub-name evh-az220-func2tsi --name TSIHubPolicy --namespace-name evhns-az220-training-{your-id} --query primaryConnectionString -o tsv
+    az eventhubs eventhub authorization-rule keys list --resource-group rg-az220 --eventhub-name evh-az220-func2tsi --name TSIHubPolicy --namespace-name evhns-az220-training-{your-id} --query primaryConnectionString -o tsv
     ```
 
     Remember to replace **{your-id}**.

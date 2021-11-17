@@ -45,7 +45,7 @@ This lab assumes the following Azure resources are available:
 
 | Resource Type | Resource Name |
 | :-- | :-- |
-| Resource Group | @lab.CloudResourceGroup(ResourceGroup1).Name |
+| Resource Group | rg-az220 |
 | IoT Hub | iot-az220-training-{your-id} |
 | IoT Edge Device | vm-az220-training-gw0002-{your-id} |
 | IoT Device | sensor-th-0084 |
@@ -62,23 +62,23 @@ To ensure these resources are available, complete the following tasks.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
-1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+1. In the **Resource group** dropdown, select **rg-az220**.
 
-    > **NOTE**: If **@lab.CloudResourceGroup(ResourceGroup1).Name** is not listed:
+    > **NOTE**: If **rg-az220** is not listed:
     >
     > 1. Under the **Resource group** dropdown, click **Create new**.
-    > 1. Under **Name**, enter **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+    > 1. Under **Name**, enter **rg-az220**.
     > 1. Click **OK**.
 
 1. Under **Instance details**, in the **Region** dropdown, select the region closest to you.
 
-    > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
+    > **NOTE**: If the **rg-az220** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
 1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
 
 1. In the **Course ID** field, enter **az220**.
 
-1. In the **Vm Resource Group** field, enter **@lab.CloudResourceGroup(ResourceGroup1).Namevm**.
+1. In the **Vm Resource Group** field, enter **rg-az220vm**.
 
 1. In the **Admin Username**, enter the account name you wish to use.
 
@@ -116,13 +116,13 @@ In this exercise, you will explore the **vm-az220-training-gw0002-{your-id}** Vi
 
     You can check the Notification pane in the Azure portal.
 
-1. Verify that your **@lab.CloudResourceGroup(ResourceGroup1).Namevm** resource group has been pinned to your Azure dashboard.
+1. Verify that your **rg-az220vm** resource group has been pinned to your Azure dashboard.
 
     To pin your resource group to the dashboard, navigate to your Azure dashboard, and then complete the following:
 
     * On the Azure portal menu, click **Resource groups**.
-    * On the **Resource groups** blade, under **Name**, locate the **@lab.CloudResourceGroup(ResourceGroup1).Namevm** resource group.
-    * On the **@lab.CloudResourceGroup(ResourceGroup1).Namevm** row, on the right side of the blade, click **...** and then click **Pin to dashboard**.
+    * On the **Resource groups** blade, under **Name**, locate the **rg-az220vm** resource group.
+    * On the **rg-az220vm** row, on the right side of the blade, click **...** and then click **Pin to dashboard**.
 
     You may want to edit your dashboard to make the RG tiles and listed resources more accessible.
 
@@ -345,7 +345,7 @@ In this exercise, you will use the Azure Portal user interface for Azure IoT Hub
 
     If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
 
-1. On your **@lab.CloudResourceGroup(ResourceGroup1).Name** resource group tile, click **iot-az220-training-{your-id}**.
+1. On your **rg-az220** resource group tile, click **iot-az220-training-{your-id}**.
 
 1. On left-side menu of your IoT hub blade, under **Automatic Device Management**, click **IoT Edge**.
 
@@ -732,7 +732,7 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
 
 #### Task3: Add rule to block traffic
 
-1. Within the **Azure portal**, navigate to your Dashboard, and then locate the **@lab.CloudResourceGroup(ResourceGroup1).Namevm** resource group tile.
+1. Within the **Azure portal**, navigate to your Dashboard, and then locate the **rg-az220vm** resource group tile.
 
 1. In the list of resources, to open the **Network Security Group** for the **vm-az220-training-gw0002-{your-id}** virtual machine, click **nsg-vm-az220-training-gw0002-{your-id}**.
 
