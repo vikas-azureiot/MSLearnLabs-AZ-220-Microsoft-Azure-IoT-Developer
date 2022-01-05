@@ -25,7 +25,7 @@ In this lab, you will become familiar with the Azure portal and you will setup a
 
 Before you begin working with the Azure IoT services, it's good to be familiar with how Azure itself works.
 
-Although Azure commonly referred to as a 'cloud', it is actually a web portal that is designed to make Azure resources accessible from a single web site. All of Azure is accessible through the Azure portal.
+Although Azure is commonly referred to as a 'cloud', it is actually a web portal that is designed to make Azure resources accessible from a single web site. All of Azure is accessible through the Azure portal.
 
 #### Task 1: Examine the Azure portal Home page
 
@@ -127,11 +127,11 @@ Although Azure commonly referred to as a 'cloud', it is actually a web portal th
 
 1. On the toolbar, click **Help**, and then click **Help + support**
 
-1. On the **Help + support** blade, notice the four Tiles for _Getting started_, _Documentation_, _Billing FAQs_, and _Support plans_.
+1. On the **Help + support** blade, take a minute to review the available resources.
 
     The Help + support blade gives you access to lots of great resources. You may want to come back to this later for further exploration.
 
-1. On the **Help + support** blade, click **View billing FAQs**
+1. On the **Help + support** blade, under Helpful resources, click **View billing FAQs**
 
     A new browser tab should open to display Azure billing documentation.
 
@@ -154,9 +154,9 @@ In this exercise, you will:
 
 #### Task 1: Create a Dashboard
 
-1. If necessary, open your Web browser and navigate to your Azure portal.
+1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
 
-    You can navigate to the Azure portal using the following URL: [Azure portal](https://portal.azure.com)
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
 
 1. On the Azure portal menu, click **Dashboard**.
 
@@ -194,4 +194,4 @@ Since this lab is running within a training environment, the following resource 
 
 1. Close your **Resource groups** blade.
 
-    Your dashboard should now contain an empty Resources tile, but don't worry, you will fill it up soon enough.
+    Your dashboard should now contain an empty Resources tile. When you create new resources in this resource group, they will be listed on this recourse group tile and will be easily accessible from your dashboard. You can pin other Azure resources directly to your dashboard as well.
