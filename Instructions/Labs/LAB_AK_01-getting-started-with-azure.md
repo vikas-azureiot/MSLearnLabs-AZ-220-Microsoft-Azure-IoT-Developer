@@ -51,7 +51,7 @@ Although Azure commonly referred to as a 'cloud', it is actually a web portal th
 
 1. On the home page, under **Tools**, click **Azure Monitor**.
 
-    Azure Monitor is a tool that can help you to manage your Azure resources. You will be using Azure Monitor later in this course when you have implemented the services that comprize your IoT solution.
+    Azure Monitor is a tool that can help you to manage your Azure resources.
 
 1. On the left side navigation menu, to display a map of data center regions, click **Service Health**.
 
@@ -73,7 +73,7 @@ Although Azure commonly referred to as a 'cloud', it is actually a web portal th
 
     > **Definitions**: The term **PaaS** is an acronym for **Platform as a Service**, the term **IaaS** is an acronym for **Infrastructure as a Service**, and the term **SaaS** is an acronym for **Software as a Service**
 
-1. On the **All services** page, on the left side menu under **Categories**, click **All**.
+1. Take a minute to scroll down through the service categories.
 
     This view displays all of the services organized into groups corresponding to each Category. The Search box at the top can be very helpful.
 
@@ -95,7 +95,7 @@ Although Azure commonly referred to as a 'cloud', it is actually a web portal th
 
     > **Tip**: When you add a new item to your list of favorites, it is placed at the bottom of the favorites list on the Azure portal menu. You can rearrange your favorites into the order that you want by using a drag-and-drop operation.
 
-1. Use the same process to add the following services to your favorites: **Device Provisioning Services**, **Logic Apps**, **Stream Analytics jobs**, and **Storage Accounts**.
+1. Use the same process to add the following services to your favorites: **Device Provisioning Services**, **Logic Apps**, and **Stream Analytics jobs**.
 
     > **Note**: You can remove a service from the list of your favorite services by clicking the star of a selected service.
 
@@ -131,11 +131,11 @@ Although Azure commonly referred to as a 'cloud', it is actually a web portal th
 
     The Help + support blade gives you access to lots of great resources. You may want to come back to this later for further exploration.
 
-1. On the **Help + support** blade, click **Billing FAQs**
+1. On the **Help + support** blade, click **View billing FAQs**
 
     A new browser tab should open to display Azure billing documentation.
 
-1. Take a moment to scan the contents of the **Prevent unexpected charges with Azure billing and cost management** page.
+1. Take a moment to scan the contents of the FAQ page.
 
     If *you* are using a paid Azure subscription and you are responsible for billing (you are the Account Administrator), you can set up cost alerts to help manage your billing.
 
@@ -149,14 +149,14 @@ A resource group is a logical group that contains related resources for a projec
 
 In this exercise, you will:
 
-* create a custom dashboard that you can use during this course
-* create a Resource Group and add a Resource Group tile to your dashboard
+* Create a custom dashboard.
+* Create a Resource Group and add a Resource Group tile to your dashboard.
 
 #### Task 1: Create a Dashboard
 
 1. If necessary, open your Web browser and navigate to your Azure portal.
 
-    You can use the following link to open the Azure portal: [Azure portal](https://portal.azure.com)
+    You can navigate to the Azure portal using the following URL: [Azure portal](https://portal.azure.com)
 
 1. On the Azure portal menu, click **Dashboard**.
 
@@ -176,7 +176,7 @@ In this exercise, you will:
 
 #### Task 2: Add a Resource Group tile to your Dashboard
 
-As this lab is executed within a training environment, a resource group is provided - **@lab.CloudResourceGroup(ResourceGroup1).Name**. In this task, the resource group will be added to the Dashboard crfeated above.
+Since this lab is running within a training environment, the following resource group is provided for you: **@lab.CloudResourceGroup(ResourceGroup1).Name**. In this task, you will add the resource group to your new Dashboard.
 
 1. On the Azure portal menu, click **Resource groups**
 
