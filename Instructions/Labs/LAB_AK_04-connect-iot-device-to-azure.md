@@ -24,9 +24,9 @@ The following resources will be created:
 
 ## In This Lab
 
-In this lab, you will begin by reviewing the lab prerequisites and you will run a script if needed to ensure that your Azure subscription includes the required resources. You will then use the Azure portal to register a device ID with Azure IoT Hub and develop the corresponding simulated device app in Visual Studio Code. You will then insert the connection string (created by IoT Hub when you registered the device) into your simulated device code and run the app to test the connection and verify that telemetry is reaching IoT Hub as intended. The lab includes the following exercises:
+In this lab, you will begin launching an Azure Resource Manager template to ensure that your Azure subscription includes the resources required for this lab. You will then use the Azure portal to register a device ID with Azure IoT Hub and develop the corresponding simulated device app in Visual Studio Code. You will then insert the connection string (created by IoT Hub when you registered the device) into your simulated device code and run the app to test the connection and verify that telemetry is reaching IoT Hub as intended. The lab includes the following exercises:
 
-* Verify Lab Prerequisites
+* Configure Lab Prerequisites
 * Create an Azure IoT Hub Device ID using the Azure portal
 * Create and Test a Simulated Device (C#)
 
@@ -34,7 +34,7 @@ In this lab, you will begin by reviewing the lab prerequisites and you will run 
 
 ### Exercise 1: Verify Lab Prerequisites
 
-This lab assumes that the following Azure resources are available:
+This lab will use the following Azure resources:
 
 | Resource Type  | Resource Name                |
 | :------------- | :--------------------------- |
@@ -43,17 +43,15 @@ This lab assumes that the following Azure resources are available:
 
 To ensure these resources are available, complete the following tasks.
 
-1. To create the required resources, open a new browser tab and enter the following address:
-
-    [https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab04.json](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab04.json)
+1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address: 
 
     ```url
     https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab04.json
     ```
 
-1. If prompted, login to the **Azure Portal**.
+1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
 
-    The **Custom deployment** page will be displayed.
+    Once you have signed in, the **Custom deployment** page will be displayed.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
@@ -75,11 +73,11 @@ To ensure these resources are available, complete the following tasks.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Make a note of the outputs for use later:
+    > **IMPORTANT**: Open an instance of NotePad or another tool, and make a record of the following Outputs for use later:
 
     * connectionString
 
-The resources have now been created.
+The required Azure resources have now been created.
 
 ### Exercise 2: Create an Azure IoT Hub Device ID using the Azure portal
 
