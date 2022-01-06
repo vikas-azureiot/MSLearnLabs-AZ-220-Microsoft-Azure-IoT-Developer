@@ -88,7 +88,7 @@ To ensure these resources are available, complete the following tasks.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    > **IMPORTANT**: Open an text editor tool (NotePad accessible from the Start menu, under Windows accessories) and make a record of the following Outputs for use later:
+    > **IMPORTANT**: Open an text editor tool (Notepad accessible from the Start menu, under Windows accessories) and make a record of the following Outputs for use later:
 
     * connectionString
 
@@ -120,13 +120,13 @@ In this exercise, you will open your IoT Hub in the Azure portal, add a new IoT 
 
     The device identity (Device ID) is used for device authentication and access control.
 
-    It is helpful to establish some form of naming convention for your device identities. There are several reasons for this, including that the device ID is the value IoT Hub uses represent a device. Having a device ID that succinctly and informatively differentiates one device from another is therefor helpful.
+    It is helpful to establish some form of naming convention for your device identities. There are several reasons for this, including that the device ID is the value IoT Hub uses to represent a device. Having a device ID that succinctly and informatively differentiates one device from another is therefor helpful.
 
     The suggested naming convention above, _sensor-th-0001_, identifies this device as a sensor enabled device (_sensor_) that reports temperature and humidity values (_-th_) and is the first device of this type in a series of up to 9999 (_-0001_). Contoso may have 200 or 5000 of these devices installed and reporting environmental conditions from the factory floor, and the device identity will be one of the ways that a device can be recognized.
 
 1. Under **Authentication type**, ensure that **Symmetric key** is selected.
 
-    Notice that there are three types of authentication available. In this lab you will leverage the simplest of the three, Symmetric key. X.509 Certificates and their use for authentication will be covered in later labs.
+    Notice that there are three types of authentication available. In this lab you will leverage the simplest of the three, Symmetric key.
 
 1. Under **Auto-generate keys**, ensure the checkbox is selected.
 
@@ -164,7 +164,7 @@ In order for a device to connect to an IoT Hub, it needs to establish a connecti
 
     You can hover your mouse pointer over the button icons to display their names; the Copy button is on the far right.
 
-    > **Note**: You will need to use the Primary Connection String value later in the lab, so you may want to save it to an accessible location (perhaps by pasting the value into a text editor such as NotePad).
+    > **Note**: You will need to use the Primary Connection String value later in the lab, so you may want to save it to an accessible location (perhaps by pasting the value into a text editor such as Notepad).
 
     The connection string will be in the following format:
 
@@ -223,7 +223,9 @@ In this exercise, you will create a simulated device application using Visual St
 
 1. Open **Visual Studio Code**.
 
-1. On the **File** menu, click **Open Folder**.
+    You can open Visual Studio Code from the Windows Start menu.
+
+1. In Visual Studio Code, on the **File** menu, click **Open Folder**.
 
 1. In the **Open Folder** dialog, navigate to the location where you created the **CaveDevice** directory.
 
@@ -347,8 +349,6 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
 1. Select all of the existing code, and then delete it.
 
-1. In the code editor pane, to create the basic structure of your simulated device application, enter the following code:
-
     > **Important**: If you are intending to paste the code into a learning environment such as LODS, there are a few things to be aware of:
     >
     > * The **Type text -> Type clipboard text** buffer is limited, so it may truncate the code that is copied - double check your work and add any missing characters.
@@ -357,7 +357,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     >    * **Editor: Auto Indent** - set to **none**
     > * The source can be reformatted at any time by using **F1** and entering **Format Document** or by pressing **SHIFT + ALT + F**
 
-<nbsp/>
+1. In the code editor pane, to create the basic structure of your simulated device application, enter the following code:
 
     ```csharp
     // INSERT using statements below here
