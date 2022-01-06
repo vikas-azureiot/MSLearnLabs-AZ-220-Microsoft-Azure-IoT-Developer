@@ -24,7 +24,7 @@ The following resources will be created:
 
 ## In This Lab
 
-In this lab, you will begin launching an Azure Resource Manager template to ensure that your Azure subscription includes the resources required for this lab. You will then use the Azure portal to register a device ID with Azure IoT Hub and develop the corresponding simulated device app in Visual Studio Code. You will then insert the connection string (created by IoT Hub when you registered the device) into your simulated device code and run the app to test the connection and verify that telemetry is reaching IoT Hub as intended. The lab includes the following exercises:
+In this lab, you will begin by launching an Azure Resource Manager template that creates the Azure resources, such as an instance of IoT Hub, that are required to complete this lab. You will then use the Azure portal to register a device ID with Azure IoT Hub and develop the corresponding simulated device app in Visual Studio Code. You will then insert the connection string (created by IoT Hub when you registered the device) into your simulated device code and run the app to test the connection and verify that telemetry is reaching IoT Hub as intended. The lab includes the following exercises:
 
 * Configure Lab Prerequisites
 * Create an Azure IoT Hub Device ID using the Azure portal
@@ -32,7 +32,7 @@ In this lab, you will begin launching an Azure Resource Manager template to ensu
 
 ## Lab Instructions
 
-### Exercise 1: Verify Lab Prerequisites
+### Exercise 1: Configure Lab Prerequisites
 
 This lab will use the following Azure resources:
 
@@ -57,11 +57,26 @@ To ensure these resources are available, complete the following tasks.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
-1. Under **Instance details**, in the **Region** dropdown, select the region closest to you.
+1. Under **Instance details**, verify that a **Region** has been specified for you.
 
-    > **NOTE**: As the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
+    > **NOTE**: The lab virtual machine environment is configured with the Resource group named **@lab.CloudResourceGroup(ResourceGroup1).Name**. The Azure resources created by the Azure Resource Manager template will use the same **Region** that is used by the resource group. This field is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value using the following pattern:
+
+    ```text
+    YourInitialsYYMMDD
+    ```
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. Here are some examples:
+
+    ```text
+    cls210526
+    smh210912
+    tch211218
+    ccj220101
+    ```
+
+    Within the lab instructions, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -73,7 +88,7 @@ To ensure these resources are available, complete the following tasks.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    > **IMPORTANT**: Open an instance of NotePad or another tool, and make a record of the following Outputs for use later:
+    > **IMPORTANT**: Open an text editor tool (NotePad accessible from the Start menu, under Windows accessories) and make a record of the following Outputs for use later:
 
     * connectionString
 
@@ -81,27 +96,27 @@ The required Azure resources have now been created.
 
 ### Exercise 2: Create an Azure IoT Hub Device ID using the Azure portal
 
-During this course you will be using IoT Hub's capabilities to help you build a scalable, full-featured IoT solution for Contoso, but in this lab you are focused on using IoT Hub to establish reliable and secure bidirectional communications between IoT Hub and your IoT device(s).
-
 In this exercise, you will open your IoT Hub in the Azure portal, add a new IoT device to the device registry, and then get a copy of the Connection String that IoT Hub created for your device (which you will use in your device code later in the lab).
+
+> **Note**: This lab focuses on using IoT Hub to establish reliable and secure bidirectional communications between IoT Hub and your IoT device. The Microsoft Learn platform includes other Modules (and Learning Paths) that enable you to explore other IoT Hub capabilities. Collectively, this training will help you to build scalable, full-featured IoT solutions.
 
 #### Task 1: Create the Device
 
-1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+1. On the Azure portal menu, select **Dashboard**.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you closed the Azure portal window, open a Microsoft Edge browser windows and navigate back to the Azure portal. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
 
-1. Verify that your AZ-220 dashboard is being displayed.
+    > **Note**: The All resources tile is included on the default dashboard.
 
-    > **Note**: If the AZ-220 Dashboard does not exist, create it as detailed in **LAB 01 - Getting Started, Exercise 2 - Create an Azure Dashboard and add a Resource Group**.
+1. On the All resources tile, click **iot-az220-training-{your-id}**
 
-1. On the **@lab.CloudResourceGroup(ResourceGroup1).Name** resource group tile, click **iot-az220-training-{your-id}**
+1. On the left-side menu of your IoT Hub blade, under **Device management**, click **Devices**.
 
-1. On the left-side menu of your IoT Hub blade, under **Explorers**, click **IoT devices**.
-
-1. At the top of the **IoT devices** pane, click **Add Device**.
+1. At the top of the **Devices** pane, click **Add Device**.
 
 1. In the **Device ID** field, enter **sensor-th-0001**
+
+    +++sensor-th-0001+++
 
     The device identity (Device ID) is used for device authentication and access control.
 
