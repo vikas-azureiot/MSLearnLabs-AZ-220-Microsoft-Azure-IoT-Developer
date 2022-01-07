@@ -257,16 +257,13 @@ In this task, you will use Visual Studio Code to review the contents and purpose
 
     ```xml
     <Project Sdk="Microsoft.NET.Sdk">
-
         <PropertyGroup>
             <OutputType>Exe</OutputType>
             <TargetFramework>netcoreapp3.1</TargetFramework>
         </PropertyGroup>
-
         <ItemGroup>
             <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.*" />
         </ItemGroup>
-
     </Project>
     ```
 
