@@ -666,13 +666,21 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. To finish to configuration of the cloud shell, click **Create storage**.
 
-1. In the Azure Cloud Shell, to monitor the event messages that are being received by your IoT hub, enter the following command:
+1. Open your text editor, such as Notepad, and enter the following Azure CLI command:
 
     ```cmd/sh
     az iot hub monitor-events --hub-name {IoTHubName} --device-id sensor-th-0001
     ```
 
-    _Be sure to replace the **{IoTHubName}** placeholder with the name of your Azure IoT Hub._
+    Notice that the command contains a placeholder value for the name of your IoT Hub. You need to update that in the text editor before running the command.
+
+1. In your text editor, replace the **{IoTHubName}** placeholder with the name of your Azure IoT Hub.
+
+1. Create a copy of the updated Azure CLI command, and then switch back to the Azure Cloud Shell browser window.
+
+1. In the Azure Cloud Shell, to monitor the event messages that are being received by your IoT hub, enter the updated command:
+
+    > **Note**: If the Azure CLI extension for IoT has not been installed, you will be prompted to install it now. Enter "Y" at the prompt.
 
     > **Note**:  If you receive a message stating _"Dependency update required for IoT extension version"_ when running the Azure CLI command, then press `y` to accept the update and press `Enter`. This will allow the command to continue as expected.
 
@@ -682,6 +690,8 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. Notice that the `az iot hub monitor-events` Azure CLI command outputs a JSON representation of the events that are arriving at your specified Azure IoT Hub.
 
+    > **Note**: If the Azure CLI command returns an error stating that you IoT Hub can not be found in the subscription, use your Azure portal to verify that both the IoT Hub name and subscription number are correct. If the values reported in the Azure Cloud Shell match the values listed in the Azure portal, wait a minute and then re-run the command.
+ 
     This command enables you to monitor the events being sent to IoT hub. You are also verifying that the device is able to connect to and communicate with the your IoT hub.
 
     You should see messages displayed that are similar to the following:
