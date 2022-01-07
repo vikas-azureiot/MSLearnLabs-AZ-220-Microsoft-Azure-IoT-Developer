@@ -655,7 +655,9 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
 In this task, you will use the Azure CLI to verify telemetry sent by the simulated device is being received by Azure IoT Hub.
 
-1. Switch to the Microsoft Edge browser window where you have the Azure portal open: +++https://shell.azure.com/+++
+1. Switch to the Microsoft Edge browser window where you have the Azure portal open.
+
+1. Open a new browser tab, and then navigate to the Azure Cloud Shell: +++https://shell.azure.com/+++
 
     If necessary, login with the Azure subscription you are using for this course.
 
