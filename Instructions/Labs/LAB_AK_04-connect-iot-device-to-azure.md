@@ -61,22 +61,11 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: The lab virtual machine environment is configured with the Resource group named **@lab.CloudResourceGroup(ResourceGroup1).Name**. The Azure resources created by the Azure Resource Manager template will use the same **Region** that is used by the resource group. This field is read-only.
 
-1. In the **Your ID** field, enter a unique ID value using the following pattern:
+1. In the **Your ID** field, enter a unique ID value using a "YourInitialsYYMMDD: pattern:
 
-    ```text
-    YourInitialsYYMMDD
-    ```
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example: ccj220101
 
-    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. Here are some examples:
-
-    ```text
-    cls210526
-    smh210912
-    tch211218
-    ccj220101
-    ```
-
-    Within the lab instructions, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -84,7 +73,7 @@ To ensure these resources are available, complete the following tasks.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. Creating the required Azure resources can take several minutes to complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
@@ -507,6 +496,8 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     Notice that the declaration for the **SendDeviceToCloudMessagesAsync** method includes the keyword `async`. This specifies that the method contains asynchronous code that uses the `await` keyword and instructs the compiler to handle the callback plumbing for you.
 
 1. Take a minute to review the code (and code comments) that you just entered.
+
+    > **IMPORTANT**: Check for a code rendering error associated with the Greater Than numeric operator. If the code contains "&gt;", replace it with a Greater Than operator. There may be two occurrences.
 
     This method implements a typical message loop:
 
