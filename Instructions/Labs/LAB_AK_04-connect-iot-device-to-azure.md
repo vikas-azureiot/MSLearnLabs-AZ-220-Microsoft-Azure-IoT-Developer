@@ -88,7 +88,7 @@ To ensure these resources are available, complete the following tasks.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    > **IMPORTANT**: Open an text editor tool (Notepad accessible from the Start menu, under Windows accessories) and make a record of the following Outputs for use later:
+    > **IMPORTANT**: Open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**) and make a record of the following Outputs for use later:
 
     * connectionString
 
@@ -104,7 +104,7 @@ In this exercise, you will open your IoT Hub in the Azure portal, add a new IoT 
 
 1. On the Azure portal menu, select **Dashboard**.
 
-    If you closed the Azure portal window, open a Microsoft Edge browser windows and navigate back to the Azure portal. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
 
     > **Note**: The All resources tile is included on the default dashboard.
 
@@ -112,13 +112,13 @@ In this exercise, you will open your IoT Hub in the Azure portal, add a new IoT 
 
 1. On the left-side menu of your IoT Hub blade, under **Device management**, click **Devices**.
 
-1. At the top of the **Devices** pane, click **Add Device**.
+1. On the **Devices** pane, click **Add Device**.
 
 1. In the **Device ID** field, enter **sensor-th-0001**
 
     +++sensor-th-0001+++
 
-    The device identity (Device ID) is used for device authentication and access control.
+    The device identity (Device ID), is used for device authentication and access control.
 
     It is helpful to establish some form of naming convention for your device identities. There are several reasons for this, including that the device ID is the value IoT Hub uses to represent a device. Having a device ID that succinctly and informatively differentiates one device from another is therefor helpful.
 
@@ -346,7 +346,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
 1. Select all of the existing code, and then delete it.
 
-    > **Important**: If you are intending to paste the code into a learning environment such as LODS, there are a few things to be aware of:
+    > **Important**: In the next step, you will begin the process ob building your simulated device code. If you are intending to paste the code into a learning environment such as LODS, there are a few things to be aware of:
     >
     > * The **Type text -> Type clipboard text** buffer is limited, so it may truncate the code that is copied - double check your work and add any missing characters.
     > * As the **Type clipboard text** simulates typing, the default settings in Visual Studio Code will automatically indent code and insert closing braces - `)`, `}` and `]` - resulting in duplicate characters and incorrect indentation. These actions can be turned off in Visual Studio code settings (**File -> Preferences -> Settings**) with the following settings:
@@ -382,7 +382,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     > **Tip**: To reformat the pasted text in Visual Studio Code, press **SHIFT + ALT + F**, or press **F1** to open the command palette and search for **Format Document**.
 
-1. Locate the `// INSERT using statements below here` comment.
+1. Locate the `// INSERT using statements below here` comment, and then position the cursor on a blank line below the comment.
 
 1. To specify the namespaces that the application code will be using, enter the following code:
 
@@ -398,7 +398,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     > **Tip**: When inserting code, the code layout may not be ideal. You can have Visual Studio Code format the document for you by right-clicking in the code editor pane and then clicking **Format Document**. You can achieve the same result by opening the **Task** pane (press **F1**) and typing **Format Document** and then pressing **Enter**. And on Windows, the shortcut for this task is **SHIFT+ALT+F**.
 
-1. Locate the `// INSERT variables below here` comment.
+1. Locate the `// INSERT variables below here` comment, and then position the cursor on a blank line below the comment.
 
 1. To specify the variables that the program is using, enter the following code:
 
@@ -431,7 +431,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     private readonly static string connectionString = "HostName=iot-az220-training-dm200420.azure-devices.net;DeviceId=sensor-th-0001;SharedAccessKey=hfavUmFgoCPA9feWjyfTx23SUHr+dqG9X193ctdEd90=";
     ```
 
-1. Locate the `// INSERT Main method below here` comment.
+1. Locate the `// INSERT Main method below here` comment, and then position the cursor on a blank line below the comment.
 
 1. To construct the **Main** method of your simulated device application, enter the following code:
 
@@ -470,7 +470,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     >
     > **Information**: The supported transport protocols are documented [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-protocols).
 
-1. Locate the `// INSERT - SendDeviceToCloudMessagesAsync below here` comment.
+1. Locate the `// INSERT - SendDeviceToCloudMessagesAsync below here` comment, and then position the cursor on a blank line below the comment.
 
 1. To construct the **SendDeviceToCloudMessagesAsync** method, enter the following code:
 
@@ -536,7 +536,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     > **Information**: The **Message** class is documented [here](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.devices.client.message?view=azure-dotnet)
 
-1. Locate the `// INSERT CreateMessageString method below here` comment.
+1. Locate the `// INSERT CreateMessageString method below here` comment, and then position the cursor on a blank line below the comment.
 
 1. To construct the **CreateMessageString** method that creates a JSON string from the sensor readings, enter the following code:
 
@@ -559,7 +559,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     The value of **telemetryDataPoint** is then converted to a JSON string via the **JsonConvert** class that is part of the **Newtonsoft.Json** package you added earlier. The JSON string value is then returned to be used as the payload in the message.
 
-1. Locate the `// INSERT EnvironmentSensor class below here` comment.
+1. Locate the `// INSERT EnvironmentSensor class below here` comment, and then position the cursor on a blank line below the comment.
 
 1. To construct the **EnvironmentSensor** class, enter the following code:
 
@@ -608,7 +608,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
 #### Task 4: Test the application
 
-1. In Visual Studio Code Explorer pane, on the **View** menu, click **Terminal**.
+1. In the Visual Studio Code Explorer pane, on the **View** menu, click **Terminal**.
 
     Verify that the selected terminal shell is the windows command prompt.
 
@@ -622,7 +622,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     > **Note**:  If the command outputs a `Malformed Token` or other error message, then make sure the **Primary Connection String** value is configured correctly as the value of the `connectionString` variable.
 
-    If you receive additional error messages, you can verify that you constructed your code correctly by referring to completed solution code that is available for reference in the **Final** folder for this lab. This **Final** folder is included with the lab resources files that you downloaded when setting up your development environment in lab 3. The folder path is:
+    If you receive additional error messages, you can verify that you constructed your code correctly by referring to completed solution code that is available for reference in the **Final** folder for this lab. This **Final** folder is included with the lab resources files that you downloaded to the virtual machine environment before starting the lab. The folder path is:
 
     >
     > * Allfiles
@@ -655,9 +655,27 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
 In this task, you will use the Azure CLI to verify telemetry sent by the simulated device is being received by Azure IoT Hub.
 
-1. Using a browser, open the [Azure Cloud Shell](https://shell.azure.com/) and login with the Azure subscription you are using for this course.
+1. Switch to the Microsoft Edge browser window where you have the Azure portal open.
 
-    > **Note**: If the cloud shell has not been configured, follow the steps in **Lab 3 - Exercise 2 - Task 3: Configure cloud shell storage & Task 4: Install Azure CLI Extension - cloud environment**.
+1. Open a new browser tab, and then navigate to the Azure Cloud Shell (shell.azure.com).
+
+    +++https://shell.azure.com/+++
+
+    If necessary, login with the Azure subscription you are using for this course.
+
+1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
+
+1. Under **Subscription**, ensure the correct subscription is displayed.
+
+1. To specify storage options, click **Show advanced settings**.
+
+1. Under **Resource group**, ensure **Use existing** is selected and the **@lab.CloudResourceGroup(ResourceGroup1).Name** is shown.
+
+1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+
+1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+
+1. To finish to configuration of the cloud shell, click **Create storage**.
 
 1. In the Azure Cloud Shell, to monitor the event messages that are being received by your IoT hub, enter the following command:
 
