@@ -42,8 +42,7 @@ This lab will use the following Azure resources:
 | IoT Hub | iot-az220-training-{your-id} |
 | Device Provisioning Service | dps-az220-training-{your-id} |
 
-To ensure these resources are available, complete the following tasks.
-
+To ensure these resources are available, complete the following steps.
 
 1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address: 
 

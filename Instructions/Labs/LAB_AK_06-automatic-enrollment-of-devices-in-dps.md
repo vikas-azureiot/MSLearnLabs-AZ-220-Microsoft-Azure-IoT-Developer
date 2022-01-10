@@ -18,9 +18,9 @@ The following resources will be created:
 
 ## In This Lab
 
-In this lab, you will begin by reviewing the lab prerequisites and you will run a script if needed to ensure that your Azure subscription includes the required resources. You will then generate an X.509 root CA Certificate using OpenSSL within the Azure Cloud Shell, and use the root certificate to configure the Group Enrollment within the Device Provisioning Service (DPS). After that, you will use the root certificate to generate a device certificate, which you will use within a simulated device code to provision your device to IoT hub. While in your device code, you will implement access to the device twin properties used to perform initial configuration of the device. You will then test your simulated device. To finish up this lab, you will deprovision the entire group enrollment. The lab includes the following exercises:
+In this lab, you will begin by launching an Azure Resource Manager template that creates the Azure resources, such as an instance of IoT Hub Device Provisioning Service, that are required to complete this lab. You will then generate an X.509 root CA Certificate using OpenSSL within the Azure Cloud Shell, and use the root certificate to configure the Group Enrollment within the Device Provisioning Service (DPS). After that, you will use the root certificate to generate a device certificate, which you will use within a simulated device code to provision your device to IoT hub. While in your device code, you will implement access to the device twin properties used to perform initial configuration of the device. You will then test your simulated device. To finish up this lab, you will deprovision the entire group enrollment. The lab includes the following exercises:
 
-* Verify Lab Prerequisites
+* Configure Lab Prerequisites
 * Generate and Configure X.509 CA Certificates using OpenSSL
 * Configure simulated device with X.509 certificate
 * Test the Simulated Device
@@ -28,9 +28,9 @@ In this lab, you will begin by reviewing the lab prerequisites and you will run 
 
 ## Lab Instructions
 
-### Exercise 1: Verify Lab Prerequisites
+### Exercise 1: Configure Lab Prerequisites
 
-This lab assumes that the following Azure resources are available:
+This lab will use the following Azure resources:
 
 | Resource Type | Resource Name |
 | :-- | :-- |
@@ -38,19 +38,21 @@ This lab assumes that the following Azure resources are available:
 | IoT Hub | iot-az220-training-{your-id} |
 | Device Provisioning Service | dps-az220-training-{your-id} |
 
-To ensure these resources are available, complete the following tasks.
+To ensure these resources are available, complete the following steps.
 
-1. To create the required resources, open a new browser tab and enter the following address:
-
-    [https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab06.json](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab06.json)
+1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address: 
 
     ```url
     https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab06.json
     ```
 
-1. If prompted, login to the **Azure Portal**.
+1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
-    The **Custom deployment** page will be displayed.
+    **Username** +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password** +++@lab.CloudPortalCredential(User1).Password+++
+
+    Once you have signed in, the **Custom deployment** page will be displayed.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
@@ -66,7 +68,13 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
+
+    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -74,16 +82,24 @@ To ensure these resources are available, complete the following tasks.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
+
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    You will be using the text editor to store some configuration values associated with the Azure resources.
+
+1. Switch back to the Azure portal window and wait to the deployment to finish.
+
+    You will see a notification when deployment is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Make a note of the outputs for use later:
+1. In your text editor, create a record of the following Outputs for use later:
 
     * connectionString
     * dpsScopeId
 
-The resources have now been created.
+    The Azure resources required for this lab are now available.
 
 ### Exercise 2: Generate and Configure X.509 CA Certificates using OpenSSL
 
@@ -91,9 +107,9 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
 #### Task 1: Generate the certificates
 
-1. If necessary, log in to the [Azure portal](https://portal.azure.com) using the Azure account credentials that you are using for this course.
+1. On the Azure portal menu, select **Dashboard**.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. When prompted to Sign in, you will need to provide the following credentials at the sign in prompts: **Username** +++@lab.CloudPortalCredential(User1).Username+++ and **Password** +++@lab.CloudPortalCredential(User1).Password+++
 
 1. In the top right of the portal window, to open the Azure Cloud Shell, click **Cloud Shell**.
 
@@ -101,7 +117,21 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
     A Cloud Shell window will open near the bottom of the display screen.
 
-    > **Note**: If the cloud shell has not been configured, follow the steps in **Lab 3 - Exercise 2 - Task 3: Configure cloud shell storage & Task 4: Install Azure CLI Extension - cloud environment**.
+    > **Note**: If the cloud shell has not been configured, follow these steps:
+
+    1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
+
+    1. Under **Subscription**, ensure the correct subscription is displayed.
+
+    1. To specify storage options, click **Show advanced settings**.
+
+    1. Under **Resource group**, ensure **Use existing** is selected and the **@lab.CloudResourceGroup(ResourceGroup1).Name** is shown.
+
+    1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+
+    1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+
+    1. To finish to configuration of the cloud shell, click **Create storage**.
 
 1. In the upper left corner of the Cloud Shell window, ensure that **Bash** is selected as the environment option.
 
