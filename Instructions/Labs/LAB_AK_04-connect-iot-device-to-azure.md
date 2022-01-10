@@ -490,8 +490,6 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
 1. Take a minute to review the code (and code comments) that you just entered.
 
-    > **IMPORTANT**: Check for a code rendering error associated with the Greater Than numeric operator. If the code contains "&gt;", replace it with a Greater Than operator. There may be two occurrences.
-
     This method implements a typical message loop:
 
     * Read from one or more sensors
