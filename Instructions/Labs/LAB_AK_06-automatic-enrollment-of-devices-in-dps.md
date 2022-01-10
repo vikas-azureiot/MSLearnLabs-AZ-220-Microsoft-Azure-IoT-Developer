@@ -400,12 +400,21 @@ In this exercise, you will generate a device certificate using the root certific
     mv ~/certificates/certs/new-device.cert.pem ~/certificates/certs/sensor-thl-2001-device.cert.pem
     ```
 
-1. To download the generated X.509 device certificates from the Cloud Shell to your local machine, enter the following commands:
+1. To download the first generated X.509 device certificate from the Cloud Shell to your local machine, enter the following command:
 
     ```sh
     download ~/certificates/certs/sensor-thl-2000-device.cert.pfx
+    ```
+
+    > **Note**: Watch for a browser prompt asking you to save the file.
+
+1. To download the first generated X.509 device certificate from the Cloud Shell to your local machine, enter the following command:
+
+    ```sh
     download ~/certificates/certs/sensor-thl-2001-device.cert.pfx
     ```
+
+    > **Note**: Watch for a browser prompt asking you to save the file.
 
     In the next task, you will start building the simulated devices that will use the X.509 device certificates to authenticate with the Device Provisioning Service.
 
@@ -431,7 +440,7 @@ In this task, you will complete the following:
 
     It will save some time to copy both certificate files now, but you will only be using the first one, `sensor-thl-2000-device.cert.pfx`, in the code project that you build initially.
 
-1. In File Explorer, navigate to the Starter folder for lab 6 (Automatic Enrollment of Devices in DPS).
+1. In File Explorer, navigate to the **Final** folder for lab 6 (Automatic Enrollment of Devices in DPS).
 
     Before starting the lab instructions, you downloaded a copy of the GitHub repository containing lab resources to the lab virtual machine environment. The folder structure includes the following folder path:
 
@@ -441,6 +450,8 @@ In this task, you will complete the following:
             * Final
               * ContainerDevice
 
+1. Open the ContainerDevice folder.
+
 1. With the ContainerDevice folder open, paste-in the copied device certificate files.
 
     The root directory of the ContainerDevice folder includes the `Program.cs` file for your simulated device app. The simulated device app will use the device certificate file when authenticating to the Device Provisioning Service.
@@ -449,7 +460,7 @@ In this task, you will complete the following:
 
 1. On the **File** menu, click **Open Folder**
 
-1. In the **Open Folder** dialog, navigate to the Starter folder for lab 6 (Automatic Enrollment of Devices in DPS).
+1. In the **Open Folder** dialog, navigate to the **Final** folder for lab 6 (Automatic Enrollment of Devices in DPS).
 
 1. Click **ContainerDevice**, and then click **Select Folder**.
 
@@ -537,9 +548,7 @@ In this exercise, you will make copies of your simulated device project, and the
 
 1. Open Windows File Explorer.
 
-1. In File Explorer, navigate to the Starter folder for lab 6 (Automatic Enrollment of Devices in DPS).
-
-    In _Lab 3: Setup the Development Environment_, you cloned the GitHub repository containing lab resources by downloading a ZIP file and extracting the contents locally. The extracted folder structure includes the following folder path:
+1. In File Explorer, navigate to the **Final** folder for lab 6 (Automatic Enrollment of Devices in DPS).
 
     * Allfiles
       * Labs
@@ -713,7 +722,7 @@ With the simulated devices running, the `telemetryDelay` configuration can be up
 
 1. Open the **Azure portal**, and then navigate to your **Azure IoT Hub** service.
 
-1. On the left-side menu of your IoT hub blade, under **Explorers**, click **IoT devices**.
+1. On the left-side menu of your IoT hub blade, under **Device management**, click **Devices**.
 
 1. Within the list of IoT devices, click **sensor-thl-2000**.
 
@@ -868,7 +877,7 @@ In this task, you will use the **sensor-thl-2001** device for the individual enr
 
 1. On the Resources tile, click **iot-az220-training-{your-id}**.
 
-1. On the left-side mnu of your IoT hub blade, under **Explorers**, click **IoT devices**.
+1. On the left-side mnu of your IoT hub blade, under **Device management**, click **Devices**.
 
 1. On the **IoT devices** pane, under **DEVICE ID**, locate the **sensor-thl-2001** device.
 
@@ -878,9 +887,9 @@ In this task, you will use the **sensor-thl-2001** device for the individual enr
 
 #### Task 3: Confirm that the device is deprovisioned
 
-1. Switch to the Visual Studio Code window containing your ContainerDevice2004 code project.
+1. Switch to the Visual Studio Code window containing your ContainerDevice2001 code project.
 
-    If you closed Visual Studio Code after the previous exercise, use Visual Studio Code to open the ContainerDevice2004 folder.
+    If you closed Visual Studio Code after the previous exercise, use Visual Studio Code to open the ContainerDevice2001 folder.
 
 1. On the **View** menu, click **Terminal**.
 
@@ -957,15 +966,13 @@ Once the enrollment group has been removed from the Device Provisioning Service 
 
 1. On your Resources tile, click **iot-az220-training-{your-id}**.
 
-1. On the left-side menu of your IoT hub blade, under **Explorers**, click **IoT devices**.
+1. On the left-side menu of your IoT hub blade, under **Device management**, click **Devices**.
 
-1. Notice that the device IDs for **sensor-thl-2000** and the other group enrolled devices still exist within the Azure IoT Hub device registry.
+1. Notice that, although the enrollment group has been deleted, the device ID for **sensor-thl-2000** still exists within the Azure IoT Hub device registry.
 
 1. To remove the sensor-thl-2000 device, select the check box to the left of **sensor-thl-2000**, then click **Delete**.
 
 1. When prompted with "_Are you certain you wish to delete selected device(s)_", click **Yes**.
-
-1. Repeat the steps 4-5 above to remove the sensor-thl-2001 device.
 
 #### Task 3: Confirm that your devices have been deprovisioned
 
