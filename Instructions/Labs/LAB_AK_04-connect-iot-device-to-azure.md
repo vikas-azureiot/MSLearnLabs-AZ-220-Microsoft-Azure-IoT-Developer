@@ -353,17 +353,11 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
         class Program
         {
             // INSERT variables below here
-
             // INSERT Main method below here
-
             // INSERT SendDeviceToCloudMessagesAsync method below here
-
             // INSERT CreateMessageString method below here
-
         }
-
         // INSERT EnvironmentSensor class below here
-
     }
     ```
 
@@ -394,7 +388,6 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     ```csharp
     // Contains methods that a device can use to send messages to and receive from an IoT Hub.
     private static DeviceClient deviceClient;
-
     // The device connection string to authenticate the device with your IoT hub.
     // Note: in real-world applications you would not "hard-code" the connection string
     // It could be stored within an environment variable, passed in via the command-line or
