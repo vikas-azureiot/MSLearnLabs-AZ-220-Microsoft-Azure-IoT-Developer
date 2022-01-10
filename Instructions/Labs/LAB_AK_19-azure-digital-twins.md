@@ -1396,7 +1396,7 @@ In order to implement this flow, the following resources must be created (in add
 
 * An Azure Function
 * An Event Hub Namespace
-* Two Event Hubs - one for events from ADT to the Azure Function, another for events from the Azurre Function for TSI.
+* Two Event Hubs - one for events from ADT to the Azure Function, another for events from the Azure Function for TSI.
 
 The Azure function can serve a number of purposes:
 
@@ -1424,7 +1424,7 @@ An Event Hubs namespace provides DNS integrated network endpoints and a range of
 
 1. In the **Namespace name** field, enter **evhns-az220-training-{your-id}**.
 
-    This resource is publically accessible and must have a unique name.
+    This resource is publicly accessible and must have a unique name.
 
 1. To the right of **Location**, open the drop-down list and select the same location that you selected for your resource group.
 

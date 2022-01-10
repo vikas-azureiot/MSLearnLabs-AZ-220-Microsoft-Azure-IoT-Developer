@@ -61,7 +61,7 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: The lab virtual machine environment is configured with the Resource group named **@lab.CloudResourceGroup(ResourceGroup1).Name**. The Azure resources created by the Azure Resource Manager template will use the same **Region** that is used by the resource group. This field is read-only.
 
-1. In the **Your ID** field, enter a unique ID value using a "YourInitialsYYMMDD: pattern:
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
 
     The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example: ccj220101
 
@@ -428,7 +428,6 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     private static void Main(string[] args)
     {
         Console.WriteLine("IoT Hub C# Simulated Cave Device. Ctrl-C to exit.\n");
-
         // Connect to the IoT hub using the MQTT protocol
         deviceClient = DeviceClient.CreateFromConnectionString(connectionString, TransportType.Mqtt);
         SendDeviceToCloudMessagesAsync();
@@ -468,26 +467,20 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     {
         // Create an instance of our sensor
         var sensor = new EnvironmentSensor();
-
         while (true)
         {
             // read data from the sensor
             var currentTemperature = sensor.ReadTemperature();
             var currentHumidity = sensor.ReadHumidity();
-
             var messageString = CreateMessageString(currentTemperature, currentHumidity);
-
             // create a byte array from the message string using ASCII encoding
             var message = new Message(Encoding.ASCII.GetBytes(messageString));
-
             // Add a custom application property to the message.
             // An IoT hub can filter on these properties without access to the message body.
             message.Properties.Add("temperatureAlert", (currentTemperature > 30) ? "true" : "false");
-
             // Send the telemetry message
             await deviceClient.SendEventAsync(message);
             Console.WriteLine("{0} > Sending message: {1}", DateTime.Now, messageString);
-
             await Task.Delay(1000);
         }
     }
@@ -540,7 +533,6 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
             temperature = temperature,
             humidity = humidity
         };
-
         // Create a JSON string from the anonymous object
         return JsonConvert.SerializeObject(telemetryDataPoint);
     }
@@ -567,17 +559,14 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
         double minTemperature = 20;
         double minHumidity = 60;
         Random rand = new Random();
-
         internal EnvironmentSensor()
         {
             // device initialization could occur here
         }
-
         internal double ReadTemperature()
         {
             return minTemperature + rand.NextDouble() * 15;
         }
-
         internal double ReadHumidity()
         {
             return minHumidity + rand.NextDouble() * 20;

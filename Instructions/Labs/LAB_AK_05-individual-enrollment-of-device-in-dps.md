@@ -22,9 +22,9 @@ The following resources will be created:
 
 ## In This Lab
 
-In this lab, you will begin by reviewing the lab prerequisites and you will run a script if needed to ensure that your Azure subscription includes the required resources. You will then create a new individual enrollment in DPS that uses Symmetric Key attestation and specifies an initial Device Twin State (telemetry rate) for the device. With the device enrollment saved, you will go back into the enrollment and get the auto-generated Primary and Secondary keys needed for device attestation. Next, you create a simulated device and verify that device connects successfully with IoT hub and that the initial device twin properties are applied by the device as expected. To finish up, you will complete a deprovisioning process that securely removes the device from your solution by both disenrolling and deregistering the device (from DPS and IoT hub respectively). The lab includes the following exercises:
+In this lab, you will begin by launching an Azure Resource Manager template that creates the Azure resources, such as an instance of IoT Hub Device Provisioning Service, that are required to complete this lab. You will then create a new individual enrollment in DPS that uses Symmetric Key attestation and specifies an initial Device Twin State (telemetry rate) for the device. With the device enrollment saved, you will go back into the enrollment and get the auto-generated Primary and Secondary keys needed for device attestation. Next, you create a simulated device and verify that device connects successfully with IoT hub and that the initial device twin properties are applied by the device as expected. To finish up, you will complete a deprovisioning process that securely removes the device from your solution by both disenrolling and deregistering the device (from DPS and IoT hub respectively). The lab includes the following exercises:
 
-* Verify Lab Prerequisites
+* Configure Lab Prerequisites
 * Create new individual enrollment (Symmetric keys) in DPS
 * Configure Simulated Device
 * Test the Simulated Device
@@ -32,9 +32,9 @@ In this lab, you will begin by reviewing the lab prerequisites and you will run 
 
 ## Lab Instructions
 
-### Exercise 1: Verify Lab Prerequisites
+### Exercise 1: Configure Lab Prerequisites
 
-This lab assumes that the following Azure resources are available:
+This lab will use the following Azure resources:
 
 | Resource Type | Resource Name |
 | :-- | :-- |
@@ -44,17 +44,16 @@ This lab assumes that the following Azure resources are available:
 
 To ensure these resources are available, complete the following tasks.
 
-1. To create the required resources, open a new browser tab and enter the following address:
 
-    [https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab05.json](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab05.json)
+1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address: 
 
     ```url
     https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab05.json
     ```
 
-1. If prompted, login to the **Azure Portal**.
+1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
 
-    The **Custom deployment** page will be displayed.
+    Once you have signed in, the **Custom deployment** page will be displayed.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
@@ -70,7 +69,11 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example: ccj220101
+
+    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -95,15 +98,13 @@ In this exercise, you will create a new individual enrollment for a device withi
 
 #### Task 1: Create the enrollment
 
-1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+1. On the Azure portal menu, select **Dashboard**.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
 
-1. Notice that the **AZ-220** dashboard has been loaded and your Resources tile is displayed.
+    > **Note**: The All resources tile is included on the default dashboard. You should see both your IoT Hub and DPS resources listed.
 
-    You should see both your IoT Hub and DPS resources listed.
-
-1. On the **@lab.CloudResourceGroup(ResourceGroup1).Name** resource group tile, click **dps-az220-training-{your-id}**.
+1. On the All resources tile, click **dps-az220-training-{your-id}**.
 
 1. On the left-side menu under **Settings**, click **Manage enrollments**.
 
