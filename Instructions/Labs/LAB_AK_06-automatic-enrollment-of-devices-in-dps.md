@@ -139,26 +139,37 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
 1. At the Cloud Shell command prompt, to create and then move into a new directory, enter the following commands:
 
+    ensure the current directory is the user's home directory
+
     ```sh
-    # ensure the current directory is the user's home directory
     cd ~
+    ```
 
-    # make a directory named "certificates"
+    make a directory named "certificates"
+
+    ```sh
     mkdir certificates
+    ```
 
-    # change directory to the "certificates" directory
+    change directory to the "certificates" directory
+
+    ```sh
     cd certificates
     ```
 
 1. At the Cloud Shell command prompt, to download and prepare the Azure IoT helper scripts that you will be using, enter the following commands:
 
+    download helper script files
+
     ```sh
-    # download helper script files
     curl https://raw.githubusercontent.com/Azure/azure-iot-sdk-c/master/tools/CACertificates/certGen.sh --output certGen.sh
     curl https://raw.githubusercontent.com/Azure/azure-iot-sdk-c/master/tools/CACertificates/openssl_device_intermediate_ca.cnf --output openssl_device_intermediate_ca.cnf
     curl https://raw.githubusercontent.com/Azure/azure-iot-sdk-c/master/tools/CACertificates/openssl_root_ca.cnf --output openssl_root_ca.cnf
+    ```
 
-    # update script permissions so user can read, write, and execute it
+    update script permissions so user can read, write, and execute it
+
+    ```sh
     chmod 700 certGen.sh
     ```
 
@@ -346,7 +357,7 @@ In this exercise, you will generate a device certificate using the root certific
 
     If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
 
-1. On the Azure portal toolbar, click **Cloud Shell**
+1. If you closed the Cloud Shell during the previous exercise, on the Azure portal toolbar, click **Cloud Shell**
 
     The Azure portal toolbar runs across the top of the portal window. The Cloud Shell button is the 6th in from the right.
 
@@ -410,7 +421,7 @@ In this task, you will complete the following:
 
 1. On the **Overview** pane, copy the **ID Scope** for the Device Provisioning Service, and save it for later reference.
 
-    There is a copy button to the right of the value that will appear when you hover over the value.
+    This ID Scope value is the same value that you recorded after configuring the lab prerequisites. If you don't already have a copy, get it now. There is a copy button to the right of the value that will appear when you hover over the value.
 
     The **ID Scope** will be similar to this value: `0ne0004E52G`
 
@@ -422,12 +433,12 @@ In this task, you will complete the following:
 
 1. In File Explorer, navigate to the Starter folder for lab 6 (Automatic Enrollment of Devices in DPS).
 
-    In _Lab 3: Setup the Development Environment_, you cloned the GitHub repository containing lab resources by downloading a ZIP file and extracting the contents locally. The extracted folder structure includes the following folder path:
+    Before starting the lab instructions, you downloaded a copy of the GitHub repository containing lab resources to the lab virtual machine environment. The folder structure includes the following folder path:
 
     * Allfiles
       * Labs
           * 06-Automatic Enrollment of Devices in DPS
-            * Starter
+            * Final
               * ContainerDevice
 
 1. With the ContainerDevice folder open, paste-in the copied device certificate files.
@@ -472,7 +483,7 @@ In this task, you will complete the following:
 
 1. In the **EXPLORER** pane, click **Program.cs**.
 
-    A cursory glance will reveal that this version of the **ContainerDevice** application is virtually identical to the version used in the preceding lab. The only changes will be those that relate specifically to the use of X.509 certificates as an attestation mechanism. From the application perspective, it matters little that this device will be connecting via a Group Enrollment vs an Individual Enrollment.
+    The **ContainerDevice** application will the use of X.509 certificates as an attestation mechanism. From the application's perspective, it matters little that this device will be connecting via a Group Enrollment vs an Individual Enrollment.
 
 1. Locate the **GlobalDeviceEndpoint** variable, and notice that its value is set to the Global Device Endpoint for the Azure Device Provisioning Service (`global.azure-devices-provisioning.net`).
 
@@ -492,7 +503,7 @@ In this task, you will complete the following:
 
 1. Locate the **certificateFileName** variable, and notice that its value is set to the default name of the device certificate file that you generated (**new-device.cert.pfx**).
 
-    Rather than using symmetric keys as in the earlier lab, this time the application is using an X.509 certificate. The **new-device.cert.pfx** file is the X.509 device certificate file that you generated using the **certGen.sh** helper script within the Cloud Shell. This variable tells the device code which file contains the X.509 device certificate that it will use when authenticating with the Device Provisioning Service.
+    The device application will use an X.509 certificate for authentication. The **new-device.cert.pfx** file is the X.509 device certificate file that you generated using the **certGen.sh** helper script within the Cloud Shell. This variable tells the device code which file contains the X.509 device certificate that it will use when authenticating with the Device Provisioning Service.
 
 1. Update the value assigned to the **certificateFileName** variable as follows:
 
@@ -516,7 +527,7 @@ In this task, you will complete the following:
 
 1. At the Terminal command prompt, to verify that you code will build correctly, enter **dotnet build**
 
-    If you see build error listed, fix them now before continuing to the next exercise. Work with your instructor if needed.
+    If you see build error listed, fix them now before continuing to the next exercise.
 
 ### Exercise 4: Create Additional Instances of your Simulated Device
 
@@ -533,7 +544,7 @@ In this exercise, you will make copies of your simulated device project, and the
     * Allfiles
       * Labs
           * 06-Automatic Enrollment of Devices in DPS
-            * Starter
+            * Final
 
 1. Right-click **ContainerDevice**, and then click **Copy**.
 
@@ -688,7 +699,7 @@ In this exercise, you will run the simulated device. When the device is started 
 
     You should see something similar to the following:
 
-    `Allfiles\Labs\06-Automatic Enrollment of Devices in DPS\Starter\ContainerDevice2001>`
+    `Allfiles\Labs\06-Automatic Enrollment of Devices in DPS\Final\ContainerDevice2001>`
 
 1. To build and run the **ContainerDevice** project, enter the following command:
 
@@ -905,7 +916,6 @@ In this task, you will use the **sensor-thl-2001** device for the individual enr
 In this exercise, you will deprovision the full enrollment group. Again, this includes disenrolling from Device Provisioning Service and deregistering the devices from IoT Hub.
 
 #### Task 1: Disenroll the enrollment group from the DPS
-
 
 In this task, you will delete your Enrollment Group, which will remove the enrolled devices.
 
