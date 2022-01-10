@@ -89,14 +89,22 @@ To ensure these resources are available, complete the following tasks.
 
     The deployment will start. It will take several minutes to deploy the required Azure resources.
 
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    You will be using the text editor to store some configuration values associated with the Azure resources.
+
+1. Switch back to the Azure portal window and wait to the deployment to finish.
+
+    You will see a notification when deployment is complete.
+
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    > **IMPORTANT**: Open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**) and make a record of the following Outputs for use later:
+1. In your text editor, create a record of the following Outputs for use later:
 
     * connectionString
     * dpsScopeId
 
-The resources have now been created.
+    The Azure resources required for this lab are now available.
 
 ### Exercise 2: Create new individual enrollment (Symmetric keys) in DPS
 
@@ -126,7 +134,9 @@ In this exercise, you will create a new individual enrollment for a device withi
 
     > **Note**: The Primary Key and Secondary Key values are generated after this record is saved. In the next task you will go back into this record to obtain the values, and then use them within a simulated device app later in this lab.
 
-1. In the **Registration ID** field, to specify the Registration ID to use for the device enrollment within DPS, enter **sensor-thl-1000**
+1. In the **Registration ID** field, to specify the Registration ID to use for the device enrollment within DPS, enter the following: **sensor-thl-1000**
+
+    +++sensor-thl-1000+++
 
     By default, the Registration ID will be used as the IoT Hub Device ID when the device is provisioned from the enrollment. When these values need to be different, you can enter the required IoT Hub Device ID in that field.
 
@@ -226,12 +236,14 @@ The simulated device that you create in this exercise represents an IoT device t
 
 1. On the **File** menu, click **Open Folder** and then navigate to the **Final** folder for Lab 5.
 
-    The Lab 5 **Final** folder is part of the lab resources files that you downloaded when setting up your development environment in lab 3. The folder path is:
+    The Lab 5 **Final** folder is part of the lab resources that you downloaded before starting this lab. The folder path is:
 
     * Allfiles
       * Labs
           * 05-Individual Enrollment of a Device in DPS
             * Final
+
+    > **Note**: If you have trouble finding the Allfiles folder, check your Windows Desktop folder.
 
 1. In the **Open Folder** dialog, click **ContainerDevice**, and then click **Select Folder**.
 
@@ -357,6 +369,8 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. In your text editor, replace the **{IoTHubName}** placeholder with the name of your Azure IoT Hub.
 
+    Your IoT hub is named using the following format: iot-az220-training-{your-id}
+
 1. Create a copy of the updated Azure CLI command, and then switch back to the Azure Cloud Shell browser window.
 
 1. In the Azure Cloud Shell, to monitor the event messages that are being received by your IoT hub, enter the updated command.
@@ -372,6 +386,8 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 1. Notice that your IoT hub is receiving the telemetry messages from the sensor-thl-1000 device.
 
     Continue to leave the simulated device application running for the next task.
+
+    > **Note**: If the event monitor starts but no telemetry data is displayed, verify that the Device ID is specified correctly.
 
 #### Task 3: Change the device configuration through its twin
 
