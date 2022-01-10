@@ -73,7 +73,7 @@ To ensure these resources are available, complete the following tasks.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start. Creating the required Azure resources can take several minutes to complete.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 

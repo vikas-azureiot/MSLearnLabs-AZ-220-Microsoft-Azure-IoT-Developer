@@ -51,7 +51,11 @@ To ensure these resources are available, complete the following tasks.
     https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab05.json
     ```
 
-1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
+
+    **Username** +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password** +++@lab.CloudPortalCredential(User1).Password+++
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
@@ -71,7 +75,9 @@ To ensure these resources are available, complete the following tasks.
 
 1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
 
-    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example: ccj220101
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
 
     During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
@@ -81,11 +87,11 @@ To ensure these resources are available, complete the following tasks.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Make a note of the outputs for use later:
+    > **IMPORTANT**: Open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**) and make a record of the following Outputs for use later:
 
     * connectionString
     * dpsScopeId
@@ -100,11 +106,11 @@ In this exercise, you will create a new individual enrollment for a device withi
 
 1. On the Azure portal menu, select **Dashboard**.
 
-    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
-
-    > **Note**: The All resources tile is included on the default dashboard. You should see both your IoT Hub and DPS resources listed.
+    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. When prompted to Sign in, you will need to provide the following credentials at the sign in prompts: **Username** +++@lab.CloudPortalCredential(User1).Username+++ and **Password** +++@lab.CloudPortalCredential(User1).Password+++
 
 1. On the All resources tile, click **dps-az220-training-{your-id}**.
+
+    > **Note**: The All resources tile is included on the default dashboard. You should see both your IoT Hub and DPS resources listed.
 
 1. On the left-side menu under **Settings**, click **Manage enrollments**.
 
@@ -141,7 +147,7 @@ In this exercise, you will create a new individual enrollment for a device withi
     * **Static configuration via the enrollment list**: Specification of the desired IoT hub in the enrollment list takes priority over the Device Provisioning Service-level allocation policy.
     * **Custom (Use Azure Function)**: the device provisioning service calls your Azure Function code providing all relevant information about the device and the enrollment. Your function code is executed and returns the IoT hub information used to provisioning the device.
 
-1. Notice that the **Select the IoT hubs this device can be assigned to** dropdown specifies the **iot-az220-training-{your-id}** IoT hub that you created.
+1. Notice that the **Select the IoT hubs this device can be assigned to** dropdown specifies the **iot-az220-training-{your-id}** IoT hub that was created when you configured the lab prerequisites.
 
     This field is used to specify the IoT Hub(s) that your device can be assigned to.
 
@@ -212,7 +218,7 @@ The simulated device that you create in this exercise represents an IoT device t
 
 1. In the top-right area of the blade, hover the mouse pointer over value assigned to **ID Scope**, and then click **Copy to clipboard**.
 
-    You will be using this value shortly, so make note of the value if you are unable to use the clipboard. Be sure to differentiate between uppercase "O" and the number "0".
+    This is the same that you saved when you configured the lab prerequisites. You will be using this value shortly, so if you didn't already make note of the value, create a record of it now. Be sure to differentiate between uppercase "O" and the number "0".
 
     The **ID Scope** will be similar to this value: `0ne0004E52G`
 
@@ -321,17 +327,47 @@ In this exercise, you will run the Simulated Device and verify that it's sending
 
 In this task, you will use the Azure CLI to verify telemetry sent by the simulated device is being received by Azure IoT Hub.
 
-1. Using a browser, open the [Azure Cloud Shell](https://shell.azure.com/) and login with the Azure subscription you are using for this course.
+1. Switch to the Microsoft Edge browser window where you have the Azure portal open.
 
-    > **Note**: If the cloud shell has not been configured, follow the steps in **Lab 3 - Exercise 2 - Task 3: Configure cloud shell storage & Task 4: Install Azure CLI Extension - cloud environment**.
+1. Open a new browser tab, and then navigate to the Azure Cloud Shell: +++https://shell.azure.com/+++
 
-1. In the Azure Cloud Shell, enter the following command:
+    If necessary, login with the Azure subscription you are using for this course.
+
+1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
+
+1. Under **Subscription**, ensure the correct subscription is displayed.
+
+1. To specify storage options, click **Show advanced settings**.
+
+1. Under **Resource group**, ensure **Use existing** is selected and the **@lab.CloudResourceGroup(ResourceGroup1).Name** is shown.
+
+1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+
+1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+
+1. To finish to configuration of the cloud shell, click **Create storage**.
+
+1. Open your text editor, such as Notepad, and enter the following Azure CLI command:
 
     ```cmd/sh
-    az iot hub monitor-events --hub-name {IoTHubName} --device-id sensor-thl-1000
+    az iot hub monitor-events --hub-name {IoTHubName} --device-id sensor-th-0001
     ```
 
-    _Be sure to replace the **{IoTHubName}** placeholder with the name of your Azure IoT Hub._
+    Notice that the command contains a placeholder value for the name of your IoT Hub. You need to update that in the text editor before running the command.
+
+1. In your text editor, replace the **{IoTHubName}** placeholder with the name of your Azure IoT Hub.
+
+1. Create a copy of the updated Azure CLI command, and then switch back to the Azure Cloud Shell browser window.
+
+1. In the Azure Cloud Shell, to monitor the event messages that are being received by your IoT hub, enter the updated command.
+
+    > **Note**: If the Azure CLI extension for IoT has not been installed, you will be prompted to install it now. Enter "Y" at the prompt.
+
+    > **Note**:  If you receive a message stating _"Dependency update required for IoT extension version"_ when running the Azure CLI command, then press `y` to accept the update and press `Enter`. This will allow the command to continue as expected.
+
+    The `monitor-events` command (within the `az iot hub` Azure CLI module) offers the capability to monitor device telemetry and other message types sent to an Azure IoT Hub. This can be a very useful tool during code development, and the convenience of the command-line interface is also nice.
+
+    The `--device-id` parameter is optional and allows you to monitor the events from a single device. If the parameter is omitted, the command will monitor all events sent to the specified Azure IoT Hub.
 
 1. Notice that your IoT hub is receiving the telemetry messages from the sensor-thl-1000 device.
 
@@ -343,7 +379,7 @@ With the simulated device running, the `telemetryDelay` configuration can be upd
 
 1. Open the Azure portal (if it is not already open), and then navigate to your **Azure IoT Hub** service.
 
-1. On the IoT Hub blade, on the left-side menu under **Explorers**, click **IoT devices**.
+1. On the IoT Hub blade, on the left-side menu under **Device management**, click **Devices**.
 
 1. Under **DEVICE ID**, click **sensor-thl-1000**.
 
@@ -440,7 +476,7 @@ In this exercise, you will perform the tasks necessary to deprovision the device
 
 1. On your Resource group tile, to open your Azure IoT Hub blade, click **iot-az220-training-{your-id}**.
 
-1. On the left-side menu under **Explorers**, click **IoT devices**.
+1. On the left-side menu under **Device management**, click **Devices**.
 
 1. To the left of **sensor-thl-1000**, click the checkbox.
 
