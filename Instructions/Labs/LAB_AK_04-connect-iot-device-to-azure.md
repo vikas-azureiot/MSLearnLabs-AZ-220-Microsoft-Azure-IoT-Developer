@@ -49,7 +49,12 @@ To ensure these resources are available, complete the following steps.
     https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab04.json
     ```
 
-1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
+
+    **Username** +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password** +++@lab.CloudPortalCredential(User1).Password+++
+
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
@@ -93,9 +98,15 @@ In this exercise, you will open your IoT Hub in the Azure portal, add a new IoT 
 
 1. On the Azure portal menu, select **Dashboard**.
 
-    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+    If you closed the Azure portal browser window, open the Microsoft Edge browser, and then navigate to the Azure portal:
 
-    > **Note**: The All resources tile is included on the default dashboard.
+    +++http://portal.azure.com+++
+
+    When prompted to Sign in using Azure account credentials, use the following values at the sign in prompts:
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
 
 1. On the All resources tile, click **iot-az220-training-{your-id}**
 
@@ -630,7 +641,11 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. Open a new browser tab, and then navigate to the Azure Cloud Shell: +++https://shell.azure.com/+++
 
-    If necessary, login with the Azure subscription you are using for this lab.
+    If prompted to Sign in using Azure account credentials, use the following values at the sign in prompts:
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
 
 1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
 
