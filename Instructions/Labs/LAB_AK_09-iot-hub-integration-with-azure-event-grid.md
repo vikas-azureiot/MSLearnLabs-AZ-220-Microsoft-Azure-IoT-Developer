@@ -108,11 +108,9 @@ In this exercise, you will create a new Azure Logic App that will be triggered v
 
 #### Task 1: Create a Logic App resource in the Azure portal
 
-1. If necessary, log in to the [Azure portal](https://portal.azure.com) using the Azure account credentials that you are using for this course.
-
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
-
 1. On the Azure portal menu, click **+ Create a resource**.
+
+    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. When prompted to Sign in, you will need to provide the following credentials at the sign in prompts: **Username** +++@lab.CloudPortalCredential(User1).Username+++ and **Password** +++@lab.CloudPortalCredential(User1).Password+++
 
 1. On the **Create a resource** blade, in the **Search services and marketplace** box, enter **logic app**
 
