@@ -26,9 +26,9 @@ In this lab, you will create and examine an Azure IoT Hub and an IoT Hub Device 
 
 ### Exercise 1: Explore Globally Unique Resource Naming Requirements
 
-In labs 2-20 of this course, you will be creating Azure resources that are used to develop your IoT solution. To ensure consistency across the labs and to help in tidying up resources when you are finished with them, suggested resource names will be provided within the lab instructions. As much as possible, the suggested resource names will follow the naming guidelines recommended here: [Recommended naming and tagging conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging). However, many of the resources that you will create during this course expose services that can be consumed across the web, which means that they must have globally unique names. To ensure that these resources satisfy the globally unique requirement, you will be adding a unique identifier to the end of the resource names when needed.
+During this lab, you will be creating Azure resources that can used to develop an IoT solution. To help ensure proper resource naming and for subsequent references to the resource within the instructions, suggested resource names will be provided within the lab instructions. As much as possible, the suggested resource names will follow the naming guidelines recommended here: [Recommended naming and tagging conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging). However, some of the resources that you will create can be consumed across the web, which means that they must have globally unique names. To ensure that these resources satisfy the globally unique requirement, you will be adding a unique identifier to the end of the resource names when needed.
 
-In this exercise, you will create your unique ID and review some examples that help to illustrate how you will use your unique ID during labs 2-20 of this course.
+In this exercise, you will create your unique ID and review some examples that help to illustrate how you will apply your unique ID during the lab.
 
 #### Task 1: Create Your Unique ID
 
@@ -49,13 +49,13 @@ In this exercise, you will create your unique ID and review some examples that h
 
     Within the lab instructions, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
-1. Make a note of your unique ID now and then **use the same value through the entire course**.
+1. Make a note of your unique ID. You will use the ID value later in this lab.
 
-    > **Note**: Don't change the date portion of your unique ID each day. Use the same unique ID each day of the course.
+    > **Note**: You do not need to change the date portion of your unique ID value if you return to this lab another day.
 
 #### Task 2: Review How and When to Apply Your Unique ID
 
-Many of the resources that you create during the labs in this course will have publicly-addressable (although secured) endpoints and therefore must be globally unique. Examples of resources that require globally unique names include IoT Hubs, Device Provisioning Services, and Azure Storage Accounts.
+Many of the resources that you create for an Azure IoT solution will have publicly-addressable (although secured) endpoints and therefore must be globally unique. Examples of resources that require globally unique names include IoT Hubs, Device Provisioning Services, and Azure Storage Accounts.
 
 As noted above, when you create these types of resources, you will be provided with a resource name that follows suggested guidelines and you will be instructed to include your unique ID as part of the resource name. To help clarify when you need to enter your unique ID, the suggested resource name will include a placeholder value for your unique ID. You will be instructed to replace the placeholder value, `{your-id}`, with your unique ID.
 
@@ -71,7 +71,7 @@ As noted above, when you create these types of resources, you will be provided w
 
 1. Review the following example for applying your unique ID within C# code:
 
-    In some of the labs later in this course, you will be instructed to apply your unique ID value within C# source files. The C# source code, which will be provided to you, might include a code section that looks similar to the following:
+    To apply your unique ID value within C# source files, which will be provided to you, you might see a code section that looks similar to the following:
 
     ```csharp
     private string _yourId = "{your-id}";
@@ -91,7 +91,7 @@ As noted above, when you create these types of resources, you will be provided w
 
 1. Apply an additional `01` or `02` if it turns out that your unique ID isn't so unique.
 
-    It could happen that two or more people with the same initials start the course on the same day. You may not know, unless the person is sitting next to you, until you create your IoT Hub in the next exercise. Azure will let you know if the suggested resource name, including your unique ID, isn't globally unique. In that case you will be instructed to update your unique ID by appending an additional `##` value. For example, if the value of your unique ID is `cah211216`, your updated unique ID value could become:
+    It could happen that two or more people with the same initials start the lab on the same day. You will not know for sure until you create your IoT Hub in the next exercise. Azure will let you know if the suggested resource name, including your unique ID, isn't globally unique. In that case you will need to update your unique ID by appending an additional `##` value. For example, if the value of your unique ID is `cah211216`, your updated unique ID value could become:
 
     ```text
     cah21121600
@@ -115,21 +115,25 @@ The Azure IoT Hub is a fully managed service that enables reliable and secure bi
 * Extensive monitoring for device connectivity and device identity management events.
 * SDK device libraries for the most popular languages and platforms.
 
-There are several methods that you can use to create an IoT Hub. For example, you can create an IoT Hub resource using the Azure portal, or you can create an IoT Hub (and other resources) programmatically. During this course you will be investigating various methods that can be used to create and manage Azure resources, including Azure CLI and Bash scripts.
+There are several methods that you can use to create an IoT Hub. For example, you can create an IoT Hub resource using the Azure portal, or you can create an IoT Hub (and other resources) programmatically. There are various methods that can be used to create and manage Azure resources programmatically, including Azure CLI, Bash scripts, and Azure Resource Manager templates.
 
 In this exercise, you will use the Azure portal to create and configure your IoT Hub.
 
 #### Task 1: Use the Azure portal to create a resource (IoT Hub)
 
-1. Login to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+1. In the lab virtual machine environment, open a Microsoft Edge browser window, and then navigate to the Azure portal using the following Web address:
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.  You may find it easiest to use an InPrivate / Incognito browser session to avoid accidentally using the wrong account.
+    +++http://portal.azure.com+++
 
-1. Notice that the AZ-220 dashboard that you created in the previous lab has been loaded.
+1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
-    You will be adding resources to your dashboard as the course continues.
+    **Username** +++@lab.CloudPortalCredential(User1).Username+++
 
-    > **Note**: If the AZ-220 Dashboard does not exist, create it as detailed in **LAB 01 - Getting Started, Exercise 2 - Create an Azure Dashboard and add a Resource Group**.
+    **Password** +++@lab.CloudPortalCredential(User1).Password+++
+
+1. Open your Azure dashboard.
+
+    Notice that your dashboard includes an All resources tile. You will be creating Azure resources during this lab. When you create new resources, they become accessible from your All resources tile. 
 
 1. On the Azure portal menu, click **+ Create a resource**.
 
@@ -139,7 +143,7 @@ In this exercise, you will use the Azure portal to create and configure your IoT
 
     The **Marketplace** blade will open to display the available services matching your search criteria.
 
-    > **Note**: Marketplace services provided by private contributors may include a cost that is not covered by a Microsoft Azure Pass or other Microsoft Azure free credit offerings. You will be using Microsoft provided resources during the labs in this course.
+    > **Note**: Marketplace services provided by private contributors may include a cost that is not covered by a Microsoft Azure Pass or other Microsoft Azure free credit offerings. You will be using Microsoft provided resources during this lab.
 
 1. On the **Marketplace** blade, click the **IoT Hub** search result.
 
@@ -150,7 +154,7 @@ In this exercise, you will use the Azure portal to create and configure your IoT
 
     Under **Useful Links**, notice the list of resource links.
 
-    There is no need to explore these links now, but it's worth noting that they are available. The _Documentation_ link, for example, takes you to the root page for IoT Hub resources and documentation. You can use this page to review the most up-to-date Azure IoT Hub documentation and explore additional resources that are outside the scope of this course. You will be referred to the docs.microsoft.com site throughout this course for additional reading on specific topics.
+    There is no need to explore these links now, but it's worth noting that they are available. The _Documentation_ link, for example, takes you to the root page for IoT Hub resources and documentation. You can use this page to review the most up-to-date Azure IoT Hub documentation and explore additional resources that are outside the scope of this lab.
 
     If you opened one of the links, close it now and use your browser to navigate back to the Azure portal tab.
 
@@ -165,13 +169,13 @@ In this exercise, you will use the Azure portal to create and configure your IoT
 
     The following steps walk you through the settings required to create your IoT Hub, explaining each of the fields as you fill them in.
 
-1. On the **IoT hub** blade, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+1. On the **IoT hub** blade, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
     The _Basics_ tab that is selected initially contains uninitialized fields that you are required to fill in, but there are settings on other tabs that you will need to be familiar with as well.
 
 1. To the right of **Resource group**, open the dropdown, and then click **@lab.CloudResourceGroup(ResourceGroup1).Name**
 
-    This is the resource group that has been created for you. You will be grouping the resources that you create for this course together in the same resource group. It is best practice to group related resources in this way, and will help you to clean up your resources when you no longer need them.
+    This is the resource group that has been created for you. You will be grouping the resources that you create for this lab together in the same resource group. It is best practice to group related resources in this way, and will help you to clean up your resources when you no longer need them.
 
 1. To the right of **IoT hub name**, enter a globally unique name for your IoT Hub as follows:
 
@@ -207,22 +211,22 @@ In this exercise, you will use the Azure portal to create and configure your IoT
 
 1. To the right of **Pricing and scale tier**, ensure that **S1: Standard tier** is selected.
 
-    Azure IoT Hub provides several tier options depending on how many features you require and how many messages you need to send within your solution per day. The _S1_ tier that you are using in this course allows a total of 400,000 messages per unit per day and provides the all of the services that are required in this training. You won't actually need 400,000 messages per unit per day, but you will be using features provided by the Standard tier, such as _Cloud-to-device commands_, _Device management_, and _IoT Edge_. IoT Hub also offers a Free tier that is meant for testing and evaluation. It has the same capabilities as the Standard tier, but limited messaging allowances. It is important to note that you cannot upgrade from the Free tier to either Basic or Standard. The Free tier allows 500 devices to be connected to the IoT hub and up to 8,000 messages per day. Each Azure subscription can create one IoT Hub in the Free tier.
+    Azure IoT Hub provides several tier options depending on how many features you require and how many messages you need to send within your solution per day. The _S1_ tier that you are using in this lab allows a total of 400,000 messages per unit per day and provides the all of the services that are required in this training. You won't actually need 400,000 messages per unit per day, but you will be using features provided by the Standard tier, such as _Cloud-to-device commands_, _Device management_, and _IoT Edge_. IoT Hub also offers a Free tier that is meant for testing and evaluation. It has the same capabilities as the Standard tier, but limited messaging allowances. It is important to note that you cannot upgrade from the Free tier to either Basic or Standard. The Free tier allows 500 devices to be connected to the IoT hub and up to 8,000 messages per day. Each Azure subscription can create one IoT Hub in the Free tier.
 
     > **Note**:  The _S1 - Standard_ tier has a cost of $25.00 USD per month per unit. You will be specifying 1 unit. For details about the other tier options, see [Choosing the right IoT Hub tier for your solution](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-scaling).
 
 1. To the right of **Number of S1 IoT hub units**, ensure that **1** is selected.
 
-    As mentioned above, the pricing tier that you choose establishes the number of messages that your hub can process per unit per day. To increase the number of messages that your hub can process without moving to a higher pricing tier, you can increase the number of units. For example, if you want your IoT hub to support ingress of up to 800,000 messages per day, you could specify *two* S1 tier units. For this course you will be using just 1 unit.
+    As mentioned above, the pricing tier that you choose establishes the number of messages that your hub can process per unit per day. To increase the number of messages that your hub can process without moving to a higher pricing tier, you can increase the number of units. For example, if you want your IoT hub to support ingress of up to 800,000 messages per day, you could specify *two* S1 tier units. For this lab you will be using just 1 unit.
 
-1. To the right of **Defender for IoT**, ensure that **Off** is selected.
+1. To the right of **Defender for IoT**, notice that the default value is **On**.
 
     Azure Defender for IoT is a unified security solution for identifying IoT/OT devices, vulnerabilities, and threats. It enables you to secure your entire IoT/OT environment, whether you need to protect existing IoT/OT devices or build security into new IoT innovations.
 
     > **TIP**:
-    **Azure Defender for IoT** was formerly known as **Azure Security Center** and you may still see places in Azure, and in this content, where the name has not yet been updated.
+    **Azure Defender for IoT** was formerly known as **Azure Security Center for IoT** and you may still see places in Azure where the name has not yet been updated.
 
-    Azure Defender for IoT is on by default because security is important to your IoT solution. You will be exploring Azure Defender for IoT in Lab 19 of this course. Disabling it for now ensures that the Lab 19 instructions work as expected.
+    Azure Defender for IoT is on by default because security is important to your IoT solution.
 
     Currently, you can enable Azure Defender at the subscription level, through the Azure portal. Azure Defender is free for the first 30 days. Any usage beyond 30 days will be automatically charged as per the pricing information detailed [here](https://azure.microsoft.com/en-us/pricing/details/azure-defender/).
 
@@ -230,7 +234,7 @@ In this exercise, you will use the Azure portal to create and configure your IoT
 
 1. Under **Advanced Settings** (you may need to scroll down), ensure that **Device-to-cloud partitions** is set to **4**.
 
-    The number of partitions relates the device-to-cloud messages to the number of simultaneous readers of these messages. Most IoT hubs will only need four partitions, which is the default value. For this course you will create your IoT Hub using the default number of partitions.
+    The number of partitions relates the device-to-cloud messages to the number of simultaneous readers of these messages. Most IoT hubs will only need four partitions, which is the default value. For this lab you will create your IoT Hub using the default number of partitions.
 
 1. Within the **Transport Layer Security (TLS)** section, ensure the **Minimum TLS Version** is set to **1.0**.
 
@@ -264,13 +268,19 @@ In this exercise, you will examine some of the features that IoT Hub provides.
 
 #### Task 1: Explore the IoT Hub Overview information
 
-1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+1. If you closed your Azure portal window, open a Microsoft Edge browser window, and then navigate to the Azure portal:
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    +++http://portal.azure.com+++
 
-1. Verify that your AZ-220 dashboard is being displayed.
+    When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
-1. On the **@lab.CloudResourceGroup(ResourceGroup1).Name** resource group tile, click **iot-az220-training-{your-id}**
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
+
+1. Open your Azure dashboard.
+
+1. On the All resources tile, click **iot-az220-training-{your-id}**
 
     When you first open your IoT Hub blade, the **Overview** information will be displayed. As you can see, the area at the top of this blade provides some essential information about your IoT Hub service, such as datacenter location and subscription. But this blade also includes tiles that provide information about how you are using your hub and recent activities. Let's take a look at these tiles before exploring further.
 
@@ -335,9 +345,16 @@ There are several methods that you can use to create an instance of the IoT Hub 
 
 #### Task 1: Use the Azure portal to create a resource (Device Provisioning Service)
 
-1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+1. If you closed your Azure portal window, open a Microsoft Edge browser window, and then navigate to the Azure portal:
+
+    +++http://portal.azure.com+++
+
+    When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
 
 1. On the Azure portal menu, click **+ Create a resource**.
 
@@ -354,7 +371,7 @@ There are several methods that you can use to create an instance of the IoT Hub 
 
     Under **Useful links**, notice the list of resource links.
 
-    Again, there is no need to explore this documentation now, but is is good to know that it is available. The IoT Hub Device Provisioning Service Documentation page is the root page for DPS. You can use this page to explore current documentation and find tutorials and other resources that will help you to explore activities that are outside the scope of this course. You will be referred to the docs.microsoft.com site throughout this course for additional reading on specific topics.
+    Again, there is no need to explore this documentation now, but is is good to know that it is available. The IoT Hub Device Provisioning Service Documentation page is the root page for DPS. You can use this page to explore current documentation and find tutorials and other resources that will help you to explore activities that are outside the scope of this lab.
 
     If you opened one of the links, close it now and use your browser to navigate back to the Azure portal tab.
 
@@ -364,11 +381,11 @@ There are several methods that you can use to create an instance of the IoT Hub 
 
     Next, you need to specify information about the Hub and your subscription. The following steps walk you through the settings, explaining each of the fields as you fill them in.
 
-1. Under **Subscription**, ensure that the subscription you are using for this course is selected.
+1. Under **Subscription**, ensure that the subscription you are using for this lab is selected.
 
 1. Under **Resource Group**, open the dropdown, and then click **@lab.CloudResourceGroup(ResourceGroup1).Name**
 
-    You will be grouping the resources that you create for this course together in the same resource group. It's a best practice to group related resources in this way, and will help you to clean up your resources when you no longer need them.
+    You will be grouping the resources that you create for this lab together in the same resource group. It's a best practice to group related resources in this way, and will help you to clean up your resources when you no longer need them.
 
 1. Under **Name**, enter a globally unique name for your IoT Hub Device Provisioning Service as follows:
 
@@ -404,7 +421,7 @@ There are several methods that you can use to create an instance of the IoT Hub 
 
     You will use the **Add link to IoT hub** blade to provide the information required to link your Device Provisioning service instance to an IoT hub.
 
-1. On the **Add link to IoT hub** blade, ensure that the **Subscription** dropdown is displaying the subscription that you are using for this course.
+1. On the **Add link to IoT hub** blade, ensure that the **Subscription** dropdown is displaying the subscription that you are using for this lab.
 
     The subscription is used to provide a list of the available IoT hubs.
 
@@ -428,13 +445,19 @@ The IoT Hub Device Provisioning Service is a helper service for IoT Hub that ena
 
 #### Task 1: Explore the Device Provisioning Service Overview information
 
-1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+1. If you closed your Azure portal window, open a Microsoft Edge browser window, and then navigate to the Azure portal:
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    +++http://portal.azure.com+++
 
-1. Verify that your AZ-220 dashboard is being displayed.
+    When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
-1. On the **@lab.CloudResourceGroup(ResourceGroup1).Name** resource group tile, click **dps-az220-training-{your-id}**
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
+
+1. Open your Azure dashboard.
+
+1. On the All resources tile, click **dps-az220-training-{your-id}**
 
     When you first open your Device Provisioning Service instance, it will display the Overview information. As you can see, the area at the top of the blade provides some essential information about your DPS instance, such as status, datacenter location and subscription. This blade also provides the _Quick Links_ section, which provide access to:
 
@@ -481,4 +504,4 @@ The IoT Hub Device Provisioning Service is a helper service for IoT Hub that ena
 
 1. Take a minute to review some of the other menu options under **Settings**
 
-   > **Note**:  This lab exercise is only intended to be an introduction to the IoT Hub Device Provisioning Service and get you more comfortable with the UI, so don't worry if you feel a bit overwhelmed at this point. You will be covering DPS in much more detail as the course continues.
+   > **Note**:  This lab exercise is only intended to be an introduction to the IoT Hub Device Provisioning Service and get you more comfortable with the UI, so don't worry if you feel a bit overwhelmed at this point.

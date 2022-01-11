@@ -53,7 +53,7 @@ To ensure these resources are available, complete the following steps.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -127,7 +127,7 @@ In this exercise, you will open your IoT Hub in the Azure portal, add a new IoT 
 
 1. Under **Parent device**, leave **No parent device** as the value.
 
-    IoT devices may be parented by other devices such as IoT Edge devices. You will get a chance to implement a Parent-Child device relationship later in the course.
+    IoT devices may be parented by other devices such as IoT Edge devices.
 
 1. To add this device record to the IoT Hub, click **Save**.
 
@@ -303,7 +303,7 @@ In this task, you will use Visual Studio Code to review the contents and purpose
 
     * The `class` area - this defines the contents of the **Program** class. You can have more than one class within a single source file
 
-    > **Note**: Developers will typically separate classes into their own source file (a single class per source file), especially in larger projects. However, in the labs for this course, you will be including multiple classes per file. This will help to simplify the lab instructions and does not imply best practice.
+    > **Note**: Developers will typically separate classes into their own source file (a single class per source file), especially in larger projects. However, in this lab, you will be including multiple classes per file. This will help to simplify the lab instructions and does not imply best practice.
 
 1. On the Visual Studio Code **View** menu, click **Terminal**.
 
@@ -401,7 +401,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     The **connectionString** variable will contain the connection string for the device we created earlier. This value is used by the **DeviceClient** to connect to the IoT Hub.
 
-    > **Important**: You will see examples in this and other labs throughout this course where connection strings, passwords and other configuration information is hard-coded into the application. This is done solely to simplify the labs and **is not** a recommended practice. As much as possible, security issues like this will be addressed as they come up in the labs. Security topics (and other important considerations) will be addressed during the instructor presentation and in your Student Handbook content in a manner that supports the overall flow of the course. The two may not always align perfectly. As a result, you may be exposed to topics in the labs that are not covered in detail until later in the course.
+    > **Important**: You will see examples in this and other IoT lab labs on MS Learn where connection strings, passwords and other configuration information is hard-coded into the application. This is done solely to simplify the labs and **is not** a recommended practice. As much as possible, security issues like this will be addressed as they come up.
 
     As noted within the code comments, connection strings and similar configuration values should be supplied via alternative means such as environment variables, command-line parameters or, better still, stored in secured hardware such as Trusted Platform Modules (TPM).
 
@@ -630,7 +630,7 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. Open a new browser tab, and then navigate to the Azure Cloud Shell: +++https://shell.azure.com/+++
 
-    If necessary, login with the Azure subscription you are using for this course.
+    If necessary, login with the Azure subscription you are using for this lab.
 
 1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
 

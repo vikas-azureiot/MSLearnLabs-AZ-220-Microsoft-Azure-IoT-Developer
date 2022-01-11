@@ -54,7 +54,7 @@ To ensure these resources are available, complete the following steps.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -118,7 +118,7 @@ In this exercise, you will create a new Azure Logic App that will be triggered v
 
 1. On the **Logic App** blade, click **Create**.
 
-1. On the **Basics** tab, under **Project details**, select the **Subscription** that you are using for this course.
+1. On the **Basics** tab, under **Project details**, select the **Subscription** that you are using for this lab.
 
 1. In the **Resource group** dropdown, under **Select existing**, click **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 

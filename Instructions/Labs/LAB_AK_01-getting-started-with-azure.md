@@ -29,7 +29,15 @@ Although Azure is commonly referred to as a 'cloud', it is actually a web portal
 
 #### Task 1: Examine the Azure portal Home page
 
-1. In your Web browser, to open the Azure portal, navigate to [portal.azure.com](http://portal.azure.com).
+1. In the lab virtual machine environment, open a Microsoft Edge browser window, and then navigate to the Azure portal using the following Web address:
+
+    +++http://portal.azure.com+++
+
+1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
+
+    **Username** +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password** +++@lab.CloudPortalCredential(User1).Password+++
 
     When you log into Azure you will arrive at the Azure portal. The Azure portal provides you with a customizable UI that you can use to access your Azure resources.
 
@@ -120,7 +128,7 @@ Although Azure is commonly referred to as a 'cloud', it is actually a web portal
 
     * The _Cloud Shell_ button opens an interactive, authenticated shell right in the portal window that you can use to manage Azure resources. The Azure Cloud Shell supports Bash and PowerShell.
     * The _Directory + Subscriptions_ button opens a pane that you can use to manage your Azure subscriptions and account directory (the Azure Active Directory authentication mechanism).
-    * The _Notifications_ button that opens a notifications pane. The notifications pane is useful when working with a long running process. You will be monitoring notifications when you create and configure resources throughout this course.
+    * The _Notifications_ button that opens a notifications pane. The notifications pane is useful when working with a long running process. You can monitor notifications when you create and configure resources.
     * There are also buttons for *Settings*, *Help*, and *Feedback*. The *Help* button contains links to help documents and a list of useful keyboard shortcuts.
 
     On the far right is a button for your account information, providing you with access to things like your account password and billing information.
@@ -154,15 +162,21 @@ In this exercise, you will:
 
 #### Task 1: Create a Dashboard
 
-1. If necessary, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+1. If you closed the Azure portal browser window, open the Microsoft Edge browser, and then navigate to the Azure portal:
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    +++http://portal.azure.com+++
+
+    When prompted to Sign in using Azure account credentials, use the following values at the sign in prompts:
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
 
 1. On the Azure portal menu, click **Dashboard**.
 
 1. On the **My Dashboard** page, click **+ New dashboard**
 
-    You can create a custom dashboard to organize and access your Azure resources for a project. In this case, you will create a custom dashboard for this course.
+    You can create a custom dashboard to organize and access your Azure resources for a project.
 
 1. Select **Blank dashboard**.
 
@@ -194,4 +208,4 @@ Since this lab is running within a training environment, the following resource 
 
 1. Close your **Resource groups** blade.
 
-    Your dashboard should now contain an empty Resources tile. When you create new resources in this resource group, they will be listed on this recourse group tile and will be easily accessible from your dashboard. You can pin other Azure resources directly to your dashboard as well.
+    Your dashboard should now contain an empty Resources tile. When you create new resources in this resource group, they will be listed on this resource group tile and will be easily accessible from your dashboard. You can pin other Azure resources directly to your dashboard as well.

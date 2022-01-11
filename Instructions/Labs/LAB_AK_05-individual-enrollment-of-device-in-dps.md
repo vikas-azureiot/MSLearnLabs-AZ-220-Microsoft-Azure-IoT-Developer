@@ -58,7 +58,7 @@ To ensure these resources are available, complete the following steps.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -145,7 +145,7 @@ In this exercise, you will create a new individual enrollment for a device withi
 
 1. Leave the **IoT Edge device** field set to **False**.
 
-    The new device will not be an edge device. Working with IoT Edge devices will be discussed later in the course.
+    The new device will not be an edge device.
 
 1. Leave the **Select how you want to assign devices to hubs** field set to **Evenly weighted distribution**.
 
@@ -342,7 +342,7 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. Open a new browser tab, and then navigate to the Azure Cloud Shell: +++https://shell.azure.com/+++
 
-    If necessary, login with the Azure subscription you are using for this course.
+    If necessary, login with the Azure subscription you are using for this lab.
 
 1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
 
@@ -463,9 +463,17 @@ In this exercise, you will perform the tasks necessary to deprovision the device
 
 #### Task 1: Disenroll the device from the DPS
 
-1. If necessary, log in to your Azure portal using your Azure account credentials.
+1. If you closed the Azure portal browser window, open the Microsoft Edge browser, and then navigate to the Azure portal:
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    +++http://portal.azure.com+++
+
+    When prompted to Sign in using Azure account credentials, use the following values at the sign in prompts:
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
+
+1. Open your Azure dashboard.
 
 1. On your Resource group tile, to open your Device Provisioning Service, click **dps-az220-training-{your-id}**.
 

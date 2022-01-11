@@ -73,7 +73,7 @@ To ensure these resources are available, complete the following steps.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -484,8 +484,6 @@ This will enable you to verify that your route includes the following settings:
 
 1. Under **Hosting environment**, ensure that **Cloud** is selected.
 
-    Edge hosting will be discussed later in the course.
-
 1. Under **Streaming units**, reduce the number from **3** to **1**.
 
     This lab does not require 3 units and this will reduce costs.
@@ -668,5 +666,3 @@ Now for the fun part. Does the telemetry your device app is pumping out work its
 1. Switch to the Visual Studio Code window.
 
 1. At the Terminal command prompt, to exit the device simulator app, press **CTRL-C**.
-
-> **IMPORTANT**: Do not remove these resources until you have completed the Data Visualization module of this course.

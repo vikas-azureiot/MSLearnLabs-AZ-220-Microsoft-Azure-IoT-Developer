@@ -54,7 +54,7 @@ To ensure these resources are available, complete the following steps.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -173,7 +173,7 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
     chmod 700 certGen.sh
     ```
 
-    The helper script and supporting files are being downloaded from the **Azure/azure-iot-sdk-c** open source project hosted on Github, which is a component of the Azure IoT Device SDK. The **certGen.sh** helper script will provide you with a chance to see how CA Certificates are used without diving too deeply into the specifics of OpenSSL configuration (which is outside the scope of this course).
+    The helper script and supporting files are being downloaded from the **Azure/azure-iot-sdk-c** open source project hosted on Github, which is a component of the Azure IoT Device SDK. The **certGen.sh** helper script will provide you with a chance to see how CA Certificates are used without diving too deeply into the specifics of OpenSSL configuration (which is outside the scope of this lab).
 
     For additional instructions on using this helper script, and for instructions on how to use PowerShell instead of Bash, please see this link: [https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md](https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md)
 
@@ -355,7 +355,7 @@ In this exercise, you will generate a device certificate using the root certific
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. If you closed the Cloud Shell during the previous exercise, on the Azure portal toolbar, click **Cloud Shell**
 
@@ -528,7 +528,7 @@ In this task, you will complete the following:
 
     > **Note**: For the purpose of this lab, the password is hard coded. In a _production_ scenario, the password will need to be stored in a more secure manner, such as in an Azure Key Vault. Additionally, the certificate file (PFX) should be stored securely on a production device using a Hardware Security Module (HSM).
     >
-    > An HSM (Hardware Security Module), is used for secure, hardware-based storage of device secrets, and is the most secure form of secret storage. Both X.509 certificates and SAS tokens can be stored in the HSM. HSMs can be used with all attestation mechanisms the provisioning service supports. HMS will be discussed in more detail later in this course.
+    > An HSM (Hardware Security Module), is used for secure, hardware-based storage of device secrets, and is the most secure form of secret storage. Both X.509 certificates and SAS tokens can be stored in the HSM. HSMs can be used with all attestation mechanisms the provisioning service supports.
 
 1. On the Visual Studio Code **File** menu, click **Save**.
 
@@ -726,8 +726,6 @@ With the simulated devices running, the `telemetryDelay` configuration can be up
 
 1. Within the list of IoT devices, click **sensor-thl-2000**.
 
-    > **IMPORTANT**: Make sure you select the device from this lab. You may also see a device named _sensor-th-0001_ that was created earlier in the course.
-
 1. On the **sensor-thl-2000** device blade, at the top of the blade, click **Device Twin**.
 
     On the **Device twin** blade, there is an editor with the full JSON for the device twin. This enables you to view and/or edit the device twin state directly within the Azure portal.
@@ -827,7 +825,7 @@ In this task, you will use the **sensor-thl-2001** device for the individual enr
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. On the Azure portal toolbar, click **Cloud Shell**
 
