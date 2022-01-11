@@ -24,7 +24,7 @@ The following resources will be created:
 
 In this lab, you will complete the following activities:
 
-* Verify that the lab prerequisites are met (that you have the required Azure resources)
+* Configure the lab prerequisites (create the Azure resources that are required for this lab)
 * Create a Logic App that sends an email
 * Configure an Azure IoT Hub Event Subscription
 * Create new devices to trigger the Logic App
@@ -38,15 +38,21 @@ This lab assumes the following Azure resources are available:
 | Resource Group | @lab.CloudResourceGroup(ResourceGroup1).Name              |
 | IoT Hub        | iot-az220-training-{your-id} |
 
-To ensure these resources are available, complete the following tasks.
+To ensure these resources are available, complete the following steps.
 
-1. To create the required resources, open a new browser tab and enter the following address:
+1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address: 
 
-    [https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab09.json](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab09.json)
+    ```url
+    https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab09.json
+    ```
 
-1. If prompted, login to the **Azure Portal**.
+1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
-    The **Custom deployment** page will be displayed.
+    **Username** +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password** +++@lab.CloudPortalCredential(User1).Password+++
+
+    Once you have signed in, the **Custom deployment** page will be displayed.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
@@ -62,7 +68,13 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
+
+    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -70,15 +82,23 @@ To ensure these resources are available, complete the following tasks.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
+
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    You will be using the text editor to store some configuration values associated with the Azure resources.
+
+1. Switch back to the Azure portal window and wait to the deployment to finish.
+
+    You will see a notification when deployment is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Make a note of the outputs for use later:
+1. In your text editor, create a record of the following Outputs for use later:
 
     * connectionString
 
-The resources have now been created.
+    The Azure resources required for this lab are now available.
 
 ### Exercise 2: Create HTTP Web Hook Logic App that sends an email
 
