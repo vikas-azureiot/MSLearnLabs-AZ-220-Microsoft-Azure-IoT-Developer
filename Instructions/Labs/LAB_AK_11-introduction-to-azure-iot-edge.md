@@ -68,7 +68,7 @@ To ensure these resources are available, complete the following steps.
 
 1. Under **Instance details**, in the **Region** dropdown, select the region closest to you.
 
-    > **NOTE**: If the **rg-az220** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
+    > **NOTE**: If the **rg-az220** group was already created for you, the **Region** field is set to the region used by the resource group and is read-only.
 
 1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
 
@@ -84,15 +84,23 @@ To ensure these resources are available, complete the following steps.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
+
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    You will be using the text editor to store some configuration values associated with the Azure resources.
+
+1. Switch back to the Azure portal window and wait to the deployment to finish.
+
+    You will see a notification when deployment is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Make a note of the outputs for use later:
+    Use Notepad (or another text editor) to create a record of the following outputs:
 
     * connectionString
 
-The resources have now been created.
+    The required Azure resources have now been created.
 
 ### Exercise 2: Create and configure an IoT Edge VM
 
@@ -108,21 +116,41 @@ In this task, you will create a new IoT Edge Device Identity within Azure IoT Hu
 
 1. On the Azure portal toolbar, to open the Azure Cloud Shell, click **Cloud Shell**.
 
-    > **Note**: If the cloud shell has not been configured, follow the steps in **Lab 3 - Exercise 2 - Task 3: Configure cloud shell storage & Task 4: Install Azure CLI Extension - cloud environment**.
+    The Cloud Shell button has an icon that appears to represent a command prompt - **`>_`**.
 
-    On the Azure portal toolbar, not the left side navigation menu, the Cloud Shell button has an icon that looks similar ot a command prompt.
+    A Cloud Shell window will open near the bottom of the display screen.
 
-1. Ensure that you are using the **Bash** environment option.
+    > **Note**: If the cloud shell has not been configured, follow these steps:
 
-    In the upper left corner of the Cloud Shell, Bash should be selected in the environment dropdown.
+    1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
+
+    1. Under **Subscription**, ensure the correct subscription is displayed.
+
+    1. To specify storage options, click **Show advanced settings**.
+
+    1. Under **Resource group**, ensure **Use existing** is selected and the **@lab.CloudResourceGroup(ResourceGroup1).Name** is shown.
+
+    1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+
+    1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+
+    1. To finish to configuration of the cloud shell, click **Create storage**.
+
+1. In the upper left corner of the Cloud Shell window, ensure that **Bash** is selected as the environment option.
+
+    > **Note**:  Both *Bash* and *PowerShell* interfaces for the Azure Cloud Shell support the use of **OpenSSL**.
+
+1. At the command prompt, to verify that the Azure CLI extension for IoT is installed and up-to-date, enter the following command:
+
+    +++az extension update --name azure-iot+++
+
+    If the azure-iot extension is not installed, use the following command to install it: +++az extension add --name azure-iot+++
 
 1. At the command prompt, to create an IoT Edge device identity in your IoT hub, enter the following command:
 
-    ```bash
-    az iot hub device-identity create --hub-name iot-az220-training-{your-id} --device-id sensor-th-0067 --edge-enabled
-    ```
+    +++az iot hub device-identity create --hub-name iot-az220-training-{your-id} --device-id sensor-th-0067 --edge-enabled true+++
 
-    Be sure to replace the `{your-id}` placeholder with the YOUR-ID value that you created at the start of this course.
+    Be sure to replace the `{your-id}` placeholder with the ID value that you created at the start of this lab. You can use Notepad to make updates to the command.
 
     > **Note**: You could also create this IoT Edge device using your IoT Hub in the Azure portal: **IoT Hub** -> **IoT Edge** -> **Add an IoT Edge device**.
 
@@ -162,15 +190,13 @@ In this task, you will create a new IoT Edge Device Identity within Azure IoT Hu
 
 1. To display the **Connection String** for your IoT Edge device, enter the following command:
 
-    ```bash
-    az iot hub device-identity connection-string show --device-id sensor-th-0067 --hub-name iot-az220-training-{your-id}
-    ```
+    +++az iot hub device-identity connection-string show --device-id sensor-th-0067 --hub-name iot-az220-training-{your-id}+++
 
-    Be sure to replace the `{your-id}` placeholder with the YOUR-ID value that you created at the start of this course.
+    Be sure to replace the `{your-id}` placeholder with the ID value that you created at the start of this lab.
 
-1. Copy the value of the `connectionString` from the JSON output of the command, and then save it for reference later.
+1. Copy the value of the connectionString from the JSON output of the command, and then save it for reference later.
 
-    This connection string will be used to configure the IoT Edge device to connect to IoT Hub.
+    This connection string will be used to configure the IoT Edge device to connect to IoT Hub. It should look similar to the following:
 
     ```json
         {
@@ -184,9 +210,9 @@ In this task, you will create a new IoT Edge Device Identity within Azure IoT Hu
 
 In this task, you will use an ARM (Azure Resource Manager) Template to provision a Linux VM, install the IoT Edge runtime and configure the connection.
 
-1. Select **Deploy to Azure**:
+1. In your Web browser, navigate to the following address: 
 
-    [![Deploy To Azure](media/deploytoazure.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab11a.json)
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab11a.json+++
 
 1. If prompted, login to the **Azure Portal**.
 
@@ -194,7 +220,7 @@ In this task, you will use an ARM (Azure Resource Manager) Template to provision
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
-1. In the **Resource group** dropdown, select  create and enter **rg-az220vm**.
+1. In the **Resource group** dropdown, select create new, and then enter: **rg-az220vm**
 
 1. In the **Region** field, enter the same location you have used earlier.
 
@@ -220,7 +246,7 @@ In this task, you will use an ARM (Azure Resource Manager) Template to provision
 
     > **Note**:  Deployment can take as much as 5 minutes to complete.
 
-1. Once the template has completed, navigate to the **Outputs** pane and make a note of the following:
+1. Once the template has completed, navigate to the **Outputs** pane, and then use your text editor to make a record of the following:
 
     * Public FQDN
     * Public SSH
