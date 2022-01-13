@@ -50,11 +50,9 @@ To ensure these resources are available, complete the following steps.
 
     +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab11.json+++
 
-1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
+1. When prompted to Sign, enter the Azure account credentials associated with your free pass.
 
-    **Username** +++@lab.CloudPortalCredential(User1).Username+++
-
-    **Password** +++@lab.CloudPortalCredential(User1).Password+++
+    > **NOTE**: If you are not using a free or promotional account, you may be responsible for fees associated with the Azure services that you will be using. We recommend using a single Azure resource group for all resources during the lab and deleting that resource group before exiting the lab virtual machine environment.    
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
