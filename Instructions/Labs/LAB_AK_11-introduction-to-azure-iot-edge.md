@@ -24,7 +24,7 @@ The following resources will be created:
 
 In this lab, you will complete the following activities:
 
-* Verify that the lab prerequisites are met (that you have the required Azure resources)
+* Configure the lab prerequisites (the required Azure resources)
 * Deploy an Azure IoT Edge Enabled Linux VM
 * Create an IoT Edge Device Identity in IoT Hub using Azure CLI
 * Connect the IoT Edge Device to IoT Hub
@@ -33,11 +33,11 @@ In this lab, you will complete the following activities:
 
 ## Lab Instructions
 
-### Exercise 1: Verify Lab Prerequisites
+### Exercise 1: Configure Lab Prerequisites
 
-**Important**: Due to resource restrictions, this lab cannot be run in the Learning On-Demand Environment and should be run within a personal Azure Subscription.
+**Important**: Due to resource/policy restrictions, this lab cannot be run using Azure account credentials provided by the MS Learn lab sandbox. You can complete this lab using a personal Azure subscription.
 
-This lab assumes that the following Azure resources are available:
+This lab will use the following Azure resources:
 
 | Resource Type | Resource Name |
 | :-- | :-- |

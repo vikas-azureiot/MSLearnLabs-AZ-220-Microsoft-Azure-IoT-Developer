@@ -38,9 +38,6 @@ The following resources will be created:
 In this lab, you will begin by reviewing the lab prerequisites and you will run a script if needed to ensure that your Azure subscription includes the required resources. You will then create a simulated device that sends vibration telemetry to your IoT hub. With your simulated data arriving at IoT hub, you will implement an IoT Hub Message Route and Azure Stream Analytics job that can be used to archive data. The lab includes the following exercises:
 
 * Configure Lab Prerequisites
-
-  * A script will be used to create any missing resources and a new device identity (sensor-v-3000) for this lab
-
 * Write Code to generate Vibration Telemetry
 * Create a Message Route to Azure Blob Storage
 * Logging Route Azure Stream Analytics Job

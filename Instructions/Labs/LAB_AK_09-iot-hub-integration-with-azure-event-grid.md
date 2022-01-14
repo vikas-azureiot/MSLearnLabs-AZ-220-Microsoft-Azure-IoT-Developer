@@ -29,9 +29,9 @@ In this lab, you will complete the following activities:
 * Configure an Azure IoT Hub Event Subscription
 * Create new devices to trigger the Logic App
 
-### Exercise 1: Verify Lab Prerequisites
+### Exercise 1: Configure Lab Prerequisites
 
-This lab assumes the following Azure resources are available:
+This lab will use the following Azure resources:
 
 | Resource Type  | Resource Name          |
 |----------------|------------------------|
