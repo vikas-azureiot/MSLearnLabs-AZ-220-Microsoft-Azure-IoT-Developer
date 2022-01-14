@@ -52,15 +52,17 @@ This lab assumes that the following Azure resources are available:
 
 To ensure these resources are available, complete the following tasks.
 
-1. Select **Deploy to Azure**:
+1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    [![Deploy To Azure](media/deploytoazure.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab12.json)
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab12.json+++
 
-1. If prompted, login to the **Azure Portal**.
+1. When prompted to Sign, enter the Azure account credentials associated with your free pass.
 
-    The **Custom deployment** page will be displayed.
+    > **NOTE**: If you are not using a free or promotional account, you may be responsible for fees associated with the Azure services that you will be using. We recommend using the suggested Azure resource groups for all resources during the lab and deleting those resource groups before exiting the lab virtual machine environment.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+    Once you have signed in, the **Custom deployment** page will be displayed.
+
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Resource group** dropdown, select **rg-az220**.
 
@@ -74,7 +76,13 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: If the **rg-az220** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
+
+    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -82,15 +90,23 @@ To ensure these resources are available, complete the following tasks.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
+
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    You will be using the text editor to store some configuration values associated with the Azure resources.
+
+1. Switch back to the Azure portal window and wait to the deployment to finish.
+
+    You will see a notification when deployment is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Make a note of the outputs for use later:
+    Use Notepad (or another text editor) to create a record of the following outputs:
 
     * connectionString
 
-The resources have now been created.
+    The required Azure resources have now been created.
 
 ### Exercise 2: Deploy and configure a Linux VM  as an IoT Edge Gateway
 
@@ -102,7 +118,7 @@ In this task, you will use Azure IoT Hub to create a new IoT Edge device identit
 
 1. If necessary, log in to your Azure portal using your Azure account credentials, and then navigate to your Azure Dashboard.
 
-1. On the **rg-az220** resource group tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+1. On the All resources tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
 
 1. On the **iot-az220-training-{your-id}** blade, on the left-side menu under **Automatic Device Management**, click **IoT Edge**.
 
@@ -110,9 +126,11 @@ In this task, you will use Azure IoT Hub to create a new IoT Edge device identit
 
 1. At the top of the pane, click **Add an IoT Edge device**.
 
-1. On the **Create a device** blade, in the **Device ID** field, enter **vm-az220-training-gw0001-{your-id}**.
+1. On the **Create a device** blade, in the **Device ID** field, enter **vm-az220-training-gw0001-{your-id}**
 
-    Be sure to replace {your-id} with the value that you created at the beginning of the course. This is the device identity will be used for authentication and access control.
+    +++vm-az220-training-gw0001-{your-id}+++
+
+    Be sure to replace {your-id} with the value that you created at the beginning of the lab. This is the device identity will be used for authentication and access control.
 
 1. Under **Authentication type**, ensure that **Symmetric key** is selected, and leave the **Auto-generate keys** box checked.
 
@@ -159,7 +177,7 @@ In this task, you will use Azure IoT Hub to create a new IoT Edge device identit
 
 #### Task 2: Provision IoT Edge VM
 
-In this task, you will use an ARM (Azure Resource Manager) Template to provision a Linux VM, install the IoT Edge runtime, configure the connection to IoT Hub, generate X509 certificates for encrypting device to gateway communication, and add them to the IoT Edge runtime configuration.
+In this task, you will use an Azure Resource Manager template to provision a Linux VM, install the IoT Edge runtime, configure the connection to IoT Hub, generate X509 certificates for encrypting device to gateway communication, and add them to the IoT Edge runtime configuration.
 
 > **Information**: To learn more about the steps that have been automated, review the following resources:
 >
@@ -167,21 +185,27 @@ In this task, you will use an ARM (Azure Resource Manager) Template to provision
 > * [Manage certificates on an IoT Edge device](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-manage-device-certificates?view=iotedge-2020-11)
 > * [Create demo certificates to test IoT Edge device features](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-test-certificates?view=iotedge-2020-11)
 
-1. Select **Deploy to Azure**:
+1. In your Web browser, navigate to the following address: 
 
-    [![Deploy To Azure](media/deploytoazure.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab12a.json)
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab12a.json+++
 
-1. If prompted, login to the **Azure Portal**.
+1. If prompted, login using the Azure credentials that you are using for this lab.
 
     The **Custom deployment** page will be displayed.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
-1. In the **Resource group** dropdown, select  create and enter **rg-az220vm**.
+1. Under the **Resource group** dropdown, select **Create new**, and then enter **rg-az220vm**.
+
+    +++rg-az220vm+++
 
 1. In the **Region** field, enter the same location you have used earlier.
 
 1. In the **Virtual Machine Name** textbox, enter **vm-az220-training-gw0001-{your-id}**
+
+    +++vm-az220-training-gw0001-{your-id}+++
+
+    Be sure to replace {your-id} with the value that you created at the beginning of the lab.
 
 1. In the **Device Connection String** field, enter the connection string value from the previous exercise.
 
@@ -195,6 +219,8 @@ In this task, you will use an ARM (Azure Resource Manager) Template to provision
 
 1. In the **Admin Password Or Key** field, enter the password you wish to use.
 
+    You will need to enter this password when you connect your SSH session later in this lab.
+
 1. In the **Allow SSH** field, ensure **true** is selected.
 
 1. To validate the template, click **Review and create**.
@@ -203,13 +229,12 @@ In this task, you will use an ARM (Azure Resource Manager) Template to provision
 
     > **Note**:  Although the deployment may complete quickly, the configuration of the VM continues in the background.
 
-1. Once the template has completed, navigate to the **Outputs** pane and make a note of the following:
+1. Once the template has completed, navigate to the **Outputs** pane, and then use your text editor to make a record of the following:
 
     * Public FQDN
     * Public SSH
 
-####
- Task 3: Open IoT Edge Gateway Device Ports for Communication
+#### Task 3: Open IoT Edge Gateway Device Ports for Communication
 
 Standard IoT Edge devices don't need any inbound connectivity to function, because all communication with IoT Hub is done through outbound connections. Gateway devices are different because they need to receive messages from their downstream devices. If a firewall is between the downstream devices and the gateway device, then communication needs to be possible through the firewall as well. For the Azure IoT Edge Gateway to function, at least one of the IoT Edge hub's supported protocols must be open for inbound traffic from downstream devices. The supported protocols are MQTT, AMQP, and HTTPS.
 
@@ -229,11 +254,9 @@ In this task, you will configure the Network Security Group (NSG) that secures a
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
-1. On your Azure dashboard, locate the **rg-az220vm** resource group tile.
+1. On your Azure dashboard, notice that your All resources tile includes a link to the Network security group for your virtual machine.
 
-    Notice that your resource group tile includes a link to the associated Network security group.
-
-1. On the **rg-az220vm** resource group tile, click **nsg-vm-az220-training-gw0001-{your-id}**.
+1. On the All resources tile, click **nsg-vm-az220-training-gw0001-{your-id}**.
 
 1. On the **Network security group** blade, on the left-side menu under **Settings**, click **Inbound security rules**.
 
@@ -290,9 +313,7 @@ In this exercise, you will explore the **vm-az220-training-gw0001-{your-id}** Vi
 
     You can check the Notification pane in the Azure portal.
 
-1. Verify that your **rg-az220vm** resource group has been pinned to your Azure dashboard.
-
-    To pin your resource group to the dashboard, navigate to your Azure dashboard, and then complete the following:
+1. To pin your **rg-az220vm** resource group to the dashboard, navigate to your Azure dashboard, and then complete the following:
 
     * On the Azure portal menu, click **Resource groups**.
     * On the **Resource groups** blade, under **Name**, locate the **rg-az220vm** resource group.
@@ -300,11 +321,37 @@ In this exercise, you will explore the **vm-az220-training-gw0001-{your-id}** Vi
 
     You may want to edit your dashboard to make the RG tiles and listed resources more accessible.
 
-1. On the Azure portal toolbar, click **Cloud Shell**
+1. On the Azure portal toolbar, to open the Azure Cloud Shell, click **Cloud Shell**.
 
-    > **Note**: If the cloud shell has not been configured, follow the steps in **Lab 3 - Exercise 2 - Task 3: Configure cloud shell storage & Task 4: Install Azure CLI Extension - cloud environment**.
+    The Cloud Shell button has an icon that appears to represent a command prompt - **`>_`**.
 
-1. At the Cloud Shell command prompt, paste the **ssh** command that you noted in the earlier task, similar to **ssh vmadmin@vm-az220-training-edge0001-dm080321.centralus.cloudapp.azure.com**, and then press **Enter**.
+    A Cloud Shell window will open near the bottom of the display screen.
+
+    > **Note**: If the cloud shell has not been configured, follow these steps:
+
+    1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
+
+    1. Under **Subscription**, ensure the correct subscription is displayed.
+
+    1. To specify storage options, click **Show advanced settings**.
+
+    1. Under **Resource group**, ensure **Use existing** is selected and the **rg-az220** is shown.
+
+    1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+
+    1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+
+    1. To finish to configuration of the cloud shell, click **Create storage**.
+
+1. In the upper left corner of the Cloud Shell window, ensure that **Bash** is selected as the environment option.
+
+    > **Note**:  Both *Bash* and *PowerShell* interfaces for the Azure Cloud Shell support the use of **OpenSSL**.
+
+1. At the Cloud Shell command prompt, paste the **ssh** command that you saved to your text editor, and then press **Enter**.
+
+    The command should look similar to the following:
+
+    **ssh vmadmin@vm-az220-training-edge0001-dm080321.centralus.cloudapp.azure.com**.
 
 1. When prompted with **Are you sure you want to continue connecting?**, type **yes** and then press **Enter**.
 
@@ -312,7 +359,9 @@ In this exercise, you will explore the **vm-az220-training-gw0001-{your-id}** Vi
 
 1. When prompted to enter the password, enter the administrator password that you created when the Edge Gateway VM was provisioned.
 
-1. Once connected, the terminal will change to show the name of the Linux VM, similar to the following. This tells you which VM you are connected to.
+1. Once connected, the terminal will change to show the name of the Linux VM that you are connected to.
+
+    The command prompt will now look similar to the following:
 
     ``` bash
     username@vm-az220-training-gw0001-{your-id}:~$
@@ -545,13 +594,13 @@ In this task, you will create a new IoT device identity in Azure IoT Hub for the
 
     Be sure to note that this connection string is for the sensor-th-0072 child device.
 
-#### Task 2: Download device x509 xertificate
+#### Task 2: Download device x509 certificate
 
 In this task, you will configure the connection between a pre-built downstream device and your Edge gateway device.
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. On the Azure portal toolbar, click **Cloud Shell**.
 
@@ -667,7 +716,7 @@ The local machine can now resolve the VM name to the appropriate IP Address.
 
     > **Note**: Remember that this certificate is used to secure the communication from the device to the Edge Gateway. The device uses the symmetric key within the connection string for authentication with the IoT Hub.
 
-    The initial code within this method is responsible for ensuring the **azure-iot-test-only.root.ca.cert.pem** file is available. Of course, in production applications you might consider using an alternative mechanism to specify the path to the X.509 certificate, such as an environment variable, or using TPM.
+    The initial code within this method is responsible for ensuring the **azure-iot-test-only.root.ca.cert.pem** file is available. In production applications you might consider using an alternative mechanism to specify the path to the X.509 certificate, such as an environment variable, or using TPM.
 
     Once the presence of the X.509 certificate has been verified, the **X509Store** class is used to load the certificate into the current user's certificate store. The certificate will then be available on-demand to secure communication to the gateway - this occurs automatically within the device client, so there is no additional code.
 
@@ -714,7 +763,7 @@ In this task, you will use the Azure CLI to monitor the events being sent to Azu
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. If Cloud Shell is not running, on the Azure portal toolbar, click **Cloud Shell**.
 

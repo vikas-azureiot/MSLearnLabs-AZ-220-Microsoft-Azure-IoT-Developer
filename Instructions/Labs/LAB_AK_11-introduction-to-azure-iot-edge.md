@@ -52,7 +52,7 @@ To ensure these resources are available, complete the following steps.
 
 1. When prompted to Sign, enter the Azure account credentials associated with your free pass.
 
-    > **NOTE**: If you are not using a free or promotional account, you may be responsible for fees associated with the Azure services that you will be using. We recommend using a single Azure resource group for all resources during the lab and deleting that resource group before exiting the lab virtual machine environment.    
+    > **NOTE**: If you are not using a free or promotional account, you may be responsible for fees associated with the Azure services that you will be using. We recommend using the suggested Azure resource groups for all resources during the lab and deleting those resource groups before exiting the lab virtual machine environment.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
@@ -210,7 +210,7 @@ In this task, you will create a new IoT Edge Device Identity within Azure IoT Hu
 
 #### Task 2: Provision IoT Edge VM
 
-In this task, you will use an ARM (Azure Resource Manager) Template to provision a Linux VM, install the IoT Edge runtime and configure the connection.
+In this task, you will use an Azure Resource Manager template to provision a Linux VM, install the IoT Edge runtime and configure the connection.
 
 1. In your Web browser, navigate to the following address: 
 
