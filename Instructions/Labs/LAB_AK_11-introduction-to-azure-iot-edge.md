@@ -148,7 +148,7 @@ In this task, you will create a new IoT Edge Device Identity within Azure IoT Hu
 
 1. At the command prompt, to create an IoT Edge device identity in your IoT hub, enter the following command:
 
-    > **Note**: Some of the commands that that you will enter must be edited before they will run correctly. You may want to enter the command in Notepad, complete the required updates, and then use a copy-and-paste operation to enter the command at the Bash command prompt. 
+    > **Note**: Some of the commands that that you will enter must be edited before they will run correctly. You may want to enter the command in **Notepad**, complete the required updates, and then use a copy-and-paste operation to enter the command at the Bash command prompt. 
 
     +++az iot hub device-identity create --hub-name iot-az220-training-{your-id} --device-id sensor-th-0067 --edge-enabled true+++
 
