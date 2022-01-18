@@ -92,7 +92,7 @@ To ensure these resources are available, complete the following steps.
 
     The deployment will start. It will take several minutes to deploy the required Azure resources.
 
-1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+1. While the Azure resources are being created, open a text editor tool in the lab virtual machine environment (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
     You will be using the text editor to store some configuration values associated with the Azure resources.
 
@@ -386,9 +386,9 @@ In this exercise, you will explore the **vm-az220-training-gw0001-{your-id}** Vi
     Address: 168.61.181.131
     ```
 
-    > **Important**: The public IP address of the VM can also be found on the virtual machine blade in the Azure portal.
-
     The public IP of the VM is the final **Address** value - in this case **168.61.181.131**.
+
+    > **Note**: If the nslookup command is unable to display the public IP address of the VM, open the vm-az220-training-gw0001-{your-id} virtual machine in the portal to find and record the value of the public IP address. 
 
     > **Important**: Make a note of this IP address - you will need it later. The IP Address will usually change every time the VM is restarted.
 
