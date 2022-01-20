@@ -108,12 +108,36 @@ To ensure these resources are available, complete the following steps.
 
     You will see a notification when deployment is complete.
 
+    > **NOTE**: If the deployment fails during the createDevice operation, you will find instructions below for creating the device manually.
+
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
 1. In your text editor, create a record of the following Outputs for use later:
 
     * connectionString
     * deviceConnectionString
+
+    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. Complete the following steps to create an IoT device and make note of the IoT hub and device connections strings.
+
+    1. On the Azure portal menu, click **Dashboard**.
+
+    1. On the **All recourses** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+
+    1. On the IoT hub blade, under **Device management**, click **Devices**.
+
+    1. On the Devices page, click **+ Add Device**.
+
+    1. On the Create a device page, under **Device ID**, enter **sensor-v-3000**
+
+    1. At the bottom of the page, click **Save**.
+
+    1. On the Devices page, click **Refresh**.
+
+    1. On the Devices page, under **Device ID**, click **sensor-v-3000**.
+
+    1. On the sensor-v-3000 page, to the right of the Primary Connection String value, click **Copy**.
+
+    1. Save the copied value to Notepad for later use.
 
     The Azure resources required for this lab are now available.
 
@@ -290,7 +314,7 @@ In this exercise, you will create and test the logging route.
 
 #### Task 1: Define the message routing endpoint
 
-1. In the [Azure Portal](https://portal.azure.com/), ensure that your IoT hub blade is open.
+1. In the Azure portal window, ensure that your IoT hub blade is open.
 
 1. On the left-hand menu, under **Hub settings**, click **Message routing**.
 
@@ -487,7 +511,7 @@ This will enable you to verify that your route includes the following settings:
 
 1. To create the Stream Analytics job, click **Create**.
 
-1. Wait for the **Deployment succeeded** message, then open the new resource.
+1. Wait for the **Your deployment is complete** message, then open the new resource.
 
     > **Tip:** If you miss the message to go to the new resource, or need to find a resource at any time, select **Home/All resources**. Enter enough of the resource name for it to appear in the list of resources.
 
@@ -497,7 +521,7 @@ This will enable you to verify that your route includes the following settings:
 
 #### Task 2: Create the Stream Analytics Job Input
 
-1. On the left-side menu under **Job topology**, click **Inputs**.
+1. On your Stream Analytics Job blade, on the left-side menu under **Job topology**, click **Inputs**.
 
     The **Inputs** pane will be displayed.
 
@@ -506,7 +530,6 @@ This will enable you to verify that your route includes the following settings:
     The **IoT Hub - New input** pane will be displayed.
 
 1. On the **IoT Hub - New input** pane, under **Input alias**, enter `vibrationInput`.
-
 
 1. Under **IoT Hub**, ensure that your **iot-az220-training-{your-id}** IoT hub is selected.
 
