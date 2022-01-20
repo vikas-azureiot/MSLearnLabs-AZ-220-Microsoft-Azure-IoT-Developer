@@ -8,7 +8,7 @@ lab:
 
 ## Lab Scenario
 
-To help manage fluctuations in consumer demand, Contoso maintains a small inventory of ripened cheese wheels in a warehouse at each cheese making facility. These ripened wheels are sealed in wax and the storage environment is carefully controlled to ensure that the cheese remains in perfect condition. Contoso uses a conveyor system to move the large wax-sealed cheese wheels from the warehouse to the packaging facilities.
+To help manage fluctuations in consumer demand, Contoso maintains a small inventory of ripened cheeses in a warehouse at each cheese making facility. These ripened wheels are sealed in wax and the storage environment is carefully controlled to ensure that the cheese remains in perfect condition. Contoso uses a conveyor system to move the large wax-sealed cheese wheels from the warehouse to the packaging facilities.
 
 In the past, Contoso has run their packaging process at full capacity, processing all of the cheese that is placed in the system. Any excess volume of packaged cheese was not an issue because it could be used for promotional offers, and additional cheese could be pulled from inventory as needed. However, with the significant growth that Contoso is experiencing, and with growing fluctuations due to worldwide demand, the company needs to automate the system in a way that helps to manage the volume of cheese being packaged.
 
@@ -53,21 +53,23 @@ This lab assumes that the following Azure resources are available:
 | Resource Group | @lab.CloudResourceGroup(ResourceGroup1).Name |
 | IoT Hub | iot-az220-training-{your-id} |
 
-To ensure these resources are available, complete the following tasks.
+To ensure these resources are available, complete the following steps.
 
-1. To create the required resources, open a new browser tab and enter the following address:
-
-    [https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab13.json](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab13.json)
+1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address: 
 
     ```url
     https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab13.json
     ```
 
-1. If prompted, login to the **Azure Portal**.
+1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
-    The **Custom deployment** page will be displayed.
+    **Username** +++@lab.CloudPortalCredential(User1).Username+++
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+    **Password** +++@lab.CloudPortalCredential(User1).Password+++
+
+    Once you have signed in, the **Custom deployment** page will be displayed.
+
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -81,7 +83,13 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
+
+    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -89,7 +97,15 @@ To ensure these resources are available, complete the following tasks.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
+
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    You will be using the text editor to store some configuration values associated with the Azure resources.
+
+1. Switch back to the Azure portal window and wait to the deployment to finish.
+
+    You will see a notification when deployment is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
@@ -97,16 +113,17 @@ To ensure these resources are available, complete the following tasks.
 
     * connectionString
 
-The resources have now been created.
+    The Azure resources required for this lab are now available.
+
 ### Exercise 2: Install Azure IoT EdgeHub Dev Tool
 
-In this exercise, you will will install the Azure IoT EdgeHub Dev Tool.
+In this exercise, you will will ensure that the Azure IoT EdgeHub Dev Tool is installed.
 
-1. Verify that you have Python 3.8 installed in your development environment.
+1. Verify that you have Python version 3.9 (or later) installed in your development environment.
 
-    Lab 3 of this course has you prepare the lab environment, including the installation Python 3.8. If Python is not installed, refer back to the instructions in Lab 3.
+    Python 3.9 should be listed on the Windows Start menu.
 
-1. With Python installed, open Windows Command Prompt.
+1. With Python installed, open a Windows Command Prompt.
 
 1. At the command prompt, to install the package manager for Python (Pip), enter the following commands:
 
@@ -121,9 +138,9 @@ In this exercise, you will will install the Azure IoT EdgeHub Dev Tool.
 
     If you have issues installing Pip, please reference the official Pip [installation instructions](https://pip.pypa.io/en/stable/installing/).
 
-    > **Note**: On Windows, Python and/or Pip are sometimes installed but are not in the `PATH`. Check with your instructor if you have Python installed but it does not seem to be available.
+    > **Note**: On Windows, Python and/or Pip are sometimes installed but are not in the `PATH`. Refer to the installation instructions if you have Python installed but it does not seem to be available.
 
-1. To install the Azure IoT EdgeHub Dev Tool, enter the following command:
+1. To verify that the Azure IoT EdgeHub Dev Tool is installed, enter the following command:
 
     ```cmd/sh
     pip install iotedgehubdev --user
@@ -145,7 +162,15 @@ In this exercise, you will use the Azure portal to create a new Azure Container 
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    ```url
+    https://portal.azure.com
+    ```
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
+
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. On the Azure portal menu, click **+ Create a resource**.
 
@@ -155,7 +180,7 @@ In this exercise, you will use the Azure portal to create a new Azure Container 
 
 1. On the **Container Registry** blade, click **Create**.
 
-1. On the **Create container registry** blade, under **Subscription**, ensure that the subscription you are using for this course is selected.
+1. On the **Create container registry** blade, under **Subscription**, ensure that the subscription you are using for this lab is selected.
 
 1. In the **Resource group** dropdown, click **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -413,7 +438,7 @@ In this exercise, you will build and run a custom IoT Edge Module solution using
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. On your Resource group tile, click **iot-az220-training-{your-id}**.
 
@@ -610,7 +635,7 @@ In this exercise, you will build and publish the custom IoT Edge Module into the
 
     If necessary, log in to your Azure portal using your Azure account credentials.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. On your Resource group tile, to open your Azure Container Registry (ACR) service, click **acraz220training{your-id}**.
 
