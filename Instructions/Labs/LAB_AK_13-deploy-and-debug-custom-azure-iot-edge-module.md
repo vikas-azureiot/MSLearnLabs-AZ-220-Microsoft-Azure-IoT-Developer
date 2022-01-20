@@ -160,7 +160,11 @@ In this exercise, you will use the Azure portal to create a new Azure Container 
 
 #### Task 1: Create the container registry
 
-1. If necessary, log in to your Azure portal using your Azure account credentials.
+1. In your browser window, on the Azure portal menu, click **Dashboard**.
+
+    You should see an IoT hub resource listed on the All resources tile.
+
+    If you closed the Azure portal window, open a new browser window and log in to the Azure portal using your Azure account credentials.
 
     ```url
     https://portal.azure.com
@@ -174,7 +178,7 @@ In this exercise, you will use the Azure portal to create a new Azure Container 
 
 1. On the Azure portal menu, click **+ Create a resource**.
 
-1. On the **New** blade, in the **Search the Marketplace** textbox, type **container registry** and then press **Enter**.
+1. On the **New** blade, in the **Search the Marketplace** textbox, type **container registry** and then press Enter.
 
 1. On the **Marketplace** blade, click **Container Registry**.
 
@@ -188,7 +192,7 @@ In this exercise, you will use the Azure portal to create a new Azure Container 
 
     To provide a globally unique name, enter **acraz220training{your-id}**.
 
-    For example: **acraz220trainingcah191204**
+    For example: **acraz220trainingcah211101**
 
     The name of your Azure Container Registry must be globally unique because it is a publicly accessible resource that you must be able to access from any IP connected device.
 
@@ -248,11 +252,13 @@ In this exercise, you will use the Azure portal to create a new Azure Container 
     docker login az220acrcah191204.azurecr.io
     ```
 
+    You will be prompted for the Username and Password values that you recorded. You should see a **Login Succeeded** message.
+
     This command will record your credentials in the local Docker client configuration file (`$HOME/.docker/config.json`) or your operating system's secure credential storage mechanism (depending on the Docker configuration) for future use by the Docker toolset.
 
 Now that you have created the Azure Container Registry and authenticated your local machine against it, you can create a custom IoT Edge Module container that will be stored in the registry.
 
-### Exercise 4: Create Custom Edge Module in C\#
+### Exercise 4: Create Custom Edge Module in C#
 
 In this exercise, you will create an Azure IoT Edge Solution that contains a custom Azure IoT Edge Module written in C#.
 
@@ -280,7 +286,7 @@ In this exercise, you will create an Azure IoT Edge Solution that contains a cus
 
 1. When prompted for name of the Docker image repository for the module, update the placeholder value as follows:
 
-    Replace the `localhost:5000` part of the default `localhost:5000/objectcountingmodule` repository location with the name of the Azure Container Registry server - similar to `acraz220training{your-id}.azurecr.io`
+    Replace the "localhost:5000" part of the default "localhost:5000/objectcountingmodule" repository location with the name of the Azure Container Registry server - similar to `acraz220training{your-id}.azurecr.io`
 
     This will be the Docker repository where the IoT Edge Module docker image will be published.
 
@@ -440,9 +446,11 @@ In this exercise, you will build and run a custom IoT Edge Module solution using
 
     If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
-1. On your Resource group tile, click **iot-az220-training-{your-id}**.
+1. On the Azure portal menu, click **Dashboard**.
 
-1. On the left hand navigation menu, under **Settings**, click **Shared access policies**.
+1. On your Resource group tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+
+1. On the left hand navigation menu, under **Security settings**, click **Shared access policies**.
 
 1. In the list of policies, click **iothubowner**.
 
@@ -452,7 +460,7 @@ In this exercise, you will build and run a custom IoT Edge Module solution using
 
     Record this value, as you will need it below.
 
-1. On the left hand navigation menu, under **Automatic Device Management**, click **IoT Edge**.
+1. On the left hand navigation menu, under **Device management**, click **IoT Edge**.
 
     This pane allows you to manage the IoT Edge devices connected to the IoT Hub.
 
@@ -500,7 +508,7 @@ In this exercise, you will build and run a custom IoT Edge Module solution using
 
     > **Note**: If you are on Windows and see a message in the Terminal that reads, in part, `open //./pipe/docker_engine: The system cannot find the file specified.`, Docker is likely not started, or running correctly.  A Docker restart or even a full computer restart might be necessary.
 
-    > **Note**: If you see a message that reads, in part, `image operating system "linux" cannot be used on this platform`, change your Docker configuration to support Linux containers.  (Ask your instructor for assistance if necessary.)
+    > **Note**: If you see a message that reads, in part, `image operating system "linux" cannot be used on this platform`, change your Docker configuration to support Linux containers.
 
     > **Note**: A build may take some time depending on what Docker images you have on your machine already and the speed of your Internet connection.  The build includes downloading Docker images if not present and updating container instances if necessary.
 
@@ -521,7 +529,29 @@ In this exercise, you will build and run a custom IoT Edge Module solution using
 
     Notice the output from the **ObjectCountingModule** contains the text `Received message: #` where `#` is the total message count that has been received by the custom **ObjectCountingModule** IoT Edge Module that was created.
 
-1. With the IoT Edge Simulator still running, open the Azure portal, and then open the Cloud Shell.
+1. With the IoT Edge Simulator still running, open the Azure portal window.
+
+1. In the top right of the portal window, to open the Azure Cloud Shell, click **Cloud Shell**.
+
+    The Cloud Shell button has an icon that appears to represent a command prompt - **`>_`**.
+
+    A Cloud Shell window will open near the bottom of the display screen.
+
+    > **Note**: If the cloud shell has not been configured, follow these steps:
+
+    1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
+
+    1. Under **Subscription**, ensure the correct subscription is displayed.
+
+    1. To specify storage options, click **Show advanced settings**.
+
+    1. Under **Resource group**, ensure **Use existing** is selected and the **@lab.CloudResourceGroup(ResourceGroup1).Name** is shown.
+
+    1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+
+    1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+
+    1. To finish to configuration of the cloud shell, click **Create storage**.
 
 1. At the Cloud Shell command prompt, to monitor the messages being sent to Azure IoT Hub from the `SimulatedDevice` running in the IoT Edge Simulator on your local machine, enter the following command:
 
@@ -582,9 +612,9 @@ In this exercise, you will build and run a custom IoT Edge Module solution using
 
 1. In the code editor, locate the `static async Task<MessageResponse> PipeMessage(` method.
 
-1. Select the `static async Task<MessageResponse> PipeMessage(` code line, and then, to set a breakpoint, press **F9**.
+1. Select the `static async Task<MessageResponse> PipeMessage(` code line, and then, to set a breakpoint, press **Shift - F9**.
 
-    Visual Studio Code enables you to set a breakpoint within your code by clicking on the line and pressing the **F9** key.
+    Visual Studio Code enables you to set a breakpoint within your code by clicking on the line and pressing **Shift - F9**. You can also use the Run menu, New Breakpoint, Inline Breakpoint.
 
 1. Notice that execution stops at the breakpoint that is set, and the editor highlights that specific line of code.
 
