@@ -39,7 +39,7 @@ In this lab, you will complete the following activities:
 
 ### Exercise 1: Verify Lab Prerequisites
 
-**Important**: Due to resource restrictions, this lab cannot be run in the Learning On-Demand Environment and should be run within a personal Azure Subscription.
+**Important**: Due to resource/policy restrictions, this lab cannot be run using Azure account credentials provided by the MS Learn lab sandbox. You can complete this lab using a personal Azure subscription.
 
 This lab assumes the following Azure resources are available:
 
@@ -50,15 +50,17 @@ This lab assumes the following Azure resources are available:
 | IoT Edge Device | vm-az220-training-gw0002-{your-id} |
 | IoT Device | sensor-th-0084 |
 
-To ensure these resources are available, complete the following tasks.
+To ensure these resources are available, complete the following steps.
 
-1. Select **Deploy to Azure**:
+1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    [![Deploy To Azure](media/deploytoazure.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab14.json)
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab14.json+++
 
-1. If prompted, login to the **Azure Portal**.
+1. When prompted to Sign in, enter the Azure account credentials associated with your free pass.
 
-    The **Custom deployment** page will be displayed.
+    > **NOTE**: If you are not using a free or promotional account, you may be responsible for fees associated with the Azure services that you will be using. We recommend using the suggested Azure resource groups for all resources during the lab and deleting those resource groups before exiting the lab virtual machine environment.
+
+    Once you have signed in, the **Custom deployment** page will be displayed.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
@@ -72,9 +74,15 @@ To ensure these resources are available, complete the following tasks.
 
 1. Under **Instance details**, in the **Region** dropdown, select the region closest to you.
 
-    > **NOTE**: If the **rg-az220** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
+    > **NOTE**: If the **rg-az220** resource group was already created, the **Region** field may be read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
+
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
