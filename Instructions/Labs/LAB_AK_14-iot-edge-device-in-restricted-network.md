@@ -39,7 +39,7 @@ In this lab, you will complete the following activities:
 
 ### Exercise 1: Verify Lab Prerequisites
 
-**Important**: Due to resource/policy restrictions, this lab cannot be run using Azure account credentials provided by the MS Learn lab sandbox. You can complete this lab using a personal Azure subscription.
+**Important**: Due to resource/policy restrictions, this lab cannot be run using Azure account credentials provided by the MS Learn lab sandbox. You can complete this lab using a free trial or other personal Azure subscription.
 
 This lab assumes the following Azure resources are available:
 
@@ -82,7 +82,7 @@ To ensure these resources are available, complete the following steps.
 
     ccj220101
 
-    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{ }** ) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -98,11 +98,20 @@ To ensure these resources are available, complete the following steps.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
+
+1. While the Azure resources are being created, open a text editor tool in the lab virtual machine environment (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    You will be using the text editor to store some configuration values associated with the Azure resources.
+
+1. Switch back to the Azure portal window and wait to the deployment to finish.
+
+    You will see a notification when deployment is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Make a note of the outputs for use later:
+    Use Notepad (or another text editor) to create a record of the following outputs:
+
     * connectionString
     * deviceConnectionString
     * gatewayConnectionString
@@ -110,9 +119,9 @@ To ensure these resources are available, complete the following steps.
     * publicFQDN
     * publicSSH
 
-The resources have now been created.
+    The Azure resources required for this lab are now available.
 
-> **Note**: In addition to provisioning the VM and IoT Edge, the ARM template also configured the firewall rules for inbound traffic and created the child device.
+    > **Note**: In addition to provisioning the VM and IoT Edge, the Azure Resource Manager template also configured the firewall rules for inbound traffic and created the child device.
 
 ### Exercise 2: Download Device CA Certificate
 
@@ -120,19 +129,11 @@ In this exercise, you will explore the **vm-az220-training-gw0002-{your-id}** Vi
 
 #### Task 1: Connect to the VM
 
+1. On the Azure portal menu, click **Dashboard**.
+
 1. Verify that the IoT Edge virtual machine has been deployed successfully.
 
     You can check the Notification pane in the Azure portal.
-
-1. Verify that your **rg-az220vm** resource group has been pinned to your Azure dashboard.
-
-    To pin your resource group to the dashboard, navigate to your Azure dashboard, and then complete the following:
-
-    * On the Azure portal menu, click **Resource groups**.
-    * On the **Resource groups** blade, under **Name**, locate the **rg-az220vm** resource group.
-    * On the **rg-az220vm** row, on the right side of the blade, click **...** and then click **Pin to dashboard**.
-
-    You may want to edit your dashboard to make the RG tiles and listed resources more accessible.
 
 1. On the Azure portal toolbar, click **Cloud Shell**
 

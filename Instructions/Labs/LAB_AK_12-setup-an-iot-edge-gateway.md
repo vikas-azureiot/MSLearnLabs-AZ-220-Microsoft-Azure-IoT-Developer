@@ -41,7 +41,7 @@ In this lab, you will complete the following activities:
 
 ### Exercise 1: Configure Lab Prerequisites
 
-**Important**: Due to resource/policy restrictions, this lab cannot be run using Azure account credentials provided by the MS Learn lab sandbox. You can complete this lab using a personal Azure subscription.
+**Important**: Due to resource/policy restrictions, this lab cannot be run using Azure account credentials provided by the MS Learn lab sandbox. You can complete this lab using a free trial or other personal Azure subscription.
 
 This lab will use the following Azure resources:
 
@@ -106,7 +106,7 @@ To ensure these resources are available, complete the following steps.
 
     * connectionString
 
-    The required Azure resources have now been created.
+    The Azure resources required for this lab are now available.
 
 ### Exercise 2: Deploy and configure a Linux VM  as an IoT Edge Gateway
 
