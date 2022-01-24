@@ -117,7 +117,7 @@ To ensure these resources are available, complete the following tasks.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. You will finds steps listed below to create the devices manually.
+    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. You will finds steps listed below to create the device manually and record lab information.
 
 1. In your text editor, create a record of the following Outputs for use later:
 
