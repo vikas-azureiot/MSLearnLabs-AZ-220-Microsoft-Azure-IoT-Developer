@@ -206,18 +206,18 @@ In this exercise, you will be completing the simulated device app (for the senso
 
 1. On the **File** menu, click **Open Folder**
 
-1. In the Open Folder dialog, navigate to the lab 15 Starter folder.
+1. In the Open Folder dialog, navigate to the lab 15 Finished folder.
 
    On the step before reaching the lab instructions, you downloaded the GitHub repository containing lab resources for this lab. The folder structure includes the following folder path:
 
     * Allfiles
         * Labs
             * 15-Remotely monitor and control devices with Azure IoT Hub
-                * Starter
+                * Finished
                     * CheeseCaveDevice
                     * CheeseCaveOperator
 
-    > **NOTE**: By default, the **Allfiles** folder is copied to your Windows Desktop.
+    > **NOTE**: Be sure to use the **Finished** folder. By default, the **Allfiles** folder is copied to your Windows Desktop in your virtual machine environment.
 
 1. Click **cheesecavedevice**, and then click **Select Folder**.
 
