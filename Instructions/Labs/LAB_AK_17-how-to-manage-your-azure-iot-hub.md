@@ -46,21 +46,21 @@ This lab assumes that the following Azure resources are available:
 | Storage Account | staz220training{your-id} |
 | Device ID | sensor-thl-2001 |
 
-To ensure these resources are available, complete the following tasks.
+To ensure these resources are available, complete the following steps.
 
-1. To create the required resources, open a new browser tab and enter the following address:
+1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address: 
 
-    [https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab17.json](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab17.json)
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab17.json+++
 
-    ```url
-    https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab17.json
-    ```
+1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
-1. If prompted, login to the **Azure Portal**.
+    **Username** +++@lab.CloudPortalCredential(User1).Username+++
 
-    The **Custom deployment** page will be displayed.
+    **Password** +++@lab.CloudPortalCredential(User1).Password+++
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+    Once you have signed in, the **Custom deployment** page will be displayed.
+
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -74,7 +74,13 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
+
+    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -82,18 +88,70 @@ To ensure these resources are available, complete the following tasks.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
+
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    You will be using the text editor to store some configuration values associated with the Azure resources.
+
+1. Switch back to the Azure portal window and wait for the deployment to finish.
+
+    You will see a notification when deployment is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Make a note of the outputs for use later:
+    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. You will finds steps listed below to create the devices manually.
+
+1. In your text editor, create a record of the following Outputs for use later:
 
     * connectionString
     * deviceConnectionString
     * devicePrimaryKey
     * storageAccountName
 
-The resources have now been created.
+    > **IMPORTANT**: If the deployment failed, complete the following steps to create an IoT device and a record lab information listed above.
+
+    1. On the Azure portal menu, click **Dashboard**.
+
+    1. On the **All recourses** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+
+    1. On the IoT hub blade, under **Device management**, click **Devices**.
+
+    1. On the Devices page, click **+ Add Device**.
+
+    1. On the Create a device page, under **Device ID**, enter **sensor-thl-2001**
+
+        +++sensor-thl-2001+++
+
+    1. At the bottom of the page, click **Save**.
+
+    1. On the Devices page, click **Refresh**.
+
+    1. On the Devices page, under **Device ID**, click **sensor-thl-2001**.
+
+    1. On the sensor-thl-2001 page, to the right of the Primary Connection String value, click **Copy**.
+
+    1. Save the copied value to Notepad and label it as the deviceConnectionString.
+
+    1. On the sensor-thl-2001 page, copy the Primary Key value to Notepad and label it as the devicePrimaryKey.
+
+    1. Navigate back to your IoT hub blade.
+
+    1. On the left side menu, under **Security settings**, click **Shared access policies**.
+
+    1. Click **iothubowner**.
+
+    1. Notice that the IoT hub Primary Connection String is listed.
+
+    1. Copy the value of the IoT hub Primary Connection String to Notepad and label it as the connectionString.
+
+    1. Navigate to your Azure dashboard.
+
+    1. On the All resources tile, to open your storage account, click **staz220training{your-id}**.
+
+    1. Copy the name of your storage account to Notepad and label it as the storageAccountName.
+
+    The Azure resources required for this lab are now available.
 
 ### Exercise 2: Simulate Devices
 
