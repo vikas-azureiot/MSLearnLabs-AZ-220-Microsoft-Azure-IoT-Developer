@@ -36,7 +36,7 @@ namespace CheeseCaveDevice
 
             // INSERT register direct method code below here
             // Create a handler for the direct method call
-            deviceClient.SetMethodHandlerAsync("SetFanState", SetFanState, null).Wait();
+            //deviceClient.SetMethodHandlerAsync("SetFanState", SetFanState, null).Wait();
 
             // INSERT register desired property changed handler code below here
             // Get the device twin to report the initial desired properties.

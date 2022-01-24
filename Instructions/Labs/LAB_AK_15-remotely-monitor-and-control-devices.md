@@ -156,7 +156,7 @@ To ensure these resources are available, complete the following steps.
 
     1. On the sensor-th-0055 page, to the right of the Primary Connection String value, click **Copy**.
 
-    1. Save the copied value to Notepad and label it as the serviceConnectionString.
+    1. Save the copied value to Notepad and label it as the deviceConnectionString.
 
     1. On the sensor-th-0055 page, copy the Primary Key value to Notepad and label it as the devicePrimaryKey. 
 
@@ -180,13 +180,13 @@ To ensure these resources are available, complete the following steps.
 
     1. On the left side menu, under **Security settings**, click **Shared access policies**.
 
-    1. Click **service**.
+    1. Under **Manage shared access policies**, click **service**.
 
-    1. To the right of Primary key, click **Copy**.
+    1. On the **service** page, to the right of Primary key, click **Copy**.
 
     1. Paste the copied value into Notepad and label it as the iotHubSasKey.
 
-    1. On the Shared access policies page, click **iothubowner**.
+    1. Close the **service** page, and then, on the Shared access policies page, click **iothubowner**.
 
     1. To the right of Primary connection string, click **Copy**.
 
@@ -202,11 +202,13 @@ In this exercise, you will be completing the simulated device app (for the senso
 
 1. Open **Visual Studio Code**.
 
+    > **NOTE**: You may find it helpful to maximize the Visual Studio Code application window.
+
 1. On the **File** menu, click **Open Folder**
 
 1. In the Open Folder dialog, navigate to the lab 15 Starter folder.
 
-    In _Lab 3: Setup the Development Environment_, you cloned the GitHub repository containing lab resources by downloading a ZIP file and extracting the contents locally. The extracted folder structure includes the following folder path:
+   On the step before reaching the lab instructions, you downloaded the GitHub repository containing lab resources for this lab. The folder structure includes the following folder path:
 
     * Allfiles
         * Labs
@@ -214,6 +216,8 @@ In this exercise, you will be completing the simulated device app (for the senso
                 * Starter
                     * CheeseCaveDevice
                     * CheeseCaveOperator
+
+    > **NOTE**: By default, the **Allfiles** folder is copied to your Windows Desktop.
 
 1. Click **cheesecavedevice**, and then click **Select Folder**.
 
@@ -224,11 +228,11 @@ In this exercise, you will be completing the simulated device app (for the senso
 
 1. To open the code file, click **Program.cs**.
 
-    A cursory glance will reveal that this application is very similar to the simulated device applications that you have worked on in the preceding labs. This version uses symmetric Key authentication, sends both telemetry and logging messages to the IoT Hub, and has a more complex sensor implementation.
+    Take a minute to review the code. The simulated device code uses symmetric Key authentication, sends both telemetry and logging messages to the IoT Hub, and simulates the implementation of sensors to generate telemetry values.
 
 1. On the **Terminal** menu, click **New Terminal**.
 
-    Notice the directory path indicated as part of the command prompt. You do not want to start building this project within the folder structure of a previous lab project.
+    Notice that the directory path is indicated as part of the command prompt.
 
 1. At the terminal command prompt, to verify the application builds, enter the following command:
 
@@ -267,7 +271,7 @@ The simulated device app that you will build in this task simulates an IoT devic
     private readonly static string deviceConnectionString = "<your device connection string>";
     ```
 
-1. Replace the **\<your device connection string\>** with the device connection string that you saved earlier.
+1. Replace the **<your device connection string>** placeholder with the device connection string that you saved earlier.
 
     This is the only change that you need to implement before sending telemetry to the IoT Hub.
 
@@ -333,7 +337,9 @@ In this task, you will begin work on the back-end app that will be used to recei
 
 1. On the **File** menu, click **Open Folder**
 
-1. In the **Open Folder** dialog, navigate to lab 15 Starter folder.
+1. In the **Open Folder** dialog, navigate to lab 15 Finished folder.
+
+    > **NOTE**: Be sure to navigate up (or back) to the **Finished** folder. You do not want the project in the Starter folder.
 
 1. Click **CheeseCaveOperator**, and then click **Select Folder**.
 
@@ -343,14 +349,13 @@ In this task, you will begin work on the back-end app that will be used to recei
 
 1. In the **EXPLORER** pane, click **Program.cs**.
 
-1. Locate and review the using statements - most have been used in earlier labs. However, two new namespaces have been added:
+1. Locate and review the using statements. Notice the namespace listed below:
 
     ```csharp
     using Azure.Messaging.EventHubs;
-    using Azure.Messaging.EventHubs.Consumer;
     ```
 
-    Both of these namespaces originate from the [**Azure.Messaging.EventHubs** NuGet package](https://www.nuget.org/packages/Azure.Messaging.EventHubs/). This client library allows for both publishing and consuming events using Azure Event Hubs. In this lab, the library will be configured to connect to the IoT Hub built-in EventHub compatible endpoint.
+    This namespace originates from the [**Azure.Messaging.EventHubs** NuGet package](https://www.nuget.org/packages/Azure.Messaging.EventHubs/). This client library allows for both publishing and consuming events using Azure Event Hubs. In this lab, the library will be configured to connect to the IoT Hub built-in EventHub compatible endpoint.
 
     > **Note**: The NuGet package can be installed with the following command: `dotnet add package Azure.Messaging.EventHubs` and further information can be found at the link below:
     > * [Azure Event Hubs client library for .NET - Version 5.5.0](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/messaging.eventhubs-readme?view=azure-dotnet)
@@ -381,7 +386,7 @@ In this task, you will begin work on the back-end app that will be used to recei
     private readonly static string serviceConnectionString = "<your service connection string>";
     ```
 
-1. Replace **\<your service connection string\>** with the IoT Hub Service connection string that you saved earlier in this lab.
+1. Replace **<your service connection string>** with the IoT Hub Service connection string that you saved earlier in this lab.
 
     You should have saved the iothubowner shared access policy primary connection string generated by the ARM Template that you ran during Exercise 1.
 
@@ -400,7 +405,7 @@ In this task, you will begin work on the back-end app that will be used to recei
     >
     > In a production scenario, you might consider adding a new shared access policy that has just the **Service connect** and **Registry read** permissions.
 
-1. Replace the **\<your event hub endpoint\>**, **\<your event hub path\>**, and the **\<your event hub SaS key\>** with the values that you saved earlier in this lab.
+1. Replace the **<your event hub endpoint>**, **<your event hub path>**, and the **<your event hub SaS key>** with the values that you saved earlier in this lab.
 
 1. Locate the **Main** method and take a moment to review the code (and code comments).
 
@@ -469,7 +474,7 @@ This test is important, checking whether your back-end app is picking up the tel
 
 1. Once you have verified the telemetry data, stop the running apps and close the Terminal pane in both instances of VS Code, but do not close the Visual Studio Code windows.
 
-You now have an app sending telemetry from a device, and a back-end app acknowledging receipt of the data. In the next Exercise you will begin work on the steps that handle the control side - what to do when issues arise with the data.
+You now have an app that can send telemetry from a device, and a back-end app acknowledging receipt of the data. In the next Exercise you will begin work on the steps that handle the control side - what to do when issues arise with the data.
 
 ### Exercise 4: Include Code to Invoke a Direct Method
 
