@@ -75,7 +75,7 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
 
     The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
 

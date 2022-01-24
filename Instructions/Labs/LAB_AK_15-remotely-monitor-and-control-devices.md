@@ -69,19 +69,19 @@ This lab assumes the following Azure resources are available:
 | IoT Hub | iot-az220-training-{your-id} |
 | IoT Device | sensor-th-0055 |
 
-To ensure these resources are available, complete the following tasks.
+To ensure these resources are available, complete the following steps.
 
-1. To create the required resources, open a new browser tab and enter the following address:
+1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    [https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab15.json](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab15.json)
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab15.json+++
 
-    ```url
-    https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab15.json
-    ```
+1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
-1. If prompted, login to the **Azure Portal**.
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
 
-    The **Custom deployment** page will be displayed.
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
+
+    Once you have signed in, the **Custom deployment** page will be displayed.
 
 1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
 
@@ -97,7 +97,13 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
+
+    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
