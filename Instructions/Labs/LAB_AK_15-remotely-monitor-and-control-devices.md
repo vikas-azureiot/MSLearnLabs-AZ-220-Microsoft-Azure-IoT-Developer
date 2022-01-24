@@ -213,11 +213,11 @@ In this exercise, you will be completing the simulated device app (for the senso
     * Allfiles
         * Labs
             * 15-Remotely monitor and control devices with Azure IoT Hub
-                * Finished
+                * Final
                     * CheeseCaveDevice
                     * CheeseCaveOperator
 
-    > **NOTE**: Be sure to use the **Finished** folder. By default, the **Allfiles** folder is copied to your Windows Desktop in your virtual machine environment.
+    > **NOTE**: Be sure to use the **Final** folder. By default, the **Allfiles** folder is copied to your Windows Desktop in your virtual machine environment.
 
 1. Click **cheesecavedevice**, and then click **Select Folder**.
 
@@ -337,9 +337,9 @@ In this task, you will begin work on the back-end app that will be used to recei
 
 1. On the **File** menu, click **Open Folder**
 
-1. In the **Open Folder** dialog, navigate to lab 15 Finished folder.
+1. In the **Open Folder** dialog, navigate to lab 15 Final folder.
 
-    > **NOTE**: Be sure to navigate up (or back) to the **Finished** folder. You do not want the project in the Starter folder.
+    > **NOTE**: Be sure to navigate up (or back) to the **Final** folder. You do not want the project in the Starter folder.
 
 1. Click **CheeseCaveOperator**, and then click **Select Folder**.
 
