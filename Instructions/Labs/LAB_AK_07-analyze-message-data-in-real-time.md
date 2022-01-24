@@ -58,9 +58,7 @@ To ensure these resources are available, complete the following steps.
 
 1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address: 
 
-    ```url
-    https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab07.json
-    ```
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab07.json+++
 
 1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
@@ -104,7 +102,7 @@ To ensure these resources are available, complete the following steps.
 
     You will be using the text editor to store some configuration values associated with the Azure resources.
 
-1. Switch back to the Azure portal window and wait to the deployment to finish.
+1. Switch back to the Azure portal window and wait for the deployment to finish.
 
     You will see a notification when deployment is complete.
 

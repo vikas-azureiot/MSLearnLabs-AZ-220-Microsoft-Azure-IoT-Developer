@@ -65,7 +65,114 @@ This lab assumes the following Azure resources are available:
 | IoT Hub | iot-az220-training-{your-id} |
 | IoT Device | sensor-th-0155 |
 
-To ensure these resources are available, complete the following tasks.
+To ensure these resources are available, complete the following steps.
+
+1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address: 
+
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab16.json+++
+
+1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
+
+    **Username** +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password** +++@lab.CloudPortalCredential(User1).Password+++
+
+    Once you have signed in, the **Custom deployment** page will be displayed.
+
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
+
+1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+
+    > **NOTE**: If **@lab.CloudResourceGroup(ResourceGroup1).Name** is not listed:
+    >
+    > 1. Under the **Resource group** dropdown, click **Create new**.
+    > 1. Under **Name**, enter **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+    > 1. Click **OK**.
+
+1. Under **Instance details**, in the **Region** dropdown, select the region closest to you.
+
+    > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
+
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
+
+    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+
+1. In the **Course ID** field, enter **az220**.
+
+1. To validate the template, click **Review and create**.
+
+1. If validation passes, click **Create**.
+
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
+
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    You will be using the text editor to store some configuration values associated with the Azure resources.
+
+1. Switch back to the Azure portal window and wait for the deployment to finish.
+
+    You will see a notification when deployment is complete.
+
+1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
+
+    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. You will finds steps listed below to create the devices manually.
+
+1. In your text editor, create a record of the following Outputs for use later:
+
+    * connectionString
+    * deviceConnectionString
+
+    > **IMPORTANT**: Complete the following steps to create an IoT device and a record of the IoT hub and device connections strings.
+
+    1. On the Azure portal menu, click **Dashboard**.
+
+    1. On the **All recourses** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+
+    1. On the IoT hub blade, under **Device management**, click **Devices**.
+
+    1. On the Devices page, click **+ Add Device**.
+
+    1. On the Create a device page, under **Device ID**, enter **sensor-v-3000**
+
+        +++sensor-v-3000+++
+
+    1. At the bottom of the page, click **Save**.
+
+    1. On the Devices page, click **Refresh**.
+
+    1. On the Devices page, under **Device ID**, click **sensor-v-3000**.
+
+    1. On the sensor-v-3000 page, to the right of the Primary Connection String value, click **Copy**.
+
+    1. Save the copied value to Notepad for later use.
+
+    1. Navigate back to your IoT hub blade.
+
+    1. On the left side menu, under **Security settings**, click **Shared access policies**.
+
+    1. Click **iothubowner**.
+
+    1. Notice that the IoT hub Primary Connection String is listed.
+
+    1. Copy the value of the IoT hub Primary Connection String to Notepad.
+
+    The Azure resources required for this lab are now available.
+
+
+
+
+
+
+
+
+
+
+
+
 
 1. To create the required resources, open a new browser tab and enter the following address:
 

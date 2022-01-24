@@ -104,7 +104,7 @@ To ensure these resources are available, complete the following steps.
 
     You will be using the text editor to store some configuration values associated with the Azure resources.
 
-1. Switch back to the Azure portal window and wait to the deployment to finish.
+1. Switch back to the Azure portal window and wait for the deployment to finish.
 
     You will see a notification when deployment is complete.
 
