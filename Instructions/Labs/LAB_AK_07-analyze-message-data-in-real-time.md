@@ -108,16 +108,16 @@ To ensure these resources are available, complete the following steps.
 
     You will see a notification when deployment is complete.
 
-    > **NOTE**: If the deployment fails during the createDevice operation, you will find instructions below for creating the device manually.
-
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
+
+    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. You will finds steps listed below to create the devices manually.
 
 1. In your text editor, create a record of the following Outputs for use later:
 
     * connectionString
     * deviceConnectionString
 
-    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. Complete the following steps to create an IoT device and make note of the IoT hub and device connections strings.
+    > **IMPORTANT**: Complete the following steps to create an IoT device and a record of the IoT hub and device connections strings.
 
     1. On the Azure portal menu, click **Dashboard**.
 
@@ -129,6 +129,8 @@ To ensure these resources are available, complete the following steps.
 
     1. On the Create a device page, under **Device ID**, enter **sensor-v-3000**
 
+        +++sensor-v-3000+++
+
     1. At the bottom of the page, click **Save**.
 
     1. On the Devices page, click **Refresh**.
@@ -138,6 +140,16 @@ To ensure these resources are available, complete the following steps.
     1. On the sensor-v-3000 page, to the right of the Primary Connection String value, click **Copy**.
 
     1. Save the copied value to Notepad for later use.
+
+    1. Navigate back to your IoT hub blade.
+
+    1. On the left side menu, under **Security settings**, click **Shared access policies**.
+
+    1. Click **iothubowner**.
+
+    1. Notice that the IoT hub Primary Connection String is listed.
+
+    1. Copy the value of the IoT hub Primary Connection String to Notepad.
 
     The Azure resources required for this lab are now available.
 

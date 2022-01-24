@@ -105,11 +105,21 @@ To ensure these resources are available, complete the following tasks.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
+
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    You will be using the text editor to store some configuration values associated with the Azure resources.
+
+1. Switch back to the Azure portal window and wait to the deployment to finish.
+
+    You will see a notification when deployment is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Make a note of the outputs for use later:
+    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. You will finds steps listed below to create the devices manually.
+
+1. In your text editor, create a record of the following Outputs for use later:
 
     * deviceConnectionString
     * devicePrimaryKey
@@ -118,7 +128,65 @@ To ensure these resources are available, complete the following tasks.
     * iotHubSasKey
     * serviceConnectionString
 
-The resources have now been created.
+    > **IMPORTANT**: If the deployment failed, complete the following steps to create an IoT device and a record of the information listed above.
+
+    1. On the Azure portal menu, click **Dashboard**.
+
+    1. On the **All recourses** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+
+    1. On the IoT hub blade, under **Device management**, click **Devices**.
+
+    1. On the Devices page, click **+ Add Device**.
+
+    1. On the Create a device page, under **Device ID**, enter **sensor-th-0055**
+
+        +++sensor-th-0055+++
+
+    1. At the bottom of the page, click **Save**.
+
+    1. On the Devices page, click **Refresh**.
+
+    1. On the Devices page, under **Device ID**, click **sensor-th-0055**.
+
+    1. On the sensor-th-0055 page, to the right of the Primary Connection String value, click **Copy**.
+
+    1. Save the copied value to Notepad and label it as the serviceConnectionString.
+
+    1. On the sensor-th-0055 page, copy the Primary Key value to Notepad and label it as the devicePrimaryKey. 
+
+    1. Navigate back to your IoT hub blade.
+
+    1. On the left side menu, under **Hub settings**, click **Built-in endpoints**.
+
+    1. On the Built-in endpoints page, to the right of **Event Hub-compatible endpoint**, click **Copy**.
+
+    1. Paste the copied value into Notepad and label it as the eventHubsCompatibleEndpoint.
+
+    1. In Notepad, trim the eventHubsCompatibleEndpoint value to leave just the endpoint portion.
+
+        The trimmed value should look similar to the following:
+
+        sb://iothub-ns-iot-az220-17033305-d720ac149c.servicebus.windows.net/
+
+    1. On the Built-in endpoints page, to the right of **Event Hub-compatible name**, click **Copy**.
+
+    1. Paste the copied value into Notepad and label it as the eventHubsCompatiblePath.
+
+    1. On the left side menu, under **Security settings**, click **Shared access policies**.
+
+    1. Click **service**.
+
+    1. To the right of Primary key, click **Copy**.
+
+    1. Paste the copied value into Notepad and label it as the iotHubSasKey.
+
+    1. On the Shared access policies page, click **iothubowner**.
+
+    1. To the right of Primary connection string, click **Copy**.
+
+    1. Paste the copied value into Notepad and label it as serviceConnectionString.
+
+    The Azure resources required for this lab are now available.
 
 ### Exercise 2: Review Code to Send and Receive Telemetry
 

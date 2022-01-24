@@ -99,6 +99,8 @@ To ensure these resources are available, complete the following tasks.
 
     You will see a notification when deployment is complete.
 
+    > **NOTE**: If the deployment fails during the createDevice operation, you will finds steps listed below to create the devices manually.
+
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
     Make a note of the outputs for use later:
@@ -106,7 +108,7 @@ To ensure these resources are available, complete the following tasks.
     * connectionString
     * deviceIDs
 
-    > **Important**: The deviceIDs output contains a JSON array with the connection strings for each device. Use the text editor of your choice to extract the connection strings:
+    > **Note**: The deviceIDs output contains a JSON array with the connection strings for each device. Use the text editor of your choice to record the device names and connection strings:
 
     ```json
     [
@@ -124,6 +126,48 @@ To ensure these resources are available, complete the following tasks.
         }
     ]
     ```
+
+    > **IMPORTANT**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. Complete the following steps to create the required IoT devices and a record of the IoT hub and device connections strings.
+
+    1. On the Azure portal menu, click **Dashboard**.
+
+    1. On the **All recourses** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+
+    1. On the IoT hub blade, under **Device management**, click **Devices**.
+
+    1. On the Devices page, click **+ Add Device**.
+
+    1. On the Create a device page, under **Device ID**, enter **sensor-th-truck0001**
+
+        +++sensor-th-truck0001+++
+
+    1. At the bottom of the page, click **Save**.
+
+    1. Repeat the previous three steps to create IoT devices with Device IDs of **sensor-th-airplane0001** and **sensor-th-container0001**.
+
+        +++sensor-th-airplane0001+++
+
+        +++sensor-th-container0001+++
+
+    1. On the Devices page, under **Device ID**, click **sensor-th-truck0001**.
+
+        If the device isn't listed, on the Devices page, click **Refresh**.
+
+    1. On the sensor-th-truck0001 page, to the right of the Primary Connection String value, click **Copy**.
+
+    1. Save the Device ID and the copied connection string value to Notepad for later use.
+
+    1. Repeat the previous three steps to record the Device IDs and connection string values for the **sensor-th-airplane0001** and **sensor-th-container0001** devices.
+
+    1. Navigate back to your IoT hub blade.
+
+    1. On the left side menu, under **Security settings**, click **Shared access policies**.
+
+    1. Click **iothubowner**.
+
+    1. Notice that the IoT hub Primary Connection String is listed.
+
+    1. Copy the value of the IoT hub Primary Connection String to Notepad.
 
     The Azure resources required for this lab are now available.
 
