@@ -115,7 +115,7 @@ To ensure these resources are available, complete the following steps.
     * connectionString
     * deviceConnectionString
 
-    > **IMPORTANT**: Complete the following steps to create an IoT device and a record of the IoT hub and device connections strings.
+    > **IMPORTANT**: If the deployment failed, complete the following steps to create an IoT device and a record of the IoT hub and device connections strings.
 
     1. On the Azure portal menu, click **Dashboard**.
 

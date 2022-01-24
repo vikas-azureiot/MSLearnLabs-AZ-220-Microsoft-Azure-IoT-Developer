@@ -125,8 +125,9 @@ To ensure these resources are available, complete the following steps.
 
     * connectionString
     * deviceConnectionString
+    * devicePrimaryKey
 
-    > **IMPORTANT**: Complete the following steps to create an IoT device and a record of the IoT hub and device connections strings.
+    > **IMPORTANT**: If the deployment failed, complete the following steps to create an IoT device and a record of the IoT hub and device connections strings.
 
     1. On the Azure portal menu, click **Dashboard**.
 
@@ -136,19 +137,21 @@ To ensure these resources are available, complete the following steps.
 
     1. On the Devices page, click **+ Add Device**.
 
-    1. On the Create a device page, under **Device ID**, enter **sensor-v-3000**
+    1. On the Create a device page, under **Device ID**, enter **sensor-th-0155**
 
-        +++sensor-v-3000+++
+        +++sensor-th-0155+++
 
     1. At the bottom of the page, click **Save**.
 
     1. On the Devices page, click **Refresh**.
 
-    1. On the Devices page, under **Device ID**, click **sensor-v-3000**.
+    1. On the Devices page, under **Device ID**, click **sensor-th-0155**.
 
-    1. On the sensor-v-3000 page, to the right of the Primary Connection String value, click **Copy**.
+    1. On the sensor-th-0155 page, to the right of the Primary Connection String value, click **Copy**.
 
-    1. Save the copied value to Notepad for later use.
+    1. Save the copied value to Notepad and label it as the deviceConnectionString.
+
+    1. On the sensor-th-0155 page, copy the Primary Key value to Notepad and label it as the devicePrimaryKey.
 
     1. Navigate back to your IoT hub blade.
 
@@ -158,67 +161,9 @@ To ensure these resources are available, complete the following steps.
 
     1. Notice that the IoT hub Primary Connection String is listed.
 
-    1. Copy the value of the IoT hub Primary Connection String to Notepad.
+    1. Copy the value of the IoT hub Primary Connection String to Notepad and label it as the connectionString.
 
     The Azure resources required for this lab are now available.
-
-
-
-
-
-
-
-
-
-
-
-
-
-1. To create the required resources, open a new browser tab and enter the following address:
-
-    [https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab16.json](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab16.json)
-
-    ```url
-    https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab16.json
-    ```
-
-1. If prompted, login to the **Azure Portal**.
-
-    The **Custom deployment** page will be displayed.
-
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
-
-1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
-
-    > **NOTE**: If **@lab.CloudResourceGroup(ResourceGroup1).Name** is not listed:
-    >
-    > 1. Under the **Resource group** dropdown, click **Create new**.
-    > 1. Under **Name**, enter **@lab.CloudResourceGroup(ResourceGroup1).Name**.
-    > 1. Click **OK**.
-
-1. Under **Instance details**, in the **Region** dropdown, select the region closest to you.
-
-    > **NOTE**: If the **@lab.CloudResourceGroup(ResourceGroup1).Name** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
-
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
-
-1. In the **Course ID** field, enter **az220**.
-
-1. To validate the template, click **Review and create**.
-
-1. If validation passes, click **Create**.
-
-    The deployment will start.
-
-1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
-
-    Make a note of the outputs for use later:
-
-    * connectionString
-    * deviceConnectionString
-    * devicePrimaryKey
-
-The resources have now been created.
 
 ### Exercise 2: Examine code for a simulated device that implements firmware update
 
