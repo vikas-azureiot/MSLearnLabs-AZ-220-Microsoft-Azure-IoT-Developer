@@ -49,13 +49,13 @@ The following resources will be created:
 
 In this lab, you will complete the following activities:
 
-* Verify that the lab prerequisites are met (that you have the required Azure resources)
+* Configure the lab prerequisites (the required Azure resources)
 * Write code for a simulated device that will implement a firmware update
 * Test the firmware update process on a single device using Azure IoT Hub automatic device management
 
 ## Lab Instructions
 
-### Exercise 1: Verify Lab Prerequisites
+### Exercise 1: Configure Lab Prerequisites
 
 This lab assumes the following Azure resources are available:
 

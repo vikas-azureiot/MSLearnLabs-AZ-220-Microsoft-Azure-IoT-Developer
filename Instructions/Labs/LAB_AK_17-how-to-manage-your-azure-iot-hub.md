@@ -24,7 +24,7 @@ The following resources will be created:
 
 In this lab, you will complete the following activities:
 
-* Verify that the lab prerequisites are met (that you have the required Azure resources).
+* Configure the lab prerequisites (the required Azure resources).
 * Download and run an app that simulates an IoT device sending messages to the hub.
 * Run the app to generate telemetry.
 * Enable diagnostic logs.
@@ -35,7 +35,7 @@ In this lab, you will complete the following activities:
 
 ## Lab Instructions
 
-### Exercise 1: Verify Lab Prerequisites
+### Exercise 1: Configure Lab Prerequisites
 
 This lab assumes that the following Azure resources are available:
 

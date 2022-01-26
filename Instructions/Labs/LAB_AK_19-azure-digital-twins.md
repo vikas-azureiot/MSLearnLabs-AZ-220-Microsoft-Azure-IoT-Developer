@@ -30,7 +30,7 @@ The following resources will be created:
 
 In this lab, you will complete the following activities:
 
-* Verify that the lab prerequisites are met (that you have the required Azure resources)
+* Configure the lab prerequisites (the required Azure resources)
 * Create and configure digital twins
   * Create a digital twin by using the supplied DTDL
   * Build ADT graph using digital twin instances
@@ -43,7 +43,7 @@ In this lab, you will complete the following activities:
 
 ## Lab Instructions
 
-### Exercise 1 - Verify Lab Prerequisites
+### Exercise 1 - Configure Lab Prerequisites
 
 #### Task 1 - Create resources
 

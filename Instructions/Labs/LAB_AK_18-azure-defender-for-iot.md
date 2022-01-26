@@ -24,10 +24,7 @@ The following resources will be created:
 
 In this lab, you will complete the following activities:
 
-* Verify that the lab prerequisites are met (that you have the required Azure resources)
-
-    * The script will create an IoT Hub if needed
-
+* Configure the lab prerequisites (the required Azure resources)
 * Enable Azure Defender for IoT
 * Create and register a new Device
 * Create a Security Module Twin
@@ -39,7 +36,7 @@ In this lab, you will complete the following activities:
 
 ## Lab Instructions
 
-### Exercise 1: Verify Lab Prerequisites
+### Exercise 1: Configure Lab Prerequisites
 
 **Important**: Due to resource/policy restrictions, this lab cannot be run using Azure account credentials provided by the MS Learn lab sandbox. You can complete this lab using a free trial or other personal Azure subscription.
 
