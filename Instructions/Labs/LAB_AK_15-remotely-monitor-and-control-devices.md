@@ -570,10 +570,6 @@ You have now completed the coding that is required on the device side. Next, you
 
     Notice how the **ServiceClient** connects using the **serviceConnectionString** defined earlier. The **InvokeMethod** is then called.
 
-1. Locate the `UNCOMMENT InvokeMethod method below here` comment.
-
-1. Uncomment and review the code that invokes the direct method.
-
     The **CloudToDeviceMethod** class encapsulates the information regarding the direct method - the method name, timeout, and payload. The **ServiceClient** instance created earlier is then used to invoke the direct method via the IoT Hub, returning a response object. A `response.Status` property value of `200` indicates success.
 
     > **Information**: The **ServiceClient** class encapsulates interaction with the underlying Azure REST APIs. You can learn more about the underlying REST API for invoking direct methods here - [Understand and invoke direct methods from IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods). You can also find the additional status codes documented:
@@ -591,9 +587,9 @@ You have now completed the code changes to support the **SetFanState** direct me
 
 To test the direct method, you will need to start the apps in the correct order. You can't invoke a direct method that hasn't been registered!
 
-1. Switch to the instance of Visual Studio Code that contains the **cheesecavedevice** device app.
+1. Switch to the instance of Visual Studio Code that contains the **CheeseCaveDevice** device app.
 
-1. To start the **cheesecavedevice** device app, open a Terminal pane and then enter a `dotnet run` command.
+1. To start the **CheeseCaveDevice** device app, open a Terminal pane and then enter a `dotnet run` command.
 
     It will begin writing to the terminal, and telemetry messages will be displayed.
 
@@ -656,24 +652,18 @@ In this exercise, you will enable some code in the back-end service app, to show
     private static RegistryManager registryManager;
     ```
 
-1. Locate the `UNCOMMENT device twin management below here` comment.
+1. Locate the **A registry manager is used to access the digital twins** comment line within the code.
 
-1. To add the functionality that creates the registry manager instance and sets the twin properties, enter the following code:
+1. To add the functionality that creates the registry manager instance and sets the twin properties, uncomment the following code:
 
     ```csharp
-    // A registry manager is used to access the digital twins.
-    registryManager = RegistryManager
-        .CreateFromConnectionString(serviceConnectionString);
-    await SetTwinProperties();
+    registryManager = RegistryManager.CreateFromConnectionString(serviceConnectionString);
+    SetTwinProperties().Wait();
     ```
 
     Notice that the **serviceConnectionString** value is used to connect to the IoT Hub with the appropriate access level. The **SetTwinProperties** is then called.
 
-1. Locate the `UNCOMMENT Device twins section below here` comment.
-
-1. To add the functionality that updates device twin desired properties, uncomment the **SetTwinProperties** and review the code and comments:
-
-    The **SetTwinProperties** method creates a piece of JSON that defines tags and properties that will be added to the device twin, and then updates the twin. The next part of the method demonstrates how a query can be performed to list the devices where the **cheeseCave** tag is set to "CheeseCave1". This query requires that the connection has the **Registry read** permission.
+    The **SetTwinProperties** method creates a piece of JSON that defines tags and properties that will be added to the device twin, and then updates the twin. The next part of the method demonstrates how a query can be performed to list the devices where the **cheeseCave** tag is set to "CheeseCave1". This query requires that the connection has the **Registry read** permission. If you are interested, you can find the **SetTwinProperties** method further down in the Program.cs file.
 
 1. On the **File** menu, to save the Program.cs file, click **Save**.
 

@@ -50,8 +50,8 @@ namespace CheeseCaveOperator
 
             // INSERT register desired property changed handler code below here
             // A registry manager is used to access the digital twins.
-            registryManager = RegistryManager.CreateFromConnectionString(serviceConnectionString);
-            SetTwinProperties().Wait();
+            //registryManager = RegistryManager.CreateFromConnectionString(serviceConnectionString);
+            //SetTwinProperties().Wait();
 
             // INSERT create service client instance below here
             // Create a ServiceClient to communicate with service-facing endpoint on your hub.
