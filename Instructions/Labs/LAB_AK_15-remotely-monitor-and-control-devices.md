@@ -24,7 +24,7 @@ In this lab, you will be prototyping a cheese cave monitoring system that implem
 
 ### Simplified Lab Conditions
 
-The frequency of telemetry output is an important consideration in production solutions. A temperature sensor in a refrigeration unit may only need to report once a minute, whereas an acceleration sensor on an aircraft may have to report ten times per second. In some cases, the frequency at which telemetry must be sent is dependent on current conditions. For example, if the temperature our cheese cave scenario tends to drop quickly at night, you may benefit from having more frequent sensor readings beginning two hours before sunset. Of course the requirement to change the frequency of telemetry does not need to be part of a predictable pattern, the events that drive our need to change IoT device settings can be unpredictable.
+The frequency of telemetry output is an important consideration in production solutions. A temperature sensor in a refrigeration unit may only need to report once a minute, whereas an acceleration sensor on an aircraft may have to report ten times per second. In some cases, the frequency at which telemetry must be sent is dependent on current conditions. For example, if the temperature in our cheese cave scenario tends to drop quickly at night, you may benefit from having more frequent sensor readings beginning two hours before sunset. Of course the requirement to change the frequency of telemetry does not need to be part of a predictable pattern, the events that drive our need to change IoT device settings can be unpredictable.
 
 To keep things simple in this lab, we will make the following assumptions:
 
@@ -121,8 +121,6 @@ To ensure these resources are available, complete the following steps.
 
 1. Once the deployment has completed, in the left navigation area, to review the output values generated during the deployment,  click **Outputs**.
 
-    > **NOTE**: If the deployment failed during the "createDevice" operation, the Outputs pane will be empty. 
-
 1. In your text editor, create a record of the following Outputs for use later:
 
     * deviceConnectionString
@@ -132,7 +130,7 @@ To ensure these resources are available, complete the following steps.
     * iotHubSasKey
     * serviceConnectionString
 
-    > **IMPORTANT**: If the deployment failed during the createDevice operation, complete the following steps to create an IoT device and a record of the information listed above.
+    > **IMPORTANT**: If the deployment failed during the createDevice operation, the Outputs pane may be empty. Complete the following steps to create an IoT device and a record of the information listed above.
 
     1. On the Azure portal menu, click **Dashboard**.
 
@@ -287,7 +285,7 @@ The simulated device app that you will build in this task simulates an IoT devic
 
 1. Review the **Main** method.
 
-    As in earlier labs, the **Main** method is used to establish a connection to your IoT hub. You may have noticed that it will be used to integrate the device twin property changes, and in this case, you will also be integrating a direct method.
+   The **Main** method is used to establish a connection to your IoT hub. You may have noticed that it will be used to integrate the device twin property changes, and in this case, you will also be integrating a direct method.
 
 1. Take a brief look at the **SendDeviceToCloudMessagesAsync** method.
 
@@ -329,9 +327,9 @@ Now that you have your (simulated) cheese cave device sending telemetry to your 
 
 In this task, you will begin work on the back-end app that will be used to receive telemetry from the IoT Hub Event Hub endpoint.
 
-1. Open a new instance of Visual Studio Code.
+1. Open an additional instance of Visual Studio Code.
 
-    Since your simulated device app is running in the Visual Studio Code windows that you already have open, you need a new instance of Visual Studio Code for the back-end app.
+    Since your simulated device app is running in the Visual Studio Code window that you already have open, you need a new instance of Visual Studio Code for the back-end app.
 
 1. On the **File** menu, click **Open Folder**
 
@@ -358,7 +356,7 @@ In this task, you will begin work on the back-end app that will be used to recei
     > **Note**: The NuGet package can be installed with the following command: `dotnet add package Azure.Messaging.EventHubs` and further information can be found at the link below:
     > * [Azure Event Hubs client library for .NET - Version 5.5.0](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/messaging.eventhubs-readme?view=azure-dotnet)
 
-1. Locate the `Global variables.` comment.
+1. Locate the **Global variables.** comment line within the code.
 
 1. Take a moment to review the global variables.
 
@@ -550,7 +548,7 @@ You have now completed the coding that is required on the device side. Next, you
 
 1. Ensure that **Program.cs** is open in the code editor.
 
-1. Notice that the application defines a global variable to hold a service client instance:
+1. Near the top of the file, notice that the application defines a global variable to hold a service client instance:
 
     ```csharp
     private static ServiceClient serviceClient;
@@ -636,7 +634,7 @@ In this exercise, you will enable some code in the back-end service app, to show
 
 1. Ensure that the **Program.cs** is open.
 
-1. Notice that a global variable for a **RegistryManager** instance is already defined:
+1. Near the top of the file, notice that a global variable for a **RegistryManager** instance is already defined:
 
     ```csharp
     private static RegistryManager registryManager;
@@ -644,7 +642,7 @@ In this exercise, you will enable some code in the back-end service app, to show
 
     The **RegistryManager** class encapsulates some of the IoT Hub Service REST APIs that include operations on the device identity registry, querying device twins, and import/export jobs. In this exercise, it will be used to update a device twin.
 
-1. Locate the **A registry manager is used to access the digital twins** comment line within the code.
+1. In the **Main** method, locate the **A registry manager is used to access the digital twins** comment line within the code.
 
 1. To enable the functionality that creates the registry manager instance and sets the twin properties, uncomment the following code lines:
 
@@ -669,7 +667,7 @@ In this exercise, you will enable some code in the back-end service app, to show
 
 1. Ensure that the **Program.cs** file is open in the Code Editor pane.
 
-1. Locate the **Get the device twin to report the initial desired properties** comment line within the code.
+1. In the **Main** method, locate the **Get the device twin to report the initial desired properties** comment line within the code.
 
 1. To register the desired property changed handler, uncomment the following code lines:
 
