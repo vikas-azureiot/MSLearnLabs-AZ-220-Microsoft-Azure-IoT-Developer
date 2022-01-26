@@ -93,7 +93,7 @@ namespace CheeseCaveDevice
 
         // INSERT SetFanState method below here
         // Handle the direct method call
-        private static Task<MethodResponse> SetFanState(MethodRequest methodRequest, object userContext)
+/*         private static Task<MethodResponse> SetFanState(MethodRequest methodRequest, object userContext)
         {
             if (cheeseCave.FanState == StateEnum.Failed)
             {
@@ -128,7 +128,7 @@ namespace CheeseCaveDevice
                 }
             }
         }
-
+ */
         // INSERT OnDesiredPropertyChanged method below here
         private static async Task OnDesiredPropertyChanged(TwinCollection desiredProperties, object userContext)
         {

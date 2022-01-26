@@ -472,6 +472,8 @@ This test is important, checking whether your back-end app is picking up the tel
 
 1. Once you have verified the telemetry data, stop the running apps and close the Terminal pane in both instances of VS Code, but do not close the Visual Studio Code windows.
 
+    You can press **CTRL+C** in the Terminal pane to stop the apps.
+
 You now have an app that can send telemetry from a device, and a back-end app acknowledging receipt of the data. In the next Exercise you will begin work on the steps that handle the control side - what to do when issues arise with the data.
 
 ### Exercise 4: Include Code to Invoke a Direct Method
@@ -490,13 +492,13 @@ In this Exercise, you will update your device app by adding the code for a direc
 
 #### Task 1: Enable Code to Define a Direct Method in the Device App
 
-1. Return to the Visual Studio Code instance that contains your **cheesecavedevice** application.
+1. Return to the Visual Studio Code instance that contains your **CheeseCaveDevice** application.
 
     > **Note**: If the app is still running, use the Terminal pane to exit the app (click inside the Terminal pane to set the focus and the press **CTRL+C** to exit the running application).
 
 1. Ensure that **Program.cs** is open in the code editor.
 
-1. Locate the `UNCOMMENT register direct method code below here` comment.
+1. Locate the **Create a handler for the direct method call** comment line within the code.
 
 1. To register the direct method, uncomment the following code:
 
