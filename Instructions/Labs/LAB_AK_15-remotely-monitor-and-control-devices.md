@@ -508,7 +508,7 @@ In this Exercise, you will update your device app by adding the code for a direc
 
     Notice that the **SetFanState** direct method handler is also set up by this code. As you can see, the **SetMethodHandlerAsync** method of deviceClient takes the remote method name `"SetFanState"` as an argument, along with the actual local method to call, and a user context object (in this case null).
 
-1. Locate the `UNCOMMENT SetFanState method below here` comment.
+1. Locate the **Handle the direct method call** comment line within the code.
 
 1. Uncomment the **SetFanState** direct method, and review the code and comments.
 
