@@ -117,11 +117,11 @@ To ensure these resources are available, complete the following steps.
 
     You will see a notification when deployment is complete.
 
-    > **WARNING**: Policy settings could cause the deployment to fail during the final **createDevice** operation. You will find instructions below that help you to create the device manually and record the information that is required later in this lab.
+    > **WARNING**: Policy settings could cause the deployment to fail during the final "createDevice" operation. If this occurs, you will find instructions below that help you to create the device manually and record the information that is required later in this lab.
 
-1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
+1. Once the deployment has completed, in the left navigation area, to review the output values generated during the deployment,  click **Outputs**.
 
-    > **NOTE**: If the deployment failed during the **createDevice** operation, the **Outputs** pane will be empty. 
+    > **NOTE**: If the deployment failed during the "createDevice" operation, the Outputs pane will be empty. 
 
 1. In your text editor, create a record of the following Outputs for use later:
 
@@ -132,7 +132,7 @@ To ensure these resources are available, complete the following steps.
     * iotHubSasKey
     * serviceConnectionString
 
-    > **IMPORTANT**: If the deployment failed, complete the following steps to create an IoT device and a record of the information listed above.
+    > **IMPORTANT**: If the deployment failed during the createDevice operation, complete the following steps to create an IoT device and a record of the information listed above.
 
     1. On the Azure portal menu, click **Dashboard**.
 
@@ -204,7 +204,7 @@ In this exercise, you will be completing the simulated device app (for the senso
 
 1. On the **File** menu, click **Open Folder**
 
-1. In the Open Folder dialog, navigate to the lab 15 Finished folder.
+1. In the Open Folder dialog, navigate to the lab 15 **Final** folder.
 
    On the step before reaching the lab instructions, you downloaded the GitHub repository containing lab resources for this lab. The folder structure includes the following folder path:
 
@@ -215,7 +215,7 @@ In this exercise, you will be completing the simulated device app (for the senso
                     * CheeseCaveDevice
                     * CheeseCaveOperator
 
-    > **NOTE**: Be sure to use the **Final** folder. By default, the **Allfiles** folder is copied to your Windows Desktop in your virtual machine environment.
+    > **NOTE**: By default, the **Allfiles** folder is copied to your Windows Desktop in your virtual machine environment.
 
 1. Click **CheeseCaveDevice**, and then click **Select Folder**.
 
@@ -403,7 +403,7 @@ In this task, you will begin work on the back-end app that will be used to recei
     >
     > In a production scenario, you might consider adding a new shared access policy that has just the **Service connect** and **Registry read** permissions.
 
-1. Replace the **your event hub endpoint**, **your event hub path**, and the **your event hub SaS key** palceholder values with the values that you saved earlier in this lab.
+1. Replace the **your event hub endpoint**, **your event hub path**, and the **your event hub SaS key** placeholder values with the values that you saved earlier in this lab.
 
 1. Locate the **Main** method and take a moment to review the code (and code comments).
 
@@ -550,7 +550,7 @@ You have now completed the coding that is required on the device side. Next, you
 
 1. Ensure that **Program.cs** is open in the code editor.
 
-1. The application defines a global variable to hold a service client instance:
+1. Notice that the application defines a global variable to hold a service client instance:
 
     ```csharp
     private static ServiceClient serviceClient;
@@ -565,7 +565,7 @@ You have now completed the coding that is required on the device side. Next, you
     ```csharp
     serviceClient = ServiceClient.CreateFromConnectionString(serviceConnectionString);
     
-    await InvokeMethod().GetAwaiter().GetResult();
+    InvokeMethod().GetAwaiter().GetResult();
     ```
 
     Notice how the **ServiceClient** connects using the **serviceConnectionString** defined earlier. The **InvokeMethod** is then called.
@@ -605,7 +605,7 @@ To test the direct method, you will need to start the apps in the correct order.
 
     ![Console Output](media/LAB_AK_15-cheesecave-direct-method-sent.png)
 
-1. Now check the console output for the **cheesecavedevice** device app, you should see that the fan has been turned on.
+1. Now check the console output for the **CheeseCaveDevice** device app, you should see that the fan has been turned on.
 
    ![Console Output](media/LAB_AK_15-cheesecave-direct-method-received.png)
 
@@ -636,7 +636,7 @@ In this exercise, you will enable some code in the back-end service app, to show
 
 1. Ensure that the **Program.cs** is open.
 
-1. A global variable for a **RegistryManager** instance is already defined:
+1. Notice that a global variable for a **RegistryManager** instance is already defined:
 
     ```csharp
     private static RegistryManager registryManager;
@@ -644,17 +644,9 @@ In this exercise, you will enable some code in the back-end service app, to show
 
     The **RegistryManager** class encapsulates some of the IoT Hub Service REST APIs that include operations on the device identity registry, querying device twins, and import/export jobs. In this exercise, it will be used to update a device twin.
 
-1. Locate the `UNCOMMENT registry manager variable below here` comment.
-
-1. To insert the registry manager variable, enter the following code:
-
-    ```csharp
-    private static RegistryManager registryManager;
-    ```
-
 1. Locate the **A registry manager is used to access the digital twins** comment line within the code.
 
-1. To add the functionality that creates the registry manager instance and sets the twin properties, uncomment the following code:
+1. To enable the functionality that creates the registry manager instance and sets the twin properties, uncomment the following code lines:
 
     ```csharp
     registryManager = RegistryManager.CreateFromConnectionString(serviceConnectionString);
@@ -663,34 +655,35 @@ In this exercise, you will enable some code in the back-end service app, to show
 
     Notice that the **serviceConnectionString** value is used to connect to the IoT Hub with the appropriate access level. The **SetTwinProperties** is then called.
 
-    The **SetTwinProperties** method creates a piece of JSON that defines tags and properties that will be added to the device twin, and then updates the twin. The next part of the method demonstrates how a query can be performed to list the devices where the **cheeseCave** tag is set to "CheeseCave1". This query requires that the connection has the **Registry read** permission. If you are interested, you can find the **SetTwinProperties** method further down in the Program.cs file.
+    The **SetTwinProperties** method creates a piece of JSON that defines tags and properties that will be added to the device twin, and then updates the twin. The next part of the method demonstrates how a query can be performed to list the devices where the **cheeseCave** tag is set to "CheeseCave1". This query requires that the connection has the **Registry read** permission.
+
+    If you are interested, you can find the **SetTwinProperties** method further down in the Program.cs file.
 
 1. On the **File** menu, to save the Program.cs file, click **Save**.
 
 #### Task 2: Enable Code to Synchronize Device Twin Settings for the Device
 
-1. Return to the Visual Studio Code instance that contains the **cheesecavedevice** app.
+1. Return to the Visual Studio Code instance that contains the **CheeseCaveDevice** app.
 
 1. If the app is still running, place input focus on the terminal and press **CTRL+C** to exit the app.
 
 1. Ensure that the **Program.cs** file is open in the Code Editor pane.
 
-1. Locate the `UNCOMMENT register desired property changed handler code below here` comment.
+1. Locate the **Get the device twin to report the initial desired properties** comment line within the code.
 
-1. To register the desired property changed handler, uncomment the following code:
+1. To register the desired property changed handler, uncomment the following code lines:
 
     ```csharp
-    // Get the device twin to report the initial desired properties.
-    Twin deviceTwin = await deviceClient.GetTwinAsync();
+    Twin deviceTwin = await deviceClient.GetTwinAsync().GetAwaiter().GetResult();
+
     ConsoleHelper.WriteGreenMessage("Initial twin desired properties: " + deviceTwin.Properties.Desired.ToJson());
 
-    // Set the device twin update callback.
-    await deviceClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, null);
+    deviceClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, null).Wait();
     ```
 
-1. Locate the `UNCOMMENT OnDesiredPropertyChanged method below here` comment.
+1. Locate the **OnDesiredPropertyChanged is the handler that is invoked when a desired property changes in the device twin** comment line within the code.
 
-1. To enable the code that responds to a device twin property change, uncomment the **OnDesiredPropertyChanged** method and review the code:
+1. Take a minute to review the OnDesiredPropertyChanged code.
 
     This code defines the handler that is invoked when a desired property changes in the device twin. Notice that new values are then reported back to the IoT Hub to confirm the change.
 
@@ -702,9 +695,9 @@ In this exercise, you will enable some code in the back-end service app, to show
 
 To test the code that manages device twin desired property changes, you will start the apps in the correct order, device application first and then back-end application.
 
-1. Switch to the instance of Visual Studio Code that contains the **cheesecavedevice** device app.
+1. Switch to the instance of Visual Studio Code that contains the **CheeseCaveDevice** device app.
 
-1. To start the **cheesecavedevice** device app, open a Terminal pane and then enter a `dotnet run` command.
+1. To start the **CheeseCaveDevice** device app, open a Terminal pane and then enter a `dotnet run` command.
 
     It will begin writing to the terminal, and telemetry messages will be displayed.
 
@@ -712,7 +705,7 @@ To test the code that manages device twin desired property changes, you will sta
 
 1. To start the **CheeseCaveOperator** back-end app, open a Terminal pane and then enter a `dotnet run` command.
 
-1. Switch back to the instance of Visual Studio Code that contains the **cheesecavedevice** device app.
+1. Switch back to the instance of Visual Studio Code that contains the **CheeseCaveDevice** device app.
 
 1. Check the console output and confirm that the device twin synchronized correctly.
 

@@ -40,11 +40,11 @@ namespace CheeseCaveDevice
 
             // INSERT register desired property changed handler code below here
             // Get the device twin to report the initial desired properties.
-            Twin deviceTwin = deviceClient.GetTwinAsync().GetAwaiter().GetResult();
-            ConsoleHelper.WriteGreenMessage("Initial twin desired properties: " + deviceTwin.Properties.Desired.ToJson());
+            //Twin deviceTwin = deviceClient.GetTwinAsync().GetAwaiter().GetResult();
+            //ConsoleHelper.WriteGreenMessage("Initial twin desired properties: " + deviceTwin.Properties.Desired.ToJson());
 
             // Set the device twin update callback.
-            deviceClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, null).Wait();
+            //deviceClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, null).Wait();
 
             SendDeviceToCloudMessagesAsync();
             Console.ReadLine();
@@ -130,6 +130,7 @@ namespace CheeseCaveDevice
         }
  */
         // INSERT OnDesiredPropertyChanged method below here
+        // OnDesiredPropertyChanged is the handler that is invoked when a desired property changes in the device twin
         private static async Task OnDesiredPropertyChanged(TwinCollection desiredProperties, object userContext)
         {
             try
