@@ -558,16 +558,14 @@ You have now completed the coding that is required on the device side. Next, you
 
     The **ServiceClient** is used to send messages to devices.
 
-1. Locate the `UNCOMMENT create service client instance below here` comment.
+1. Locate the **Create a ServiceClient to communicate with service-facing endpoint on your hub** comment line within the code.
 
-1. Uncomment the following code:
+1. Uncomment the following lines of code:
 
     ```csharp
-    // Create a ServiceClient to communicate with service-facing endpoint
-    // on your hub.
     serviceClient = ServiceClient.CreateFromConnectionString(serviceConnectionString);
-    // Invokes a Direct Method on the device
-    await InvokeMethod();
+    
+    await InvokeMethod().GetAwaiter().GetResult();
     ```
 
     Notice how the **ServiceClient** connects using the **serviceConnectionString** defined earlier. The **InvokeMethod** is then called.

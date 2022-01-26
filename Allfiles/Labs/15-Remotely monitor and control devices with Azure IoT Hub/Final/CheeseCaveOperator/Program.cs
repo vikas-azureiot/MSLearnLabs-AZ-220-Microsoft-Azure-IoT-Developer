@@ -55,8 +55,9 @@ namespace CheeseCaveOperator
 
             // INSERT create service client instance below here
             // Create a ServiceClient to communicate with service-facing endpoint on your hub.
-            serviceClient = ServiceClient.CreateFromConnectionString(serviceConnectionString);
-            InvokeMethod().GetAwaiter().GetResult();
+            //serviceClient = ServiceClient.CreateFromConnectionString(serviceConnectionString);
+            // Invokes a Direct Method on the device
+            //InvokeMethod().GetAwaiter().GetResult();
 
             // Create receivers to listen for messages.
             var tasks = new List<Task>();
