@@ -131,7 +131,7 @@ To ensure these resources are available, complete the following steps.
 
     1. On the Azure portal menu, click **Dashboard**.
 
-    1. On the **All recourses** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+    1. On the **All resources** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
 
     1. On the IoT hub blade, under **Device management**, click **Devices**.
 
@@ -177,17 +177,21 @@ In this task, you will use Visual Studio Code to review the console app.
 
 1. Open **Visual Studio Code**.
 
+    You may find it helpful to maximize the Visual Studio Code window.
+
 1. On the **File** menu, click **Open Folder**
 
 1. In the Open Folder dialog, navigate to the lab 16 Starter folder.
 
-    In _Lab 3: Setup the Development Environment_, you cloned the GitHub repository containing lab resources by downloading a ZIP file and extracting the contents locally. The extracted folder structure includes the following folder path:
+   On the step before reaching the lab instructions, you downloaded the GitHub repository containing lab resources for this lab. The folder structure includes the following folder path:
 
     * Allfiles
       * Labs
           * 16-Automate IoT Device Management with Azure IoT Hub
             * Final
               * FWUpdateDevice
+
+    > **NOTE**: By default, the **Allfiles** folder is copied to your Windows Desktop in your virtual machine environment.
 
 1. Click **FWUpdateDevice**, and then click **Select Folder**.
 
@@ -196,53 +200,51 @@ In this task, you will use Visual Studio Code to review the console app.
     * FWUpdateDevice.csproj
     * Program.cs
 
-1. In the **EXPLORER** pane, click the **FWUpdateDevice.csproj** file to open it, and note the referenced NuGet packages:
+1. In the **EXPLORER** pane, to open the project file, click **FWUpdateDevice.csproj**.
 
-    * Microsoft.Azure.Devices.Client -Device SDK for Azure IoT Hub
+1. Notice the referenced NuGet packages:
+
+    * Microsoft.Azure.Devices.Client - Device SDK for Azure IoT Hub
     * Microsoft.Azure.Devices.Shared - Common code for Azure IoT Device and Service SDKs
     * Newtonsoft.Json - Json.NET is a popular high-performance JSON framework for .NET
-
-1. In the **EXPLORER** pane, click **Program.cs**.
 
 #### Task 2: Review the application code
 
 In this task, you will review the code for simulating a firmware update on the device in response to an IoT Hub generated request.
 
-1. Ensure that you have the **Program.cs** file open in Visual Studio Code.
+1. Ensure that you have the FWUpdateDevice project folder open in Visual Studio Code.
 
-1. Locate the `Global Variables` comment.
+1. In the **EXPLORER** pane, to open the code file, click **Program.cs**.
 
-    In this simple example, a device connection string, the device ID and the current firmware version are tracked.
+1. At the top of the code file, locate the code comment line that begins with **The device connection string**.
 
-1. In the code editor, locate the following line of code:
+    In this simple simulated device app, the device ID and the current firmware version will be tracked tracked.
 
-    ```csharp
-    private readonly static string deviceConnectionString = "<your device connection string>";
-    ```
-
-1. Replace the **\<your device connection string\>** with the device connection string that you saved earlier.
-
-    This is the only code change required.
+    > **NOTE**: You will supply the device connection string value as a parameter when you enter the command to run the app later in this lab.
 
 1. Locate the **Main** method.
 
-    This method is similar to the device simulators used earlier - the **deviceConnectionString** is used to create a **DeviceClient** instance to connect to IoT Hub, etc. and the device twin property changed callback is configured.
+    > **IMPORTANT**: Since this lab simulates both the device and the firmware update process rather than downloading actual firmware from the cloud to a physical device and rebooting, it can be helpful to review the code used to simulate the process.
+  
+    The Main method uses **s_deviceConnectionString** to create a **DeviceClient** instance that connects to IoT Hub. The Main method is also where the device twin property changed callback is configured.
 
-    The **InitDevice** method is new and merely simulates the bootup cycle of a device and reports the current firmware by updating the device twin via the **UpdateFWUpdateStatus** method.
+    The **InitDevice** method simulates the bootup cycle of the device and reports the current firmware by updating the device twin via the **UpdateFWUpdateStatus** method.
 
     The app then loops, waiting for a device twin update that will trigger a firmware update.
 
-1.Locate the **UpdateFWUpdateStatus** method and review the code:
+1. Locate the **UpdateFWUpdateStatus** method and review the code:
 
     This method creates a new **TwinCollection** instance, populates it with the provided values, and then updates the device twin.
 
 1. Locate the **OnDesiredPropertyChanged** method and review the code:
 
-    This method is invoked as the callback when a device twin update is received by the device. If a firmware update is detected, the **UpdateFirmware** method is called. This method simulate the download of the firmware, updating the firmware and then rebooting the device.
+    This method is invoked as the callback when a device twin update is received by the device. If a firmware update is detected, the **UpdateFirmware** method is called. This method simulates the download of the firmware, updating the firmware and then rebooting the device.
 
 ### Exercise 3: Test firmware update on a single device
 
-In this exercise, you will use the Azure portal to create a new device management configuration and apply it to our single simulated device.
+In this exercise, you will use the Azure portal to create a new device management configuration and apply it to your simulated device.
+
+> **NOTE**: In a production environment, your device configuration could apply to hundreds of devices.  
 
 #### Task 1: Start device simulator
 
@@ -250,17 +252,17 @@ In this exercise, you will use the Azure portal to create a new device managemen
 
 1. Ensure that you have the Terminal pane open.
 
-    The folder location of the command prompt be the `FWUpdateDevice` folder.
+    The folder location shown within the command prompt should show the FWUpdateDevice project folder.
 
-1. To run the `FWUpdateDevice` app, enter the following command:
+1. To run the FWUpdateDevice app, enter the following command:
 
     ``` bash
-    dotnet run "<device connection string>"
+    dotnet run "<your device connection string>"
     ```
 
-    > **Note**: Remember to replace the placeholder with the actual device connection string, and be sure to include "" around your connection string.
+    > **IMPORTANT**: Remember to replace the placeholder value with your actual device connection string, and be sure to include "" around your connection string.
     >
-    > For example: `"HostName=iot-az220-training-{your-id}.azure-devices.net;DeviceId=sensor-th-0155;SharedAccessKey={}="`
+    > For example: `dotnet run "HostName=iot-az220-training-{your-id}.azure-devices.net;DeviceId=sensor-th-0155;SharedAccessKey={}="`
 
 1. Review the contents of the Terminal pane.
 
@@ -271,29 +273,45 @@ In this exercise, you will use the Azure portal to create a new device managemen
         sensor-th-0155: Current firmware version: 1.0.0
     ```
 
+    The simulated device app is in a holding pattern, waiting for a device twin update that will trigger a firmware update.
+
 #### Task 2: Create the device management configuration
 
-1. If necessary, log in to your [Azure portal](https://portal.azure.com/learn.docs.microsoft.com?azure-portal=true) using your Azure account credentials.
+1. Open your Azure portal window.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you closed the Azure portal browser window, open a new browser windows, and then navigate to the Azure portal:
+
+    +++http://portal.azure.com+++
+
+    When prompted to Sign in using Azure account credentials, use the following values at the sign in prompts:
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
+
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. On your Azure portal Dashboard, click **iot-az220-training-{your-id}**.
 
     Your IoT Hub blade should now be displayed.
 
-1. On the left side navigation menu, under **Automatic Device Management**, click **IoT device configuration**.
+1. On the left side navigation menu, under **Device management**, click **Configurations**.
 
-1. On the **IoT device configuration** pane, click **+ Add Device Configuration**.
+1. On the **Configurations** pane, click **+ Add Device Configuration**.
 
-1. On the **Create Device Twin Configuration** blade, under **Name**, enter **firmwareupdate**
+1. On the **Create Configuration** page, under **Name**, enter **firmwareupdate**
 
-    Ensure that you enter `firmwareupdate` under the the required **Name** field for the configuration, not under **Labels**.
+    +++firmwareupdate+++
+
+    Ensure that you enter **firmwareupdate** under the the required **Name** field for the configuration, not under **Labels**.
 
 1. At the bottom of the blade, click **Next: Twins Settings >**.
 
 1. Under **Device Twin Settings**, in the **Device Twin Property** field, enter **properties.desired.firmware**
 
-1. In the **Device Twin Property Content** field, enter the following:
+    +++properties.desired.firmware+++
+
+1. In the **Device Twin Property Content** field, replace the existing contents with the following:
 
     ``` json
     {
@@ -302,6 +320,10 @@ In this exercise, you will use the Azure portal to create a new device managemen
         "fwPackageCheckValue":"1234"
     }
     ```
+
+    You can right-click in the content field and select **Format Document** to format the JSON if needed.
+
+1. Verify the JSON content before continuing.
 
 1. At the bottom of the blade, click **Next: Metrics >**.
 
@@ -326,7 +348,7 @@ In this exercise, you will use the Azure portal to create a new device managemen
     deviceId='<your device id>'
     ```
 
-    > **Note**: Be sure to replace `'<your device id>'` with the Device ID that you used to create the device. For example: `'sensor-th-0155'`
+    > **Note**: Be sure to replace the device ID placeholder value with the Device ID that you used to create the device. For example: **'sensor-th-0155'**
 
 1. At the bottom of the blade, click **Next: Review + Create >**
 
@@ -334,7 +356,7 @@ In this exercise, you will use the Azure portal to create a new device managemen
 
 1. On the **Review + create** tab, if the "Validation passed" message is displayed, click **Create**.
 
-    If the "Validation passed" message is displayed, you will need to go back and check your work before you can create your configuration.
+    If the "Validation passed" message is not displayed, you will need to go back and check your work before you can create your configuration.
 
 1. On the **IoT device configuration** pane, under **Configuration Name**, verify that your new **firmwareupdate** configuration is listed.
 

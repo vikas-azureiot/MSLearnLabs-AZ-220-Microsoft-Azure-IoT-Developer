@@ -131,7 +131,7 @@ To ensure these resources are available, complete the following tasks.
 
     1. On the Azure portal menu, click **Dashboard**.
 
-    1. On the **All recourses** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+    1. On the **All resources** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
 
     1. On the IoT hub blade, under **Device management**, click **Devices**.
 
