@@ -119,7 +119,7 @@ To ensure these resources are available, complete the following steps.
 
     > **WARNING**: Policy settings could cause the deployment to fail during the final "createDevice" operation. If this occurs, you will find instructions below that help you to create the device manually and record the information that is required later in this lab.
 
-1. Once the deployment has completed, in the left navigation area, to review the output values generated during the deployment,  click **Outputs**.
+1. Once the deployment has completed, in the left navigation area, to review the output values generated during the deployment, click **Outputs**.
 
 1. In your text editor, create a record of the following Outputs for use later:
 

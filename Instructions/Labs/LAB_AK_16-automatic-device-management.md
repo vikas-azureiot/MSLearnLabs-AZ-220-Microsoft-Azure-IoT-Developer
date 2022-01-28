@@ -99,7 +99,7 @@ To ensure these resources are available, complete the following steps.
 
     ccj220101
 
-    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+    During this lab, you could see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -117,17 +117,15 @@ To ensure these resources are available, complete the following steps.
 
     You will see a notification when deployment is complete.
 
-1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
+    > **WARNING**: Policy settings could cause the deployment to fail during the final "createDevice" operation. If this occurs, you will find instructions below that help you to create the device manually and record the information that is required later in this lab.
 
-    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. You will finds steps listed below to create the devices manually.
+1. Once the deployment has completed, in the left navigation area, to review the output values generated during the deployment, click **Outputs**.
 
 1. In your text editor, create a record of the following Outputs for use later:
 
-    * connectionString
     * deviceConnectionString
-    * devicePrimaryKey
 
-    > **IMPORTANT**: If the deployment failed, complete the following steps to create an IoT device and a record of the IoT hub and device connections strings.
+    > **IMPORTANT**: If the deployment failed during the createDevice operation, the Outputs pane may be empty. Complete the following steps to create an IoT device and a record of the information listed above.
 
     1. On the Azure portal menu, click **Dashboard**.
 
@@ -151,23 +149,11 @@ To ensure these resources are available, complete the following steps.
 
     1. Save the copied value to Notepad and label it as the deviceConnectionString.
 
-    1. On the sensor-th-0155 page, copy the Primary Key value to Notepad and label it as the devicePrimaryKey.
-
-    1. Navigate back to your IoT hub blade.
-
-    1. On the left side menu, under **Security settings**, click **Shared access policies**.
-
-    1. Click **iothubowner**.
-
-    1. Notice that the IoT hub Primary Connection String is listed.
-
-    1. Copy the value of the IoT hub Primary Connection String to Notepad and label it as the connectionString.
-
     The Azure resources required for this lab are now available.
 
 ### Exercise 2: Examine code for a simulated device that implements firmware update
 
-In this exercise, you will review a simulated device that manages the device twin desired property changes and will trigger a local process simulating a firmware update. The process that you implement for launching the firmware update will be similar to the process used for a firmware update on a real device. The process of downloading the new firmware version, installing the firmware update, and restarting the device is simulated.
+In this exercise, you will review the code of a simulated device app that manages the device twin desired property changes and triggers a local process simulating a firmware update. The process that you implement for launching the firmware update will be similar to the process used for a firmware update on a real device. The process of downloading the new firmware version, installing the firmware update, and restarting the device is simulated.
 
 You will use the Azure Portal to configure and execute a firmware update using the device twin properties. You will configure the device twin properties to transfer the configuration change request to the device and monitor the progress.
 
@@ -226,7 +212,7 @@ In this task, you will review the code for simulating a firmware update on the d
 
     > **IMPORTANT**: Since this lab simulates both the device and the firmware update process rather than downloading actual firmware from the cloud to a physical device and rebooting, it can be helpful to review the code used to simulate the process.
   
-    The Main method uses **s_deviceConnectionString** to create a **DeviceClient** instance that connects to IoT Hub. The deviceClient object is then passed between methods of the simulated device app so that the app is able to access and report device twin property updates.  
+    Notice that the Main method uses **s_deviceConnectionString** to create a **DeviceClient** instance that connects to IoT Hub. The deviceClient object can be passed between methods of the simulated device app so that the app is able to access and report device twin property updates.  
 
     The **InitDevice** method simulates the bootup cycle of the device and reports the current firmware by updating the device twin via the **UpdateFWUpdateStatus** method.
 
@@ -250,11 +236,9 @@ In this exercise, you will use the Azure portal to create a new device managemen
 
 #### Task 1: Start device simulator
 
-1. If necessary, open your **FWUpdateDevice** project in Visual Studio Code.
+1. In your Visual Studio Code window, open a new Terminal pane.
 
-1. Ensure that you have the Terminal pane open.
-
-    On the **Terminal** menu, click **New Terminal**.
+    To create a new Terminal pane, open the **Terminal** menu, and then click **New Terminal**.
 
     The folder location shown within the command prompt should show the FWUpdateDevice project folder.
 
@@ -279,7 +263,7 @@ In this exercise, you will use the Azure portal to create a new device managemen
         sensor-th-0155: Current firmware version: 1.0.0
     ```
 
-    The simulated device app then enters a holding pattern, waiting for a device twin update that will trigger a firmware update.
+    Once this information is displayed, the simulated device app enters a holding pattern, waiting for a device twin update that will trigger a firmware update.
 
 #### Task 2: Create the device management configuration
 
@@ -301,9 +285,9 @@ In this exercise, you will use the Azure portal to create a new device managemen
 
 1. On the left side navigation menu, under **Device management**, click **Devices**.
 
-1. On the **Devices** page, under **Device ID**, click **Sensor-th-0155**.
+1. On the **Devices** page, under **Device ID**, click **sensor-th-0155**.
 
-1. On the sensor-th-0155 page, click **Device Twin**.
+1. On the sensor-th-0155 page, click **Device twin**.
 
 1. Take a minute to review the contents of the device twin file.
 
@@ -380,7 +364,7 @@ In this exercise, you will use the Azure portal to create a new device managemen
 
     Once the new configuration is created, IoT Hub will look for devices matching the configuration's target devices criteria, and will apply the firmware update configuration automatically.
 
-    > **NOTE**: Since both the device and the firmware update process are simulated, rather than downloading firmware to actual device and rebooting the device, the entire process will complete quickly and the results will be displayed in the Terminal pane of your simulated device app. 
+    > **NOTE**: Since both the device and the firmware update process are simulated, rather than downloading firmware to an actual device and rebooting the device, the entire process will be completed quickly and the results will be displayed in the Terminal pane of your simulated device app. 
 
 1. Switch to the Visual Studio Code window, and review the contents of the Terminal pane.
 
@@ -390,7 +374,9 @@ In this exercise, you will use the Azure portal to create a new device managemen
 
 1. Open the digital twin file for your sensor-th-0155 device.
 
-1. Take a minute to review the updates recorded within the digital twin.
+1. Take a minute to review the updates recorded within the digital twin during the firmware update process.
+
+    The desired and reported property updates in the digital twin were generated by the Configuration and the simulated device app respectively. You can also see that the status of the Configuration is now set to Applied.
 
 1. Switch to the Visual Studio Code window, stop the simulated app, and close Visual Studio Code.
 
