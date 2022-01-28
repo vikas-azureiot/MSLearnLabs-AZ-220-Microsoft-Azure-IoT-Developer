@@ -307,8 +307,10 @@ In this exercise, you will use the Azure portal to create a new device managemen
 
 1. Take a minute to review the contents of the device twin file.
 
-    Notice the values of the desired and reported properties, and the update times.
- 
+    Notice the values of the desired and reported properties, and the update times listed.
+
+1. Navigate back to your IoT hub blade.
+
 1. On the left side navigation menu, under **Device management**, click **Configurations**.
 
 1. On the **Configurations** pane, click **+ Add Device Configuration**.
