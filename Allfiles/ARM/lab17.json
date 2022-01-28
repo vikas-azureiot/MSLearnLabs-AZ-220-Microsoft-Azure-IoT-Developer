@@ -80,12 +80,6 @@
                 "description": "The IoT Hub name"
               }
             },
-            "provisioningServiceName": {
-              "type": "string",
-              "metadata": {
-                "description": "The DPS name"
-              }
-            },
             "location": {
               "type": "string",
               "defaultValue": "[resourceGroup().location]",
