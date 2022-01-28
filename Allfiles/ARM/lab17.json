@@ -26,8 +26,7 @@
   "variables": {
     "location": "[resourceGroup().location]",
     "iotHubName": "[format('iot-{0}-training-{1}', parameters('courseID'), parameters('yourID'))]",
-    "storageName": "[format('st{0}training{1}', parameters('courseID'), parameters('yourID'))]",
-    "provisioningServiceName": "[format('dps-{0}-training-{1}', parameters('courseID'), parameters('yourID'))]"
+    "storageName": "[format('st{0}training{1}', parameters('courseID'), parameters('yourID'))]"
   },
   "resources": [
     {
@@ -44,7 +43,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
-      "name": "iotHubAndDpsDeploy",
+      "name": "iotHubDeployment",
       "properties": {
         "expressionEvaluationOptions": {
           "scope": "inner"
@@ -53,9 +52,6 @@
         "parameters": {
           "iotHubName": {
             "value": "[variables('iotHubName')]"
-          },
-          "provisioningServiceName": {
-            "value": "[variables('provisioningServiceName')]"
           },
           "skuName": {
             "value": "S1"
@@ -218,110 +214,6 @@
                   }
                 }
               }
-            },
-            {
-              "type": "Microsoft.Resources/deployments",
-              "apiVersion": "2019-10-01",
-              "name": "dpsDeploy",
-              "properties": {
-                "expressionEvaluationOptions": {
-                  "scope": "inner"
-                },
-                "mode": "Incremental",
-                "parameters": {
-                  "provisioningServiceName": {
-                    "value": "[parameters('provisioningServiceName')]"
-                  },
-                  "location": {
-                    "value": "[parameters('location')]"
-                  },
-                  "skuName": {
-                    "value": "[parameters('skuName')]"
-                  },
-                  "skuUnits": {
-                    "value": "[parameters('skuUnits')]"
-                  },
-                  "iotHubConnectionString": {
-                    "value": "[reference(resourceId('Microsoft.Resources/deployments', 'hubDeploy'), '2019-10-01').outputs.connectionString.value]"
-                  }
-                },
-                "template": {
-                  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-                  "contentVersion": "1.0.0.0",
-                  "metadata": {
-                    "_generator": {
-                      "name": "bicep",
-                      "version": "0.4.451.19169",
-                      "templateHash": "6934804067594777653"
-                    }
-                  },
-                  "parameters": {
-                    "provisioningServiceName": {
-                      "type": "string",
-                      "metadata": {
-                        "description": "The DPS name"
-                      }
-                    },
-                    "location": {
-                      "type": "string",
-                      "defaultValue": "[resourceGroup().location]",
-                      "metadata": {
-                        "description": "Specify the location of the resources."
-                      }
-                    },
-                    "skuName": {
-                      "type": "string",
-                      "defaultValue": "S1",
-                      "metadata": {
-                        "description": "The SKU to use for the IoT Hub."
-                      }
-                    },
-                    "skuUnits": {
-                      "type": "int",
-                      "defaultValue": 1,
-                      "metadata": {
-                        "description": "The number of IoT Hub units."
-                      }
-                    },
-                    "iotHubConnectionString": {
-                      "type": "string",
-                      "metadata": {
-                        "description": "IoT Hub connection string."
-                      }
-                    }
-                  },
-                  "functions": [],
-                  "resources": [
-                    {
-                      "type": "Microsoft.Devices/provisioningServices",
-                      "apiVersion": "2020-01-01",
-                      "name": "[parameters('provisioningServiceName')]",
-                      "location": "[parameters('location')]",
-                      "sku": {
-                        "name": "[parameters('skuName')]",
-                        "capacity": "[parameters('skuUnits')]"
-                      },
-                      "properties": {
-                        "iotHubs": [
-                          {
-                            "connectionString": "[parameters('iotHubConnectionString')]",
-                            "location": "[parameters('location')]"
-                          }
-                        ]
-                      }
-                    }
-                  ],
-                  "outputs": {
-                    "scopeId": {
-                      "type": "string",
-                      "value": "[reference(resourceId('Microsoft.Devices/provisioningServices', parameters('provisioningServiceName'))).idScope]"
-                    }
-                  }
-                }
-              },
-              "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', 'hubDeploy')]"
-              ]
             }
           ],
           "outputs": {
@@ -348,10 +240,6 @@
             "deviceKey": {
               "type": "string",
               "value": "[reference(resourceId('Microsoft.Resources/deployments', 'hubDeploy'), '2019-10-01').outputs.deviceKey.value]"
-            },
-            "dpsScopeId": {
-              "type": "string",
-              "value": "[reference(resourceId('Microsoft.Resources/deployments', 'dpsDeploy'), '2019-10-01').outputs.scopeId.value]"
             }
           }
         }
@@ -362,10 +250,6 @@
     "connectionString": {
       "type": "string",
       "value": "[reference(resourceId('Microsoft.Resources/deployments', 'iotHubAndDpsDeploy'), '2019-10-01').outputs.iotHubConnectionString.value]"
-    },
-    "dpsScopeId": {
-      "type": "string",
-      "value": "[reference(resourceId('Microsoft.Resources/deployments', 'iotHubAndDpsDeploy'), '2019-10-01').outputs.dpsScopeId.value]"
     },
     "storageAccountName": {
       "type": "string",

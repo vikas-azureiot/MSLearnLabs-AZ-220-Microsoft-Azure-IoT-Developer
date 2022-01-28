@@ -221,9 +221,13 @@ In this exercise, you will enable diagnostic logs and use them to check for erro
 
 #### Task 1: Enable diagnostics
 
-1. If necessary, log in to your Azure portal using your Azure account credentials.
+1. If necessary, log in to your Azure portal using the Azure account credentials for this lab.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    +++http://portal.azure.com+++
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
 
 1. On your Azure dashboard, click **iot-az220-training-{your-id}**.
 
@@ -353,9 +357,13 @@ However, for your upcoming proof-of-concept demonstration, to keep things simple
 
 In this exercise, you are going to add an alert that triggers when 5 or more devices have connected.
 
-1. If necessary, log in to your Azure portal using your Azure account credentials.
+1. If necessary, log in to your Azure portal using the Azure account credentials for this lab.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    +++http://portal.azure.com+++
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
 
 1. On your Azure dashboard, click **iot-az220-training-{your-id}**.
 
