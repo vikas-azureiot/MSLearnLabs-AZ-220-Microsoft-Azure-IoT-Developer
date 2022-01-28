@@ -8,7 +8,7 @@ lab:
 
 ## Lab Scenario
 
-Contoso's Asset Monitoring and Tracking Solution is working great. The system provides continuous monitoring throughout the packaging and shipping process. You have implemented Group Enrollments within DPS to provision devices at scale, and when the container arrives at the destination, the IoT device is "decommissioned" through DPS so that it can re-used for future shipments.
+Contoso's Asset Monitoring and Tracking Solution is working great. The system provides continuous monitoring throughout the packaging and shipping process. You have implemented Group Enrollments within DPS to provision devices at scale, and when the container arrives at the destination, the IoT device is "decommissioned" through DPS so that it can be re-used for future shipments.
 
 To help manage device utilization and other characteristics of the solution, the IT department has asked your team to implement Azure monitoring and logging services within the IoT solution.
 
@@ -94,13 +94,13 @@ To ensure these resources are available, complete the following steps.
 
 1. In Notepad, enter the following text labels:
 
-    +++connectionString: +++
+    +++connectionString:+++
 
-    +++storageAccountName: +++
+    +++storageAccountName:+++
 
-    +++deviceConnectionString: +++
+    +++deviceConnectionString:+++
 
-    +++devicePrimaryKey: +++
+    +++devicePrimaryKey:+++
 
     > **NOTE**: You will be using the text editor to store some configuration values associated with the Azure resources.
 
