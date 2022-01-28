@@ -92,7 +92,17 @@ To ensure these resources are available, complete the following steps.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
-    You will be using the text editor to store some configuration values associated with the Azure resources.
+1. In Notepad, enter the following text labels:
+
+    +++connectionString: +++
+
+    +++storageAccountName: +++
+
+    +++deviceConnectionString: +++
+
+    +++devicePrimaryKey: +++
+
+    > **NOTE**: You will be using the text editor to store some configuration values associated with the Azure resources.
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
@@ -105,11 +115,9 @@ To ensure these resources are available, complete the following steps.
 1. In your text editor, create a record of the following Outputs for use later:
 
     * connectionString
-    * deviceConnectionString
-    * devicePrimaryKey
     * storageAccountName
 
-    > **IMPORTANT**: If the deployment failed, complete the following steps to create an IoT device and a record lab information listed above.
+    > **IMPORTANT**: Complete the following steps to create an IoT device and record device information for later in the lab.
 
     1. On the Azure portal menu, click **Dashboard**.
 
@@ -134,22 +142,6 @@ To ensure these resources are available, complete the following steps.
     1. Save the copied value to Notepad and label it as the deviceConnectionString.
 
     1. On the sensor-thl-2001 page, copy the Primary Key value to Notepad and label it as the devicePrimaryKey.
-
-    1. Navigate back to your IoT hub blade.
-
-    1. On the left side menu, under **Security settings**, click **Shared access policies**.
-
-    1. Click **iothubowner**.
-
-    1. Notice that the IoT hub Primary Connection String is listed.
-
-    1. Copy the value of the IoT hub Primary Connection String to Notepad and label it as the connectionString.
-
-    1. Navigate to your Azure dashboard.
-
-    1. On the All resources tile, to open your storage account, click **staz220training{your-id}**.
-
-    1. Copy the name of your storage account to Notepad and label it as the storageAccountName.
 
     The Azure resources required for this lab are now available.
 
