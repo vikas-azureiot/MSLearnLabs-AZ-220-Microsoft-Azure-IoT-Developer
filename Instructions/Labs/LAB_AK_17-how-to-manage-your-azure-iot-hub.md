@@ -92,7 +92,7 @@ To ensure these resources are available, complete the following steps.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
-1. In Notepad, enter the following text labels:
+1. In your text editor, enter the following text labels:
 
     +++connectionString:+++
 
@@ -102,7 +102,7 @@ To ensure these resources are available, complete the following steps.
 
     +++devicePrimaryKey:+++
 
-    > **NOTE**: You will be using the text editor to store some configuration values associated with the Azure resources.
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
@@ -110,9 +110,7 @@ To ensure these resources are available, complete the following steps.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. You will finds steps listed below to create the devices manually.
-
-1. In your text editor, create a record of the following Outputs for use later:
+1. In your text editor, create a record of the following Outputs for use later in the lab:
 
     * connectionString
     * storageAccountName
@@ -155,13 +153,24 @@ You will now configure and run the device simulator.
 
 1. Open Visual Studio Code.
 
+    You may find it helpful to maximize the Visual Studio Code window.
+
 1. On the **File** menu, click **Open Folder**.
 
 1. In the **Open Folder** dialog, navigate to the lab 17 Starter folder, click **Starter**, and then click **Select Folder**.
 
-    > **Note**: If Visual Studio Code suggested loading assets or performing a Restore, follow the suggestions.
+   On the step before reaching the lab instructions, you downloaded the GitHub repository containing lab resources for this lab. The folder structure includes the following folder path:
+
+    * Allfiles
+      * Labs
+          * 17-How to manage your Azure IoT Hub
+            * Starter
+
+    > **NOTE**: By default, the **Allfiles** folder is copied to your Windows Desktop in your virtual machine environment.
 
 1. In the **EXPLORER** pane, to open the Program.cs file, click **Program.cs**.
+
+    > **Note**: If Visual Studio Code suggested loading assets or performing a Restore, follow the suggestions.
 
 1. Ensure that you have the **Program.cs** file opened in Visual Studio Code.
 
