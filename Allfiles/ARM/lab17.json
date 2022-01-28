@@ -26,7 +26,7 @@
   "variables": {
     "location": "[resourceGroup().location]",
     "iotHubName": "[format('iot-{0}-training-{1}', parameters('courseID'), parameters('yourID'))]",
-    "storageName": "[format('sta{0}training{1}', parameters('courseID'), parameters('yourID'))]",
+    "storageName": "[format('st{0}training{1}', parameters('courseID'), parameters('yourID'))]",
     "provisioningServiceName": "[format('dps-{0}-training-{1}', parameters('courseID'), parameters('yourID'))]"
   },
   "resources": [

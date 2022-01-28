@@ -5,7 +5,7 @@ param courseID string
 
 var location = resourceGroup().location
 var iotHubName = 'iot-${courseID}-training-${yourID}'
-var storageName = 'sta${courseID}training${yourID}'
+var storageName = 'st${courseID}training${yourID}'
 var provisioningServiceName = 'dps-${courseID}-training-${yourID}'
 
 module hubAndDps './modules/hubAndDps.bicep' = {

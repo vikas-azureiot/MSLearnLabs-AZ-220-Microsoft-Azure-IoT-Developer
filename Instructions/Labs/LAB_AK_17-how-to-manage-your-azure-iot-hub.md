@@ -113,7 +113,7 @@ To ensure these resources are available, complete the following steps.
 
     1. On the Azure portal menu, click **Dashboard**.
 
-    1. On the **All recourses** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
+    1. On the **All resources** tile, to open your IoT hub, click **iot-az220-training-{your-id}**.
 
     1. On the IoT hub blade, under **Device management**, click **Devices**.
 
@@ -171,8 +171,6 @@ You will now configure and run the device simulator.
 
 1. In the **EXPLORER** pane, to open the Program.cs file, click **Program.cs**.
 
-    You should also see the certificate files listed.
-
 1. Ensure that you have the **Program.cs** file opened in Visual Studio Code.
 
 1. Near the top of the **Program** class, locate the declaration of the `deviceConnectionString` variable:
@@ -188,8 +186,6 @@ You will now configure and run the device simulator.
 1. On the **File** menu, click **Save**.
 
 1. Optionally, take a moment to review the code.
-
-This app is very similar to the apps used in the earlier labs.
 
 #### Task 2: Run the Simulator
 
@@ -262,7 +258,7 @@ In this exercise, you will enable diagnostic logs and use them to check for erro
 
 1. For the **Storage account** field, select the **staz220training{your-id}** storage account.
 
-    This account was created by the lab17-setup.azcli script. If it is not listed in the dropdown, you may need to create an account manually (check with your instructor).
+    This account was created as part of the lab configuration in exercise 1. If it is not listed in the dropdown, you may need to create an account manually.
 
 1. On the **Diagnostic settings** blade, under **Category details**, click **Connections**, and then click **DeviceTelemetry**.
 
@@ -589,7 +585,7 @@ To use the Azure Portal to review alerts, complete the following steps.
 
     You should now see a summary of alerts for the last hour. Under **Total alert rules** you should see **1**, the alert you created earlier. Below this, you will see a list of the severity categories as well as the count of alerts per category. The alerts we are interested in are **3 - Informational**. You should see at least one (if you have stopped and restarted the device simulator, you may have generated more that one alert).
 
-    > **Note**: If you do not yet see an alert, wait a few more minutes - there is sometimes a delay in the laerts being raised.
+    > **Note**: If you do not yet see an alert, wait a few more minutes - there is sometimes a delay in the alerts being raised.
 
 1. In the list of severities, click **3 - Informational**.
 
