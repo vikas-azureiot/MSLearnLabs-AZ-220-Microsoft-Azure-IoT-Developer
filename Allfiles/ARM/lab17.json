@@ -243,7 +243,7 @@
   "outputs": {
     "connectionString": {
       "type": "string",
-      "value": "[reference(resourceId('Microsoft.Resources/deployments', 'iotHubAndDpsDeploy'), '2019-10-01').outputs.iotHubConnectionString.value]"
+      "value": "[reference(resourceId('Microsoft.Resources/deployments', 'iotHubDeployment'), '2019-10-01').outputs.iotHubConnectionString.value]"
     },
     "storageAccountName": {
       "type": "string",
