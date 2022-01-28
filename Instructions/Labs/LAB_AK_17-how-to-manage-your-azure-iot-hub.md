@@ -157,14 +157,14 @@ You will now configure and run the device simulator.
 
 1. On the **File** menu, click **Open Folder**.
 
-1. In the **Open Folder** dialog, navigate to the lab 17 Starter folder, click **Starter**, and then click **Select Folder**.
+1. In the **Open Folder** dialog, navigate to the lab 17 Final folder, click **Final**, and then click **Select Folder**.
 
    On the step before reaching the lab instructions, you downloaded the GitHub repository containing lab resources for this lab. The folder structure includes the following folder path:
 
     * Allfiles
       * Labs
           * 17-How to manage your Azure IoT Hub
-            * Starter
+            * Final
 
     > **NOTE**: By default, the **Allfiles** folder is copied to your Windows Desktop in your virtual machine environment.
 
@@ -180,7 +180,7 @@ You will now configure and run the device simulator.
     private readonly static string deviceConnectionString = "<your device connection string>";
     ```
 
-1. Replace `<your device connection string>` with the device connection string that you saved earlier.
+1. Replace the "your device connection string" placeholder value (including the angle brackets) with the device connection string that you saved earlier.
 
     > **Note**: This is the only change that you are required to make to this code.
 
@@ -205,10 +205,12 @@ You will now configure and run the device simulator.
     ```text
     ❯ dotnet run
     IoT Hub C# Simulated Cave Device. Ctrl-C to exit.
-    9/21/2021 5:29:03 PM > Sending message: {"temperature":21.709826510264456,"humidity":69.90892255208871,"pressure":1013.2884857487113,"latitude":39.866200822820204,"longitude":-98.44082869457793}
-    9/21/2021 5:29:04 PM > Sending message: {"temperature":27.536429445043407,"humidity":79.17065790815775,"pressure":1020.8587537331547,"latitude":40.150104471097904,"longitude":-98.40412401158297}
-    9/21/2021 5:29:05 PM > Sending message: {"temperature":30.732068391857702,"humidity":65.15873178148583,"pressure":1017.6406480895312,"latitude":40.09271254628759,"longitude":-98.26298329932496}
-    ```
+
+    10/25/2019 6:10:12 PM > Sending message: {"temperature":27.714212817472504,"humidity":63.88147743599558}
+    10/25/2019 6:10:13 PM > Sending message: {"temperature":20.017463779085066,"humidity":64.53511070671263}
+    10/25/2019 6:10:14 PM > Sending message: {"temperature":20.723927165718717,"humidity":74.07808918230147}
+     
+   ```
 
 Leave the app running, so that a device is connected and telemetry is being sent.
 
