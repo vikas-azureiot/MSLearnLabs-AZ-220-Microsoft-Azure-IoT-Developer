@@ -123,13 +123,15 @@ In this exercise, you will use the Azure portal to create and configure your IoT
 
 1. In the lab virtual machine environment, open a Microsoft Edge browser window, and then navigate to the Azure portal using the following Web address:
 
-    +++http://portal.azure.com+++
+    > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
+
+    **Web address**: +++http://portal.azure.com+++
 
 1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
-    **Username** +++@lab.CloudPortalCredential(User1).Username+++
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
 
-    **Password** +++@lab.CloudPortalCredential(User1).Password+++
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
 
 1. Open your Azure dashboard.
 

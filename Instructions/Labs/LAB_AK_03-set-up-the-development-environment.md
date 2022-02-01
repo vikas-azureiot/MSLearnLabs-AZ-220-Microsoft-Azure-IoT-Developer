@@ -33,21 +33,21 @@ In support of these decisions, you will be setting up the following environment:
 * IoT Extensions for VS Code and Azure CLI
 * node.js (latest)
 
-> **Note**: A virtual machine has been created for this course that provides a majority of the tools specified above. The instructions below support using the prepared VM or setting up the development environment locally using your PC.
+> **IMPORTANT**: A virtual machine environment has been created for the Microsoft Azure IoT Developer lab activities on MS Learn. The virtual machine environment provides a majority of the tools specified above. The instructions below describe how to configure your own PC as an Azure IoT development environment.
 
 ## In This Lab
 
-In this lab, you will set up the base developer tools for your development environment, install the Azure IoT extensions for Visual Studio Code and Azure CLI, and then download some files from GitHub that you will use during the labs. The lab includes the following exercises:
+In this lab, you will set up the base developer tools for your development environment, install the Azure IoT extensions for Visual Studio Code and Azure CLI, and then download some files from GitHub that can be useful when developing Microsoft Azure IoT solutions. The lab includes the following exercises:
 
 * Install Developer Tools and Products
 * Install Dev Tool Extensions
-* Set Up Course Lab Files and Alternative Tools
+* Set Up Lab Files and Alternative Tools
 
 ## Lab Instructions
 
 ### Exercise 1: Install Developer Tools and Products
 
-> **Important**: The tools and products associated with this Exercise are pre-installed on the virtual machine created for this course.
+> **Important**: The tools and products associated with this Exercise are pre-installed on the virtual machine created for the Microsoft Azure IoT Developer lab modules on MS Learn.
 
 #### Task 1: Install .NET Core
 
@@ -57,7 +57,7 @@ In this lab, you will set up the base developer tools for your development envir
 
 1. On the .NET download page, under .NET Core, click **Download .NET Core SDK**.
 
-    The .NET Core SDK is used to build .NET Core apps. You will be using it to build/edit code files during the labs in this course.
+    The .NET Core SDK is used to build .NET Core apps. You can use it to build/edit code files during the Microsoft Azure IoT Developer labs on MS Learn.
 
 1. On the popup menu, click **Run**, and then follow the on-screen instructions to complete the installation.
 
@@ -114,7 +114,11 @@ Azure CLI is a command-line tool that is designed to make scripting Azure-relate
 
 You will be using Python 3.9 in support of IoT Edge and Docker.
 
-1. In your Web browser, navigate to [https://www.python.org/downloads/](https://www.python.org/downloads/)
+1. In the virtual machine environment, open a Microsoft Edge browser window.
+
+1. In your Web browser, navigate to the following python.org downloads site:
+
+    [python.org downloads](https://www.python.org/downloads/)
 
 1. On the Python download page, select the installer file that is appropriate for your Operating System.
 
@@ -132,7 +136,9 @@ You will be using Python 3.9 in support of IoT Edge and Docker.
 
 You will be using Docker Desktop Community (latest stable version) during a lab that covers creating and deploying custom IoT Edge modules.
 
-1. In your Web browser, navigate to [https://docs.docker.com/docker-for-windows/install/](https://docs.docker.com/docker-for-windows/install/)
+1. In your Web browser, navigate to the following docker install site:
+
+    [Docker for Windows install](https://docs.docker.com/docker-for-windows/install/)
 
     The left-side navigation menu provides access to installations for additional operating systems.
 
@@ -156,7 +162,9 @@ You will be using Docker Desktop Community (latest stable version) during a lab 
 
 Some sample web applications are run locally using node.js. The following steps ensure node.js is installed and running the latest version:
 
-1. Using a browser, open the [node.js download page](https://nodejs.org/en/#home-downloadhead)
+1. Using a browser, open the following node.js download page:
+
+    [Node.js downloads](https://nodejs.org/en/#home-downloadhead)
 
 1. Download the latest LTS (Long Term Support) version - 14.16.0 at the time of writing.
 
