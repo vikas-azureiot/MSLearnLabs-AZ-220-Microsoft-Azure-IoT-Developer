@@ -44,13 +44,15 @@ This lab assumes that the following Azure resources are available:
 | Resource Group | @lab.CloudResourceGroup(ResourceGroup1).Name |
 | IoT Hub | iot-az220-training-{your-id} |
 | Storage Account | staz220training{your-id} |
-| Device ID | sensor-thl-2001 |
+| Device ID | sensor-th-2001 |
 
 To ensure these resources are available, complete the following steps.
 
 1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address: 
 
-    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab17.json+++
+    > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
+
+    **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab17.json+++
 
 1. When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
@@ -125,21 +127,21 @@ To ensure these resources are available, complete the following steps.
 
     1. On the Devices page, click **+ Add Device**.
 
-    1. On the Create a device page, under **Device ID**, enter **sensor-thl-2001**
+    1. On the Create a device page, under **Device ID**, enter **sensor-th-2001**
 
-        +++sensor-thl-2001+++
+        +++sensor-th-2001+++
 
     1. At the bottom of the page, click **Save**.
 
     1. On the Devices page, click **Refresh**.
 
-    1. On the Devices page, under **Device ID**, click **sensor-thl-2001**.
+    1. On the Devices page, under **Device ID**, click **sensor-th-2001**.
 
-    1. On the sensor-thl-2001 page, to the right of the Primary Connection String value, click **Copy**.
+    1. On the sensor-th-2001 page, to the right of the Primary Connection String value, click **Copy**.
 
     1. Save the copied value to Notepad and label it as the deviceConnectionString.
 
-    1. On the sensor-thl-2001 page, copy the Primary Key value to Notepad and label it as the devicePrimaryKey.
+    1. On the sensor-th-2001 page, copy the Primary Key value to Notepad and label it as the devicePrimaryKey.
 
     The Azure resources required for this lab are now available.
 
@@ -174,10 +176,10 @@ You will now configure and run the device simulator.
 
 1. Ensure that you have the **Program.cs** file opened in Visual Studio Code.
 
-1. Near the top of the **Program** class, locate the declaration of the `deviceConnectionString` variable:
+1. Near the top of the **Program** class, locate the declaration of the `connectionString` variable:
 
     ```csharp
-    private readonly static string deviceConnectionString = "<your device connection string>";
+    private readonly static string connectionString = "<your device connection string>";
     ```
 
 1. Replace the "your device connection string" placeholder value (including the angle brackets) with the device connection string that you saved earlier.
@@ -224,7 +226,9 @@ In this exercise, you will enable diagnostic logs and use them to check for erro
 
 #### Task 1: Enable diagnostics
 
-1. If necessary, log in to your Azure portal using the Azure account credentials for this lab.
+1. Switch to your Azure portal window and navigate to your dashboard.
+
+    If necessary, log in to your Azure portal using the Azure account credentials for this lab.
 
     +++http://portal.azure.com+++
 
@@ -234,23 +238,25 @@ In this exercise, you will enable diagnostic logs and use them to check for erro
 
 1. On your Azure dashboard, click **iot-az220-training-{your-id}**.
 
-    Your dashboard should have a link to your IoT Hub on the on the @lab.CloudResourceGroup(ResourceGroup1).Name resource group tile.
+    Your All resources tile should include a link to your IoT Hub.
 
 1. On the left-side menu, under **Monitoring**, click **Diagnostic settings**.
 
     > **Note**: Current documentation suggests that Diagnostics may be disabled by default. If so, you may need to "Turn on diagnostics" in order to collect diagnostics data for your IoT Hub. When you click **Turn on diagnostics**, a **Diagnostic settings** pane will open.
 
-1. On the **Diagnostics settings** pane, under **Name**, click **+ Add diagnostic setting**.
+1. On the **Diagnostics settings** blade, under **Name**, click **+ Add diagnostic setting**.
 
 1. In the **Diagnostic settings name** textbox, enter **diags-hub**
+
+    +++diags-hub+++
 
 1. Take a moment to review the options listed under **Destination details**.
 
     You can see that there are 4 options available for routing the metrics - you can learn more about each by following the links below:
 
-    * [Archive Azure resource logs to storage account](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/resource-logs-collect-storage)
-    * [Stream Azure monitoring data to an event hub](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/stream-monitoring-data-event-hubs)
     * [Collect Azure resource logs in Log Analytics workspace in Azure Monitor](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/resource-logs-collect-workspace)
+    * [Archive Azure resource logs to storage account](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/resource-logs-collect-storage)
+    * [Stream Azure monitoring data to an Event Hubs](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/stream-monitoring-data-event-hubs)
     * [Sending to Partner solutions](https://docs.microsoft.com/en-us/azure/azure-monitor/partners)
 
     In this lab, you will use the storage account option.
@@ -259,21 +265,21 @@ In this exercise, you will enable diagnostic logs and use them to check for erro
 
     Additional fields are made available once you select this destination option, including the option to specify **Retention (days)** for the log categories.
 
-    > **Note**: Take a moment to review the notes about storage accounts and costs.
+1. For the **Subscription** field, ensure that the subscription you used to create your IoT hub is selected.
 
-1. For the **Subscription** field, select the subscription that you used to create your IoT Hub.
-
-1. For the **Storage account** field, select the **staz220training{your-id}** storage account.
+1. For the **Storage account** field, ensure that the **staz220training{your-id}** storage account is selected.
 
     This account was created as part of the lab configuration in exercise 1. If it is not listed in the dropdown, you may need to create an account manually.
 
-1. On the **Diagnostic settings** blade, under **Category details**, click **Connections**, and then click **DeviceTelemetry**.
+1. Under **Categories**, click **Connections**, and then click **DeviceTelemetry**.
 
 1. For each of the Log Categories that you selected, in the **Retention (days)** field, enter **7**
 
-1. At the top of the blade, click **Save**, and then close the blade
+1. At the top of the **Diagnostics settings** blade, click **Save**.
 
-    You should now be on the **Diagnostics settings** pane of your IoT Hub, and you should see that the list of **Diagnostics settings** has been updated to show the **diags-hub** setting that you just created.
+1. Close the **Diagnostics settings** blade.
+
+    You should now be on the **Diagnostics settings** pane of your IoT hub, and you should see that the list of **Diagnostics settings** has been updated to show the **diags-hub** setting that you just created.
 
     Later, when you look at the diagnostic logs, you'll be able to see the telemetry and connect/disconnect logging for the device.
 
@@ -285,7 +291,7 @@ In this task, you will set up various metrics to watch for when messages are sen
 
 1. Ensure that you have your IoT Hub blade open.
 
-    The previous task left you on the **Diagnostics settings** pane of the IoT HUb blade.
+    The previous task left you on the **Diagnostics settings** pane of the IoT hub blade.
 
 1. On the left-side menu, under **Monitoring**, click **Metrics**.
 
@@ -295,7 +301,7 @@ In this task, you will set up various metrics to watch for when messages are sen
 
 1. In the context menu that appears, under **Time range**, click **Last 30 minutes**.
 
-1. In the same context menu, in the **Time granularity** dropdown, click **1 minute**, and under **Show time as**, ensure that **Local** is selected.
+1. In the same context menu, under **Show time as**, ensure that **Local** is selected.
 
 1. To save your time settings, click **Apply**.
 
@@ -336,7 +342,7 @@ In this task, you will set up various metrics to watch for when messages are sen
 
     > **Note**: To edit the chart title, click the **pencil** to the right of the title.
 
-1. Under the **Chart Title**, on the right side of the toolbar, click **Pin to dashboard**, and then click **Pin to current dashboard**
+1. Under the **Chart Title**, on the right side of the toolbar, click **Pin to dashboard**, ensure that **My Dashboard** is selected, and then click **Pin**
 
     > **Note**: In order to retain the chart you have just created, it **must** be pinned to a dashboard.
 
@@ -360,17 +366,9 @@ However, for your upcoming proof-of-concept demonstration, to keep things simple
 
 In this exercise, you are going to add an alert that triggers when 5 or more devices have connected.
 
-1. If necessary, log in to your Azure portal using the Azure account credentials for this lab.
-
-    +++http://portal.azure.com+++
-
-    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
-
-    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
-
 1. On your Azure dashboard, click **iot-az220-training-{your-id}**.
 
-    Your dashboard should have a link to your IoT Hub on the on the @lab.CloudResourceGroup(ResourceGroup1).Name resource group tile.
+    The All resources tile includes a link to your IoT Hub.
 
 1. On the left-side menu, under **Monitoring**, click **Alerts**.
 
@@ -378,27 +376,27 @@ In this exercise, you are going to add an alert that triggers when 5 or more dev
 
 1. In the **Time range** dropdown, click **Past hour**.
 
-1. At the top of the **Alerts** pane, click **+ New alert rule**
+1. At the top of the **Alerts** pane, click **+ Create**, and then click **Alert rule**.
 
-    The **Create alert rule** blade should now be displayed.
+    The **Create an alert rule** blade should now be displayed.
 
-1. Take a moment to review the **Create alert rule** blade.
+1. Take a moment to review the **Create an alert rule** blade.
 
-    The blade includes four sections: Scope, Condition, Action group, and Alert rule details. Scope you can see two fields - Resource and Hierarchy. Notice that these fields are pre-populated with properties from your IoT Hub. You can edit the pre-selected resource if needed.
+    The blade includes tabs for: Scope, Condition, Actions, Details, Tags, and Review + create. Scope includes two fields - Resource and Hierarchy. Notice that these fields are pre-populated with properties from your IoT Hub. You can edit the pre-selected resource if needed.
 
-1. Under **Condition**, click **Add condition**.
+1. Select **Condition**, and then click **Add condition**.
 
-    The **Configure signal logic** pane should now be displayed. Notice that there is a paginated table of available signals displayed. The fields above the table filter the table to assist in finding the signal types you want.
+    The **Select a signal** pane should be displayed. Notice that there is a paginated table of available signals displayed. The fields above the table filter the table to assist in finding the signal types you want.
 
-1. Under **Signal type**, ensure that **All** is selected.
+1. In the **Signal type** dropdown, ensure that **All** is selected.
 
-    If you open the Signal type dropdown, you would see that there are 3 available options: *All*, *Metrics* and *Activity Log*.
+    If you open the Signal type dropdown, you would see that there are 4 available options: *All*, *Metrics*, *Log*, and *Activity Log*.
 
     > **Note**: The signal types available for monitoring vary based on the selected target(s). The signal types may be metrics, log search queries or activity logs.
 
-1. Under **Monitor service**, ensure that **All** is selected.
+1. In the **Monitor service** dropdown, ensure that **All** is selected.
 
-    If you open the Monitor service dropdown, you would see that there are 3 available options: *All*, *Platform* and *Activity Log - Administrative*.
+    If you open the Monitor service dropdown, you would see that there are 4 available options: *All*, *Platform*, *Log analytics*, and *Activity Log - Administrative*.
 
     > **Note**:  The platform service provides metrics on service utilization, where as the activity log tracks administrative activities.
 
@@ -408,17 +406,17 @@ In this exercise, you are going to add an alert that triggers when 5 or more dev
 
 1. Under **Signal name**, click **Connected devices**.
 
-    The pane will update to display a chart that is similar to what you created for **Metrics**. The chart displays the values associated with the selected signal (in this case *Connected devices (preview)*).
+    The pane will update to display a chart that is similar to what you created for **Metrics**. The chart displays the values associated with the selected signal (in this case *Connected devices (Avg)*).
 
     Beneath the chart is the area that defines the **Alert logic**.
 
-1. Take a moment to review the options under **Alert logic**
+1. Scroll down on the page and take a moment to review the options under **Alert logic**
 
     Notice that **Threshold** has two possible selections - *Static* and *Dynamic*. Also notice that **Static** is selected and **Dynamic** is unavailable for this signal type.
 
     > **Note**:  As the names suggest, *Static Thresholds* specify a constant expression for the threshold, whereas *Dynamic Thresholds* detection leverages advanced machine learning (ML) to learn metrics' historical behavior, identify patterns and anomalies that indicate possible service issues. You can learn more about *Dynamic Thresholds* [here](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-dynamic-thresholds).
 
-    You are going to create a static threshold that raises and alert whenever the *connected devices (preview)* signal is equal to 5 or more.
+    You are going to create a static threshold that raises and alert whenever the *connected devices (preview)* signal is less than 1.
 
 1. In the **Operator** dropdown, click **Less than**.
 
@@ -440,11 +438,11 @@ In this exercise, you are going to add an alert that triggers when 5 or more dev
 
 1. At the bottom of the **Configure signal logic** pane, to configure the alert condition, click **Done**.
 
-    The **Configure signal logic** pane closes and the **Create alert rule** blade is shown. Notice that the **Condition** is now populated and a **Estimated monthly cost** is displayed. At the time of writing, the estimated cost of the alert condition is $0.10 (USD).
+    The **Configure signal logic** pane closes and the **Create alert rule** blade is shown. Notice that the **Condition** is now populated and a **Estimated monthly cost** is displayed. At the time of writing, the estimated monthly cost of the alert condition is $0.10 (USD).
 
     Next, you need to configure the action taken when the alert condition is met.
 
-1. Take a moment to review the **Action group** area.
+1. On the **Create an alert rule** blade, click **Actions**.
 
     Notice that no action group is selected. There is an option to **Select action group**.
 
@@ -452,15 +450,15 @@ In this exercise, you are going to add an alert that triggers when 5 or more dev
 
 1. Under **Actions**, click **Add action groups**.
 
-    The **Select an action group to attach to this alert rule** pane is displayed. If there are existing Action Groups available within the selected subscription, they will be listed here. Notice that you can change the subscription and filter the list. In this lab, we will create a new action group.
+    The **Add action groups** pane is displayed. If there are existing Action Groups available within the selected subscription, they will be listed here. Notice that you can change the subscription and filter the list. In this lab, we will create a new action group.
 
-1. On the **Select an action group to attach to this alert rule** pane, click **Create action group**.
+1. Close the **Add action groups** pane, and then click **Create action group**.
 
-    The **Create action group** pane is displayed.
+    The **Create an action group** blade is displayed.
 
 1. On the **Basics** tab, under **Subscription**, ensure that the subscription you have been using for this lab is selected.
 
-1. In the **Resource group** dropdown, click **@lab.CloudResourceGroup(ResourceGroup1).Name**.
+1. In the **Resource group** dropdown, ensure that **@lab.CloudResourceGroup(ResourceGroup1).Name** is selected.
 
     > **Note**: Action Groups are usually shared across a subscription and would likely be centrally managed by the Azure subscription owner. As such they are more likely to be included in a common resource group rather than in a project specific resource group such as "@lab.CloudResourceGroup(ResourceGroup1).Name". We are using "@lab.CloudResourceGroup(ResourceGroup1).Name" to make it easier to clean up the resources after the lab.
 
@@ -472,6 +470,8 @@ In this exercise, you are going to add an alert that triggers when 5 or more dev
 
 1. Under **Display name**, enter **AZ220EmailAG**
 
+    +++AZ220EmailAG+++
+
     > **Note**: The display name is used in place of a full action group name when notifications are sent using this group and is limited to a max of 12 characters.
 
 1. Click **Next: Notifications**, to view the action group notification fields.
@@ -480,13 +480,11 @@ In this exercise, you are going to add an alert that triggers when 5 or more dev
 
 1. In the **Notification Type** dropdown, click **Email/SMS message/Push/Voice**.
 
-    > **Note**: After selecting the notification type, a new, blank, row is added to enable multiple notifications to be added. To the right of each row with values, **Edit details** and **Delete** icons are available.
-
-    > **Note**: The **Email/SMS message/Push/Voice** blade opens automatically.
+    > **Note**: After selecting the notification type, a new page opens to enable multiple notifications to be added.
 
 1. Under **Name**, enter **AZ220Notifications**
 
-1. On the **Email/SMS message/Push/Voice** blade, select **Email**, and then enter an email address that you have easy access to.
+1. On the **Email/SMS message/Push/Voice** page, select **Email**, and then enter an email address that you have easy access to.
 
 1. Click **SMS**, and then enter the **Country code** and the **Phone number** for the phone that you wish to use to receive the SMS alert.
 
@@ -496,7 +494,7 @@ In this exercise, you are going to add an alert that triggers when 5 or more dev
 
    > **Note**:  There are many benefits to using the Common Alert Schema. It standardizes the consumption experience for alert notifications in Azure today. Historically, the three alert types in Azure today (metric, log, and activity log) have had their own email templates, webhook schemas, etc. With the common alert schema, you can now receive alert notifications with a consistent schema. You can learn more about the Common ALert6 Schema [here](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-common-schema).
 
-   > **Important:** Given the benefits, you may wonder why the common alert schema is not enabled by default - well, when you select **Yes** you will see a warning **Enabling the common alert schema might break any existing integrations.** Bear this in mind in your own environments.
+   > **Important:** Given the benefits, you may wonder why the common alert schema is not enabled by default - well, when you select **Yes** you will see a warning that any existing integrations must be adjusted to use the common alert schema. Bear this in mind in your own environments.
 
 1. At the bottom of the **Email/SMS message/Push/Voice** blade, to save the action configuration, click **OK**.
 
@@ -682,7 +680,7 @@ Earlier in this lab, you set up your diagnostic logs to be exported to blob stor
         "operationName": "deviceConnect",
         "category": "Connections",
         "level": "Information",
-        "properties": "{\"deviceId\":\"sensor-thl-2001\",\"sdkVersion\":\".NET/1.38.0 (.NET Core 3.1.19; Microsoft Windows 10.0.22000 WindowsProduct:0x00000030; X64; {FF88E933-1C12-457D-A098-A5093B53FBA2})\",\"protocol\":\"Mqtt\",\"authType\":null,\"maskedIpAddress\":\"24.9.142.XXX\",\"statusCode\":null,\"errorMessage\":\"\"}",
+        "properties": "{\"deviceId\":\"sensor-th-2001\",\"sdkVersion\":\".NET/1.38.0 (.NET Core 3.1.19; Microsoft Windows 10.0.22000 WindowsProduct:0x00000030; X64; {FF88E933-1C12-457D-A098-A5093B53FBA2})\",\"protocol\":\"Mqtt\",\"authType\":null,\"maskedIpAddress\":\"24.9.142.XXX\",\"statusCode\":null,\"errorMessage\":\"\"}",
         "location": "centralus"
     }
     {
@@ -693,12 +691,12 @@ Earlier in this lab, you set up your diagnostic logs to be exported to blob stor
         "level": "Error",
         "resultType": "404104",
         "resultDescription": "DeviceConnectionClosedRemotely",
-        "properties": "{\"deviceId\":\"sensor-thl-2001\",\"protocol\":\"Mqtt\",\"authType\":null,\"maskedIpAddress\":\"24.9.142.XXX\",\"statusCode\":\"404\",\"errorMessage\":\"Device disconnected, see cause and resolution at https://aka.ms/iothub404104\"}",
+        "properties": "{\"deviceId\":\"sensor-th-2001\",\"protocol\":\"Mqtt\",\"authType\":null,\"maskedIpAddress\":\"24.9.142.XXX\",\"statusCode\":\"404\",\"errorMessage\":\"Device disconnected, see cause and resolution at https://aka.ms/iothub404104\"}",
         "location": "centralus"
     }
     ```
 
-    Notice that each individual entry is a single JSON record - although the overall document is not a valid JSON document as the JSON objects are not delcared within a JSON array `[]` and comma separated. Within each record you can see details relating to the originating IoT Hub and **properties** for each event. Within the **properties** object, you can see the connecting (or disconnecting) **deviceId**.
+    Notice that each individual entry is a single JSON record - although the overall document is not a valid JSON document as the JSON objects are not declared within a JSON array `[]` and comma separated. Within each record you can see details relating to the originating IoT Hub and **properties** for each event. Within the **properties** object, you can see the connecting (or disconnecting) **deviceId**.
 
 #### Task 4: Review resolved Alert
 

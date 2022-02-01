@@ -62,13 +62,17 @@ To ensure these resources are available, complete the following tasks.
 
 1. Select **Deploy to Azure**:
 
-    [![Deploy To Azure](media/deploytoazure.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab19.json)
+    > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
 
-1. If prompted, login to the **Azure Portal**.
+    **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab19.json+++
 
-    The **Custom deployment** page will be displayed.
+1. When prompted to Sign in, enter the Azure account credentials associated with your free pass.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+    > **NOTE**: If you are not using a free or promotional account, you may be responsible for fees associated with the Azure services that you will be using. We recommend using the suggested Azure resource groups for all resources during the lab and deleting those resource groups before exiting the lab virtual machine environment.
+
+    Once you have signed in, the **Custom deployment** page will be displayed.
+
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Resource group** dropdown, select **rg-az220**.
 
@@ -143,7 +147,7 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
 
 1. When the option appears, select **Azure Digital Twins**, and then click **Create**.
 
-1. On the **Create Resource** pane, under **Subscription**, ensure that the subscription you are using for this course is selected.
+1. On the **Create Resource** pane, under **Subscription**, ensure that the subscription you are using for this lab is selected.
 
     > **Note**: Your account must have the administrator role for the subscription
 
@@ -195,7 +199,7 @@ The Azure Digital Twin resource is now created and the user account has been upd
 
 ### Exercise 3 - Create a graph of the models
 
-As part of a modeling activity, analysts would consider many factors, such as the Cheese Cave Device message content, and create mappings in DTDL **Property** and **Telemetry** field definitions. In order to use these DTDL code fragments, they would be incorporated into an **Interface** (the top-level code item for a model). However, the **Interface** for a Cheese Cave Device model would form just a small part of the Azure Digital Twins environment for a Contoso Cheese Factory. As modeling an environment that represents an entire factory is beyond the scope of this course, a greatly simplified environment that focuses on a Cheese Cave Device model, an associated Cheese Cave model, and a Factory model will be considered instead. The model hierarchy is as follows:
+As part of a modeling activity, analysts would consider many factors, such as the Cheese Cave Device message content, and create mappings in DTDL **Property** and **Telemetry** field definitions. In order to use these DTDL code fragments, they would be incorporated into an **Interface** (the top-level code item for a model). However, the **Interface** for a Cheese Cave Device model would form just a small part of the Azure Digital Twins environment for a Contoso Cheese Factory. As modeling an environment that represents an entire factory is beyond the scope of this lab, a greatly simplified environment that focuses on a Cheese Cave Device model, an associated Cheese Cave model, and a Factory model will be considered instead. The model hierarchy is as follows:
 
 * Cheese Factory Interface
 * Cheese Cave Interface
@@ -1237,7 +1241,7 @@ The function is ready to be published.
 1. When prompted, make these selections:
 
     * **Sign in to Azure**: If prompted, sign into Azure
-    * **Select subscription**: If prompted, select the subscription you are using for this course.
+    * **Select subscription**: If prompted, select the subscription you are using for this lab.
     * **Select Function App in Azure**: Select **func-az220-hub2adt-training-{your-id}**.
 
     When asked to confirm the deploy, click **Deploy**.
@@ -1418,7 +1422,7 @@ An Event Hubs namespace provides DNS integrated network endpoints and a range of
 
     The **Create Namespace** page will open.
 
-1. On the **Create Namespace** blade, in the **Subscription** dropdown, ensure that the Azure subscription that you are using for this course is selected.
+1. On the **Create Namespace** blade, in the **Subscription** dropdown, ensure that the Azure subscription that you are using for this lab is selected.
 
 1. To the right of **Resource group**, open the dropdown, and then click **rg-az220**
 
@@ -1544,7 +1548,7 @@ Now that the Event Hub is created, it must be added as an endpoint that the ADT 
 
     The UI updates to include fields to specify the Event Hub details.
 
-1. In the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+1. In the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Event hub namespace** dropdown, select **evhns-az220-training-{your-id}**.
 
@@ -1784,7 +1788,7 @@ In this task, the second Azure function will be reviewed. This function will be 
 
 1. When prompted, make these selections:
 
-    * **Select subscription**: If prompted, select the subscription you are using for this course.
+    * **Select subscription**: If prompted, select the subscription you are using for this lab.
     * **Select Function App in Azure**: Select **func-az220-hub2adt-training-{your-id}**.
 
     When asked to confirm the deploy, click **Deploy**.
@@ -1825,7 +1829,7 @@ In this task, the second Azure function will be reviewed. This function will be 
 
 1. Under **Import option**, select **Use Event Hub from available subscriptions**.
 
-1. Under **Subscription ID**, select the subscription being used for this course.
+1. Under **Subscription ID**, select the subscription being used for this lab.
 
 1. Under **Event Hub namespace**, select **evhns-az220-training-{your-id}**
 

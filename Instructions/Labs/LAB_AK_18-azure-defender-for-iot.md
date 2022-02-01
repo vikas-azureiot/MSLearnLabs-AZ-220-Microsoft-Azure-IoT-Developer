@@ -51,13 +51,17 @@ To ensure these resources are available, complete the following tasks.
 
 1. Select **Deploy to Azure**:
 
-    [![Deploy To Azure](media/deploytoazure.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab18.json)
+    > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
 
-1. If prompted, login to the **Azure Portal**.
+    **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab18.json+++
 
-    The **Custom deployment** page will be displayed.
+1. When prompted to Sign in, enter the Azure account credentials associated with your free pass.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+    > **NOTE**: If you are not using a free or promotional account, you may be responsible for fees associated with the Azure services that you will be using. We recommend using the suggested Azure resource groups for all resources during the lab and deleting those resource groups before exiting the lab virtual machine environment.
+
+    Once you have signed in, the **Custom deployment** page will be displayed.
+
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
 
 1. In the **Resource group** dropdown, select **rg-az220**.
 
@@ -106,7 +110,7 @@ In this task, you will enable **Azure Defender for IoT** for your IoT Hub.
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. On your Azure dashboard, click **iot-az220-training-{your-id}**.
 
@@ -149,7 +153,7 @@ In this task, you will take a quick look at the workspace configuration of Log A
 
 1. On the **Log Analytics workspace** pane, under **Log Analytics Workspace**, enter **log-az220-training-{your-id}**.
 
-1. Under **Subscription**, ensure that the Subscription you are using for this course is selected.
+1. Under **Subscription**, ensure that the Subscription you are using for this lab is selected.
 
 1. In the **Resource group** dropdown, click **rg-az220**.
 
@@ -187,16 +191,16 @@ In this task, you will create a Virtual Machine that will represent your IoT dev
 
 1. On the **Virtual machines** page, click **+ Add** and select **Virtual machine**.
 
-1. On the **Create a virtual machine** blade, in the **Subscription** dropdown, ensure that the subscription you are using for this course is selected.
+1. On the **Create a virtual machine** blade, in the **Subscription** dropdown, ensure that the subscription you are using for this lab is selected.
 
 1. In the **Resource group** dropdown, click **rg-az220vm**.
 
-    > **Note**: A single resource group is being used to track and manage all of the Virtual Machine resources created during this course. If the **rg-az220vm** resource group has not already been created, use the following instructions to create it now:
+    > **Note**: A single resource group is being used to track and manage all of the Virtual Machine resources created during this lab. If the **rg-az220vm** resource group has not already been created, use the following instructions to create it now:
 
     * Under the **Resource group** dropdown, click **Create new**.
     * In the context menu, under **Name**, type **rg-az220vm** and then click **OK**
 
-    > **Note**: You may encounter guidance that suggests creating a separate resource group for each of your VMs. Having a separate resource group for each VM can help you to manage any addition resources that you add to the VM. For the simple manner in which you use VMs in this course, having separate resource groups for each VM is not necessary or practical.
+    > **Note**: You may encounter guidance that suggests creating a separate resource group for each of your VMs. Having a separate resource group for each VM can help you to manage any addition resources that you add to the VM. For the simple manner in which you use VMs in this lab, having separate resource groups for each VM is not necessary or practical.
 
 1. Under **Instance details**, in the **Virtual machine name** textbox, enter **vm-az220-training-edge0002-{your-id}**
 
@@ -325,7 +329,7 @@ In this exercise, you will be adding a security agent for C# that you will deplo
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. On the Azure portal menu, click **All resources**.
 
@@ -341,7 +345,7 @@ In this exercise, you will be adding a security agent for C# that you will deplo
 
 1. Take a minute to review the contents of the **Connect** pane
 
-    As you have seen previously in this course, you are provided with an example command for opening an SSH connection.
+    As you have seen previously in this lab, you are provided with an example command for opening an SSH connection.
 
 1. Use the sample SSH command to create a command for connection to your VM.
 
@@ -526,7 +530,7 @@ In addition to automatic relationship detection, you can also pick and choose wh
 
     The **Solution Management** pane opens, where you can connect additional Azure resources to your security solution by selecting their owning resource groups.
 
-1. Under **Subscriptions**, ensure that the subscription you are using for this course is selected.
+1. Under **Subscriptions**, ensure that the subscription you are using for this lab is selected.
 
     > **Note:**
     > You can add resources from multiple subscriptions to your security solution.
