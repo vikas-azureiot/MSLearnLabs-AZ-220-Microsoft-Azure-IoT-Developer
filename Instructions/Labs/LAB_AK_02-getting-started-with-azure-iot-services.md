@@ -272,7 +272,7 @@ In this exercise, you will examine some of the features that IoT Hub provides.
 
 1. If you closed your Azure portal window, open a Microsoft Edge browser window, and then navigate to the Azure portal:
 
-    +++http://portal.azure.com+++
+    **Azure portal**: +++http://portal.azure.com+++
 
     When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
@@ -350,7 +350,7 @@ There are several methods that you can use to create an instance of the IoT Hub 
 
 1. If you closed your Azure portal window, open a Microsoft Edge browser window, and then navigate to the Azure portal:
 
-    +++http://portal.azure.com+++
+    **Azure portal**: +++http://portal.azure.com+++
 
     When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
@@ -449,7 +449,7 @@ The IoT Hub Device Provisioning Service is a helper service for IoT Hub that ena
 
 1. If you closed your Azure portal window, open a Microsoft Edge browser window, and then navigate to the Azure portal:
 
-    +++http://portal.azure.com+++
+    **Azure portal**: +++http://portal.azure.com+++
 
     When prompted to Sign in using Azure account credentials, enter the following values at the sign in prompts:
 
