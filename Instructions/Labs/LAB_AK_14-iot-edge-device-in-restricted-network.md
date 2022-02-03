@@ -52,7 +52,7 @@ This lab assumes the following Azure resources are available:
 
 To ensure these resources are available, complete the following steps.
 
-1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
+1. In the virtual machine environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
     **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab14.json+++
 
@@ -60,7 +60,7 @@ To ensure these resources are available, complete the following steps.
 
 1. When prompted to Sign in, enter the Azure account credentials associated with your free pass.
 
-    > **NOTE**: If you are not using a free or promotional account, you may be responsible for fees associated with the Azure services that you will be using. We recommend using the suggested Azure resource groups for all resources during the lab and deleting those resource groups before exiting the lab virtual machine environment.
+    > **NOTE**: If you are not using a free or promotional account, you may be responsible for fees associated with the Azure services that you will be using. We recommend using the suggested Azure resource groups for all resources created during the lab and deleting those resource groups before exiting the lab virtual machine environment. Use the Azure portal outside of the lab environment to verify that the resources have been deleted. This will help to minimize your costs.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
