@@ -1877,6 +1877,12 @@ Now, data should be flowing into your Time Series Insights instance, ready to be
 
     > **Note**: It may take some time for sufficient data to be displayed.
 
-By default, digital twins are stored as a flat hierarchy in Time Series Insights, however they can be enriched with model information and a multi-level hierarchy for organization. You can write custom logic to automatically provide this information using the model and graph data already stored in Azure Digital Twins.
+    By default, digital twins are stored as a flat hierarchy in Time Series Insights, however they can be enriched with model information and a multi-level hierarchy for organization. You can write custom logic to automatically provide this information using the model and graph data already stored in Azure Digital Twins.
 
-Congratulations - you are now passing device telemetry data to Time Series Insights.
+    Congratulations - you are now passing device telemetry data to Time Series Insights.
+
+1. Delete the Azure resources that you created during the lab.
+
+    If you have one or more Azure resource groups dedicated to this lab, it is recommended that you delete them before exiting the lab environment.
+
+    > **Note**: Resources that your created during this lab include an associated fee. If you are using your own Azure account, be sure to clean up your resources to minimize any charges.

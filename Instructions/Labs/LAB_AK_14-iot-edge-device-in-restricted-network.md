@@ -842,6 +842,12 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
 
     > **Note**:  The IoT Edge Gateway device may take a couple minutes to reconnect to Azure IoT Hub and resume sending telemetry. After waiting, you will see events showing up in the `az iot hub monitor-events` command output again.
 
-In this lab we have demonstrated that an Azure IoT Edge Gateway can utilize local storage to retain messages that can't be sent due to an interruption in the connection to the IoT Hub. Once connection is reestablished, we saw that messages are then sent.
+    In this lab, you verified that an Azure IoT Edge Gateway can use local storage to retain messages that can't be sent due to an interruption in the connection to the IoT Hub. Once the connection was reestablished, you saw that stored messages were delivered to IoT hub.
 
-> **Note**:  Once you have finished with the lab, ensure you exit the device simulation application by pressing **CTRL+C** in the terminal.
+    > **Note**:  Once you have finished with the lab, exit the device simulation application by pressing **CTRL+C** in the terminal.
+
+1. Delete the Azure resources that you created during the lab.
+
+    If you have one or more Azure resource groups dedicated to this lab, it is recommended that you delete them before exiting the lab environment.
+
+    > **Note**: Resources that your created during this lab include an associated fee. If you are using your own Azure account, be sure to clean up your resources to minimize any charges.

@@ -128,7 +128,7 @@ In this task, you will enable **Azure Defender for IoT** for your IoT Hub.
 
     The rg-az220 resource group tile on your dashboard should have a link to your IoT Hub.
 
-1. On the left-side menu, under **Security**, and then click **Overview**.
+1. On the left-side menu, under **Defender for IoT**, click **Overview**.
 
     Azure Defender for IoT Hub will onboard the first time a Security pane is opened.
 
@@ -907,3 +907,9 @@ At this point, your console app will have sent enough telemetry to trigger the C
 1. Return to Visual Studio Code and exit the device app.
 
     You can close the app by placing input focus on the Terminal window and pressing **CTRL+C**.
+
+1. Delete the Azure resources that you created during the lab.
+
+    If you have one or more Azure resource groups dedicated to this lab, it is recommended that you delete them before exiting the lab environment.
+
+    > **Note**: Resources that your created during this lab include an associated fee. If you are using your own Azure account, be sure to clean up your resources to minimize any charges.

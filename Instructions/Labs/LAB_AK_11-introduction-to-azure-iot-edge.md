@@ -832,6 +832,6 @@ To prepare the Stream Analytics job to be deployed to an IoT Edge Device, it nee
 
 1. Delete the Azure resources that you created during the lab.
 
-    You can delete the two resource groups that you create to delete all of the resources.
+    If you have one or more Azure resource groups dedicated to this lab, it is recommended that you delete them before exiting the lab environment.
 
     > **Note**: Resources that your created during this lab include an associated fee. If you are using your own Azure account, be sure to clean up your resources to minimize any charges.

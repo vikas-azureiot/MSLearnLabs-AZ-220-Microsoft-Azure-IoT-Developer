@@ -830,4 +830,10 @@ In this task, you will use the Azure CLI to monitor the events being sent to Azu
     }
     ```
 
-Once you have completed this lab and verified the event flow, exit the console application by pressing **CTRL+C**.
+    > **NOTE**: Once you have completed this lab and verified the event flow, exit the console application by pressing **CTRL+C**.
+
+1. Delete the Azure resources that you created during the lab.
+
+    If you have one or more Azure resource groups dedicated to this lab, it is recommended that you delete them before exiting the lab environment.
+
+    > **Note**: Resources that your created during this lab include an associated fee. If you are using your own Azure account, be sure to clean up your resources to minimize any charges.
