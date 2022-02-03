@@ -118,7 +118,7 @@ Azure Defender for IoT is composed of the following components:
 
 #### Task 1: Enable Azure Defender for IoT
 
-In this task, you will enable **Azure Defender for IoT** for your IoT Hub.
+In this task, you will enable **Azure Defender for IoT** for your IoT hub.
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
@@ -126,19 +126,19 @@ In this task, you will enable **Azure Defender for IoT** for your IoT Hub.
 
 1. On your Azure dashboard, click **iot-az220-training-{your-id}**.
 
-    The rg-az220 resource group tile on your dashboard should have a link to your IoT Hub.
+    The All resources tile on your dashboard should include a link to your IoT hub.
 
 1. On the left-side menu, under **Defender for IoT**, click **Overview**.
 
     Azure Defender for IoT Hub will onboard the first time a Security pane is opened.
 
-1. If the **Secure your IoT solution** button is displayed, click **Secure your IoT solution**, and then refresh your browser window when prompted.
+1. If the **Secure your IoT solution** button is displayed, click **Secure your IoT solution**.
 
-    After a few moments you will see the message **Onboarding succeeded for this IoT hub, please refresh for changes to take effect**
+    After a few moments you will see the message **Onboarding succeeded for this IoT hub, please refresh for changes to take effect**. When you see this message, refresh your browser window.
 
-1. Take a moment to review the contents on the Security Overview pane.
+1. Take a moment to review the contents on the Overview pane.
 
-    > **Note**: Threats are not instantly detected the first moment that you onboard Azure Defender for IoT, you will begin to see threat detections reported on this Overview pane before the end of this lab.
+    > **Note**: Threats are not instantly detected the first moment that you onboard Azure Defender for IoT, but you should begin to see threat detections reported on this Overview pane before the end of this lab.
 
 #### Task 2: Log Analytics creation
 
@@ -146,7 +146,7 @@ When Azure Defender for IoT is turned on, an Azure Log Analytics workspace shoul
 
 In this task, you will take a quick look at the workspace configuration of Log Analytics.
 
-1. In the left navigation area, under **Security**, click **Settings**..
+1. In the left navigation area, under **Defender for IoT**, click **Settings**..
 
     The **Settings Page** is displayed, listing the four areas that can be configured:
 
@@ -163,29 +163,41 @@ In this task, you will take a quick look at the workspace configuration of Log A
 
 1. Under the **Workspace** dropdown, click **Create New Workspace**.
 
-1. On the **Log Analytics workspace** pane, under **Log Analytics Workspace**, enter **log-az220-training-{your-id}**.
-
-1. Under **Subscription**, ensure that the Subscription you are using for this lab is selected.
+1. On the **Create Log Analytics workspace** pane, ensure that the Subscription you are using for this lab is selected.
 
 1. In the **Resource group** dropdown, click **rg-az220**.
 
-1. In the **Location** dropdown, select the Azure Region closest to you, or the region where your Azure IoT Hub is provisioned.
+1. Under **Instance details**, in the **Name** field, enter **log-az220-training-{your-id}**.
 
-1. Under **Pricing tier**, ensure **Pay-as-you-go** is selected,
+    +++log-az220-training-{your-id}+++
 
-1. To create the workspace, click **OK**.
+    Be sure to replace the {your-id} placeholder with the unique ID value that you are using for this lab. 
+
+1. In the **Location** dropdown, select the Azure Region where your IoT hub is provisioned.
+
+1. Click **Review + Create**.
+
+1. Notice that the **Pricing tier** is configured for **Pay-as-you-go**.
+
+1. To create the workspace, click **Create**.
 
     After a few moments, the workspace will be created and the pane will close.
 
-1. Back on the **Settings | Data Collection** page, in the **Workspace** dropdown, select **log-az220-training-{your-id}**
+1. Navigate back to your IoT hub blade, and then open the **Settings | Data Collection** page.
 
-1. Ensure **Access to raw security data** is checked.
+1. Ensure that the following items are configured:
 
-1. Ensure **In-depth security recommendations and custom alert** is checked.
+    * Under **Choose the Log Analytics workspace you wish to connect to:**, ensure the toggle button is set to **On**.
 
-1. Ensure **IP data collection** is checked.
+    * Ensure that the subscription that you are using for this lab is selected.
 
-1. To save the Data Collection configuration, click **Save** and to close the page, click the **Close** button at the top-right of the page.
+1. In the **Workspace** dropdown, select **log-az220-training-{your-id}**
+
+1. Ensure that **Access to raw security data** is checked.
+
+1. Under **Advanced settings**, ensure that **In-depth security recommendations and custom alert** and **IP data collection** are checked.
+
+1. To save the Data Collection configuration, click **Save**, and then close the page.
 
 ### Exercise 3: Create and Register a New Device
 
@@ -195,28 +207,29 @@ In this exercise, you will be setting up a virtual machine that you will then us
 
 In this task, you will create a Virtual Machine that will represent your IoT device. You are using a VM in this lab rather than simulated device code because you will be installing a security module to the IoT device (VM).
 
-1. Login to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
+1. If necessary, log in to your Azure portal using your Azure account credentials, and then navigate to you Azure dashboard.
 
-1. In the **Search resources, services and docs** field, enter **Virtual machines**.
+    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
-1. In the search results, under **Services**, click **Virtual machines**.
+1. In the **Search resources, services, and docs** field, enter **Virtual machines**.
 
-1. On the **Virtual machines** page, click **+ Add** and select **Virtual machine**.
+1. On the **Virtual machines** page, click **+ Create**, and then select **Virtual machine**.
 
 1. On the **Create a virtual machine** blade, in the **Subscription** dropdown, ensure that the subscription you are using for this lab is selected.
 
-1. In the **Resource group** dropdown, click **rg-az220vm**.
+1. Under the **Resource group** dropdown, click **Create new**.
 
-    > **Note**: A single resource group is being used to track and manage all of the Virtual Machine resources created during this lab. If the **rg-az220vm** resource group has not already been created, use the following instructions to create it now:
+1. In the context menu, under **Name**, type **rg-az220vm** and then click **OK**
 
-    * Under the **Resource group** dropdown, click **Create new**.
-    * In the context menu, under **Name**, type **rg-az220vm** and then click **OK**
-
-    > **Note**: You may encounter guidance that suggests creating a separate resource group for each of your VMs. Having a separate resource group for each VM can help you to manage any addition resources that you add to the VM. For the simple manner in which you use VMs in this lab, having separate resource groups for each VM is not necessary or practical.
+    > **Note**: You may encounter guidance that suggests creating a separate resource group for each of your VMs. Having a separate resource group for each VM can help you to manage any additional resources that you add to the VM. For the simple manner in which you use VMs in this lab, having separate resource groups for each VM is not necessary or practical.
 
 1. Under **Instance details**, in the **Virtual machine name** textbox, enter **vm-az220-training-edge0002-{your-id}**
 
-1. In the **Region** dropdown, select the Azure Region closest to you, or the region where your Azure IoT Hub is provisioned.
+    +++vm-az220-training-edge0002-{your-id}+++
+
+    Be sure to replace the {your-id} placeholder with the unique ID value that you are using for this lab.
+ 
+1. In the **Region** dropdown, select the Azure Region where your IoT hub is provisioned.
 
 1. In the **Availability options** dropdown, ensure that **No infrastructure redundancy required** is selected.
 
@@ -227,13 +240,11 @@ In this task, you will create a Virtual Machine that will represent your IoT dev
 
 1. Leave **Azure Spot instance** field unchecked.
 
-1. To the right of **Size**, click **Change size**.
+1. In the **Size** dropdown, click **see all sizes**.
 
-1. On the **Select a VM size** blade, under **VM Size**, click **Standard_DS1_v2**, and then click **Select**.
+1. On the **Select a VM size** blade, under **VM Size**, click **DS1_v2**, and then click **Select**.
 
-    You may need to select the **see all sizes** link to select this size.
-
-    > **Note**: Not all VM sizes are available in all regions. If, in a later step, you are unable to select the VM size, try a different region. For example, if **West US** doesn't have the sizes available, try **West US 2**.
+    > **Note**: Not all VM sizes are available in all regions. If you are unable to select the VM size, try a different region. For example, if **West US** doesn't have the sizes available, try **West US 2**.
 
 1. Under **Administrator account**, to the right of **Authentication type**, click **Password**.
 
@@ -253,19 +264,23 @@ In this task, you will create a Virtual Machine that will represent your IoT dev
 
 #### Task 2: Register New Devices
 
-As a device must be registered with your IoT hub before it can connect, let's create the registration.
+A device must be registered with your IoT hub before it can connect, so your next task is to create a device registration.
 
 1. On the Azure portal menu, click **Dashboard**.
 
-1. On your rg-az220 resource group tile, click **iot-az220-training-{your-id}**.
+1. On your All resources tile, click **iot-az220-training-{your-id}**.
 
-    There are plenty of other ways to open your IoT Hub blade, use whatever method you prefer.
+    There are plenty of other ways to open your IoT hub blade, use whatever method you prefer.
 
-1. In the left-side menu, under **Explorers**, click **IoT devices**.
+1. In the left-side menu, under **Device management**, click **Devices**.
 
-1. At the top of **IoT devices** pane, click **+ New**
+1. On the **Devices** pane, click **+ Add Device**
 
 1. Under **Device ID**, enter **vm-az220-training-edge0002-{your-id}**
+
+    +++vm-az220-training-edge0002-{your-id}+++
+
+    Be sure to replace the {your-id} placeholder with the unique ID value that you are using for this lab.
 
     Yes, you are using the Name that you assigned to the VM as the Device ID.
 
@@ -286,17 +301,17 @@ The security module twin (**azureiotsecurity**) can be created by using either o
 
 In this task, you will be creating a security module twin manually.
 
-1. In the Azure portal, if necessary, navigate to your the **IoT devices** pane of your IoT Hub.
+1. In the Azure portal, if necessary, navigate to your the **Devices** pane of your IoT hub.
 
-    To open the **IoT devices** pane from your IoT Hub blade, in the left-side menu, under **Explorers**, click **IoT devices**.
+    To open the **Devices** pane from your IoT hub blade, in the left-side menu, under **Device management**, click **Devices**.
 
 1. Under **DEVICE ID**, click **vm-az220-training-edge0002-{your-id}**.
-
-    You may need to click **Load More** in order to see your device listed.
 
 1. On the **vm-az220-training-edge0002-{your-id}** blade, near the top of the blade, click **+ Add Module Identity**.
 
 1. On the **Add Module Identity** pane, under **Module Identity Name**, enter **azureiotsecurity**
+
+    +++azureiotsecurity+++
 
     You will be using Symmetric Keys for authentication, so you can leave all over fields at their defaults.
 
@@ -312,11 +327,11 @@ In this task, you will be creating a security module twin manually.
 
 1. On the **vm-az220-training-edge0002-{your-id}** blade, to the right of **Primary Key**, click **Copy**, and then save the value for later.
 
-    > **Note**: Make sure to copy the device's **Primary Key** and not the connection string.
+    > **Note**: Make sure to copy the device's **Primary Key** and not the Primary Connection String.
 
     ![Screenshot of Azure IoT Security Module](media/LAB_AK_18-primary-key.png)
 
-1. Navigate back to your IoT Hub blade.
+1. Navigate back to your IoT hub blade.
 
 1. On the left-side menu, click **Overview**.
 
@@ -393,7 +408,7 @@ In this exercise, you will be adding a security agent for C# that you will deplo
 
 #### Task 3: Add Symmetric Keys to your device
 
-You can connect to your IoT Hub with the C# version of the security agent. To implement the connection, you will need your device's symmetric key or certificate information.
+You can connect to your IoT hub with the C# version of the security agent. To implement the connection, you will need your device's symmetric key or certificate information.
 
 In this lab, you will be using the symmetric key as authentication and will need to store it in a temporary text document on the device.
 
@@ -402,8 +417,8 @@ In this lab, you will be using the symmetric key as authentication and will need
     You should have saved the Primary key value earlier in this lab. If not, complete the following:
 
     1. Open a new browser tab, and on that new tab, navigate to the Azure portal.
-    1. On the Azure portal menu, click **Dashboard**, and then open your IoT Hub.
-    1. On the left-side menu, under **Explorers**, click **IoT devices**.
+    1. On the Azure portal menu, click **Dashboard**, and then open your IoT Hub.
+    1. On the left-side menu, under **Device management**, click **Devices**.
     1. Under **DEVICE ID**, click **vm-az220-training-edge0002-{your-id}**.
     1. From the list of details, copy your **Primary Key**.
     1. Return the the Azure Cloud Shell browser tab - you should still be connected to your **vm-az220-training-edge0002-{your-id}** virtual machine.
@@ -501,9 +516,9 @@ In this lab, you will be using the symmetric key as authentication and will need
 
     > **Note**: If your Azure Defender for IoT Agent isn't running or active, please check out [Deploy Defender for IoT C# based security agent for Linux](https://docs.microsoft.com/en-us/azure/defender-for-iot/how-to-deploy-linux-css). Common issues are that might leave the service **Active: activating** are an incorrect key value or not specifying the full IoT Hub hostname.
 
-1. In the Azure portal, navigate back your IoT Hub blade, and then open the **vm-az220-training-edge0002-{your-id}** device blade.
+1. In the Azure portal, navigate back your IoT hub blade, and then open the **vm-az220-training-edge0002-{your-id}** device blade.
 
-    Open your IoT Hub blade, on the navigation menu under **Explorers**, click **IoT devices**, and then click **vm-az220-training-edge0002-{your-id}**.
+    Open your IoT hub blade, on the navigation menu under **Device management**, click **Devices**, and then click **vm-az220-training-edge0002-{your-id}**.
 
 1. Under **Module Identities**, notice that your **azureiotsecurity** module is now in a **Connected** state.
 
@@ -517,13 +532,13 @@ Azure Defender for IoT provides end-to-end security for Azure-based IoT solution
 
 With Azure Defender for IoT, you can monitor your entire IoT solution in one dashboard, surfacing all of your IoT devices, IoT platforms and back-end resources in Azure.
 
-Once enabled on your IoT Hub, Azure Defender for IoT automatically identifies other Azure services, also connected to your IoT Hub and related to your IoT solution.
+Once enabled on your IoT hub, Azure Defender for IoT automatically identifies other Azure services, also connected to your IoT hub and related to your IoT solution.
 
 In addition to automatic relationship detection, you can also pick and choose which other Azure resource groups to tag as part of your IoT solution. Your selections allow you to add entire subscriptions, resource groups, or single resources.
 
 #### Task 1: Open IoT Hub
 
-1. In your browser, open the Azure Portal and navigate to your IoT Hub.
+1. In your browser, open the Azure Portal and navigate to your IoT hub.
 
 1. On the left-side menu, under **Security**, click **Settings**.
 
@@ -536,7 +551,7 @@ In addition to automatic relationship detection, you can also pick and choose wh
 
 1. To view the list of resources, click **Monitored Resources**.
 
-    Note that the list of resources already includes your IoT Hub, the workspace that was created when Azure Defender for IoT was activated earlier as well as the current subscription.
+    Note that the list of resources already includes your IoT hub, the workspace that was created when Azure Defender for IoT was activated earlier as well as the current subscription.
 
 1. At the top of the pane, click **Edit**.
 
@@ -598,7 +613,7 @@ Under normal circumstances, Contoso's cheese cave monitoring system will not be 
 
 In this task, you will create a custom alert.
 
-1. On your Azure portal, navigate to your IoT Hub blade.
+1. On your Azure portal, navigate to your IoT hub blade.
 
 1. On the left-side menu, under **Security**, click **Settings**.
 
@@ -670,9 +685,9 @@ In this exercise, you will configure an IoT Hub device and a .Net Core console a
 
 A device must be registered with your IoT hub before it can connect.
 
-1. On the Azure portal menu, click **Dashboard**, and then open your IoT Hub.
+1. On the Azure portal menu, click **Dashboard**, and then open your IoT Hub.
 
-1. On the left-side menu, under **Explorers**, click **IoT devices**.
+1. On the left-side menu, under **Device management**, click **Devices**.
 
 1. At the top of the **IoT devices** pane, click  **+ New**
 
@@ -874,7 +889,7 @@ At this point, your console app will have sent enough telemetry to trigger the C
 
 #### Task 1: Review the Azure Defender for IoT Dashboard
 
-1. On the Azure portal menu, click **Dashboard** and then open your IoT Hub.
+1. On the Azure portal menu, click **Dashboard** and then open your IoT Hub.
 
 1. On the left-side menu, under **Security**, click **Overview**.
 
