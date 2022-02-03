@@ -48,9 +48,9 @@ To ensure these resources are available, complete the following steps.
 
 1. In the lab virtual environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
-
     **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab11.json+++
+
+    > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
 
 1. When prompted to Sign, enter the Azure account credentials associated with your free pass.
 
