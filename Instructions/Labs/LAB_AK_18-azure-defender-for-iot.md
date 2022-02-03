@@ -195,7 +195,7 @@ In this task, you will take a quick look at the workspace configuration of Log A
 
 1. Ensure that **Access to raw security data** is checked.
 
-1. Under **Advanced settings**, ensure that **In-depth security recommendations and custom alert** and **IP data collection** are checked.
+1. Under **Advanced settings**, ensure that **In-depth security recommendations and custom alerts** and **IP data collection** are checked.
 
 1. To save the Data Collection configuration, click **Save**, and then close the page.
 
@@ -240,7 +240,7 @@ In this task, you will create a Virtual Machine that will represent your IoT dev
 
 1. Leave **Azure Spot instance** field unchecked.
 
-1. In the **Size** dropdown, click **see all sizes**.
+1. Under the **Size** dropdown, click **see all sizes**.
 
 1. On the **Select a VM size** blade, under **VM Size**, click **DS1_v2**, and then click **Select**.
 
@@ -260,11 +260,11 @@ In this task, you will create a Virtual Machine that will represent your IoT dev
 
 1. Wait for the **Validation passed** message to be displayed at the top of the blade, and then click **Create**.
 
-    > **Note**:  Deployment can take as much as 5 minutes to complete. You can continue on to the next exercise while it is deploying.
+    > **Note**:  Deployment can take as much as 5 minutes to complete. You can continue on to the next task while it is deploying.
 
 #### Task 2: Register New Devices
 
-A device must be registered with your IoT hub before it can connect, so your next task is to create a device registration.
+A device must be registered with your IoT hub before the device can connect, so your next task is to create a device registration.
 
 1. On the Azure portal menu, click **Dashboard**.
 
@@ -362,7 +362,9 @@ In this exercise, you will be adding a security agent for C# that you will deplo
 
     Be sure to select **All resources**, not **All services**.
 
-1. On the **All resources** blade, in the **Filter by name** textbox, enter **vm-az220-training-edge0002**
+1. On the **All resources** blade, in the **Filter for any field** textbox, enter **vm-az220-training-edge0002**
+
+    +++vm-az220-training-edge0002+++
 
 1. Under **Name**, click **vm-az220-training-edge0002-{your-id}**.
 
@@ -386,9 +388,25 @@ In this exercise, you will be adding a security agent for C# that you will deplo
 
 1. On the Azure portal toolbar, click **Cloud Shell**.
 
-    > **Note**: If the cloud shell has not been configured, follow the steps in **Lab 3 - Exercise 2 - Task 3: Configure cloud shell storage & Task 4: Install Azure CLI Extension - cloud environment**.
+    The Cloud Shell button has an icon that appears to represent a command prompt - **`>_`**.
 
-    Ensure that the **Bash** environment is selected within the Cloud Shell.
+    A Cloud Shell window will open near the bottom of the display screen.
+
+    > **Note**: If the cloud shell has not been configured, follow these steps:
+
+    1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
+
+    1. Under **Subscription**, ensure the correct subscription is displayed.
+
+    1. To specify storage options, click **Show advanced settings**.
+
+    1. Under **Resource group**, ensure **Use existing** is selected and the **@lab.CloudResourceGroup(ResourceGroup1).Name** is shown.
+
+    1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+
+    1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+
+    1. To finish to configuration of the cloud shell, click **Create storage**.
 
 1. At the Cloud Shell command prompt, enter the `ssh` command that you created above, and then press **Enter**.
 
@@ -431,7 +449,7 @@ In this lab, you will be using the symmetric key as authentication and will need
 
     This command will create a device Authentication type file with your **vm-az220-training-edge0002-{your-id}** device's **Primary Key**.
 
-    > **Note**: To check if you added the correct Primary key into the file, open your file with `nano s.key` command. Check to see your device's **Primary Key** is in the file. To exit the nano editor, holding `Ctrl` and `X`. Save file by holding `shift` and `Y`. Then hit enter.
+    > **Note**: To check if you added the correct Primary key into the file, open your file with `nano s.key` command. Check to see your device's **Primary Key** is in the file. You can exit the nano editor by pressing CTRL+X. If you modified the file, to save your changes on exit, press Y, and then press ENTER.
 
 #### Task 4: Installing Security Agent
 
@@ -520,6 +538,8 @@ In this lab, you will be using the symmetric key as authentication and will need
 
     Open your IoT hub blade, on the navigation menu under **Device management**, click **Devices**, and then click **vm-az220-training-edge0002-{your-id}**.
 
+1. Scroll down to find the **Module Identities** section.
+
 1. Under **Module Identities**, notice that your **azureiotsecurity** module is now in a **Connected** state.
 
     ![Screenshot of Azure IoT Security Module Connected](media/LAB_AK_18-device-connected-agent.png)
@@ -538,9 +558,9 @@ In addition to automatic relationship detection, you can also pick and choose wh
 
 #### Task 1: Open IoT Hub
 
-1. In your browser, open the Azure Portal and navigate to your IoT hub.
+1. If necessary, open the Azure Portal and navigate to your IoT hub.
 
-1. On the left-side menu, under **Security**, click **Settings**.
+1. On the left-side menu, under **Defender for IoT**, click **Settings**.
 
     The **Settings Page** lists the following areas:
 
@@ -551,26 +571,19 @@ In addition to automatic relationship detection, you can also pick and choose wh
 
 1. To view the list of resources, click **Monitored Resources**.
 
-    Note that the list of resources already includes your IoT hub, the workspace that was created when Azure Defender for IoT was activated earlier as well as the current subscription.
+1. On the **Resources** blade, click **Edit**.
 
-1. At the top of the pane, click **Edit**.
+1. In the **Subscriptions** dropdown, select the Azure subscription that you are using for this lab
 
-    The **Solution Management** pane opens, where you can connect additional Azure resources to your security solution by selecting their owning resource groups.
+1. In the **Resource groups** dropdown, select the **rg-az220** and **rg-az220vm** resource group, and then click **Apply**. 
 
-1. Under **Subscriptions**, ensure that the subscription you are using for this lab is selected.
+    Refresh your browser window if needed to update the resource list. Your IoT hub resource is monitored by default.
 
-    > **Note:**
-    > You can add resources from multiple subscriptions to your security solution.
-
-1. In the **Resource groups** dropdown, click **rg-az220vm**.
-
-    You should now have two Resource Groups selected. Notice that the Resources list has updated to reflect the additional resources in the resource group you just added.
-
-1. At the bottom of the **Solution Management** pane, click **Apply**.
+    > **Note**: You can add resources from multiple subscriptions to your security solution.
 
     If the **Apply** button is not available, don't worry, the resources were already added.
 
-1. Close the **Solution Management** pane.
+1. Navigate back to your IoT hub blade.
 
 After defining all of the resource relationships, Azure Defender for IoT leverages Azure Defender to provide you security recommendations and alerts for these resources.
 
@@ -578,15 +591,15 @@ After defining all of the resource relationships, Azure Defender for IoT leverag
 
 You now have your the security agent installed on your device and your solution configured. It is a good time to check out the different views for Azure Defender for IoT.
 
-1. On the left-side menu, under **Security**, click **Overview**.
+1. On the left-side menu, under **Defender for IoT**, click **Overview**.
 
     You will see the health overview for your devices, hubs, and other resources appear on two charts. You can see the Built-in real-time monitoring, recommendations and alerts that were enabled right when you turn on your Azure IoT Defender.
 
     ![Screenshot of Azure IoT Security Module](media/LAB_AK_18-security-dashboard.png)
 
-1. On the left-side menu, under **Security**, to view the monitored resources, click **Settings** and then click **Monitored Resources**
+1. On the left-side menu, under **Defender for IoT**, to view the monitored resources, click **Settings** and then click **Monitored Resources**
 
-    This pane lists all of the resources current monitored for your IoT Solution. At a glance, you can see the overall health of your resources across your IoT solution and can then drill into each resource and see more details. If you wish to add additional resources, you can click **Edit**, and then select a subscription and resource group from which to add.
+    As your saw earlier, this pane lists all of the resources currently being monitored for your IoT Solution. At a glance, you can see the overall health of your resources across your IoT solution and can then drill into each resource and see more details. If you wish to add additional resources, you can click **Edit**, and then select a subscription and resource group from which to add.
 
     > **IMPORTANT**:
     > The process that evaluates the security configuration of your IoT resources may take up to 24 hours to run, therefore the initial status displayed on the dashboard does not reflect the actual state of your resources.
@@ -615,7 +628,7 @@ In this task, you will create a custom alert.
 
 1. On your Azure portal, navigate to your IoT hub blade.
 
-1. On the left-side menu, under **Security**, click **Settings**.
+1. On the left-side menu, under **Defender for IoT**, click **Settings**.
 
     The **Settings Page** lists the following areas:
 
@@ -667,7 +680,7 @@ In this task, you will create a custom alert.
     > * 15 minutes
     > * 30 minutes
 
-1. At the bottom of the **Create custom alert rule** pane, click **OK**.
+1. At the bottom of the **Create custom alert rule** pane, click **Ok**.
 
 1. At the top of the **default** (Device Security Group) blade, click **Save**.
 
@@ -685,21 +698,21 @@ In this exercise, you will configure an IoT Hub device and a .Net Core console a
 
 A device must be registered with your IoT hub before it can connect.
 
-1. On the Azure portal menu, click **Dashboard**, and then open your IoT Hub.
+1. On the Azure portal menu, click **Dashboard**, and then open your IoT hub.
 
 1. On the left-side menu, under **Device management**, click **Devices**.
 
-1. At the top of the **IoT devices** pane, click  **+ New**
+1. On the **Devices** pane, click  **+ Add Device**
 
 1. On the **Create a device** blade, under **Device ID**, enter **sensor-th-0070**
+
+    +++sensor-th-0070+++
 
     You will be using **symmetric Keys** for authentication, so leave the other values at the defaults.
 
 1. At the bottom of the blade, click **Save**.
 
-1. On the **IoT devices** pane, under **Device ID**, click **sensor-th-0070**.
-
-    You may need to click **Load More** in order to access the **sensor-th-0070** device.
+1. On the **Devices** pane, under **Device ID**, click **sensor-th-0070**.
 
 1. To display the device twin, click **Device Twin**.
 
@@ -752,7 +765,7 @@ A device must be registered with your IoT hub before it can connect.
     },
     ```
 
-    The resultant JSON will be similar to:
+1. Ensure that the JSON information that just added appears similar to the following and that the syntax is correct:
 
     ```json
     {
@@ -809,6 +822,17 @@ A device must be registered with your IoT hub before it can connect.
 
 1. In the Open Folder dialog, navigate to the Lab 18 Starter folder.
 
+1. On the **File** menu, click **Open Folder** and then navigate to the **Starter** folder for Lab 18.
+
+    The Lab 18 **Starter** folder is part of the lab resources that you downloaded before starting this lab. The folder path is:
+
+    * Allfiles
+      * Labs
+          * 18-Azure-security-center-for-iot
+            * Starter
+
+    > **Note**: If you have trouble finding the Allfiles folder, check your Windows Desktop folder.
+
 1. Click **CaveDevice**, and then click **Select Folder**.
 
     You should see the following files listed in the EXPLORER pane of Visual Studio Code:
@@ -818,7 +842,7 @@ A device must be registered with your IoT hub before it can connect.
 
 1. Open the **Program.cs** file.
 
-    A cursory glance will reveal that the **CaveDevice** application is very similar to those used in the preceding labs. This version has an increased delay so that messages are sent every 10 seconds: `await Task.Delay(10000);`
+    This simulated device includes a delay between telemetry messages so that messages are sent to IoT hub every 10 seconds: `await Task.Delay(10000);`
 
 1. On the **Terminal** menu, click **New Terminal**.
 
@@ -850,10 +874,10 @@ A device must be registered with your IoT hub before it can connect.
 1. In the code editor pane, find the following line of code:
 
     ```csharp
-    private readonly static string deviceConnectionString = "<your device connection string>";
+    private readonly static string deviceConnectionString = "{Your connection string here}";
     ```
 
-1. Replace `<your device connection string>` with the Primary Connection String for the sensor-th-0070 device.
+1. Replace the placeholder value with the Primary Connection String for the sensor-th-0070 device.
 
 1. On the **File** menu, click **Save**.
 
@@ -882,18 +906,15 @@ A device must be registered with your IoT hub before it can connect.
 
 ### Exercise 9: Review Azure Defender for IoT Alerts
 
-At this point, your console app will have sent enough telemetry to trigger the Custom Alert created earlier.
-
-> **Tip**:
-> The alert was set up to trigger if less than 1 and more than 5 messages where sent from a device to the cloud within a 5 minute time window.
+Recall that your custom alert was configured to trigger if less than 1 or more than 5 messages where sent from a device to the cloud within a 5 minute time window.
 
 #### Task 1: Review the Azure Defender for IoT Dashboard
 
 1. On the Azure portal menu, click **Dashboard** and then open your IoT Hub.
 
-1. On the left-side menu, under **Security**, click **Overview**.
+1. On the left-side menu, under **Defender for IoT**, click **Overview**.
 
-    Take a look at the **Threat detection** section. You should see one or more alerts displayed in the **Device security alerts** chart:
+    Take a look at the **Threat detection** section. If enough time has passed, you will see one or more alerts displayed in the **Device security alerts** chart:
 
     ![Device security alert chart](media/LAB_AK_18-device-security-alert-chart.png)
 
@@ -901,11 +922,11 @@ At this point, your console app will have sent enough telemetry to trigger the C
 
     ![Devices with the most alerts tile](media/LAB_AK_18-devices-with-most-alerts-tile.png)
 
-    > **Note**: It can take up to 30 minutes for alerts to be displayed on the dashboard.
+    > **Note**: It can take up to 30 minutes for alerts to be displayed on the dashboard. If you have time, you can leave the portal open and refresh your browser window periodically to observe the alerts as they are detected.
 
 1. Under **Threat detection**, click the **Devices with the most alerts** tile.
 
-    This will open the same **Alerts** blade as you would see if you were to click **Security Alerts** under **Security** on the left-side menu.
+    This will open the same **Alerts** blade as you would see if you were to click **Security Alerts** under **Defender for IoT** on the left-side menu.
 
     You will see a list of Security Alerts:
 
@@ -915,7 +936,7 @@ At this point, your console app will have sent enough telemetry to trigger the C
 
 1. Click the latest alert.
 
-    A detail pane will open. The **General information** provides high-level information concerning the alert. Beneath this, the **Last 10 Affected Devices** should list the **sensor-th-0070** device.
+    A detail pane will open. This pane will provide information about detected alerts. If sufficient time has passed, alerts for the **sensor-th-0070** device will be listed.
 
     ![Custom Alert Details Pane](media/LAB_AK_18-custom-alert-details-pane.png)
 
@@ -925,6 +946,6 @@ At this point, your console app will have sent enough telemetry to trigger the C
 
 1. Delete the Azure resources that you created during the lab.
 
-    If you have one or more Azure resource groups dedicated to this lab, it is recommended that you delete them before exiting the lab environment.
+    You may have two Azure resource groups dedicated to this lab (rg-az220 and rg-az220vm). It is recommended that you delete these resource groups before exiting the lab environment.
 
-    > **Note**: Resources that your created during this lab include an associated fee. If you are using your own Azure account, be sure to clean up your resources to minimize any charges.
+    > **Note**: Some of the resources that your created during this lab include associated fees. If you are using your own Azure account, be sure to clean up your resources to minimize any charges.
