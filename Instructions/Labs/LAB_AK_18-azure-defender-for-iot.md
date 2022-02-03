@@ -83,15 +83,27 @@ To ensure these resources are available, complete the following tasks.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
 
-1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
-    Make a note of the outputs for use later:
+1. In your text editor, enter the following text labels:
+
+    +++connectionString:+++
+
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
+
+1. Switch back to the Azure portal window and wait for the deployment to finish.
+
+    You will see a notification when deployment is complete.
+
+1. Once the deployment has completed, in the left navigation area, to review any output values from the template, click **Outputs**.
+
+1. In your text editor, create a record of the following Outputs for use later in the lab:
 
     * connectionString
 
-The resources have now been created.
+    The Azure resources required for this lab are now available.
 
 ### Exercise 2: Enable Azure Defender for IoT Hub
 

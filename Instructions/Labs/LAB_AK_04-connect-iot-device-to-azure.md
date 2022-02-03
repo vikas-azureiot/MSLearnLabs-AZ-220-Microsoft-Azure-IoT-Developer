@@ -85,7 +85,7 @@ To ensure these resources are available, complete the following steps.
 
     * connectionString
 
-The required Azure resources have now been created.
+    The Azure resources required for this lab are now available.
 
 ### Exercise 2: Create an Azure IoT Hub Device ID using the Azure portal
 

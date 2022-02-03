@@ -110,7 +110,7 @@ To ensure these resources are available, complete the following steps.
 
     You will see a notification when deployment is complete.
 
-1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
+1. Once the deployment has completed, in the left navigation area, to review any output values from the template, click **Outputs**.
 
 1. In your text editor, create a record of the following Outputs for use later in the lab:
 
