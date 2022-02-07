@@ -1,16 +1,16 @@
 ---
 lab:
-    title: 'Lab 19: Develop Azure Digital Twins (ADT) solutions'
+    title: 'Lab 19: Develop Azure Digital Twins solutions'
     module: 'Module 11: Develop with Azure Digital Twins'
 ---
 
-# Develop Azure Digital Twins (ADT) solutions
+# Develop Azure Digital Twins solutions
 
 ## Lab Scenario
 
-Contoso Management has decided to take the next step in their digital evolution and develop a model of their cheese making facility using Azure Digital Twins (ADT). With Azure Digital Twins, it is possible to create and interact with live models of real-world environments. First, each individual element is modeled as a digital twin. Then, these models are connected into a knowledge graph that can respond to live events and be queried for information.
+Contoso Management has decided to take the next step in their digital evolution and develop a model of their cheese making facility using Azure Digital Twins. With Azure Digital Twins, it is possible to create and interact with live models of real-world environments. First, each individual element is modeled as a digital twin. Then, these models are connected into a knowledge graph that can respond to live events and be queried for information.
 
-In order to better understand how to best leverage ADT, you have been asked to build a proof-of-concept prototype that demonstrates how the existing Cheese Cave Device sensor telemetry can be incorporated into a simple model hierarchy:
+In order to better understand how to best leverage Azure Digital Twins, you have been asked to build a proof-of-concept prototype that demonstrates how the existing Cheese Cave Device sensor telemetry can be incorporated into a simple model hierarchy:
 
 * Cheese Factory
 * Cheese Cave
@@ -18,9 +18,9 @@ In order to better understand how to best leverage ADT, you have been asked to b
 
 In this first prototype, you have been asked to demonstrate the solutions to the following scenarios:
 
-* How device telemetry can be mapped from an IoT Hub into the appropriate device in ADT
+* How device telemetry can be mapped from an IoT Hub into the appropriate device in Azure Digital Twins
 * How updates to a child digital twin property can be used to update a parent twin property (from a Cheese Cave Device to a Cheese Cave)
-* How device telemetry can be routed via ADT to Time Series Insights
+* How device telemetry can be routed via Azure Digital Twins to Time Series Insights
 
 The following resources will be created:
 
@@ -33,13 +33,13 @@ In this lab, you will complete the following activities:
 * Configure the lab prerequisites (the required Azure resources)
 * Create and configure digital twins
   * Create a digital twin by using the supplied DTDL
-  * Build ADT graph using digital twin instances
-* Implement ADT graph interactions (ADT Explorer)
-  * Query the ADT Graph
-  * Update properties on ADT entities in the graph
-* Integrate ADT with upstream and downstream systems
-  * Ingest IoT device messages and translate messages to ADT
-  * Configure ADT routes and endpoints to publish telemetry to Time Series Insights (TSI)
+  * Build an Azure Digital Twins graph using digital twin instances
+* Implement Azure Digital Twins graph interactions (ADT Explorer)
+  * Query the Azure Digital Twins Graph
+  * Update properties on Azure Digital Twins entities in the graph
+* Integrate Azure Digital Twins with upstream and downstream systems
+  * Ingest IoT device messages and translate messages to Azure Digital Twins
+  * Configure Azure Digital Twins routes and endpoints to publish telemetry to Time Series Insights (TSI)
 
 ## Lab Instructions
 
@@ -62,7 +62,7 @@ To ensure these resources are available, complete the following tasks.
 
 1. In the virtual machine environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab19.json+++
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab19.json+++
 
     > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
 
@@ -133,7 +133,7 @@ The resources have now been created.
 
 ### Exercise 2 - Create an instance of the Azure Digital Twins resource
 
-In this exercise, the Azure portal will be used to create an Azure Digital Twins (ADT) instance. The connection data for Azure Digital Twins will then be stored in a text file for later use. Finally the current user will be assigned a role to allow the ADT resource to be accessed.
+In this exercise, the Azure portal will be used to create an Azure Digital Twins instance. The connection data for Azure Digital Twins will then be stored in a text file for later use. Finally the current user will be assigned a role to allow the Azure Digital Twins resource to be accessed.
 
 #### Task 1 - Use the Azure portal to create a resource (Azure Digital Twins)
 
@@ -169,7 +169,7 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
 
 1. Select **Go to resource**.
 
-    You should see the Overview pane for your ADT resource, which includes a body section titled **Get started with Azure Digital Twins**.
+    You should see the Overview pane for your Azure Digital Twins resource, which includes a body section titled **Get started with Azure Digital Twins**.
 
 #### Task 2 - Save the connection data to a reference file
 
@@ -207,7 +207,7 @@ As part of a modeling activity, analysts would consider many factors, such as th
 
 Considering the hierarchy of Interface definitions above, and the relationships between them, it can be said that **a Cheese Factory has Cheese Caves**, and **a Cheese Cave has Cheese Cave Devices**.
 
-When designing the Digital Twin models for an ADT environment, it is best to use a consistent approach for creating the IDs used for the Interfaces, Schemas, and Relationships. Each entity within the environment has an **@id** property (it is required for Interfaces) and should uniquely identify that entity. The format of the ID value is that of a **digital twin model identifier (DTMI)**. A DTMI has three components: scheme, path, and version. The scheme and path are separated by a colon `:`, while path and version are separated by a semicolon `;`. The format looks like this: `<scheme> : <path> ; <version>`. The value for scheme within the DTMI formatted ID is always **dtmi**.
+When designing the Digital Twin models for an Azure Digital Twins environment, it is best to use a consistent approach for creating the IDs used for the Interfaces, Schemas, and Relationships. Each entity within the environment has an **@id** property (it is required for Interfaces) and should uniquely identify that entity. The format of the ID value is that of a **digital twin model identifier (DTMI)**. A DTMI has three components: scheme, path, and version. The scheme and path are separated by a colon `:`, while path and version are separated by a semicolon `;`. The format looks like this: `<scheme> : <path> ; <version>`. The value for scheme within the DTMI formatted ID is always **dtmi**.
 
 One example for the ID value of a Contoso cheese factory would be: `dtmi:com:contoso:digital_factory:cheese_factory;1`.
 
@@ -257,14 +257,14 @@ There are a number of ways that this flow can be achieved:
 * Programmatically using one of the SDKs or directly via the REST APIs
 * Using tools such as the ADT Explorer sample
 
-As the ADT Explorer includes rich visualization of an ADT graph, it is well suited for building out the simple model for the proof-of-concept. However, larger, more complex, models are also supported and a comprehensive bulk import/export capability helps with iterative design. During this exercise the following tasks will be completed:
+As the ADT Explorer includes rich visualization of an Azure Digital Twins graph, it is well suited for building out the simple model for the proof-of-concept. However, larger, more complex, models are also supported and a comprehensive bulk import/export capability helps with iterative design. During this exercise the following tasks will be completed:
 
 * Access the ADT Explorer (Preview) via the Azure Portal
 * Import the Contoso Cheese models
 * Use the models to create digital twins
 * Add relationships to the graph
-* Learn how to use delete twins, relationships and models from ADT
-* Bulk import a graph into ADT
+* Learn how to use delete twins, relationships and models from Azure Digital Twins
+* Bulk import a graph into Azure Digital Twins
 
 #### Task 1 - Access the ADT Explorer
 
@@ -276,7 +276,7 @@ The **ADT Explorer** is a an application for the Azure Digital Twins service. Th
 * Edit properties of twins
 * Run queries against the twins graph
 
-The ADT explorer is incorporated into the Azure Portal as a preview feature and is also available as a standalone sample application. In this lab, the version incorporated into the Azure Portal will be used.
+The ADT Explorer is incorporated into the Azure Portal as a preview feature and is also available as a standalone sample application. In this lab, the version incorporated into the Azure Portal will be used.
 
 1. Open the [Azure portal](https://portal.azure.com) in new browser window.
 
@@ -293,14 +293,14 @@ The **ADT Explorer** sample application is now ready for use. Loading models is 
 
 #### Task 2 - Import Models
 
-In order to create Digital Twins in ADT, it is necessary to first upload models. There are a number of ways that models can be uploaded:
+In order to create Digital Twins in Azure Digital Twins, it is necessary to first upload models. There are a number of ways that models can be uploaded:
 
 * [Data Plane SDKs](https://docs.microsoft.com/azure/digital-twins/how-to-use-apis-sdks)
 * [Data Plane REST APIs](https://docs.microsoft.com/rest/api/azure-digitaltwins/)
 * [Azure CLI](https://docs.microsoft.com/cli/azure/ext/azure-iot/dt?view=azure-cli-latest)
 * The import feature of the [ADT Explorer](https://docs.microsoft.com/samples/azure-samples/digital-twins-explorer/digital-twins-explorer/)
 
-The first two options are more appropriate for programmatic scenarios, whereas the Azure CLI can be useful in **configuration as code** scenarios or "one-off" requirements. The **ADT Explorer** app provides an intuitive way to interact with ADT.
+The first two options are more appropriate for programmatic scenarios, whereas the Azure CLI can be useful in **configuration as code** scenarios or "one-off" requirements. The **ADT Explorer** app provides an intuitive way to interact with Azure Digital Twins.
 
 > **TIP**: What is **configuration as code**? As configuration is written as source code (for example, scripts containing Azure CLI commands), you can use best development practices to optimise it, such as: creating reusable definitions of model uploads, parameterization, using loops to create multiple instances of the models and so on. These scripts can then be stored in source code control to ensure they are retained, version controlled, etc.
 
@@ -352,7 +352,7 @@ In this task, you will use Azure CLI commands and the ADT Explorer sample app to
 
 1. In the **Open** dialog, navigate to the **Models** folder, select the **CheeseCaveInterface.json** and the **CheeseCaveDeviceInterface.json** files, and then click **Open**.
 
-    The two files will then be uploaded to ADT and the models added. Once complete, the **MODELS** explorer will update and list all three models.
+    The two files will then be uploaded to Azure Digital Twins and the models added. Once complete, the **MODELS** explorer will update and list all three models.
 
 Now that the models are uploaded, Digital Twins can be created.
 
@@ -381,7 +381,7 @@ As before, the first two options are more appropriate for programmatic scenarios
 
     Notice the following:
 
-    * The **--dt-name** value specifies the ADT twin instance.
+    * The **--dt-name** value specifies the Azure Digital Twins twin instance.
     * The **--dtmi** value specifies the Cheese Factory model uploaded earlier
     * The **--twin-id** specifies the ID given to the digital twin
     * The **--properties** value provides a file path for a JSON document that will be used to initialize the twin. Alternatively, simple JSON can also be specified in-line.
@@ -570,9 +570,9 @@ Similar to Models and Twins, relationships can be created in multiple ways.
 
 #### Task 5 - Deleting models, relationships and Twins
 
-During the design process for modeling with ADT, it is likely that a number of proof-of-concepts will be created, many of which will be deleted. Similar to the other operations on digital twins, there are programmatic approaches (API, SDK, and CLI) to deleting models and twins, and you can also use the **ADT Explorer**.
+During the design process for modeling with Azure Digital Twins, it is likely that a number of proof-of-concepts will be created, many of which will be deleted. Similar to the other operations on digital twins, there are programmatic approaches (API, SDK, and CLI) to deleting models and twins, and you can also use the **ADT Explorer**.
 
-> **NOTE**: One thing to note is that the delete operations are asynchronous and although, for example, a REST API call or a delete in **ADT Explorer** may appear to complete instantly, it may take a few minutes for the operation to complete within the ADT service. Attempting to upload revised models with the same name as recently deleted models may fail unexpectedly until the back-end operations have completed.
+> **NOTE**: One thing to note is that the delete operations are asynchronous and although, for example, a REST API call or a delete in **ADT Explorer** may appear to complete instantly, it may take a few minutes for the operation to complete within the Azure Digital Twins service. Attempting to upload revised models with the same name as recently deleted models may fail unexpectedly until the back-end operations have completed.
 
 1. To delete the **factory_2** digital twin via the CLI, return to your command prompt window, and then enter the following command:
 
@@ -657,7 +657,7 @@ During the design process for modeling with ADT, it is likely that a number of p
 
     > **IMPORTANT**: Use with care - there is no undo capability!
 
-At this point, the ADT instance should be clear of all models, twins and relationships. Don't worry - in the next task the **Import Graph** feature will be used to create a new graph.
+At this point, the Azure Digital Twins instance should be clear of all models, twins and relationships. Don't worry - in the next task the **Import Graph** feature will be used to create a new graph.
 
 #### Task 6 - Bulk import with ADT Explorer
 
@@ -878,7 +878,7 @@ A key limitation of the **ADT Explorer** is is that it is designed to render a g
 
 ### Exercise 5 - Configure and launch device simulator
 
-In the preceding exercises, the digital twin model and graph for the proof-of-concept were created. In order to demonstrate how to route device message traffic from IoT Hub to ADT, it is useful to use a device simulator. In this exercise, you will be configuring a simulated device app to send telemetry to your IoT Hub.
+In the preceding exercises, the digital twin model and graph for the proof-of-concept were created. In order to demonstrate how to route device message traffic from IoT Hub to Azure Digital Twins, it is useful to use a device simulator. In this exercise, you will be configuring a simulated device app to send telemetry to your IoT Hub.
 
 #### Task 1: Open the device simulator project
 
@@ -992,9 +992,9 @@ A key part of the proof-of-concept is to demonstrate how data from a device can 
 
 In order to configure an IoT Hub event grid endpoint to route telemetry to an Azure Function, it is necessary to first create the Azure Function. In this task, an Azure Function App is created that provides the execution context in which individual Azure Functions run.
 
-In order to access Azure Digital Twins and it's APIs, it is necessary to utilize a service principal with the appropriate permissions. During this task,.a service principal is created for the function app and then assigned the appropriate permission. Once the function app has the appropriate permission, any Azure Functions that execute within the function app context will use that service principal and will therefore have permission to access ADT.
+In order to access Azure Digital Twins and it's APIs, it is necessary to utilize a service principal with the appropriate permissions. During this task,.a service principal is created for the function app and then assigned the appropriate permission. Once the function app has the appropriate permission, any Azure Functions that execute within the function app context will use that service principal and will therefore have permission to access Azure Digital Twins.
 
-The function app context also provides an environment for managing app settings for one or more functions. This capability will be used to define a setting that contains the ADT connection string which can then be read by the Azure Functions. Encapsulating connection strings and other configurations values in app settings is considered a much better practice than hard-coding the values in the function code.
+The function app context also provides an environment for managing app settings for one or more functions. This capability will be used to define a setting that contains the Azure Digital Twins connection string which can then be read by the Azure Functions. Encapsulating connection strings and other configurations values in app settings is considered a much better practice than hard-coding the values in the function code.
 
 1. Open the browser window containing your Azure portal, and then open the Azure Cloud Shell.
 
@@ -1042,11 +1042,11 @@ The function app context also provides an environment for managing app settings 
 
     > **Note**: Remember to replace the **{your-id}** and **{adt-url}** tokens above. The **{adt-url}** value was saved to the **adt-connection.txt** file in an earlier task and will be similar to `https://adt-az220-training-dm030821.api.eus.digitaltwins.azure.net`.
 
-    Once complete, the command lists all of the available settings. The Azure Function will now be able to obtain the ADT service URL by reading the **ADT_SERVICE_URL** value.
+    Once complete, the command lists all of the available settings. The Azure Function will now be able to obtain the Azure Digital Twins service URL by reading the **ADT_SERVICE_URL** value.
 
 #### Task 2 - Review Contoso.AdtFunctions Project
 
-In this task you will review the Azure Function that will be executed whenever an event occurs on the associated Event Grid. The event will be processed and the message and telemetry will be routed to ADT.
+In this task you will review the Azure Function that will be executed whenever an event occurs on the associated Event Grid. The event will be processed and the message and telemetry will be routed to Azure Digital Twins.
 
 1. In **Visual Studio Code**, open the **Contoso.AdtFunctions** folder.
 
@@ -1135,7 +1135,7 @@ In this task you will review the Azure Function that will be executed whenever a
 
     Notice that the exception message is logged.
 
-1. To see how the function app principal is used to authenticate to ADT and create a client instance, locate the `// REVIEW authentication code below here` comment and review the following code:
+1. To see how the function app principal is used to authenticate to Azure Digital Twins and create a client instance, locate the `// REVIEW authentication code below here` comment and review the following code:
 
     ```csharp
     ManagedIdentityCredential cred = new ManagedIdentityCredential("https://digitaltwins.azure.net");
@@ -1198,7 +1198,7 @@ In this task you will review the Azure Function that will be executed whenever a
     > **TIP**: To learn more about the event schema, review the following resource:
     > * [Event schema](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid-trigger?tabs=csharp%2Cbash#event-schema)
 
-1. To inspect the code that updates the ADT twin, locate the `// REVIEW ADT update code below here` comment and review the following code below it:
+1. To inspect the code that updates the digital twin, locate the `// REVIEW ADT update code below here` comment and review the following code below it:
 
     ```csharp
     //Update twin
@@ -1215,7 +1215,7 @@ In this task you will review the Azure Function that will be executed whenever a
 
     There are two approaches being used to apply data to the digital twin - the first via property updates using a JSON patch, the second via the publishing of telemetry data.
 
-    The ADT client utilizes a JSON Patch document to add or update digital twin properties. The JSON Patch defines a JSON document structure for expressing a sequence of operations to apply to a JSON document. The various values are added to the patch as append or replace operations, and the ADT is then updated asynchronously.
+    The Azure Digital Twins client utilizes a JSON Patch document to add or update digital twin properties. The JSON Patch defines a JSON document structure for expressing a sequence of operations to apply to a JSON document. The various values are added to the patch as append or replace operations, and the Azure Digital Twins is then updated asynchronously.
 
    > **TIP**: To learn more about a JSON Patch document, review the following resources:
    > * [Javascript Object Notation (JSON) Patch](https://tools.ietf.org/html/rfc6902)
@@ -1262,7 +1262,7 @@ The function is ready to be published.
 
 ### Exercise 7 - Connect IoT Hub to the Azure Function
 
-In this exercise, the IoT Hub created by the setup script will be configured to publish events as they occur to the Azure Function created in the previous exercise. The telemetry from the device simulator created earlier will then be routed to the ADT instance.
+In this exercise, the IoT Hub created by the setup script will be configured to publish events as they occur to the Azure Function created in the previous exercise. The telemetry from the device simulator created earlier will then be routed to the Azure Digital Twins instance.
 
 1. Open a browser and navigate to the [Azure portal](https://portal.azure.com/).
 
@@ -1382,25 +1382,25 @@ In this exercise, the IoT Hub created by the setup script will be configured to 
 
     You should be able to see that the **fanAlert**, **temperatureAlert** and **humidityAlert** properties have been updated.
 
-At this point, the data ingestion from device (in this case a device simulator) into ADT has been demonstrated. The next exercise will demonstrate how telemetry can be streamed to Time Series Insights (TSI).
+At this point, the data ingestion from device (in this case a device simulator) into Azure Digital Twins has been demonstrated. The next exercise will demonstrate how telemetry can be streamed to Time Series Insights (TSI).
 
-### Exercise 8 - Connect ADT to TSI
+### Exercise 8 - Connect Azure Digital Twins to TSI
 
 In this exercise, you will complete the final part of the proof-of-concept - streaming the device telemetry sent from the Cheese Cave Device sensor-th-0055 via the simulator, through Azure Digital Twins to Time Series Insights.
 
 > **NOTE**: The setup script for this lab created the Azure Storage Account, Time Series Insights Environment and Access Policy that will be used during this exercise.
 
-Routing event data from ADT to TSI is achieved by the following basic flow:
+Routing event data from Azure Digital Twins to TSI is achieved by the following basic flow:
 
-* ADT publishes notification events to an Event Hub (adt2func)
+* Azure Digital Twins publishes notification events to an Event Hub (adt2func)
 * An Azure Function is triggered by events from the adt2func Event Hub, creates a new event for TSI, adds a partition key and published to another Event Hub (func2tsi)
 * TSI subscribes to events published to the func2tsi Event Hub.
 
-In order to implement this flow, the following resources must be created (in addition to ADT and TSI):
+In order to implement this flow, the following resources must be created (in addition to Azure Digital Twins and TSI):
 
 * An Azure Function
 * An Event Hub Namespace
-* Two Event Hubs - one for events from ADT to the Azure Function, another for events from the Azure Function for TSI.
+* Two Event Hubs - one for events from Azure Digital Twins to the Azure Function, another for events from the Azure Function for TSI.
 
 The Azure function can serve a number of purposes:
 
@@ -1468,7 +1468,7 @@ An Event Hubs namespace provides DNS integrated network endpoints and a range of
 
 This namespace will contain the event hub used to integrate the digital twin telemetry with an Azure function, and an event hub that will take the output of the Azure function and integrate it with Time Series Insights.
 
-#### Task 2 - Add an event hub for ADT
+#### Task 2 - Add an event hub for Azure Digital Twins
 
 This task will create an Event Hub that will subscribe to the twin telemetry events and pass them to an Azure Function.
 
@@ -1530,9 +1530,9 @@ In this task, an authorization rule with **Listen** and **Send** permissions wil
 
 1. Close the **SAS Policy: ADTHubPolicy** pane.
 
-#### Task 4 - Add an event hub endpoint to the ADT instance
+#### Task 4 - Add an event hub endpoint to the Azure Digital Twins instance
 
-Now that the Event Hub is created, it must be added as an endpoint that the ADT instance can use as an output to send events.
+Now that the Event Hub is created, it must be added as an endpoint that the Azure Digital Twins instance can use as an output to send events.
 
 1. Navigate to the **adt-az229-training-{your-id}** instance.
 
@@ -1564,7 +1564,7 @@ Now that the Event Hub is created, it must be added as an endpoint that the ADT 
 
 #### Task 5 - Add a route to send telemetry to the event hub
 
-With the addition of the Event Hub endpoint to the ADT instance, it is now necessary to create a route that sends twin telemetry events to this endpoint.
+With the addition of the Event Hub endpoint to the Azure Digital Twins instance, it is now necessary to create a route that sends twin telemetry events to this endpoint.
 
 1. In the left navigation area, under **Connect outputs**, click **Event routes**.
 
@@ -1636,7 +1636,7 @@ This time, the Event Hub and authorization rule will be created using the Azure 
 
 #### Task 7 - Add the Endpoint addresses as app settings for Azure Function
 
-In order for an Azure Function to connect to an Event Hub, it must have access to the connection string for a policy with the appropriate rights. In this scenario, two Event Hubs are involved  - the hub that publishes the event from ADT and the hub that publishes the data transformed by the Azure Function to TSI.
+In order for an Azure Function to connect to an Event Hub, it must have access to the connection string for a policy with the appropriate rights. In this scenario, two Event Hubs are involved  - the hub that publishes the event from Azure Digital Twins and the hub that publishes the data transformed by the Azure Function to TSI.
 
 1. To supply the Event Hub authorization rule connections strings as environments variable, in the Azure portal, navigate to the **func-az220-hub2adt-training-{your-id}** instance.
 
@@ -1744,7 +1744,7 @@ In this task, the second Azure function will be reviewed. This function will be 
     }
     ```
 
-    This code checks that the current event is telemetry from a Cheese Cave Device ADT twin - if not, logs that it isn't and then forces the method to complete asynchronously - this can make better use of resources.
+    This code checks that the current event is telemetry from a Cheese Cave Device digital twin - if not, logs that it isn't and then forces the method to complete asynchronously - this can make better use of resources.
 
     > **TIP**: To learn more about the use of `await Task.Yield();` review the following resource:
     > * [Task.Yield Method](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task.yield?view=net-5.0)
