@@ -106,14 +106,15 @@ To ensure these resources are available, complete the following steps.
 
     1. To specify storage options, click **Show advanced settings**.
 
-    1. Under **Resource group**, ensure **Use existing** is selected and the **rg-az220** is shown.
+    1. Under **Resource group**, ensure **Use existing** is selected and select a resource group associated with your account.
 
+        If there is not resource group defined, select **create new** and specify **rg-account**.
+ 
     1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
 
     1. Under **File share**, select **Create new** and enter the following **cloudshell**.
 
     1. To finish to configuration of the cloud shell, click **Create storage**.
-
 
 1. Copy the displayed object ID value, and then close the cloud shell.
 
@@ -123,22 +124,39 @@ To ensure these resources are available, complete the following steps.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start.
+    The deployment will start. It will take several minutes to deploy the required Azure resources.
+
+1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+1. In your text editor, enter the following text labels:
+
+    +++connectionString:+++
+    +++deviceConnectionString:+++
+    +++devicePrimaryKey:+++
+    +++storageAccountName:+++
+
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
+
+1. Switch back to the Azure portal window and wait for the deployment to finish.
+
+    You will see a notification when deployment is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Make a note of the outputs for use later:
+1. In your text editor, create a record of the following Outputs for use later in the lab:
 
     * connectionString
     * deviceConnectionString
     * devicePrimaryKey
     * storageAccountName
 
-The resources have now been created.
+    The Azure resources required for this lab are now available.
 
 #### Task 2 - Verify tools
 
-1. Open a command prompt and verify the Azure CLI is installed locally, by entering the following command:
+1. In your virtual machine environment, open a Windows Command Prompt window.
+
+1. To display the version of Azure CLI that is installed locally, enter the following command:
 
     ```powershell
     az --version
@@ -154,7 +172,9 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
 
 #### Task 1 - Use the Azure portal to create a resource (Azure Digital Twins)
 
-1. Open the [Azure portal](https://portal.azure.com) in new browser window.
+1. In your Azure portal window, on the Azure portal menu, click **Dashboard**.
+
+    On the All resources tile, you should see the resources listed that were created for this lab.
 
 1. On the Azure portal menu, click **+ Create a resource**.
 
@@ -162,7 +182,7 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
 
 1. In the **Search the marketplace** text box, type **Azure Digital Twins**
 
-1. When the option appears, select **Azure Digital Twins**, and then click **Create**.
+1. When the search results appear, select **Azure Digital Twins**, and then click **Create**.
 
 1. On the **Create Resource** pane, under **Subscription**, ensure that the subscription you are using for this lab is selected.
 
@@ -172,9 +192,13 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
 
 1. For the **Resource name**, enter **adt-az220-training-{your-id}**.
 
-1. In the **Region** dropdown, select the region where your Azure IoT Hub is provisioned (or the closest region available).
+    +++adt-az220-training-{your-id}+++
 
-1. Under **Grant access to resource**, to ensure the current user can use the **Digital Twins Explorer** app, check **Assign Azure Digital Twins Owner Role**.
+    > **NOTE**: Be sure to replace the your-id placeholder, including the curly brackets, value with the unique ID that you created earlier.
+
+1. In the **Region** dropdown, select the region where your resource group and Azure IoT hub are provisioned (or the closest region available).
+
+1. Under **Grant access to resource**, to ensure that you can use the **Digital Twins Explorer** app, check **Assign Azure Digital Twins Owner Role**.
 
     > **Note**: To manage the elements within an instance, a user needs access to Azure Digital Twins data plane APIs. Select the suggested role above grants the current user full access to the data plane APIs. You can also use Access Control (IAM) to choose appropriate roles later. You can learn more about Azure Digital Twins Security [here](https://docs.microsoft.com/azure/digital-twins/concepts-security)
 
@@ -182,23 +206,23 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
 
 1. To start the deployment process, click **Create**.
 
-    Wait a few moments while **Deployment in progress** is displayed.
+    After a moment the **Deployment in progress** will be displayed. Wait for the deployment to complete.
 
-1. Select **Go to resource**.
+1. Once your deployment is complete, select **Go to resource**.
 
     You should see the Overview pane for your Azure Digital Twins resource, which includes a body section titled **Get started with Azure Digital Twins**.
 
 #### Task 2 - Save the connection data to a reference file
 
-1. Using **Notepad** or a similar text editor, create a file named **adt-connection.txt**.
+1. Take a moment to review the Overview page of your Azure Digital Twins blade.
 
-1. Add the name of the Azure Digital Twins instance to the file - **adt-az220-training-{your-id}**
+1. On the left-side navigation menu, under **Settings**, click **Properties**.
 
-1. Add the resource group to the file - **rg-az220**
+1. Copy the values of the **Name** and **Resource group** properties to you text editor (Notepad) and label the values as **ADT name:** and **ADT rg:**
 
-1. In your browser, return to the Digital Twins instance **Overview** pane.
+1. Navigate back to the **Overview** page of your Azure Digital Twins instance.
 
-1. In the **Essentials** section of the pane, locate the **Host name** field.
+1. In the **Essentials** section of the page, locate the **Host name** field.
 
 1. Hover the mouse pointer over the **Host name** field, use the icon than appears to the right of the value to copy the host name to the clipboard, and then paste it into the text file.
 
@@ -210,7 +234,11 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
     https://adt-az220-training-dm030821.api.eus.digitaltwins.azure.net
     ```
 
-1. Save the **adt-connection.txt** file.
+1. To label the new value, mark it as **ADT url:**
+
+1. Save the text editor file.
+
+    You can name it something like "adt lab info.txt".
 
 The Azure Digital Twin resource is now created and the user account has been updated so that the resource can be accessed via APIs.
 
@@ -252,7 +280,7 @@ And the relationships between IDs could be:
 | Has Caves  | dtmi:com:contoso:digital_factory:cheese_factory:rel_has_caves;1 | dtmi:com:contoso:digital_factory:cheese_factory;1               | dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave;1        |
 | Has Devices  | dtmi:com:contoso:digital_factory:cheese_cave:rel_has_devices;1  | dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave;1 | dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave_device;1 |
 
-> **NOTE**: In _Lab 3: Setup the Development Environment_, you cloned the GitHub repository containing lab resources by downloading a ZIP file and extracting the contents locally. The extracted folder structure includes the following folder path:
+> **NOTE**: The Lab 19 **Models** folder is part of the lab resources that you downloaded before starting this lab. The folder path is:
 >
 > * Allfiles
 >   * Labs
@@ -261,8 +289,10 @@ And the relationships between IDs could be:
 >               * Models
 >
 >  The complete models referenced in this exercise are available in this folder location.
+>
+> **Note**: If you have trouble finding the Allfiles folder, check your Windows Desktop folder.
 
-Fore the purposes of this exercise, the interfaces have already been defined for each of the digital twins that will be used in the proof-of-concept, it is time to construct the actual graph of digital twins. The flow for building a graph is straightforward:
+For the purposes of this exercise, the interfaces have already been defined for each of the digital twins that will be used in the proof-of-concept, it is time to construct the actual graph of digital twins. The flow for building a graph is straightforward:
 
 * Import the model definitions
 * Create twin instances from the appropriate models
@@ -295,16 +325,15 @@ The **ADT Explorer** is a an application for the Azure Digital Twins service. Th
 
 The ADT Explorer is incorporated into the Azure Portal as a preview feature and is also available as a standalone sample application. In this lab, the version incorporated into the Azure Portal will be used.
 
-1. Open the [Azure portal](https://portal.azure.com) in new browser window.
+1. In your Azure portal window, navigate to the Digital Twins instance **Overview** page.
 
-1. In your browser, navigate to the Digital Twins instance **Overview** pane.
-
-1. To open the ADT Explorer in a new browser tab, click **Open Azure Digital Twins Explorer (preview)**.
+1. Near the top of the **Overview** page, to open the ADT Explorer in a new browser tab, click **Open Azure Digital Twins Explorer (preview)**.
 
     A new browser tab hosting the ADT Explorer will open. You will see an alert indicating no results have been found - this is expected as no models have been imported.
 
     > **Important**: If you are prompted to login, ensure you use the same account that you used when creating the Azure Digital Twins instance, otherwise you will not have access to the data plane APIs and will see errors.
 
+1. On the **Azure Digital Twins URL** popup, enter the value of the Azure Digital Twins URL that you created in Notepad, and then click **Save**.
 
 The **ADT Explorer** sample application is now ready for use. Loading models is your next task, so don't be alarmed if you see an error message telling you that there are no models available.
 
@@ -325,19 +354,23 @@ In this task, you will use Azure CLI commands and the ADT Explorer sample app to
 
 1. Open a command prompt window.
 
-1. To ensure that you using correct Azure account credentials, login to Azure using the following command:
+1. To ensure that you are using correct Azure account credentials, login to Azure using the following command:
 
     ```powershell
     az login
     ```
 
-1. To upload the **Cheese Factory Interface**, enter the following command:
+1. At the command prompt, to upload the **Cheese Factory Interface**, enter the following command:
 
+    > **NOTE**: You may want to construct the following command in your text editor before entering it at the command prompt.
+ 
     ```powershell
     az dt model create --models "{file-root}\Allfiles\Labs\19-Azure Digital Twins\Final\Models\CheeseFactoryInterface.json" -n adt-az220-training-{your-id}
     ```
 
-    Ensure you replace the **{file-root}** with the folder the companion files for this lab are located, and replace **{your-id}** with your unique identifier.
+    > **IMPORTANT**: Ensure that you replace the **{file-root}** with the folder location where the resource files for this lab are located, and replace **{your-id}** with your unique identifier.
+
+    By default, the root-file location is: **C:\Users\Student\Desktop**
 
     If successful, output similar to the following will be displayed.
 
@@ -476,17 +509,17 @@ As before, the first two options are more appropriate for programmatic scenarios
 
     ![ADT Explorer Property View enter factory name](media/LAB_AK_19-propertyexplorer-factoryname.png)
 
-1. In the **PROPERTIES** Explorer pane, to save the update to the property, select the **Patch Twin** icon.
+1. In the **PROPERTIES** Explorer pane, to save the update to the property, select the **Save changes** icon.
 
-    > **Note**: The Patch Twin icon appears identical to the Save Query icon located to the right of the Run Query button. You don't want the Save Query icon.
+    > **Note**: The Save changes icon appears identical to the Save Query icon located to the right of the Run Query button. You don't want the Save Query icon.
 
-    Selecting Patch Twin will result in a JSON Patch being created and sent to update the digital twin. The **Patch Information** will be displayed in a dialog. Notice that as this is the first time the value has been set, the **op** (operation) property is **add**. Subsequent changes to the value would be **replace** operations - to see this, click **Run Query** to refresh the **TWIN GRAPH** view before making another update.
+    Selecting Save changes will result in a JSON Patch being created and sent to update the digital twin. The **Patch Information** will be displayed in a dialog. Notice that as this is the first time the value has been set, the **op** (operation) property is **add**. Subsequent changes to the value would be **replace** operations - to see this, click **Run Query** to refresh the **TWIN GRAPH** view before making another update.
 
    > **TIP**: To learn more about a JSON Patch document, review the following resources:
    > * [Javascript Object Notation (JSON) Patch](https://tools.ietf.org/html/rfc6902)
    > * [What is JSON Patch?](http://jsonpatch.com/)
 
-1. In the **PROPERTIES** explorer, examine the **factory_2** **GeoLocation** property - notice the values for **Latitude** and **Longitude** are shown as **Unset**.
+1. In the **PROPERTIES** explorer, examine the **factory_2** **GeoLocation** property - notice the values for **Latitude** and **Longitude** are shown as **not set**.
 
     > **Info**: Earlier versions of the ADT Explorer did not support editing "sub-properties" via the UI - this feature is a welcome addition.
 
@@ -494,10 +527,10 @@ As before, the first two options are more appropriate for programmatic scenarios
 
     | Property name | Value |
     | :-- | :-- |
-    | Latitude | 47.64530450740752 |
-    | Longitude | -122.12594819866645 |
+    | Latitude | +++47.64530450740752+++ |
+    | Longitude | +++-122.12594819866645+++ |
 
-1. In the **PROPERTIES** Explorer pane, to save the update to the properties, select the **Patch Twin** icon.
+1. In the **PROPERTIES** Explorer pane, to save the update to the properties, select the **Save changes** icon.
 
     Notice that the Patch Information is once again displayed.
 
