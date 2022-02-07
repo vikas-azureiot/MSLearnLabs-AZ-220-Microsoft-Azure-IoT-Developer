@@ -131,8 +131,11 @@ To ensure these resources are available, complete the following steps.
 1. In your text editor, enter the following text labels:
 
     +++connectionString:+++
+
     +++deviceConnectionString:+++
+
     +++devicePrimaryKey:+++
+
     +++storageAccountName:+++
 
     > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
@@ -329,7 +332,7 @@ The ADT Explorer is incorporated into the Azure Portal as a preview feature and 
 
 1. Near the top of the **Overview** page, to open the ADT Explorer in a new browser tab, click **Open Azure Digital Twins Explorer (preview)**.
 
-    A new browser tab hosting the ADT Explorer will open. You will see an alert indicating no results have been found - this is expected as no models have been imported.
+    A new browser tab hosting the ADT Explorer will open.
 
     > **Important**: If you are prompted to login, ensure you use the same account that you used when creating the Azure Digital Twins instance, otherwise you will not have access to the data plane APIs and will see errors.
 
@@ -352,13 +355,15 @@ The first two options are more appropriate for programmatic scenarios, whereas t
 
 In this task, you will use Azure CLI commands and the ADT Explorer sample app to upload the models included in the **Allfiles\Labs\19-Azure Digital Twins\Final\Models** folder.
 
-1. Open a command prompt window.
+1. Open a Windows Command Prompt window.
 
 1. To ensure that you are using correct Azure account credentials, login to Azure using the following command:
 
     ```powershell
     az login
     ```
+
+1. When prompted, enter the Azure account credentials that you are using for this lab.
 
 1. At the command prompt, to upload the **Cheese Factory Interface**, enter the following command:
 
@@ -370,7 +375,7 @@ In this task, you will use Azure CLI commands and the ADT Explorer sample app to
 
     > **IMPORTANT**: Ensure that you replace the **{file-root}** with the folder location where the resource files for this lab are located, and replace **{your-id}** with your unique identifier.
 
-    By default, the root-file location is: **C:\Users\Student\Desktop**
+    By default, the root-file location is: +++C:\Users\Student\Desktop+++
 
     If successful, output similar to the following will be displayed.
 
@@ -534,7 +539,7 @@ As before, the first two options are more appropriate for programmatic scenarios
 
     Notice that the Patch Information is once again displayed.
 
-1. Add the following digital twins by selecting the appropriate model in **MODELS** explorer and clicking **Add a Twin**:
+1. Add the following digital twins by selecting the appropriate model in **MODELS** explorer and clicking **Create a Twin**:
 
     | Model Name                             | Digital Twin Name |
     | :------------------------------------- | :---------------- |
@@ -577,7 +582,7 @@ Similar to Models and Twins, relationships can be created in multiple ways.
     }
     ```
 
-1. To visualize the relationship, in a browser, return to the **ADT Explorer**.
+1. To visualize the relationship, return to the **ADT Explorer** window.
 
 1. To display the updated digital twins, click **Run Query**.
 
@@ -588,6 +593,8 @@ Similar to Models and Twins, relationships can be created in multiple ways.
     If you don't see the relationship, refresh the browser window and then run the query.
 
 1. To add a relationship using the **ADT Explorer**, first click **cave_1** to select it, and then **right-click** **device_1**. In the displayed context menu, select **Add relationships**.
+
+    If the popup menu is cut of at the bottom of the display screen you may need to adjust the disply in order to select the Add relationships command.
 
 1. In the **Create Relationship** dialog, under **Source ID**, confirm that **cave_1** is displayed.
 
@@ -638,7 +645,9 @@ During the design process for modeling with Azure Digital Twins, it is likely th
     az dt twin relationship delete -n adt-az220-training-{your-id} --twin-id factory_1 --relationship-id factory_1_has_cave_1
     ```
 
-    Notice that this command requires the relationship ID. You can view the relationship IDs for a given twin. For example, to view the relationship IDs for **factory_1**, you can enter the following command:
+    > **NOTE**: This command requires the relationship ID value for the relationship that you created. To view a relationship ID in the Azure Digital Twins Explorer, select the relationship and review the displayed properties. Update the command above with the relationship ID displayed in the Explorer before running the command.
+
+    You can also use Azure CLI to view relationship IDs for a given twin. For example, to view the relationship IDs for **factory_1**, you can enter the following command:
 
     ```powershell
     az dt twin relationship list -n adt-az220-training-{your-id} --twin-id factory_1
@@ -675,17 +684,13 @@ During the design process for modeling with Azure Digital Twins, it is likely th
 
     > **IMPORTANT**: This command deleted the factory model and succeeded, even though a digital twin **factory_1** still exists. Digital twins that were created using the deleted model can still be found by querying the graph, however, properties of the twin can no longer be updated without the model. Be very careful when completing model management tasks (versioning, deleting, etc.) to avoid creating inconsistent graphs.
 
-1. To display the recent changes to the digital twins, return to the **ADT Explorer**.
+1. To display the recent changes to the Azure Digital Twins environment, return to the **ADT Explorer**, and then refresh the models and run the query.
 
-1. To update the display, refresh the browser page and then click **Run Query**.
-
-    The **Cheese Factory** model should be missing from the **MODELS** explorer and there should be no relationship between **factory_1** and **cave_1** in the **TWIN GRAPH** view.
+    In addition to the **factory_2** twin being deleted, the **Cheese Factory** model should be missing from the **MODELS** explorer and there should be no relationship between **factory_1** and **cave_1** in the **TWIN GRAPH** view.
 
 1. To select the relationship between **cave_1** and **device_1**, click the line between the two twins.
 
-    The line should thicken indicating it is selected and the **Delete Relationship** button will be enabled.
-
-    ![ADT Explorer graph view delete relationship](media/LAB_AK_19-graphview-deleterel.png)
+    The line should thicken indicating it is selected, and the relationship properties will be displayed.
 
 1. To delete the relationship, right-lick the line and select **Delete relationship(s)** from the context menu, and confirm by clicking **Delete**.
 
@@ -695,19 +700,13 @@ During the design process for modeling with Azure Digital Twins, it is likely th
 
     > **NOTE**: By using **CTRL** and left-click, multiple twins can be selected. To delete them, right-click the final twin and select **Delete twin(s)** from the context menu.
 
-1. In the upper-right corner of the ADT Explorer page, to delete all of the digital twins in a graph, click **Delete All Twins**, and confirm by clicking **Delete**.
-
-    ![ADT Explorer delete all twins](media/LAB_AK_19-deletealltwins.png)
-
-    > **IMPORTANT**: Use with care - there is no undo this capability!
-
 1. To delete the **Cheese Cave Device** model from the **MODELS** explorer, click the associated **Delete Model** button, and confirm by clicking **Delete**.
 
 1. To delete all models, click **Delete All Models** at the top of the **MODELS** explorer.
 
     > **IMPORTANT**: Use with care - there is no undo capability!
 
-At this point, the Azure Digital Twins instance should be clear of all models, twins and relationships. Don't worry - in the next task the **Import Graph** feature will be used to create a new graph.
+At this point, the Azure Digital Twins instance should be clear of all models, twins and relationships. Don't worry - in the next task, the **Import Graph** feature will be used to create a new graph.
 
 #### Task 6 - Bulk import with ADT Explorer
 
