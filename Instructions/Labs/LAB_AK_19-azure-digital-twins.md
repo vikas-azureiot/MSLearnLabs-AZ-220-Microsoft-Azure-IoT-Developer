@@ -18,7 +18,7 @@ In order to demonstrate the advantages of Azure Digital Twins for Contoso stakeh
 
 In this first prototype, you have been asked to demonstrate solutions for the following scenarios:
 
-* Mapping an IoT hub device to a corresponding digital twin (device) and ingesting telemetry data from IoT hub into Azure Digital Twins
+* Mapping an IoT hub device to a corresponding digital twin and ingesting telemetry data from IoT hub into Azure Digital Twins
 * Updating the property of a parent digital twin when a child digital twin's property/telemetry is updated (update the currentTemp property of a Cheese Cave twin when the temperature property of a Cheese Cave Device twin changes)
 * Routing digital twin telemetry values from the Azure Digital Twins instance to a downstream service (Time Series Insights)
 
@@ -96,9 +96,26 @@ To ensure these resources are available, complete the following steps.
     az ad signed-in-user show --query objectId -o tsv
     ```
 
-    > **Note**: If the cloud shell has not been configured, follow the steps in **Lab 3 - Exercise 2 - Task 3: Configure cloud shell storage & Task 4: Install Azure CLI Extension - cloud environment**.
+    In the Azure portal, the Cloud Shell button has an icon that resembles a command prompt - **`>_`**.
 
-    Copy the displayed object ID.
+    > **Note**: If the cloud shell has not been configured, follow these steps:
+
+    1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
+
+    1. Under **Subscription**, ensure the correct subscription is displayed.
+
+    1. To specify storage options, click **Show advanced settings**.
+
+    1. Under **Resource group**, ensure **Use existing** is selected and the **rg-az220** is shown.
+
+    1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+
+    1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+
+    1. To finish to configuration of the cloud shell, click **Create storage**.
+
+
+1. Copy the displayed object ID value, and then close the cloud shell.
 
 1. In the **Object ID** field, enter the object ID copied from the above step.
 

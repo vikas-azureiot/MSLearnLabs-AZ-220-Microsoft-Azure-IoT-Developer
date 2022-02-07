@@ -35,7 +35,7 @@
     "identityName": "[format('{0}ID{1}', parameters('courseID'), uniqueString(resourceGroup().id))]",
     "contributorRoleDefinitionId": "[format('/subscriptions/{0}/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c', subscription().subscriptionId)]",
     "deviceID": "sensor-th-0055",
-    "storageName": "[format('sta{0}training{1}', parameters('courseID'), parameters('yourID'))]",
+    "storageName": "[format('st{0}training{1}', parameters('courseID'), parameters('yourID'))]",
     "tsiName": "[format('tsi-{0}-training-{1}', parameters('courseID'), parameters('yourID'))]",
     "scriptIdentity": {
       "type": "UserAssigned",
