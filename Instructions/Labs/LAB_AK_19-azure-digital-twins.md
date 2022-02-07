@@ -10,17 +10,17 @@ lab:
 
 Contoso Management has decided to take the next step in their digital evolution and develop a model of their cheese making facility using Azure Digital Twins. With Azure Digital Twins, it is possible to create and interact with live models of real-world environments. First, each individual element is modeled as a digital twin. Then, these models are connected into a knowledge graph that can respond to live events and be queried for information.
 
-In order to better understand how to best leverage Azure Digital Twins, you have been asked to build a proof-of-concept prototype that demonstrates how the existing Cheese Cave Device sensor telemetry can be incorporated into a simple model hierarchy:
+In order to demonstrate the advantages of Azure Digital Twins for Contoso stakeholders, you have been asked to build a proof-of-concept prototype that demonstrates how the telemetry of an existing Cheese Cave device can be incorporated into the following (simplified) model hierarchy:
 
 * Cheese Factory
 * Cheese Cave
 * Cheese Cave Device
 
-In this first prototype, you have been asked to demonstrate the solutions to the following scenarios:
+In this first prototype, you have been asked to demonstrate solutions for the following scenarios:
 
-* How device telemetry can be mapped from an IoT Hub into the appropriate device in Azure Digital Twins
-* How updates to a child digital twin property can be used to update a parent twin property (from a Cheese Cave Device to a Cheese Cave)
-* How device telemetry can be routed via Azure Digital Twins to Time Series Insights
+* Mapping an IoT hub device to a corresponding digital twin (device) and ingesting telemetry data from IoT hub into Azure Digital Twins
+* Updating the property of a parent digital twin when a child digital twin's property/telemetry is updated (update the currentTemp property of a Cheese Cave twin when the temperature property of a Cheese Cave Device twin changes)
+* Routing digital twin telemetry values from the Azure Digital Twins instance to a downstream service (Time Series Insights)
 
 The following resources will be created:
 
@@ -58,7 +58,7 @@ This lab assumes that the following Azure resources are available:
 | TSI            | tsi-az220-training-{your-id} |
 | TSI Access Policy | access1                   |
 
-To ensure these resources are available, complete the following tasks.
+To ensure these resources are available, complete the following steps.
 
 1. In the virtual machine environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
