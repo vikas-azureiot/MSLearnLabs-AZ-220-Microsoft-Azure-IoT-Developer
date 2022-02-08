@@ -165,7 +165,7 @@ To ensure these resources are available, complete the following steps.
     az --version
     ```
 
-1. Verify that azure-cli version 2.4.0 or later is listed
+1. Verify that azure-cli version 2.11.0 or later is listed
 
     If Azure CLI is not installed, you must install it before you continue.
 
