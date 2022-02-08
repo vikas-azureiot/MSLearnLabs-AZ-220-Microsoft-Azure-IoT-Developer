@@ -170,7 +170,7 @@ To ensure these resources are available, complete the following steps.
     Azure CLI version 2.11 provides the ability to upgrade to the latest version. To upgrade, enter the following command:
 
         ```powershell
-        az --version
+        az update
         ```
 
     > **NOTE**: If Azure CLI is not installed, you must install it before you continue:
