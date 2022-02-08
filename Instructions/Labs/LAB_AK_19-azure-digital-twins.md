@@ -772,7 +772,7 @@ The spreadsheet **cheese-factory-scenario.xlsx** can be found in the **{file-roo
 
 1. To view the JSON, open the downloaded file in Visual Studio Code.
 
-    If the JSON is shown as a single line, reformat the JSON using the **Format Document** command via the command palette or by pressing **SHIFT+ALT+F**.
+    If the JSON is shown as a single line, reformat the JSON using the **Format Document** command via the command palette or by using a right-click in the editor view and then selecting Format Document.
 
     The JSON has three primary sections:
 
@@ -782,7 +782,7 @@ The spreadsheet **cheese-factory-scenario.xlsx** can be found in the **{file-roo
 
     > **NOTE**: Unlike the Excel format, the JSON file includes the model definitions, meaning that everything can be imported with just the one file.
 
-1. To import the JSON file, use **ADT Explorer** to delete the models and twins following the instructions in earlier tasks, and then import the JSON export file that was just created. Note that the models, twins and their properties, and the relationships are recreated.
+1. To import the JSON file, use **ADT Explorer** to delete the models and twins following the instructions in earlier tasks, and then import the JSON file that was just created by using the **Import graph** button. Note that the models, twins and their properties, and the relationships are recreated.
 
 This twin graph will be used as the basis for the exercise on querying.
 
@@ -802,7 +802,7 @@ Queries can be made through the Digital Twins REST API and with the SDKs. In thi
 
 In this task, the ADT Explorer will be used to execute graph queries and render the results as a graph. Twins can be queried by properties, model type and by relationships. Queries can be combined into compound queries using combination operators that can query for more than one type of twin descriptor at a a time.
 
-1. In a browser, return to the **ADT Explorer**.
+1. Return to the **ADT Explorer** window.
 
 1. Ensure the **QUERY EXPLORER** query is set to the following:
 
@@ -810,7 +810,7 @@ In this task, the ADT Explorer will be used to execute graph queries and render 
     SELECT * FROM digitaltwins
     ```
 
-    If you are at all familiar with SQL, you will expect that this will return everything from digital twins.
+    If you are familiar with SQL, you will realize that this query will return everything from digital twins.
 
 1. To run this query, click **Run Query**.
 
@@ -824,24 +824,30 @@ In this task, the ADT Explorer will be used to execute graph queries and render 
 
     > **TIP**: Run the **All Twins** query to return to the full view at any time.
 
-1. To filter the graph so that only **Cheese Cave** twins are displayed, enter and run the following query:
+1. To create a query that filters the graph so that only **Cheese Cave** twins are displayed, enter the following query:
 
     ```sql
     SELECT * FROM digitaltwins
     WHERE IS_OF_MODEL('dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave;1')
     ```
 
+1. Review the query and verify that it matches the suggested syntax, and then click **Run Query**.
+
+    If you get an error, ensure that there is a space between **digitaltwins** and **WHERE**.
+ 
     The graph will now display just the 3 **Cheese Cave** twins.
 
     Save this query as **Just Caves**.
 
-1. To display only the **Cheese Cave** twins that are **inUse**, enter and run the following query:
+1. To create a query that displays only the **Cheese Cave** twins that are **inUse**, enter the following query:
 
     ```sql
     SELECT * FROM digitaltwins
     WHERE IS_OF_MODEL('dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave;1')
     AND inUse = true
     ```
+
+1. Review the query and verify that it matches the suggested syntax, and then click **Run Query**.
 
     The graph should now display just **cave_3** and **cave_1**.
 
@@ -880,7 +886,7 @@ In this task, the ADT Explorer will be used to execute graph queries and render 
 
 #### Task 2 - Query for properties using the ADT Explorer
 
-A key limitation of the **ADT Explorer** is is that it is designed to render a graph and the primary display cannot show the results for queries that return just properties. In this task, you will learn how it is possible to see the results of such queries without resorting to coding solutions.
+A key limitation of the **ADT Explorer** is that it is designed to render a graph and the primary display cannot show the results for queries that return just properties. In this task, you will learn how it is possible to see the results of such queries without resorting to coding solutions.
 
 1. To run a valid query that returns just a property, enter the following query and click **Run Query**:
 
@@ -890,7 +896,7 @@ A key limitation of the **ADT Explorer** is is that it is designed to render a g
     WHERE Child.$dtId = 'sensor-th-0055'
     ```
 
-    Despite the fact that the query will run without error, no graph is displayed. However, there is a way to view the results in **ADT Explorer**, and you will open the **Output** pane to view the query results in the next task.
+    Despite the fact that the query will run without error, no graph is displayed. However, there is a way to view the results in **ADT Explorer**, and you will open the **Output** pane to view the query results during the next few steps.
 
 1. To open the **Output** pane, click the **Settings** icon at the top-right of the page.
 
