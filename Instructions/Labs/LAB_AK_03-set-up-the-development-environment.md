@@ -104,7 +104,7 @@ Azure CLI is a command-line tool that is designed to make scripting Azure-relate
 
 1. Open your browser, and then navigate to the Azure CLI tools download page: [Install Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest "Azure CLI Install")
 
-    You should be installing the latest version of the Azure CLI tools (currently version 2.4). If version 2.4 is not the latest version listed on this "azure-cli-latest" download page, install the more recent version.
+    You should be installing the latest version of the Azure CLI tools. The current version of Azure CLI (as of February 2022) is version 2.33, but be aware that new versions are released monthly, so the latest version is likely to have changed.
 
 1. On the **Install Azure CLI** page, select the install option for your OS (such as **Install on Windows**), and then follow the on-screen instructions to install the Azure CLI tool.
 
@@ -218,7 +218,7 @@ The Visual Studio Code and Azure CLI tools both support an Azure IoT extension t
 
 1. Close Visual Studio Code.
 
-#### Task 2: Install Azure CLI Extension - local environment
+#### Task 2: Install Azure CLI Extensions - local environment
 
 > **Important**: The tools and products associated with this Task are pre-installed on the virtual machine created for this course.
 
@@ -260,7 +260,7 @@ Many of the labs will require the use of the Azure CLI IoT extensions via the Az
 
     The resources will be created in azure and, after a few moments, the cloud shell will open.
 
-#### Task 4: Install Azure CLI Extension - cloud environment
+#### Task 4: Install Azure CLI Extensions - cloud environment
 
 1. Ensure the Cloud Shell is open.
 
