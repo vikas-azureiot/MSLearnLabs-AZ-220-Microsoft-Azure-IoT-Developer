@@ -170,7 +170,7 @@ To ensure these resources are available, complete the following steps.
     Azure CLI version 2.11 provides the ability to upgrade to the latest version. To upgrade, enter the following command:
 
         ```powershell
-        az update
+        az upgrade
         ```
 
     > **NOTE**: If Azure CLI is not installed, you must install it before you continue:
@@ -953,17 +953,17 @@ In this task, the Cheese Cave Device simulator app will be opened in Visual Stud
 
 1. Open **Visual Studio Code**.
 
-1. On the **File** menu, click **Open Folder**
+1. On the **File** menu, click **Open Folder** and then navigate to the **Starter** folder for Lab 19.
 
-1. In the Open Folder dialog, navigate to the lab 19 Starter folder.
-
-    In _Lab 3: Setup the Development Environment_, you cloned the GitHub repository containing lab resources by downloading a ZIP file and extracting the contents locally. The extracted folder structure includes the following folder path:
+    The Lab 19 **Starter** folder is part of the lab resources that you downloaded before starting this lab. The folder path is:
 
     * Allfiles
         * Labs
             * 19-Azure Digital Twins
                 * Starter
                     * CheeseCaveDevice
+
+    > **Note**: If you have trouble finding the Allfiles folder, check your Windows Desktop folder.
 
 1. Click **CheeseCaveDevice**, and then click **Select Folder**.
 
@@ -974,7 +974,7 @@ In this task, the Cheese Cave Device simulator app will be opened in Visual Stud
 
 1. To open the code file, click **Program.cs**.
 
-    A cursory glance will reveal that this application is very similar to the simulated device applications that you have worked on in the preceding labs. This version uses symmetric Key authentication, sends both telemetry and logging messages to the IoT Hub, and has a more complex sensor implementation.
+    A cursory glance will reveal that this simulated device application uses symmetric Key authentication, sends both telemetry and logging messages to the IoT Hub, and includes simulated sensor readings for the telemetry.
 
 1. On the **Terminal** menu, click **New Terminal**.
 
@@ -1017,7 +1017,7 @@ The simulated device app that you will build in this task simulates an IoT devic
     private readonly static string deviceConnectionString = "<your device connection string>";
     ```
 
-1. Replace the **\<your device connection string\>** with the device connection string that you saved near the end of the lab setup exercise.
+1. Replace the **your device connection string** (including the angle brackets) with the device connection string that you saved to your text editor.
 
     This is the only change that you need to implement before sending telemetry to the IoT Hub.
 
@@ -1068,7 +1068,7 @@ The function app context also provides an environment for managing app settings 
 1. At the Cloud Shell command prompt, to create an Azure Function App, enter the following command:
 
     ```bash
-    az functionapp create --resource-group rg-az220 --consumption-plan-location {your-location} --name func-az220-hub2adt-training-{your-id} --storage-account staaz220training{your-id} --functions-version 3
+    az functionapp create --resource-group rg-az220 --consumption-plan-location {your-location} --name func-az220-hub2adt-training-{your-id} --storage-account staz220training{your-id} --functions-version 3
     ```
 
     > **Note**: Remember to replace the **{your-location}** and **{your-id}** tokens above.
@@ -1107,7 +1107,7 @@ The function app context also provides an environment for managing app settings 
     az functionapp config appsettings set -g rg-az220 -n func-az220-hub2adt-training-{your-id} --settings "ADT_SERVICE_URL={adt-url}"
     ```
 
-    > **Note**: Remember to replace the **{your-id}** and **{adt-url}** tokens above. The **{adt-url}** value was saved to the **adt-connection.txt** file in an earlier task and will be similar to `https://adt-az220-training-dm030821.api.eus.digitaltwins.azure.net`.
+    > **Note**: Remember to replace the **{your-id}** and **{adt-url}** tokens above. The **{adt-url}** value was saved to your text editor file in an earlier task and will be similar to `https://adt-az220-training-dm030821.api.eus.digitaltwins.azure.net`.
 
     Once complete, the command lists all of the available settings. The Azure Function will now be able to obtain the Azure Digital Twins service URL by reading the **ADT_SERVICE_URL** value.
 
@@ -1115,17 +1115,21 @@ The function app context also provides an environment for managing app settings 
 
 In this task you will review the Azure Function that will be executed whenever an event occurs on the associated Event Grid. The event will be processed and the message and telemetry will be routed to Azure Digital Twins.
 
-1. In **Visual Studio Code**, open the **Contoso.AdtFunctions** folder.
+1. Open a new instance of **Visual Studio Code**.
+
+1. In the Visual Studio Code window, on the **File** menu, click **Open Folder**, and then navigate to the **Contoso.AdtFunctions** folder.
+
+    The Lab 19 **Contoso.AdtFunctions** folder is part of the lab resources that you downloaded before starting this lab. The folder path is:
+
+    * Allfiles
+        * Labs
+            * 19-Azure Digital Twins
+                * Final
+                    * Contoso.AdtFunctions
+
+1. Click **Contoso.AdtFunctions**, and then click **Select Folder**.
 
 1. Open the **Contoso.AdtFunctions.csproj** file.
-
-> **NOTE**: In _Lab 3: Setup the Development Environment_, you cloned the GitHub repository containing lab resources by downloading a ZIP file and extracting the contents locally. The extracted folder structure includes the following folder path:
->
-> * Allfiles
->   * Labs
->       * 19-Azure Digital Twins
->           * Final
->               * Contoso.AdtFunctions
 
     Notice the project references the following NuGet Packages:
 
@@ -1202,7 +1206,7 @@ In this task you will review the Azure Function that will be executed whenever a
 
     Notice that the exception message is logged.
 
-1. To see how the function app principal is used to authenticate to Azure Digital Twins and create a client instance, locate the `// REVIEW authentication code below here` comment and review the following code:
+1. To see how the function app principal is used to authenticate to Azure Digital Twins and create a client instance, locate the `// INSERT authentication code below here` comment and review the following code:
 
     ```csharp
     ManagedIdentityCredential cred = new ManagedIdentityCredential("https://digitaltwins.azure.net");
@@ -1212,7 +1216,7 @@ In this task you will review the Azure Function that will be executed whenever a
 
     Notice the use of the **ManagedIdentityCredential** class. This class attempts authentication using the managed identity that has been assigned to the deployment environment earlier. Once the credential is returned, it is used to construct an instance of the **DigitalTwinsClient**. The client contains methods to retrieve and update digital twin information, like models, components, properties and relationships.
 
-1. To review the code that starts to process the Event Grid event, locate the `// REVIEW event processing code below here` comment and review the following code below it:
+1. To review the code that starts to process the Event Grid event, locate the `// INSERT event processing code below here` comment and review the following code below it:
 
     ```csharp
     if (eventGridEvent != null && eventGridEvent.Data != null)
@@ -1265,7 +1269,7 @@ In this task you will review the Azure Function that will be executed whenever a
     > **TIP**: To learn more about the event schema, review the following resource:
     > * [Event schema](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid-trigger?tabs=csharp%2Cbash#event-schema)
 
-1. To inspect the code that updates the digital twin, locate the `// REVIEW ADT update code below here` comment and review the following code below it:
+1. To inspect the code that updates the digital twin, locate the `// INSERT ADT update code below here` comment and review the following code below it:
 
     ```csharp
     //Update twin
@@ -1301,7 +1305,15 @@ The function is ready to be published.
 
 #### Task 3 - Publish Functions
 
-1. In the Azure Functions extension for Visual Studio Code, select **Deploy to Function App**:
+1. In Visual Studio Code, on the left side menu, click **Azure**.
+
+    This will display a new information pane to the left of the code editor view. The AZURE pane includes sections for various Azure resource types.
+
+1. Take a moment to review the contents of the FUNCTIONS section of the Azure pane.
+
+    Notice that your local project "Contoso.AdtFunctions" is listed.
+
+1. In the FUNCTIONS section, click **Deploy to Function App**.
 
     ![Visual Studio Code deploy to function app](media/LAB_AK_19-deploy-to-function-app.png)
 
@@ -1315,11 +1327,15 @@ The function is ready to be published.
 
     The function will then be compiled and, if successful, deployed. This may take a few moments.
 
-1. Once the deployment has completed, the following prompt will be displayed:
+1. Wait for the deployment to complete.
+
+    When the deployment is complete, the following prompt to be displayed:
 
     ![Visual Studio Code deployment complete - select stream logs](media/LAB_AK_19-function-stream-logs.png)
 
-    Click **Stream logs** and in the confirmation dialog to enable application logging, click **Yes**.
+1. In the deployment complete dialog, click **Stream logs**.
+
+1. In the confirmation dialog that appears, to enable application logging, click **Yes**.
 
     The **OUTPUT** pane will now display the log stream for the deployed function - this will timeout after 2 hours. There will be some status information displayed, however there will not be any diagnostic information from the function itself until it is launched. That will be covered in the next exercise.
 
@@ -1329,11 +1345,11 @@ The function is ready to be published.
 
 ### Exercise 7 - Connect IoT Hub to the Azure Function
 
-In this exercise, the IoT Hub created by the setup script will be configured to publish events as they occur to the Azure Function created in the previous exercise. The telemetry from the device simulator created earlier will then be routed to the Azure Digital Twins instance.
+In this exercise, you will configure your IoT hub to publish events to the Azure Function that you created in the previous exercise. The events will be published as they occur. The telemetry generated by the simulated device created earlier will then be routed to the Azure Digital Twins instance.
 
-1. Open a browser and navigate to the [Azure portal](https://portal.azure.com/).
+1. Open the browser windows for your Azure portal.
 
-1. Navigate to the **iot-az220-training-{your-id}** IoT Hub.
+1. Navigate to your **iot-az220-training-{your-id}** IoT hub.
 
 1. In the left-hand navigation area, select **Events**.
 
