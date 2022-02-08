@@ -165,9 +165,21 @@ To ensure these resources are available, complete the following steps.
     az --version
     ```
 
-1. Verify that azure-cli version 2.11.0 or later is listed
+1. Verify that azure-cli version 2.11.0 or later is listed.
 
-    If Azure CLI is not installed, you must install it before you continue.
+    Azure CLI version 2.11 provides the ability to upgrade to the latest version. To upgrade, enter the following command:
+
+        ```powershell
+        az --version
+        ```
+
+    > **NOTE**: If Azure CLI is not installed, you must install it before you continue:
+
+    1. Open your browser, and then navigate to the Azure CLI tools download page: [Install Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest "Azure CLI Install")
+
+        You should be installing the latest version of the Azure CLI tools. The current version of Azure CLI (as of February 2022) is version 2.33, but be aware that new versions are released monthly, so the latest version is likely to have changed.
+
+    1. On the **Install Azure CLI** page, select the install option for your OS (such as **Install on Windows**), and then follow the on-screen instructions to install the Azure CLI tool.
 
 ### Exercise 2 - Create an instance of the Azure Digital Twins resource
 
