@@ -120,7 +120,7 @@ To ensure these resources are available, complete the following steps.
 
 1. In the **Object ID** field, enter the object ID copied from the above step.
 
-1. To validate the template, click **Review and create**.
+1. To validate the template, click **Review + create**.
 
 1. If validation passes, click **Create**.
 
@@ -144,7 +144,7 @@ To ensure these resources are available, complete the following steps.
 
     You will see a notification when deployment is complete.
 
-1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
+1. Once the deployment has completed, in the left navigation area, click **Outputs**.
 
 1. In your text editor, create a record of the following Outputs for use later in the lab:
 
@@ -187,7 +187,9 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
 
 #### Task 1 - Use the Azure portal to create a resource (Azure Digital Twins)
 
-1. In your Azure portal window, on the Azure portal menu, click **Dashboard**.
+1. Switch to the browser window containing your Azure portal.
+
+1. On the Azure portal menu, click **Dashboard**.
 
     On the All resources tile, you should see the resources listed that were created for this lab.
 
@@ -221,7 +223,7 @@ In this exercise, the Azure portal will be used to create an Azure Digital Twins
 
 1. To start the deployment process, click **Create**.
 
-    After a moment the **Deployment in progress** will be displayed. Wait for the deployment to complete.
+    After a moment the **Deployment is in progress** will be displayed. Wait for the deployment to complete.
 
 1. Once your deployment is complete, select **Go to resource**.
 
@@ -344,9 +346,9 @@ The ADT Explorer is incorporated into the Azure Portal as a preview feature and 
 
 1. Near the top of the **Overview** page, to open the ADT Explorer in a new browser tab, click **Open Azure Digital Twins Explorer (preview)**.
 
-    A new browser tab hosting the ADT Explorer will open.
+    A new browser tab hosting the ADT Explorer will open. Enable popups on the Azure Digital Twins Explorer page if prompted to do so.
 
-    > **Important**: If you are prompted to login, ensure you use the same account that you used when creating the Azure Digital Twins instance, otherwise you will not have access to the data plane APIs and will see errors.
+    > **Important**: If you are prompted to login to Azure, ensure you use the same account that you used when creating the Azure Digital Twins instance, otherwise you will not have access to the data plane APIs and will see errors.
 
 1. On the **Azure Digital Twins URL** popup, enter the value of the Azure Digital Twins URL that you created in Notepad, and then click **Save**.
 
@@ -604,7 +606,9 @@ Similar to Models and Twins, relationships can be created in multiple ways.
 
     If you don't see the relationship, refresh the browser window and then run the query.
 
-1. To add a relationship using the **ADT Explorer**, first click **cave_1** to select it, and then **right-click** **device_1**. In the displayed context menu, select **Add relationships**.
+1. To add a relationship using the **ADT Explorer**, first click **cave_1** to select it, and then **right-click** **device_1**. 
+
+1. In the displayed context menu, select **Add relationships**.
 
     If the popup menu is cut of at the bottom of the display screen you may need to adjust the disply in order to select the Add relationships command.
 
@@ -794,7 +798,11 @@ The spreadsheet **cheese-factory-scenario.xlsx** can be found in the **{file-roo
 
     > **NOTE**: Unlike the Excel format, the JSON file includes the model definitions, meaning that everything can be imported with just the one file.
 
-1. To import the JSON file, use **ADT Explorer** to delete the models and twins following the instructions in earlier tasks, and then import the JSON file that was just created by using the **Import graph** button. Note that the models, twins and their properties, and the relationships are recreated.
+1. To import the JSON file, use **ADT Explorer** to delete the models and twins following the instructions in earlier tasks, and then import the JSON file that was just created by using the **Import graph** button. 
+
+    > **NOTE**: Be sure to save the imported graph.
+
+1. Notice that the models, twins and their properties, and the relationships are recreated.
 
 This twin graph will be used as the basis for the exercise on querying.
 
@@ -839,7 +847,7 @@ In this task, the ADT Explorer will be used to execute graph queries and render 
 1. To create a query that filters the graph so that only **Cheese Cave** twins are displayed, enter the following query:
 
     ```sql
-    SELECT * FROM digitaltwins
+    SELECT * FROM digitaltwins 
     WHERE IS_OF_MODEL('dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave;1')
     ```
 
@@ -854,8 +862,8 @@ In this task, the ADT Explorer will be used to execute graph queries and render 
 1. To create a query that displays only the **Cheese Cave** twins that are **inUse**, enter the following query:
 
     ```sql
-    SELECT * FROM digitaltwins
-    WHERE IS_OF_MODEL('dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave;1')
+    SELECT * FROM digitaltwins 
+    WHERE IS_OF_MODEL('dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave;1') 
     AND inUse = true
     ```
 
@@ -866,9 +874,9 @@ In this task, the ADT Explorer will be used to execute graph queries and render 
 1. To display only the **Cheese Cave** twins that are **inUse** and have a **temperatureAlert**, enter and run the following query:
 
     ```sql
-    SELECT * FROM digitaltwins
-    WHERE IS_OF_MODEL('dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave;1')
-    AND inUse = true
+    SELECT * FROM digitaltwins 
+    WHERE IS_OF_MODEL('dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave;1') 
+    AND inUse = true 
     AND temperatureAlert = true
     ```
 
@@ -877,8 +885,8 @@ In this task, the ADT Explorer will be used to execute graph queries and render 
 1. To use relationships to find the parent of the device **sensor-th-0055** via a join, enter the following query:
 
     ```sql
-    SELECT Parent FROM digitaltwins Parent
-    JOIN Child RELATED Parent.rel_has_devices
+    SELECT Parent FROM digitaltwins Parent 
+    JOIN Child RELATED Parent.rel_has_devices 
     WHERE Child.$dtId = 'sensor-th-0055'
     ```
 
@@ -903,8 +911,8 @@ A key limitation of the **ADT Explorer** is that it is designed to render a grap
 1. To run a valid query that returns just a property, enter the following query and click **Run Query**:
 
     ```sql
-    SELECT Parent.desiredTemperature FROM digitaltwins Parent
-    JOIN Child RELATED Parent.rel_has_devices
+    SELECT Parent.desiredTemperature FROM digitaltwins Parent 
+    JOIN Child RELATED Parent.rel_has_devices 
     WHERE Child.$dtId = 'sensor-th-0055'
     ```
 
@@ -1142,7 +1150,7 @@ In this task you will review the Azure Function that will be executed whenever a
 
 1. In Visual Studio Code, open the **HubToAdtFunction.cs** file.
 
-1. To review the member variables for the function, locate the `// INSERT member variables below here` comment and review the code below it:
+1. To review the member variables for the function, locate the `//Your Digital Twins URL is stored in an application setting in Azure Functions` comment and review the code below it:
 
     ```csharp
     //Your Digital Twins URL is stored in an application setting in Azure Functions.
@@ -1313,6 +1321,8 @@ The function is ready to be published.
 
     Notice that your local project "Contoso.AdtFunctions" is listed.
 
+1. Click **Local Project**, and then select the initialize function for Visual Studio use button.
+
 1. In the FUNCTIONS section, click **Deploy to Function App**.
 
     ![Visual Studio Code deploy to function app](media/LAB_AK_19-deploy-to-function-app.png)
@@ -1357,11 +1367,15 @@ In this exercise, you will configure your IoT hub to publish events to the Azure
 
 1. In the **EVENT SUBSCRIPTION DETAILS** section, in the **Name** field, enter **device-telemetry**.
 
-1. In the **Event Grid Schema** dropdown, ensure **Event Grid Schema** is selected.
+    +++device-telemetry+++
+
+1. In the **Event Schema** dropdown, ensure **Event Grid Schema** is selected.
 
 1. In the **TOPIC DETAILS** section, verify that the **Topic Type** is set to **IoT Hub** and the **Source Resource** is set to **iot-az220-training-{your-id}**.
 
 1. In the **System Topic Name** field, enter **Twin-Topic**
+
+    +++Twin-Topic+++
 
 1. In the **EVENT TYPES** section, in the **Filter to Event Types** dropdown, select _only_ **Device Telemetry**.
 
@@ -1463,7 +1477,7 @@ In this exercise, you will configure your IoT hub to publish events to the Azure
 
 1. Return to the **ADT Explorer** instance in the browser and query the graph.
 
-    You should be able to see that the **fanAlert**, **temperatureAlert** and **humidityAlert** properties have been updated.
+    You should be able to see that the **fanAlert**, **temperatureAlert** and **humidityAlert** properties have been updated (associated with Sensor/Device or Cave nodes).
 
 At this point, the data ingestion from device (in this case a device simulator) into Azure Digital Twins has been demonstrated. The next exercise will demonstrate how telemetry can be streamed to Time Series Insights (TSI).
 
@@ -1497,6 +1511,8 @@ An Event Hubs namespace provides DNS integrated network endpoints and a range of
 
 1. Login to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
 
+1. Switch to your browser window containing your Azure portal.
+
 1. On the Azure portal menu, click **+ Create a resource**.
 
 1. In the Search textbox, type **Event Hubs** and then click the **Event Hubs** search result.
@@ -1511,7 +1527,9 @@ An Event Hubs namespace provides DNS integrated network endpoints and a range of
 
 1. In the **Namespace name** field, enter **evhns-az220-training-{your-id}**.
 
-    This resource is publicly accessible and must have a unique name.
+    +++evhns-az220-training-{your-id}+++
+
+    Be sure to replace the your-id placeholder. This resource is publicly accessible and must have a unique name.
 
 1. To the right of **Location**, open the drop-down list and select the same location that you selected for your resource group.
 
@@ -1555,9 +1573,11 @@ This namespace will contain the event hub used to integrate the digital twin tel
 
 This task will create an Event Hub that will subscribe to the twin telemetry events and pass them to an Azure Function.
 
-1. On the **Overview** page of the **evhns-az220-training-{your-id}** namespace, click **+ Event Hub**.
+1. On the **Overview** page of the **evhns-az220-training-{your-id}** Event Hubs namespace, click **+ Event Hub**.
 
 1. On the **Create Event Hub** page, under **Name**, enter **evh-az220-adt2func**
+
+    +++evh-az220-adt2func+++
 
     > **Note**: As the event hub is scoped within a globally unique namespace, the event hub name itself need not be globally unique.
 
@@ -1599,6 +1619,8 @@ In this task, an authorization rule with **Listen** and **Send** permissions wil
 
 1. In the **Add SAS Policy** pane, under policy name, enter **ADTHubPolicy**.
 
+    +++ADTHubPolicy+++
+
 1. In the list of permissions, check only **Send** and **Listen**.
 
 1. Click **Create** to save the authorization rule.
@@ -1609,7 +1631,7 @@ In this task, an authorization rule with **Listen** and **Send** permissions wil
 
     The **SAS Policy: ADTHubPolicy** pane will open.
 
-1. Copy the **Connection string-primary key** value and add it to a new text file named **telemetry-function.txt**.
+1. Copy the **Connection string-primary key** value and add it to your text file.
 
 1. Close the **SAS Policy: ADTHubPolicy** pane.
 
@@ -1617,7 +1639,7 @@ In this task, an authorization rule with **Listen** and **Send** permissions wil
 
 Now that the Event Hub is created, it must be added as an endpoint that the Azure Digital Twins instance can use as an output to send events.
 
-1. Navigate to the **adt-az229-training-{your-id}** instance.
+1. Navigate to the **adt-az220-training-{your-id}** instance.
 
 1. In the left navigation area, under **Connect outputs**, click **Endpoints**.
 
@@ -1626,6 +1648,8 @@ Now that the Event Hub is created, it must be added as an endpoint that the Azur
 1. To add a new endpoint, click **+ Create an endpoint**.
 
 1. In the **Create an endpoint** pane, under **Name**, enter **eventhub-endpoint**.
+
+    +++eventhub-endpoint+++
 
 1. Under **Endpoint type**, select **Event Hub**.
 
@@ -1657,9 +1681,11 @@ With the addition of the Event Hub endpoint to the Azure Digital Twins instance,
 
 1. In the **Create an event route** pane, under **Name**, enter **eventhub-telemetryeventroute**.
 
+    +++eventhub-telemetryeventroute+++
+
 1. In the **Endpoint** dropdown, select **eventhub-endpoint**.
 
-1. Under **Add a event route filter**, leave **Advanced editor** disabled.
+1. Under **Add a event route filter**, leave the **Advanced editor** set to **Disabled**.
 
     The advanced editor supports entering a specific filtering expression - for this task, the UI is sufficient.
 
@@ -1713,7 +1739,7 @@ This time, the Event Hub and authorization rule will be created using the Azure 
     Endpoint=sb://evhns-az220-training-dm030821.servicebus.windows.net/;SharedAccessKeyName=TSIHubPolicy;SharedAccessKey=x4xItgUG6clhGR9pZe/U6JqrNV+drIfu1rlvYHEdk9I=;EntityPath=evh-az220-func2tsi
     ```
 
-1. Copy the **Connection string-primary key** value and add it to the text file named **telemetry-function.txt**.
+1. Copy the **Connection string-primary key** value and add it to your text file.
 
     The two connection strings will be required in the next task.
 
@@ -1733,7 +1759,9 @@ In order for an Azure Function to connect to an Event Hub, it must have access t
 
 1. On the **Add/Edit application setting** pane, in the **Name** field, enter **ADT_HUB_CONNECTIONSTRING**
 
-1. In the **Value** field, enter the authorization rule connection string value that was saved to the **telemetry-function.txt** file in an earlier task and ends with `EntityPath=evh-az220-adt2func`.
+    +++ADT_HUB_CONNECTIONSTRING+++
+
+1. In the **Value** field, enter the ADT connection string value that was saved to your text file and ends with `EntityPath=evh-az220-adt2func`.
 
     The value should be similar to `Endpoint=sb://evhns-az220-training-dm030821.servicebus.windows.net/;SharedAccessKeyName=ADTHubPolicy;SharedAccessKey=fHnhXtgjRGpC+rR0LFfntlsMg3Z/vjI2z9yBb9MRDGc=;EntityPath=evh-az220-adt2func`.
 
@@ -1745,7 +1773,9 @@ In order for an Azure Function to connect to an Event Hub, it must have access t
 
 1. On the **Add/Edit application setting** pane, in the **Name** field, enter **TSI_HUB_CONNECTIONSTRING**
 
-1. In the **Value** field, enter the authorization rule connection string value that was saved to the **telemetry-function.txt** file in an earlier task and ends with `EntityPath=evh-az220-func2tsi`.
+    +++TSI_HUB_CONNECTIONSTRING+++
+
+1. In the **Value** field, enter the authorization rule connection string value that was saved to your text file and ends with `EntityPath=evh-az220-func2tsi`.
 
     The value should be similar to `Endpoint=sb://evhns-az220-training-dm030821.servicebus.windows.net/;SharedAccessKeyName=TSIHubPolicy;SharedAccessKey=x4xItgUG6clhGR9pZe/U6JqrNV+drIfu1rlvYHEdk9I=;EntityPath=evh-az220-func2tsi`
 
@@ -1812,13 +1842,13 @@ In this task, the second Azure function will be reviewed. This function will be 
 
     As this function is processing a batch of events, a way to handle errors is to create a collection to hold exceptions. The function will then iterate through each event in the batch, catching exceptions and adding them to the collection. Skip[ to the end of the method, and you will see that if there are multiple exceptions, an **AggregaeException** is created with the collection, if a single exception is generated, then the single exception is thrown.
 
-1. To review the code that checks to see if the event contains Cheese Cave Device telemetry, locate the `// REVIEW check telemetry below here` comment and review the following code below it:
+1. To review the code that checks to see if the event contains Cheese Cave Device telemetry, locate the `// INSERT check telemetry below here` comment and review the following code below it:
 
     ```csharp
     if ((string)eventData.Properties["cloudEvents:type"] == "microsoft.iot.telemetry" &&
         (string)eventData.Properties["cloudEvents:dataschema"] == "dtmi:com:contoso:digital_factory:cheese_factory:cheese_cave_device;1")
     {
-        // REVIEW TSI Event creation below here
+        // INSERT TSI Event creation below here
     }
     else
     {
@@ -1832,7 +1862,7 @@ In this task, the second Azure function will be reviewed. This function will be 
     > **TIP**: To learn more about the use of `await Task.Yield();` review the following resource:
     > * [Task.Yield Method](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task.yield?view=net-5.0)
 
-1. To review the code that processes the event and creates a message for TSI, locate the `// REVIEW TSI Event creation below here` comment and review the following code below it:
+1. To review the code that processes the event and creates a message for TSI, locate the `// INSERT TSI Event creation below here` comment and review the following code below it:
 
     ```csharp
     // The event is Cheese Cave Device Telemetry
@@ -1892,7 +1922,9 @@ In this task, the second Azure function will be reviewed. This function will be 
 
 #### Task 10 - Configure TSI
 
-1. In a browser, connect to the Azure Portal and locate the **tsi-az220-training-{your-id}** resource.
+1. Switch to your Azure Portal window and navigate to your dashboard.
+
+1. Select the **tsi-az220-training-{your-id}** resource.
 
     > **NOTE**: This resource was created by the setup script. If you have not run it, do so now - the script will not impact existing resources.
 
@@ -1907,6 +1939,8 @@ In this task, the second Azure function will be reviewed. This function will be 
 1. To add a new Event Source, click **+ Add**.
 
 1. On the **New event source** pane, under **Event source name**, enter **adt-telemetry**
+
+    +++adt-telemetry+++
 
 1. Under **Source**, select **Event Hub**.
 
@@ -1952,7 +1986,7 @@ Now, data should be flowing into your Time Series Insights instance, ready to be
 
     ![TSI Explorer data](media/LAB_AK_19-tsi-explorer.png)
 
-1. To add telemetry to the graph, click the twin and select **EventCount**, **humidity** and **temperature**.
+1. To add telemetry to the graph, click the twin and select **EventCount**, **humidity** and **temperature**, and then click **Add**
 
     Select an appropriate time range, and the displayed data will be similar to:
 
