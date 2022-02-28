@@ -95,8 +95,11 @@ To ensure these resources are available, complete the following steps.
 1. In your text editor, enter the following text labels:
 
     +++connectionString:+++
+
     +++dpsScopeId:+++
+
     +++devicePrimaryKey:+++
+
     +++deviceSecondaryKey:+++
 
     > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
@@ -122,7 +125,11 @@ In this exercise, you will create a new individual enrollment for a device withi
 
 1. On the Azure portal menu, select **Dashboard**.
 
-    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. When prompted to Sign in, you will need to provide the following credentials at the sign in prompts: **Username** +++@lab.CloudPortalCredential(User1).Username+++ and **Password** +++@lab.CloudPortalCredential(User1).Password+++
+    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. When prompted to Sign in, you will need to provide the following credentials at the sign in prompts:
+
+    **Username** +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password** +++@lab.CloudPortalCredential(User1).Password+++
 
 1. On the All resources tile, click **dps-az220-training-{your-id}**.
 
@@ -177,9 +184,7 @@ In this exercise, you will create a new individual enrollment for a device withi
     * **Re-provision and reset to initial config**: This policy is often used for a factory reset without changing IoT hubs. This policy takes action when devices associated with the enrollment entry submit a new provisioning request. Depending on the enrollment entry configuration, the device may be reassigned to another IoT hub. If the device is changing IoT hubs, the device registration with the initial IoT hub will be removed. The initial configuration data that the provisioning service instance received when the device was provisioned is provided to the new IoT hub.
     * **Never re-provision**: The device is never reassigned to a different hub. This policy is provided for managing backwards compatibility.
 
-1. In the **Initial Device Twin State** field, to specify a property named **telemetryDelay** with the value of **2**, update the JSON object to appear as follows:
-
-    The final JSON will be like the following:
+1. In the **Initial Device Twin State** field, to specify a property named **telemetryDelay** with the value of **2**, update the JSON object as follows:
 
     ```json
     {
@@ -234,14 +239,6 @@ The simulated device that you create in this exercise represents an IoT device t
 
 #### Task 1: Create the Simulated Device
 
-1. On the left-side menu of the **dps-az220-training-{your-id}** blade, click **Overview**.
-
-1. In the top-right area of the blade, hover the mouse pointer over value assigned to **ID Scope**, and then click **Copy to clipboard**.
-
-    This is the same that you saved when you configured the lab prerequisites. You will be using this value shortly, so if you didn't already make note of the value, create a record of it now. Be sure to differentiate between uppercase "O" and the number "0".
-
-    The ID Scope value will be similar to the following: **0ne0004E52G**
-
 1. In your virtual machine environment, use the **Start** menu to open **Visual Studio Code**.
 
     > **Tip**: You may find it helpful to maximize the Visual Studio Code window.
@@ -295,7 +292,7 @@ The simulated device that you create in this exercise represents an IoT device t
 
 1. Locate the **telemetryDelay** variable, and notice that it is initialized to value of **1**.
 
-    You configured a device twin desired property that sets this value to **2**.
+    Recall that you configured a device twin desired property that sets this value to 2. When you run your simulated device app it will use the DPS primary key to register with IoT hub and use the device twin to initialize desired properties.  
  
 1. On the Visual Studio Code **File** menu, click **Save**.
 
@@ -334,11 +331,11 @@ In this exercise, you will run the Simulated Device and verify that it's sending
     Start reading and sending device telemetry...
     ```
 
-    Notice the message stating **Desired Twin Property Changed:**. The output line that follows this message contains the desired value for the **telemetryDelay** for the device. This is the value that you defined in the device twin desired property.
+    Notice the message stating **Desired Twin Property Changed:**. The lines that follow list the desired property value from the device twin and the reported property that the device communicates back to IoT hub.
 
 1. Notice that the Simulated Device application begins sending telemetry events to the Azure IoT Hub.
 
-    The telemetry events include values for `temperature`, `humidity`, `pressure`, `latitude`, and `longitude`, and should be similar to the following:
+    The telemetry messages include values for temperature, humidity, pressure, latitude, and longitude, and should be similar to the following:
 
     ```text
     11/6/2019 6:38:55 PM > Sending message: {"temperature":25.59094770373355,"humidity":71.17629229611545,"pressure":1019.9274696347665,"latitude":39.82133964767944,"longitude":-98.18181981142438}
@@ -359,11 +356,14 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. Switch to the Microsoft Edge browser window where you have the Azure portal open.
 
-1. Open a new browser tab, and then navigate to the Azure Cloud Shell: +++https://shell.azure.com/+++
+1. Open a new browser tab, and then navigate to the Azure Cloud Shell: **https://shell.azure.com/**
+
+    +++https://shell.azure.com/+++
 
     If necessary, login with the Azure credentials that you are using for this lab:
 
     **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
     **Password**: +++@lab.CloudPortalCredential(User1).Password+++
 
 1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
@@ -374,35 +374,44 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. Under **Resource group**, ensure **Use existing** is selected and the **@lab.CloudResourceGroup(ResourceGroup1).Name** is shown.
 
-1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+1. Under **Storage account**, select **Create new** and enter the following: **staz220{your-id}**.
 
-1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+    +++staz220{your-id}+++
+
+    > **Note**: Be sure to replace the **your-id** placeholder, including the squiggly brackets, with your unique ID.
+
+1. Under **File share**, select **Create new** and enter the following: **cloudshell**
+
+    +++cloudshell+++
 
 1. To finish to configuration of the cloud shell, click **Create storage**.
 
 1. Open your text editor, such as Notepad, and enter the following Azure CLI command:
 
-    ```cmd/sh
-    az iot hub monitor-events --hub-name {IoTHubName} --device-id sensor-th-0001
-    ```
+    
+    +++az iot hub monitor-events --hub-name {IoTHubName} --device-id sensor-thl-0001+++
 
-    Notice that the command contains a placeholder value for the name of your IoT Hub. You need to update that in the text editor before running the command.
+    Notice that the command contains a placeholder value for the name of your IoT hub. You need to update the placeholder in the text editor before running the command.
 
-1. In your text editor, replace the **{IoTHubName}** placeholder with the name of your Azure IoT Hub.
+1. In your text editor, replace the **IoTHubName** placeholder with the name of your Azure IoT Hub.
 
-    Your IoT hub is named using the following format: iot-az220-training-{your-id}
+    Your IoT hub is named using the following format: **iot-az220-training-{your-id}**
 
-1. Create a copy of the updated Azure CLI command, and then switch back to the Azure Cloud Shell browser window.
+    +++iot-az220-training-{your-id}+++
 
-1. In the Azure Cloud Shell, to monitor the event messages that are being received by your IoT hub, enter the updated command.
+    > **Note**: Once again, be sure to replace the **your-id** placeholder, including the squiggly brackets, with your unique ID.
 
-    > **Note**: If the Azure CLI extension for IoT has not been installed, you will be prompted to install it now. Enter "Y" at the prompt.
+1. Copy the updated Azure CLI command, and then switch back to the Azure Cloud Shell browser window.
 
-    > **Note**:  If you receive a message stating _"Dependency update required for IoT extension version"_ when running the Azure CLI command, then press `y` to accept the update and press `Enter`. This will allow the command to continue as expected.
+1. In the Azure Cloud Shell window, enter the updated CLI command.
 
-    The `monitor-events` command (within the `az iot hub` Azure CLI module) offers the capability to monitor device telemetry and other message types sent to an Azure IoT Hub. This can be a very useful tool during code development, and the convenience of the command-line interface is also nice.
+    > **Note**: If the Azure CLI extension for IoT has not been installed, you will be prompted to install it now. Enter **Y** at the prompt.
 
-    The `--device-id` parameter is optional and allows you to monitor the events from a single device. If the parameter is omitted, the command will monitor all events sent to the specified Azure IoT Hub.
+    > **Note**:  If you receive a message stating _"Dependency update required for IoT extension version"_ when running the Azure CLI command, then enter **y** to accept the update. This will allow the command to continue as expected.
+
+    The **az iot hub monitor-events** command will monitor device telemetry and other message types sent to an Azure IoT hub. This can be a very useful tool during code development, and the convenience of the command-line interface is also nice.
+
+    The **--device-id** parameter is optional and allows you to monitor the events from a single device. If the parameter is omitted, the command will monitor all events sent to the specified Azure IoT Hub.
 
 1. Notice that your IoT hub is receiving the telemetry messages from the sensor-thl-1000 device.
 
@@ -412,11 +421,11 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 #### Task 3: Change the device configuration through its twin
 
-With the simulated device running, the `telemetryDelay` configuration can be updated by editing the device twin Desired State within Azure IoT Hub. This can be done by configuring the Device in the Azure IoT Hub within the Azure portal.
+With the simulated device running, the **telemetryDelay** configuration can be updated by editing the device twin Desired State within your Azure IoT hub. This can be done by configuring the Device in the Azure portal.
 
-1. Open the Azure portal (if it is not already open), and then navigate to your **Azure IoT Hub** service.
+1. Open the Azure portal (if it is not already open), and then navigate to your Azure IoT hub resource.
 
-1. On the IoT Hub blade, on the left-side menu under **Device management**, click **Devices**.
+1. On the IoT hub blade, on the left-side menu under **Device management**, click **Devices**.
 
 1. Under **DEVICE ID**, click **sensor-thl-1000**.
 
