@@ -92,13 +92,22 @@ To ensure these resources are available, complete the following steps.
 
     You will be using the text editor to store some configuration values associated with the Azure resources.
 
+1. In your text editor, enter the following text labels:
+
+    +++connectionString:+++
+    +++dpsScopeId:+++
+    +++devicePrimaryKey:+++
+    +++deviceSecondaryKey:+++
+
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
+
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
     You will see a notification when deployment is complete.
 
-1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
+1. Once the deployment has completed, in the left navigation area, to review any output values from the template, click **Outputs**.
 
-1. In your text editor, create a record of the following Outputs for use later:
+1. In your text editor, create a record of the following Outputs for use later in the lab:
 
     * connectionString
     * dpsScopeId
@@ -168,7 +177,7 @@ In this exercise, you will create a new individual enrollment for a device withi
     * **Re-provision and reset to initial config**: This policy is often used for a factory reset without changing IoT hubs. This policy takes action when devices associated with the enrollment entry submit a new provisioning request. Depending on the enrollment entry configuration, the device may be reassigned to another IoT hub. If the device is changing IoT hubs, the device registration with the initial IoT hub will be removed. The initial configuration data that the provisioning service instance received when the device was provisioned is provided to the new IoT hub.
     * **Never re-provision**: The device is never reassigned to a different hub. This policy is provided for managing backwards compatibility.
 
-1. In the **Initial Device Twin State** field, to specify a property named `telemetryDelay` with the value of `"2"`, update the JSON object as follows:
+1. In the **Initial Device Twin State** field, to specify a property named **telemetryDelay** with the value of **2**, update the JSON object to appear as follows:
 
     The final JSON will be like the following:
 
@@ -184,6 +193,8 @@ In this exercise, you will create a new individual enrollment for a device withi
     ```
 
     This field contains JSON data that represents the initial configuration of desired properties for the device. The data that you entered will be used by the Device to set the time delay for reading sensor telemetry and sending events to IoT Hub.
+
+    > **WARNING**: The automated text entry tool can struggle with indented JSON, sometimes inserting extra squiggly brackets. If necessary, update your JSON file to ensure that it matches the code structure above.
 
 1. Leave the **Enable entry** field set to **Enable**.
 
@@ -205,11 +216,11 @@ In this exercise, you will create a new individual enrollment for a device withi
 
     Since you specified the Authentication Type as Symmetric Key when you created the enrollment, the Primary and Secondary key values have been created for you. Notice that there is a button to the right of each textbox that you can use to copy the values.
 
-1. Copy the **Primary Key** and **Secondary Key** values for this device enrollment, and then save them to a file for later reference.
+1. Copy the **Primary Key** and **Secondary Key** values for this device enrollment, and save the values to your text file for later reference.
 
     These are the authentication keys for the device to authenticate with the IoT Hub service.
 
-1. Locate the **Initial device twin State**, and notice the JSON for the device twin Desired State contains the `telemetryDelay` property set to the value of `"2"`.
+1. Locate the **Initial device twin State**, and verify that the JSON for the device twin Desired State contains the **telemetryDelay** property set to the value of **2**.
 
 1. Close the **sensor-thl-1000** individual enrollment blade.
 
@@ -229,18 +240,20 @@ The simulated device that you create in this exercise represents an IoT device t
 
     This is the same that you saved when you configured the lab prerequisites. You will be using this value shortly, so if you didn't already make note of the value, create a record of it now. Be sure to differentiate between uppercase "O" and the number "0".
 
-    The **ID Scope** will be similar to this value: `0ne0004E52G`
+    The ID Scope value will be similar to the following: **0ne0004E52G**
 
-1. Open **Visual Studio Code**.
+1. In your virtual machine environment, use the **Start** menu to open **Visual Studio Code**.
 
-1. On the **File** menu, click **Open Folder** and then navigate to the **Final** folder for Lab 5.
+    > **Tip**: You may find it helpful to maximize the Visual Studio Code window.
+
+1. On the Visual Studio Code **File** menu, click **Open Folder** and then navigate to the **Final** folder for Lab 5.
 
     The Lab 5 **Final** folder is part of the lab resources that you downloaded before starting this lab. The folder path is:
 
     * Allfiles
-      * Labs
-          * 05-Individual Enrollment of a Device in DPS
-            * Final
+        * Labs
+            * 05-Individual Enrollment of a Device in DPS
+                * Final
 
     > **Note**: If you have trouble finding the Allfiles folder, check your Windows Desktop folder.
 
@@ -248,11 +261,11 @@ The simulated device that you create in this exercise represents an IoT device t
 
     The ContainerDevice folder is a sub-folder of the Lab 5 **Final** folder. It contains a Program.cs file and a ContainerDevice.csproj file.
 
-    > **Note**: If Visual Studio Code prompts you to load required assets, you can click **Yes** to load them.
+    > **Note**: If Visual Studio Code prompts you to load required build and debug assets, you can click **Yes** to load them.
 
 1. On the **View** menu, click **Terminal**.
 
-    Verify that the selected terminal shell is the windows command prompt.
+    The terminal command prompt should list the folder path to the **ContainerDevice** folder.
 
 1. At the Terminal command prompt, to restore all the application NuGet packages, enter the following command:
 
@@ -268,21 +281,27 @@ The simulated device that you create in this exercise represents an IoT device t
 
     > **Note**: If you don't have the value of ID Scope available to you, you can find it on the Overview blade of the DPS service (in the Azure portal).
 
-1. Locate the **registrationId** variable, and update the assigned value using **sensor-thl-1000**
+1. Locate the **registrationId** variable, and update the assigned value to the following: **sensor-thl-1000**
+
+    +++sensor-thl-1000+++
 
     This variable represents the **Registration ID** value for the individual enrollment that you created in the Device Provisioning Service.
 
 1. Update the **individualEnrollmentPrimaryKey** and **individualEnrollmentSecondaryKey** variables using the **Primary Key** and **Secondary Key** values that you saved.
 
-    > **Note**: If you don't have these Key values available, you can copy them from the Azure portal as follows -
+    > **Note**: If you don't have these Key values available, you can copy them from your DPS resource in the Azure portal as follows -
     >
     > Open the **Manage enrollments** blade, click **Individual Enrollments**, click **sensor-thl-1000**. Copy the values and then paste as noted above.
 
+1. Locate the **telemetryDelay** variable, and notice that it is initialized to value of **1**.
+
+    You configured a device twin desired property that sets this value to **2**.
+ 
 1. On the Visual Studio Code **File** menu, click **Save**.
 
     Your simulated device will now use the device twin properties from Azure IoT Hub to set the delay between telemetry messages.
 
-    > **Note**: The source code is extensively commented should you wish to dive into how the application connects via DPS, etc.
+    > **Note**: The source code is extensively commented. If time permits, you can review how the device application connects via DPS and sends telemetry messages.
 
 ### Exercise 4: Test the Simulated Device
 
@@ -290,11 +309,9 @@ In this exercise, you will run the Simulated Device and verify that it's sending
 
 #### Task 1: Build and run the device
 
-1. Ensure that you have your code project open in Visual Studio Code.
+1. Ensure that you have Terminal view open in Visual Studio Code.
 
-1. On the **View** menu, click **Terminal**.
-
-1. In the Terminal pane, ensure the command prompt shows the directory path for the `Program.cs` file.
+    The terminal command prompt should list the folder path to the **ContainerDevice** folder that contains the **Program.cs** file. Use the **View** menu to open the Terminal if necessary.
 
 1. At the command prompt, to build and run the Simulated Device application, enter the following command:
 
@@ -304,9 +321,9 @@ In this exercise, you will run the Simulated Device and verify that it's sending
 
     > **Note**: When the Simulated Device application runs, it will first write some details about it's status to the console (terminal pane).
 
-1. Notice that the JSON output following the `Desired Twin Property Changed:` line contains the desired value for the `telemetryDelay` for the device.
+1. When the application starts, take a moment to review the output displayed to the Terminal.
 
-    You can scroll up in the terminal pane to review the output. It should be similar to the following:
+    You can scroll up in the terminal pane to review the output, which should be similar to the following:
 
     ```text
     ProvisioningClient AssignedHub: iot-az220-training-{your-id}.azure-devices.net; DeviceID: sensor-thl-1000
@@ -316,6 +333,8 @@ In this exercise, you will run the Simulated Device and verify that it's sending
     {"telemetryDelay":"2"}
     Start reading and sending device telemetry...
     ```
+
+    Notice the message stating **Desired Twin Property Changed:**. The output line that follows this message contains the desired value for the **telemetryDelay** for the device. This is the value that you defined in the device twin desired property.
 
 1. Notice that the Simulated Device application begins sending telemetry events to the Azure IoT Hub.
 
@@ -328,7 +347,7 @@ In this exercise, you will run the Simulated Device and verify that it's sending
     11/6/2019 6:39:01 PM > Sending message: {"temperature":23.575667940813894,"humidity":77.66409506912534,"pressure":1017.0118147748344,"latitude":40.21020096551372,"longitude":-98.48636739129239}
     ```
 
-    Notice the timestamp differences between telemetry readings. The delay between telemetry messages should be `2` seconds as configured through the device twin; instead of the default of `1` second in the source code.
+    The timestamp value indicates the time difference between telemetry readings. The delay between telemetry messages should be 2 seconds, as configured through the device twin. The **telemetryDelay** variable that was initialized to **1** second in the source code has been updated.
 
 1. Leave the simulated device app running.
 
@@ -342,7 +361,10 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. Open a new browser tab, and then navigate to the Azure Cloud Shell: +++https://shell.azure.com/+++
 
-    If necessary, login with the Azure subscription you are using for this lab.
+    If necessary, login with the Azure credentials that you are using for this lab:
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
 
 1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
 
