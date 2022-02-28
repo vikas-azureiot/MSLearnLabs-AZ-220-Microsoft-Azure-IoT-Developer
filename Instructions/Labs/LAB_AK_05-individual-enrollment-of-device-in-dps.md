@@ -435,17 +435,17 @@ With the simulated device running, the **telemetryDelay** configuration can be u
 
     The **Device twin** blade provides an editor with the full JSON for the device twin. This enables you to view and/or edit the device twin state directly within the Azure portal.
 
-1. Locate the JSON for the `properties.desired` object.
+1. Locate the JSON for the **properties.desired** object.
 
-    This contains the desired state for the device. Notice the `telemetryDelay` property already exists, and is set to `"2"`, as was configured when the device was provisioned based on the Individual Enrollment in DPS.
+    This contains the desired state for the device. Notice the **telemetryDelay** property already exists, and is set to **2**, as was configured when the device was provisioned based on the Individual Enrollment in DPS.
 
-1. To update the value assigned to the `telemetryDelay` desired property, change the value to `"5"`
+1. To update the value assigned to the **telemetryDelay** desired property, change the value to **"5"**
 
     The value includes the quotes ("").
 
 1. At the top of the **Device twin** blade, click **Save**
 
-    The `OnDesiredPropertyChanged` event will be triggered automatically within the code for the Simulated Device, and the device will update its configuration to reflect the changes to the device twin Desired state.
+    The **OnDesiredPropertyChanged** event will be triggered automatically within the code for the Simulated Device, and the device will update its configuration to reflect the changes to the device twin Desired state.
 
 1. Switch to the Visual Studio Code window that you are using to run the simulated device application.
 
@@ -453,7 +453,7 @@ With the simulated device running, the **telemetryDelay** configuration can be u
 
 1. Notice that the device recognizes the change to the device twin properties.
 
-    The output will show a message that the `Desired Twin Property Changed` along with the JSON for the new desired`telemetryDelay` property value. Once the device picks up the new configuration of device twin desired state, it will automatically update to start sending sensor telemetry every 5 seconds as now configured.
+    The output will show a message that the **Desired Twin Property Changed** along with the JSON for the new desired **telemetryDelay** property value. Once the device picks up the new configuration of device twin desired state, it will automatically update to start sending sensor telemetry every 5 seconds as now configured.
 
     ```text
     Desired Twin Property Changed:
@@ -466,11 +466,11 @@ With the simulated device running, the **telemetryDelay** configuration can be u
 
 1. Switch to the browser page where you are running the Azure CLI command in the Azure Cloud Shell.
 
-    Ensure that you are still running the `az iot hub monitor-events` command. If it isn't running, re-start the command.
+    Ensure that you are still running the **az iot hub monitor-events** command. If it isn't running, re-start the command.
 
 1. Notice that the telemetry events sent to Azure IoT Hub being received at the new interval of 5 seconds.
 
-1. Use **Ctrl-C** to stop both the `az` command and the Simulated Device application.
+1. Use **Ctrl-C** to stop both the **az** command and the Simulated Device application.
 
 1. Switch to your browser window for the Azure portal.
 
@@ -478,9 +478,9 @@ With the simulated device running, the **telemetryDelay** configuration can be u
 
 1. Still in the Azure Portal, on the **sensor-thl-1000** device blade, click **Device Twin**.
 
-1. Locate the JSON for the `properties.reported` object.
+1. Locate the JSON for the **properties.reported** object.
 
-    This portion of the JSON contains the state reported by the device. Notice the `telemetryDelay` property exists here as well, and is also set to `5`.  There is also a `$metadata` value that shows you when the value was reported data was last updated and when the specific reported value was last updated.
+    This portion of the JSON contains the state reported by the device. Notice that the **telemetryDelay** property exists here as well, and is also set to **5**. There is also a `$metadata` value that shows you when the value was reported data was last updated and when the specific reported value was last updated.
 
 1. Close the **Device twin** blade.
 
