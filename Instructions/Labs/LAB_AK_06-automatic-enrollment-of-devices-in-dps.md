@@ -84,8 +84,6 @@ To ensure these resources are available, complete the following steps.
 
 1. If validation passes, click **Create**.
 
-1. If validation passes, click **Create**.
-
     The deployment will start. It will take several minutes to deploy the required Azure resources.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
