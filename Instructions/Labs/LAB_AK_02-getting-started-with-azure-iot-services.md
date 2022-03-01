@@ -494,7 +494,7 @@ The IoT Hub Device Provisioning Service is a helper service for IoT Hub that ena
 
 1. On the left-side menu, under **Settings**, click **Certificates**.
 
-    Here you can manage the X.509 certificates that can be used to secure your Azure IoT hub using the X.509 Certificate Authentication. You will investigate X.509 certificates in a later lab.
+    Here you can manage the X.509 certificates that can be used to secure your Azure IoT hub using the X.509 Certificate Authentication.
 
 1. On the left-side menu, under **Settings**, click **Manage enrollments**.
 
