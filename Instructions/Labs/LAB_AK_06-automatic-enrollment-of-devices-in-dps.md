@@ -74,7 +74,7 @@ To ensure these resources are available, complete the following steps.
 
     ccj220101
 
-    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -113,7 +113,7 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
 1. In the top right of the portal window, to open the Azure Cloud Shell, click **Cloud Shell**.
 
-    The Cloud Shell button has an icon that appears to represent a command prompt - **`>_`**.
+    The Cloud Shell button, which is to the right of the search entry field, has an icon that appears to represent a command prompt.
 
     A Cloud Shell window will open near the bottom of the display screen.
 
@@ -121,15 +121,19 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
     1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
 
-    1. Under **Subscription**, ensure the correct subscription is displayed.
+    1. Under **Subscription**, ensure that the "Microsoft Learn Hosting" subscription is displayed.
 
     1. To specify storage options, click **Show advanced settings**.
 
     1. Under **Resource group**, ensure **Use existing** is selected and the **@lab.CloudResourceGroup(ResourceGroup1).Name** is shown.
 
-    1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+    1. Under **Storage account**, select **Create new** and enter the following: **staz220{your-id}**.
 
-    1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+    +++staz220{your-id}+++
+
+    1. Under **File share**, select **Create new** and enter the following: **cloudshell**.
+
+    +++cloudshell+++
 
     1. To finish to configuration of the cloud shell, click **Create storage**.
 
@@ -181,10 +185,10 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
     If you are interested, you can quickly scan the contents of the script file that you downloaded by using the editor that's built-in to the Cloud Shell.
 
-    * In the Cloud Shell, to open the editor, click **`{}`**.
+    * In the Cloud Shell, to open the editor, click **{}**.
     * In the FILES list, click **certificates**, and then click **certGen.sh**
 
-    > **Note**: If you are experienced with other text file viewing tools in the Bash environment, such as the `more` or `vi` commands, you could also use those tools.
+    > **Note**: If you are experienced with other text file viewing tools in the Bash environment, such as the **more** or **vi** commands, you could also use those tools.
 
     Next, you will use the script to create your root and intermediate certificates.
 
@@ -194,9 +198,9 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
     ./certGen.sh create_root_and_intermediate
     ```
 
-    Notice that you ran the script with the `create_root_and_intermediate` option. This command assumes that you are running the script from within the `~/certificates` directory.
+    Notice that you ran the script with the **create_root_and_intermediate** option. This command assumes that you are running the script from within the **~/certificates** directory.
 
-    This command generated a Root CA Certificate named `azure-iot-test-only.root.ca.cert.pem` and placed it within a `./certs` directory (under the certificates directory that you created).
+    This command generated a Root CA Certificate named **azure-iot-test-only.root.ca.cert.pem** and placed it within a **./certs** directory (under the certificates directory that you created).
 
 1. To download the root certificate to your local machine (so it can be uploaded to DPS), enter the following command:
 
@@ -210,7 +214,7 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
 1. In the Azure portal, open your Device Provisioning Service.
 
-    The Device Provisioning Service is accessible from the Resources tile on your dashboard by clicking `dps-az220-training-{your-id}`.
+    The Device Provisioning Service is accessible from the Resources tile on your dashboard by clicking **dps-az220-training-{your-id}**.
 
 1. On the left-side menu of the **dps-az220-training-{your-id}** blade, under **Settings**, click **Certificates**.
 
@@ -226,7 +230,7 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
 1. Under **Certificate .pem or .cer file.**, to the right of the text box, click **Open**.
 
-    Clicking the **Open** button to the right of the text field will open an Open file dialog that enables you to navigate to the `azure-iot-test-only.root.ca.cert.pem` CA Certificate that you downloaded earlier.
+    Clicking the **Open** button to the right of the text field will open an Open file dialog that enables you to navigate to the **azure-iot-test-only.root.ca.cert.pem** CA Certificate that you downloaded earlier.
 
 1. Navigate to the folder location where you downloaded the root CA Certificate file, click **azure-iot-test-only.root.ca.cert.pem**, and then click **Open**.
 
@@ -248,7 +252,7 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
     > **IMPORTANT**: You will need to leave the **Certificate Details** pane open while you generate the verification certificate. If you close the pane, you will invalidate the verification code, and will need to generate a new one.
 
-1. Open the **Azure Cloud Shell**, if it's not still open from earlier, and navigate to the `~/certificates` directory.
+1. Open the **Azure Cloud Shell**, if it's not still open from earlier, and navigate to the **~/certificates** directory.
 
 1. To create the verification certificate, enter the following command:
 
@@ -256,7 +260,7 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
     ./certGen.sh create_verification_certificate <verification-code>
     ```
 
-    Be sure to replace the `<verification-code>` placeholder with the **Verification Code** generated by the Azure portal.
+    Be sure to replace the _verification-code_ placeholder, including the angle brackets, with the **Verification Code** generated by the Azure portal.
 
     For example, the command that you run will look similar to the following:
 
@@ -264,7 +268,7 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
     ./certGen.sh create_verification_certificate 49C900C30C78D916C46AE9D9C124E9CFFD5FCE124696FAEA
     ```
 
-    This generates a _verification certificate_ that is chained to the CA certificate. The subject of the certificate is the verification code. The generated Verification Certificate named `verification-code.cert.pem` is located within the `./certs` directory of the Azure Cloud Shell.
+    This generates a _verification certificate_ that is chained to the CA certificate. The subject of the certificate is the verification code. The generated Verification Certificate named **verification-code.cert.pem** is located within the **./certs** directory of the Azure Cloud Shell.
 
     The next step is to download the verification certificate to your local machine (similar to what you did with the root certificate earlier), so that you can then upload it to DPS.
 
@@ -339,7 +343,7 @@ In this task, you will create a new enrollment group within the Device Provision
 
     This JSON data represents the initial configuration of device twin desired properties for any device that participates in this enrollment group.
 
-    The devices will use the `properties.desired.telemetryDelay` property to set the time delay for reading and sending telemetry to IoT Hub.
+    The devices will use the **properties.desired.telemetryDelay** property to set the time delay for reading and sending telemetry to IoT Hub.
 
 1. Leave **Enable entry** set to **Enable**.
 
@@ -365,13 +369,13 @@ In this exercise, you will generate a device certificate using the root certific
 
     The dropdown in the top-left corner of the Azure Cloud Shell page is used to select the environment. Verify that the selected dropdown value is **Bash**.
 
-1. At the Cloud Shell command prompt, to navigate to the `~/certificates` directory, enter the following command:
+1. At the Cloud Shell command prompt, to navigate to the **~/certificates** directory, enter the following command:
 
     ```sh
     cd ~/certificates
     ```
 
-    The `~/certificates` directory is where the `certGen.sh` helper scripts were downloaded. You used them to generate the CA Certificate for DPS earlier in this lab. This helper script will also be used to generate a device certificate within the CA Certificate chain.
+    The **~/certificates** directory is where the **certGen.sh** helper scripts were downloaded. You used them to generate the CA Certificate for DPS earlier in this lab. This helper script will also be used to generate a device certificate within the CA Certificate chain.
 
 1. To generate an X.509 device certificate within the CA certificate chain, enter the following command:
 
@@ -379,11 +383,11 @@ In this exercise, you will generate a device certificate using the root certific
     ./certGen.sh create_device_certificate sensor-thl-2000
     ```
 
-    This command will create a new X.509 certificate that's signed by the CA certificate that was generated previously. Notice that the device id (`sensor-thl-2000`) is passed to the `create_device_certificate` command of the `certGen.sh` script. This device id will be set within the _common name_, or `CN=`, value of the device certificate. This certificate will generate a leaf device X.509 certificate for your simulated device, and will be used to authenticate the device with the Device Provisioning Service (DPS).
+    This command will create a new X.509 certificate that's signed by the CA certificate that was generated previously. Notice that the device id (**sensor-thl-2000**) is passed to the **create_device_certificate** command of the **certGen.sh** script. This device id will be set within the _common name_, or _CN=_, value of the device certificate. This certificate will generate a leaf device X.509 certificate for your simulated device, and will be used to authenticate the device with the Device Provisioning Service (DPS).
 
-    Once the `create_device_certificate` command has completed, the generated X.509 device certificate will be named `new-device.cert.pfx`, and will be located within the `/certs` sub-directory.
+    Once the **create_device_certificate** command has completed, the generated X.509 device certificate will be named **new-device.cert.pfx**, and will be located within the **/certs** sub-directory.
 
-    > **Note**: This command overwrites any existing device certificate in the `/certs` sub-directory. If you want to create a certificate for multiple devices, ensure that you save a copy of the `new-device.cert.pfx` each time you run the command.
+    > **Note**: This command overwrites any existing device certificate in the **/certs** sub-directory. If you want to create a certificate for multiple devices, ensure that you save a copy of the **new-device.cert.pfx** each time you run the command.
 
 1. To rename the device certificate that you just created, enter the following commands:
 
@@ -432,29 +436,29 @@ In this task, you will complete the following:
 
     This ID Scope value is the same value that you recorded after configuring the lab prerequisites. If you don't already have a copy, get it now. There is a copy button to the right of the value that will appear when you hover over the value.
 
-    The **ID Scope** will be similar to this value: `0ne0004E52G`
+    The **ID Scope** will be similar to this value: **0ne0004E52G**
 
-1. Open Windows File Explorer, and then navigate to the folder where the `sensor-thl-2000-device.cert.pfx` certificate file was downloaded.
+1. Open Windows File Explorer, and then navigate to the folder where the **sensor-thl-2000-device.cert.pfx** certificate file was downloaded.
 
 1. Use File Explorer to create a copy of the 2 device certificate files.
 
-    It will save some time to copy both certificate files now, but you will only be using the first one, `sensor-thl-2000-device.cert.pfx`, in the code project that you build initially.
+    It will save some time to copy both certificate files now, but you will only be using the first one, **sensor-thl-2000-device.cert.pfx**, in the code project that you build initially.
 
 1. In File Explorer, navigate to the **Final** folder for lab 6 (Automatic Enrollment of Devices in DPS).
 
     Before starting the lab instructions, you downloaded a copy of the GitHub repository containing lab resources to the lab virtual machine environment. The folder structure includes the following folder path:
 
     * Allfiles
-      * Labs
-          * 06-Automatic Enrollment of Devices in DPS
-            * Final
-              * ContainerDevice
+        * Labs
+            * 06-Automatic Enrollment of Devices in DPS
+                * Final
+                    * ContainerDevice
 
 1. Open the ContainerDevice folder.
 
 1. With the ContainerDevice folder open, paste-in the copied device certificate files.
 
-    The root directory of the ContainerDevice folder includes the `Program.cs` file for your simulated device app. The simulated device app will use the device certificate file when authenticating to the Device Provisioning Service.
+    The root directory of the ContainerDevice folder includes the **Program.cs** file for your simulated device app. The simulated device app will use the device certificate file when authenticating to the Device Provisioning Service.
 
 1. Open **Visual Studio Code**.
 
@@ -474,7 +478,7 @@ In this task, you will complete the following:
 
 1. In the **EXPLORER** pane, to open the ContainerDevice.csproj file, click **ContainerDevice.csproj**.
 
-1. In the code editor pane, within the `<ItemGroup>` tag, update the certificate file name as follows:
+1. In the code editor pane, within the **ItemGroup** tag, update the certificate file name as follows:
 
     ```xml
     <ItemGroup>
@@ -486,7 +490,7 @@ In this task, you will complete the following:
     </ItemGroup>
     ```
 
-    This configuration ensures that the `sensor-thl-2000-device.cert.pfx` certificate file is copied to the build folder when the C# code is compiled, and made available for the program to access when it executes.
+    This configuration ensures that the **sensor-thl-2000-device.cert.pfx** certificate file is copied to the build folder when the C# code is compiled, and made available for the program to access when it executes.
 
 1. On the Visual Studio Code **File** menu, click **Save**.
 
@@ -496,7 +500,7 @@ In this task, you will complete the following:
 
     The **ContainerDevice** application will the use of X.509 certificates as an attestation mechanism. From the application's perspective, it matters little that this device will be connecting via a Group Enrollment vs an Individual Enrollment.
 
-1. Locate the **GlobalDeviceEndpoint** variable, and notice that its value is set to the Global Device Endpoint for the Azure Device Provisioning Service (`global.azure-devices-provisioning.net`).
+1. Locate the **GlobalDeviceEndpoint** variable, and notice that its value is set to the Global Device Endpoint for the Azure Device Provisioning Service (**global.azure-devices-provisioning.net**).
 
     Within the Public Azure Cloud, **global.azure-devices-provisioning.net** is the Global Device Endpoint for the Device Provisioning Service (DPS). All devices connecting to Azure DPS will be configured with this Global Device Endpoint DNS name. You should see code that is similar to the following:
 
@@ -524,7 +528,7 @@ In this task, you will complete the following:
 
 1. Locate the **certificatePassword** variable, and notice that its value is set to the default password defined by the **certGen.sh** script.
 
-    The **certificatePassword** variable contains the password for the X.509 device certificate. It's set to `1234`, as this is the default password used by the **certGen.sh** helper script when generating the X.509 certificates.
+    The **certificatePassword** variable contains the password for the X.509 device certificate. It's set to **1234**, as this is the default password used by the **certGen.sh** helper script when generating the X.509 certificates.
 
     > **Note**: For the purpose of this lab, the password is hard coded. In a _production_ scenario, the password will need to be stored in a more secure manner, such as in an Azure Key Vault. Additionally, the certificate file (PFX) should be stored securely on a production device using a Hardware Security Module (HSM).
     >
@@ -585,7 +589,7 @@ In this exercise, you will make copies of your simulated device project, and the
 
 1. In the **EXPLORER** pane, to open the ContainerDevice.csproj file, click **ContainerDevice.csproj**.
 
-1. In the code editor pane, within the `<ItemGroup>` tag, update the certificate file name as follows:
+1. In the code editor pane, within the **ItemGroup** tag, update the certificate file name as follows:
 
     ```xml
     <ItemGroup>
@@ -617,7 +621,7 @@ In this exercise, you will run the simulated device. When the device is started 
 
     This will open the integrated Terminal at the bottom of the Visual Studio Code window.
 
-1. At the Terminal command prompt, ensure that the current directory path is set to the `\ContainerDevice` folder.
+1. At the Terminal command prompt, ensure that the current directory path is set to the **\ContainerDevice** folder.
 
     You should see something similar to the following:
 
@@ -629,7 +633,7 @@ In this exercise, you will run the simulated device. When the device is started 
     dotnet run
     ```
 
-    > **Note**:  When you run your simulated device for the first time, the most common error is an _Invalid certificate_ error. If a `ProvisioningTransportException` exception is displayed, it is most likely due to this error. If you see a message similar to the one shown below, you will need to ensure that the CA Certificate in DPS, and the Device Certificate for the simulated device application are configured correctly before you can continue.
+    > **Note**:  When you run your simulated device for the first time, the most common error is an _Invalid certificate_ error. If a **ProvisioningTransportException** exception is displayed, it is most likely due to this error. If you see a message similar to the one shown below, you will need to ensure that the CA Certificate in DPS, and the Device Certificate for the simulated device application are configured correctly before you can continue.
     >
     > ```text
     > localmachine:LabFiles User$ dotnet run
@@ -672,7 +676,7 @@ In this exercise, you will run the simulated device. When the device is started 
     Start reading and sending device telemetry...
     ```
 
-    To review the source code for the simulated device, open the `Program.cs` source code file. Look for several `Console.WriteLine` statements that are used to output the messages seen to the console.
+    To review the source code for the simulated device, open the **Program.cs** source code file. Look for several **Console.WriteLine** statements that are used to output the messages seen to the console.
 
 1. Notice that JSON formatted telemetry messages are being sent to Azure IoT Hub.
 
@@ -684,7 +688,7 @@ In this exercise, you will run the simulated device. When the device is started 
 
     Once the simulated device has passed through the initial start up, it will begin sending simulated sensor telemetry messages to Azure IoT Hub.
 
-    Notice that the delay, as defined by the `telemetryDelay` Device Twin Property, between each message sent to IoT Hub is currently delaying **1 second** between sending sensor telemetry messages.
+    Notice that the delay, as defined by the **telemetryDelay** Device Twin Property, between each message sent to IoT Hub is currently delaying **1 second** between sending sensor telemetry messages.
 
 1. Leave the simulated device running.
 
@@ -704,7 +708,7 @@ In this exercise, you will run the simulated device. When the device is started 
 
     This will open the integrated Terminal at the bottom of the Visual Studio Code window.
 
-1. At the Terminal command prompt, ensure that the current directory path is set to the `\ContainerDevice2001` folder.
+1. At the Terminal command prompt, ensure that the current directory path is set to the **ContainerDevice2001** folder.
 
     You should see something similar to the following:
 
@@ -718,7 +722,7 @@ In this exercise, you will run the simulated device. When the device is started 
 
 #### Task 3: Change the device configuration through its twin
 
-With the simulated devices running, the `telemetryDelay` configuration can be updated by editing the device twin Desired State within Azure IoT Hub.
+With the simulated devices running, the **telemetryDelay** configuration can be updated by editing the device twin Desired State within Azure IoT Hub.
 
 1. Open the **Azure portal**, and then navigate to your **Azure IoT Hub** service.
 
@@ -730,11 +734,11 @@ With the simulated devices running, the `telemetryDelay` configuration can be up
 
     On the **Device twin** blade, there is an editor with the full JSON for the device twin. This enables you to view and/or edit the device twin state directly within the Azure portal.
 
-1. Locate the `properties.desired` node within the Device Twin JSON.
+1. Locate the **properties.desired** node within the Device Twin JSON.
 
-1. Update the `telemetryDelay` property to have the value of `"2"`.
+1. Update the **telemetryDelay** property to have the value of **"2"**
 
-    This will update the `telemetryDelay` of the simulated device to send sensor telemetry every **2 seconds**.
+    This will update the **telemetryDelay** of the simulated device to send sensor telemetry every 2 seconds.
 
     The resulting JSON for this section of the device twin desired properties will look similar to the following:
 
@@ -754,7 +758,7 @@ With the simulated devices running, the `telemetryDelay` configuration can be up
         },
     ```
 
-    Leave the `$metadata` and `$version` value of the `properties.desired` node within the JSON. You should only update the `telemetryDelay` value to set the new device twin desired property value.
+    Leave the **$metadata** and **$version** value of the **properties.desired** node within the JSON. You should only update the **telemetryDelay** value to set the new device twin desired property value.
 
 1. At the top of the blade, to apply the device twin desired properties for the device, click **Save**.
 
@@ -762,7 +766,7 @@ With the simulated devices running, the `telemetryDelay` configuration can be up
 
 1. Switch back to the **Visual Studio Code** window that contains the original **ContainerDevice** project.
 
-1. Notice that the application has been notified of the updated device twin `telemetryDelay` desired property setting.
+1. Notice that the application has been notified of the updated device twin **telemetryDelay** desired property setting.
 
     The application outputs messages to the Console that show that the new device twin desired properties have been loaded, and the changes have been set and reported back to the Azure IoT Hub.
 
@@ -791,13 +795,13 @@ With the simulated devices running, the `telemetryDelay` configuration can be up
 
 1. On the **sensor-thl-2000** blade, click **Device Twin**.
 
-1. Scroll down to locate the JSON for the `properties.reported` object.
+1. Scroll down to locate the JSON for the **properties.reported** object.
 
     This contains the state reported by the device.
 
-1. Notice that the `telemetryDelay` property exists here as well, and that it has also been set to `2`.
+1. Notice that the **telemetryDelay** property exists here as well, and that it has also been set to **2**.
 
-    There is also a `$metadata` value that shows you when the `reported` values were last updated.
+    There is also a **$metadata** value that shows you when the **reported** values were last updated.
 
 1. Again close the **Device twin** blade.
 
@@ -835,7 +839,7 @@ In this task, you will use the **sensor-thl-2001** device for the individual enr
 
     The dropdown in the top-left corner of the Azure Cloud Shell page is used to select the environment. Verify that the selected dropdown value is **Bash**.
 
-1. At the Cloud Shell command prompt, to navigate to the `~/certificates` directory, enter the following command:
+1. At the Cloud Shell command prompt, to navigate to the **~/certificates** directory, enter the following command:
 
     ```sh
     cd ~/certificates
@@ -992,7 +996,7 @@ With the group enrollment deleted from the Device Provisioning Service, and the 
 
 1. Notice the exceptions listed when the device attempts to provision.
 
-    Now that the group enrollment and registered device have been deleted, the simulated device will no longer be able to provision or connect. When the application attempts to use the configured X.509 certificate to connect to DPS, it will return a `ProvisioningTransportException` error message.
+    Now that the group enrollment and registered device have been deleted, the simulated device will no longer be able to provision or connect. When the application attempts to use the configured X.509 certificate to connect to DPS, it will return a **ProvisioningTransportException** error message.
 
     ```txt
     Found certificate: AFF851ED016CA5AEB71E5749BCBE3415F8CF4F37 CN=sensor-thl-2000; PrivateKey: True
