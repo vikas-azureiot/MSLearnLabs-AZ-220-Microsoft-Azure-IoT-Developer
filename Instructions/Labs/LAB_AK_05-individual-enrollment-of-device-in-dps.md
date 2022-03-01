@@ -46,7 +46,7 @@ To ensure these resources are available, complete the following steps.
 
 1. In the virtual machine environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab05.json+++
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab05.json+++
 
     > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
 
@@ -90,7 +90,7 @@ To ensure these resources are available, complete the following steps.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
-    You will be using the text editor to store some configuration values associated with the Azure resources.
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
 
 1. In your text editor, enter the following text labels:
 
@@ -102,11 +102,9 @@ To ensure these resources are available, complete the following steps.
 
     +++deviceSecondaryKey:+++
 
-    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
-
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
-    You will see a notification when deployment is complete.
+    You will see a notification when deployment of your IoT hub and DPS resources is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template, click **Outputs**.
 
@@ -199,7 +197,7 @@ In this exercise, you will create a new individual enrollment for a device withi
 
     This field contains JSON data that represents the initial configuration of desired properties for the device. The data that you entered will be used by the Device to set the time delay for reading sensor telemetry and sending events to IoT Hub.
 
-    > **WARNING**: The automated text entry tool can struggle with indented JSON, sometimes inserting extra squiggly brackets. If necessary, update your JSON file to ensure that it matches the code structure above.
+    > **WARNING**: The automated text entry tool can insert extra squiggly brackets when entering structured JSON objects. If necessary, update your JSON data to ensure that it matches the code structure above.
 
 1. Leave the **Enable entry** field set to **Enable**.
 
@@ -223,7 +221,7 @@ In this exercise, you will create a new individual enrollment for a device withi
 
 1. Copy the **Primary Key** and **Secondary Key** values for this device enrollment, and save the values to your text file for later reference.
 
-    These are the authentication keys for the device to authenticate with the IoT Hub service.
+    These are the authentication keys that the device will use to authenticate with your IoT hub service.
 
 1. Locate the **Initial device twin State**, and verify that the JSON for the device twin Desired State contains the **telemetryDelay** property set to the value of **2**.
 
@@ -256,7 +254,7 @@ The simulated device that you create in this exercise represents an IoT device t
 
 1. In the **Open Folder** dialog, click **ContainerDevice**, and then click **Select Folder**.
 
-    The ContainerDevice folder is a sub-folder of the Lab 5 **Final** folder. It contains a Program.cs file and a ContainerDevice.csproj file.
+    The ContainerDevice folder is a sub-folder of the Lab 5 Final folder. It contains a **Program.cs** file and a **ContainerDevice.csproj** file.
 
     > **Note**: If Visual Studio Code prompts you to load required build and debug assets, you can click **Yes** to load them.
 
@@ -386,14 +384,15 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. To finish to configuration of the cloud shell, click **Create storage**.
 
+    > **Note**: It can take 30+ seconds for the Azure Cloud Shell to configure and open for the first time.
+ 
 1. Open your text editor, such as Notepad, and enter the following Azure CLI command:
-
     
-    +++az iot hub monitor-events --hub-name {IoTHubName} --device-id sensor-thl-0001+++
+    +++az iot hub monitor-events --hub-name {IoTHubName} --device-id sensor-thl-1000+++
 
     Notice that the command contains a placeholder value for the name of your IoT hub. You need to update the placeholder in the text editor before running the command.
 
-1. In your text editor, replace the **IoTHubName** placeholder with the name of your Azure IoT Hub.
+1. In your text editor, replace the **{IoTHubName}** placeholder with the name of your Azure IoT Hub.
 
     Your IoT hub is named using the following format: **iot-az220-training-{your-id}**
 
@@ -415,17 +414,19 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. Notice that your IoT hub is receiving the telemetry messages from the sensor-thl-1000 device.
 
-    Continue to leave the simulated device application running for the next task.
-
     > **Note**: If the event monitor starts but no telemetry data is displayed, verify that the Device ID is specified correctly.
+
+1. Leave the simulated device application and the Azure Cloud Shell monitor running for the next task.
 
 #### Task 3: Change the device configuration through its twin
 
 With the simulated device running, the **telemetryDelay** configuration can be updated by editing the device twin Desired State within your Azure IoT hub. This can be done by configuring the Device in the Azure portal.
 
-1. Open the Azure portal (if it is not already open), and then navigate to your Azure IoT hub resource.
+1. Switch to the Azure portal tab, and then navigate to your Azure IoT hub resource.
 
 1. On the IoT hub blade, on the left-side menu under **Device management**, click **Devices**.
+
+    The individual enrollment that you configured in DPS enabled the device to register with IoT hub.
 
 1. Under **DEVICE ID**, click **sensor-thl-1000**.
 
@@ -478,9 +479,11 @@ With the simulated device running, the **telemetryDelay** configuration can be u
 
 1. Still in the Azure Portal, on the **sensor-thl-1000** device blade, click **Device Twin**.
 
+    Closing and then re-opening the device twin helps to ensure that the contents are refreshed.
+
 1. Locate the JSON for the **properties.reported** object.
 
-    This portion of the JSON contains the state reported by the device. Notice that the **telemetryDelay** property exists here as well, and is also set to **5**. There is also a `$metadata` value that shows you when the value was reported data was last updated and when the specific reported value was last updated.
+    This portion of the JSON contains the state reported by the device. Notice that the **telemetryDelay** property exists here as well, and is also set to **5**. There is also a `$metadata` value that shows you when the reported property was was last updated and when the telemetryDelay value was last updated.
 
 1. Close the **Device twin** blade.
 
