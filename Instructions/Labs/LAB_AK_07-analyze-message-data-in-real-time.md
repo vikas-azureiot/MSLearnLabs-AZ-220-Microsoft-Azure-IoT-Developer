@@ -70,7 +70,9 @@ To ensure these resources are available, complete the following steps.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the "Microsoft Learn Hosting" subscription is selected.
+
+    If you are choosing to use a promotional or personal Azure account, enter the subscription information in the dropdown.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -90,9 +92,11 @@ To ensure these resources are available, complete the following steps.
 
     ccj220101
 
-    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
+
+    +++az220+++
 
 1. To validate the template, click **Review and create**.
 
@@ -232,13 +236,13 @@ The simulated device app that you will build in this task simulates an IoT devic
 
 1. Ensure that you have the **Program.cs** file opened in Visual Studio Code.
 
-1. Near the top of the **Program** class, locate the declaration of the `deviceConnectionString` variable:
+1. Near the top of the **Program** class, locate the declaration of the **deviceConnectionString** variable:
 
     ```csharp
     private readonly static string deviceConnectionString = "<your device connection string>";
     ```
 
-1. Replace `<your device connection string>` with the device connection string that you saved earlier.
+1. Replace the **your device connection string** placeholder, including the angle brackets, with the device connection string that you saved earlier.
 
     > **Note**: This is the only change that you are required to make to this code.
 
@@ -276,7 +280,7 @@ The simulated device app that you will build in this task simulates an IoT devic
 
 1. Leave this app running for the next task.
 
-    If you won't be continuing to the next task, you can enter **Ctrl-C** in the Terminal window to stop the app. You can start it again later by using the `dotnet run` command.
+    If you won't be continuing to the next task, you can enter **Ctrl-C** in the Terminal window to stop the app. You can start it again later by using the **dotnet run** command.
 
 #### Task 4: Verify the IoT Hub is Receiving Telemetry
 
@@ -320,7 +324,7 @@ telemetryMessage.Properties.Add("sensorID", "VSTel");
 loggingMessage.Properties.Add("sensorID", "VSLog");
 ```
 
-You can now embed a SQL query within your message route that uses `sensorID` as a criteria for the route. In this case, when the value assigned to `sensorID` is `VSLog` (vibration sensor log), the message is intended for the storage archive.
+You can now embed a SQL query within your message route that uses **sensorID** as a criteria for the route. In this case, when the value assigned to **sensorID** is **VSLog** (vibration sensor log), the message is intended for the storage archive.
 
 In this exercise, you will create and test the logging route.
 
@@ -338,11 +342,15 @@ In this exercise, you will create and test the logging route.
 
 1. On the **Add a route** blade, under **Name**, enter **vibrationLoggingRoute**
 
+    +++vibrationLoggingRoute+++
+
 1. To the right of **Endpoint**, click **+ Add endpoint**, and then, in the drop-down list, click **Storage**.
 
     The **Add a storage endpoint** blade should now be displayed.
 
 1. On the **Add a storage endpoint** blade, under **Endpoint name**, enter **vibrationLogEndpoint**
+
+    +++vibrationLogEndpoint+++
 
 1. To display a list of Storage accounts associated with your subscription, click **Pick a container**.
 
@@ -354,9 +362,11 @@ In this exercise, you will create and test the logging route.
 
 1. On the **Create storage account** blade, under **Name**, enter **vibrationstore{your-id}**
 
-    For example: **vibrationstorecah191211**
+    +++vibrationstore{your-id}+++
 
-    > **Note**:  This field can only contain lower-case letters and numbers, must be between 3 and 24 characters, and must be unique.
+    > **Note**: Remember to replace **{your-id}** with your unique ID value.
+
+    > **IMPORTANT**:  This field can only contain lower-case letters and numbers, must be between 3 and 24 characters, and must be unique.
 
 1. In the **Account kind** dropdown, click **StorageV2 (general purpose v2)**.
 
@@ -391,6 +401,8 @@ In this exercise, you will create and test the logging route.
     The **New container** dialog should now be displayed.
 
 1. On the **New container** dialog, under **Name**, enter **vibrationcontainer**
+
+    +++vibrationcontainer+++
 
    Again, only lower-case letters and numbers are accepted.
 
@@ -435,7 +447,7 @@ In this exercise, you will create and test the logging route.
     sensorID = 'VSLog'
     ```
 
-    This query ensures that only messages with the `sensorID` application property set to `VSLog` will be routed to the storage endpoint.
+    This query ensures that only messages with the **sensorID** application property set to **VSLog** will be routed to the storage endpoint.
 
 1. To save this route, click **Save**.
 
@@ -447,7 +459,7 @@ In this exercise, you will create and test the logging route.
 
 1. Ensure that the device app you created in Visual Studio Code is still running.
 
-    If not, run it in the Visual Studio Code terminal using `dotnet run`.
+    If not, run it in the Visual Studio Code terminal using **dotnet run**.
 
 1. On your Resources tile, to open you Storage account blade, click **vibrationstore{your-id}**.
 
@@ -509,6 +521,8 @@ This will enable you to verify that your route includes the following settings:
 
 1. On the **New Stream Analytics job** pane, under **Name**, enter **vibrationJob**.
 
+    +++vibrationJob+++
+
 1. Under **Subscription**, choose the subscription you are using for the lab.
 
 1. Under **Resource group**, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
@@ -541,7 +555,9 @@ This will enable you to verify that your route includes the following settings:
 
     The **IoT Hub - New input** pane will be displayed.
 
-1. On the **IoT Hub - New input** pane, under **Input alias**, enter `vibrationInput`.
+1. On the **IoT Hub - New input** pane, under **Input alias**, enter **vibrationInput**
+
+    +++vibrationInput+++
 
 1. Under **IoT Hub**, ensure that your **iot-az220-training-{your-id}** IoT hub is selected.
 
@@ -583,7 +599,9 @@ This will enable you to verify that your route includes the following settings:
 
     The **Blob storage/ADLS Gen2 - New output** pane is displayed.
 
-1. On the **Blob storage/ADLS Gen2 - New output** pane, under **Output alias**, enter `vibrationOutput`.
+1. On the **Blob storage/ADLS Gen2 - New output** pane, under **Output alias**, enter **vibrationOutput**.
+
+    +++vibrationOutput+++
 
 1. Ensure that **Select storage from your subscriptions** is selected.
 
@@ -644,7 +662,7 @@ Now for the fun part. Does the telemetry your device app is pumping out work its
 
 1. Ensure that the device app you created in Visual Studio Code is still running.
 
-    If not, run it in the Visual Studio Code terminal using `dotnet run`.
+    If not, run it in the Visual Studio Code terminal using **dotnet run**.
 
 1. On the **Overview** pane of your Stream Analytics job, click **Start**.
 

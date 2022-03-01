@@ -39,17 +39,17 @@ This lab assumes the following Azure resources are available:
 
 | Resource Type | Resource Name |
 | :-- | :-- |
-| Resource Group | `@lab.CloudResourceGroup(ResourceGroup1).Name` |
-| IoT Hub | `iot-az220-training-{your-id}` |
-| Device ID | `sensor-th-truck0001` |
-| Device ID | `sensor-th-airplane0001` |
-| Device ID | `sensor-th-container0001` |
+| Resource Group | @lab.CloudResourceGroup(ResourceGroup1).Name |
+| IoT Hub | iot-az220-training-{your-id} |
+| Device ID | sensor-th-truck0001 |
+| Device ID | sensor-th-airplane0001 |
+| Device ID | sensor-th-container0001 |
 
 To ensure these resources are available, complete the following tasks.
 
 1. In the virtual machine environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab10.json+++
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab10.json+++
 
     > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
 
@@ -61,7 +61,9 @@ To ensure these resources are available, complete the following tasks.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this course is selected.
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the "Microsoft Learn Hosting" subscription is selected.
+
+    If you are choosing to use a promotional or personal Azure account, enter the subscription information in the dropdown.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -81,9 +83,11 @@ To ensure these resources are available, complete the following tasks.
 
     ccj220101
 
-    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
+
+    +++az220+++
 
 1. To validate the template, click **Review and create**.
 
@@ -93,7 +97,23 @@ To ensure these resources are available, complete the following tasks.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
-    You will be using the text editor to store some configuration values associated with the Azure resources.
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
+
+1. In your text editor, enter the following text labels:
+
+    +++connectionString-iothub:+++
+
+    +++deviceID-truck:+++
+
+    +++connectionString-truck:+++
+
+    +++deviceID-airplane:+++
+
+    +++connectionString-airplane:+++
+
+    +++deviceID-container:+++
+
+    +++connectionString-container:+++
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
@@ -153,9 +173,9 @@ To ensure these resources are available, complete the following tasks.
 
         If the device isn't listed, on the Devices page, click **Refresh**.
 
-    1. On the sensor-th-truck0001 page, to the right of the Primary Connection String value, click **Copy**.
+    1. On the sensor-th-truck0001 page, to the right of the Device ID value, click **Copy**, and then save the value to your text editor file.
 
-    1. Save the Device ID and the copied connection string value to Notepad for later use.
+    1. Copy the Primary Connection String value, and then save it to your text editor file.
 
     1. Repeat the previous three steps to record the Device IDs and connection string values for the **sensor-th-airplane0001** and **sensor-th-container0001** devices.
 
@@ -167,7 +187,7 @@ To ensure these resources are available, complete the following tasks.
 
     1. Notice that the IoT hub Primary Connection String is listed.
 
-    1. Copy the value of the IoT hub Primary Connection String to Notepad.
+    1. Copy the value of the IoT hub Primary Connection String and save it to your text editor file.
 
     The Azure resources required for this lab are now available.
 
@@ -177,9 +197,7 @@ Azure Time Series Insights (TSI) is an end-to-end platform-as-a-service offering
 
 In this exercise, you will setup Time Series Insights integration with Azure IoT Hub.
 
-1. Login to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
-
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+1. In your Azure portal window, navigate to your Dashboard.
 
 1. On the Azure portal menu, click **+ Create a resource**.
 
@@ -189,13 +207,15 @@ In this exercise, you will setup Time Series Insights integration with Azure IoT
 
 1. On the **Time Series Insights** blade, click **Create**.
 
-1. On the **Create Time Series Insights environment** blade, in the **Environment name** field, enter **tsi-az220-training-{your-id}**
-
-1. In the **Subscription** dropdown, select the subscription that you are using for this course.
+1. On the **Create Time Series Insights environment** blade, in the **Subscription** dropdown, select the subscription that you are using for this lab.
 
 1. In the **Resource group** dropdown, click **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
-1. In the **Environment name** field, enter **tsi-az220-training-{your-id}**.
+1. In the **Environment name** field, enter **tsi-az220-training-{your-id}**
+
+    +++tsi-az220-training-{your-id}+++
+
+    > **Note**: Remember to replace **{your-id}** with your unique ID value.
 
 1. In the **Location** dropdown, select the Azure region used by your resource group.
 
@@ -205,25 +225,33 @@ In this exercise, you will setup Time Series Insights integration with Azure IoT
 
 1. Under the **EVENT SOURCE DETAILS** section, ensure that **Create an event source?** is set to **Yes**.
 
-1. In the **Source type** dropdown, ensure that **IoT Hub** is selected.
+1. Ensure that **Source type** is set to **IoT Hub**.
 
 1. In the **Name** field, enter **iot-az220-training-{your-id}**
 
-1. In the **Subscription** dropdown, select the subscription that you are using for this course.
+    +++iot-az220-training-{your-id}+++
 
-1. In the **IoT Hub name** dropdown, select the **iot-az220-training-{your-id}** Azure IoT Hub service that's already been provisioned.
+    > **Note**: Remember to replace **{your-id}** with your unique ID value.
+
+1. in the **Subscription** dropdown, ensure the subscription that you are using for this lab is selected.
+
+1. In the **IoT Hub name** dropdown, select **iot-az220-training-{your-id}**.
 
 1. In the **IoT Hub access policy name** dropdown, click **iothubowner**.
 
     In a production environment, it's best practice to create a new _Access Policy_ within Azure IoT Hub to use for configuring Time Series Insights (TSI) access. This will enable the security of TSI to be managed independently of any other services connected to the same Azure IoT Hub.  You are not doing that here for convenience reasons.
 
-1. Under the **CONSUMER GROUP** section, next to the **IoT Hub consumer group** dropdown, click **New**.
+1. To the right of the **IoT Hub consumer group** dropdown, click **New**.
+
+    The IoT Hub consumer group dropdown will convert to a text entry field so that you can enter a value.
 
 1. In the **IoT Hub consumer group** box, enter **tsievents** and then click **Add**.
 
+    +++tsievents***
+
     This will add a new _Consumer Group_ to use for this Event Source. The Consumer Group needs to be used exclusively for this Event Source, as there can only be a single active reader from a given Consumer Group at a time.
 
-1. Under the **Start options** section, in the **Start time** dropdown, select **Beginning now (default)**.
+1. Under the **Start options** section, in the **Start time** dropdown, ensure that **Beginning now (default)** is selected.
 
 1. Under the **TIMESTAMP** section, leave the **Property Name** blank.
 
