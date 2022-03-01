@@ -42,7 +42,7 @@ To ensure these resources are available, complete the following steps.
 
 1. In the virtual machine environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab06.json+++
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab06.json+++
 
     > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
 
@@ -54,8 +54,10 @@ To ensure these resources are available, complete the following steps.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the "Microsoft Learn Hosting" subscription is selected.
 
+    If you are choosing to use a promotional or personal Azure account, enter the subscription information in the dropdown.
+ 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
     > **NOTE**: If **@lab.CloudResourceGroup(ResourceGroup1).Name** is not listed:
@@ -82,19 +84,27 @@ To ensure these resources are available, complete the following steps.
 
 1. If validation passes, click **Create**.
 
+1. If validation passes, click **Create**.
+
     The deployment will start. It will take several minutes to deploy the required Azure resources.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
-    You will be using the text editor to store some configuration values associated with the Azure resources.
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
+
+1. In your text editor, enter the following text labels:
+
+    +++connectionString:+++
+
+    +++dpsScopeId:+++
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
-    You will see a notification when deployment is complete.
+    You will see a notification when the deployment of your IoT hub and DPS resources has completed.
 
-1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
+1. Once the deployment has completed, in the left navigation area, to review any output values from the template, click **Outputs**.
 
-1. In your text editor, create a record of the following Outputs for use later:
+1. In your text editor, create a record of the following Outputs for use later in the lab:
 
     * connectionString
     * dpsScopeId
@@ -109,7 +119,11 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
 1. On the Azure portal menu, select **Dashboard**.
 
-    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. When prompted to Sign in, you will need to provide the following credentials at the sign in prompts: **Username** +++@lab.CloudPortalCredential(User1).Username+++ and **Password** +++@lab.CloudPortalCredential(User1).Password+++
+    If you closed the Azure portal window after the previous exercise, open a new Microsoft Edge browser window and navigate back to the Azure portal. If prompted to Sign in, provide the following credentials at the sign in prompts: 
+
+    **Username**: +++@lab.CloudPortalCredential(User1).Username+++
+
+    **Password**: +++@lab.CloudPortalCredential(User1).Password+++
 
 1. In the top right of the portal window, to open the Azure Cloud Shell, click **Cloud Shell**.
 
@@ -127,15 +141,19 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
 
     1. Under **Resource group**, ensure **Use existing** is selected and the **@lab.CloudResourceGroup(ResourceGroup1).Name** is shown.
 
-    1. Under **Storage account**, select **Create new** and enter the following: **staz220{your-id}**.
+    1. Under **Storage account**, select **Create new** and enter **staz220{your-id}**.
 
-    +++staz220{your-id}+++
+        +++staz220{your-id}+++
 
-    1. Under **File share**, select **Create new** and enter the following: **cloudshell**.
+        > **Note**: Be sure to replace **{your-id}** with your unique ID value.
 
-    +++cloudshell+++
+    1. Under **File share**, select **Create new** and enter **cloudshell**.
+
+        +++cloudshell+++
 
     1. To finish to configuration of the cloud shell, click **Create storage**.
+
+        > **Note**: It can take 30+ seconds for the Azure Cloud Shell to configure and open for the first time.
 
 1. In the upper left corner of the Cloud Shell window, ensure that **Bash** is selected as the environment option.
 
@@ -208,7 +226,7 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
     download ~/certificates/certs/azure-iot-test-only.root.ca.cert.pem
     ```
 
-    You will be prompted to save the file to your local machine. Make a note of where the file is being saved, you will need it in the next task.
+    > **IMPORTANT**: You will be prompted to save the file to your local machine. Make a note of where the file is being saved, you will need it in the next task.
 
 #### Task 2: Configure DPS to trust the root certificate
 
@@ -223,6 +241,8 @@ In this exercise, you will generate an X.509 CA Certificate using OpenSSL within
     Clicking **+ Add** will start the process of uploading the X.509 CA Certificate to the DPS service.
 
 1. On the **Add Certificate** blade, under **Certificate Name**, enter **root-ca-cert**
+
+    +++root-ca-cert+++
 
     It is important to provide a name that enables you to differentiate between certificates, such as your root certificate and intermediate certificate, or multiple certificates at the same hierarchy level within the chain.
 
@@ -306,6 +326,8 @@ In this task, you will create a new enrollment group within the Device Provision
 
 1. On the **Add Enrollment Group** blade, under **Group name**, enter **eg-test-simulated-devices**
 
+    +++eg-test-simulated-devices+++
+
 1. Ensure that the **Attestation Type** is set to **Certificate**.
 
 1. Ensure that the **Certificate Type** field is set to **CA Certificate**.
@@ -387,7 +409,7 @@ In this exercise, you will generate a device certificate using the root certific
 
     Once the **create_device_certificate** command has completed, the generated X.509 device certificate will be named **new-device.cert.pfx**, and will be located within the **/certs** sub-directory.
 
-    > **Note**: This command overwrites any existing device certificate in the **/certs** sub-directory. If you want to create a certificate for multiple devices, ensure that you save a copy of the **new-device.cert.pfx** each time you run the command.
+    > **IMPORTANT**: This command overwrites any existing device certificate in the **/certs** sub-directory. If you want to create a certificate for multiple devices, ensure that you save a copy of the **new-device.cert.pfx** each time you run the command.
 
 1. To rename the device certificate that you just created, enter the following commands:
 
@@ -412,7 +434,7 @@ In this exercise, you will generate a device certificate using the root certific
 
     > **Note**: Watch for a browser prompt asking you to save the file.
 
-1. To download the first generated X.509 device certificate from the Cloud Shell to your local machine, enter the following command:
+1. To download the second generated X.509 device certificate from the Cloud Shell to your local machine, enter the following command:
 
     ```sh
     download ~/certificates/certs/sensor-thl-2001-device.cert.pfx
@@ -426,17 +448,8 @@ In this exercise, you will generate a device certificate using the root certific
 
 In this task, you will complete the following:
 
-* Get the ID Scope from DPS that will be placed in code
 * Copy the downloaded device certificate into the root folder of the application
-* Configure the application in Visual Studio Code
-
-1. In the Azure portal, open your Device Provisioning Service blade and ensure that the **Overview** pane is selected.
-
-1. On the **Overview** pane, copy the **ID Scope** for the Device Provisioning Service, and save it for later reference.
-
-    This ID Scope value is the same value that you recorded after configuring the lab prerequisites. If you don't already have a copy, get it now. There is a copy button to the right of the value that will appear when you hover over the value.
-
-    The **ID Scope** will be similar to this value: **0ne0004E52G**
+* Configure the application in Visual Studio Code to use the ID Scope from DPS
 
 1. Open Windows File Explorer, and then navigate to the folder where the **sensor-thl-2000-device.cert.pfx** certificate file was downloaded.
 
@@ -454,15 +467,19 @@ In this task, you will complete the following:
                 * Final
                     * ContainerDevice
 
-1. Open the ContainerDevice folder.
+    > **Note**: If you have trouble locating the **Allfiles** folder, check your Windows **Desktop** folder, which is the default location.
+
+1. Open the **ContainerDevice** folder.
 
 1. With the ContainerDevice folder open, paste-in the copied device certificate files.
 
     The root directory of the ContainerDevice folder includes the **Program.cs** file for your simulated device app. The simulated device app will use the device certificate file when authenticating to the Device Provisioning Service.
 
-1. Open **Visual Studio Code**.
+1. Use the **Start** menu to open **Visual Studio Code**.
 
-1. On the **File** menu, click **Open Folder**
+    > **Note**: You may find it helpful to maximize the Visual Studio Code window.
+
+1. On the Visual Studio Code **File** menu, click **Open Folder**
 
 1. In the **Open Folder** dialog, navigate to the **Final** folder for lab 6 (Automatic Enrollment of Devices in DPS).
 
@@ -508,13 +525,17 @@ In this task, you will complete the following:
     private const string GlobalDeviceEndpoint = "global.azure-devices-provisioning.net";
     ```
 
-1. Locate the **dpsIdScope** variable, and update the assigned value using the **ID Scope** that you copied from the Overview pane of the Device Provisioning Service.
+1. Locate the **dpsIdScope** variable
+
+1. Update the assigned value using the **ID Scope** that your save to your text editor.
 
     When you have updated your code, it should look similar to the following:
 
     ```csharp
     private static string dpsIdScope = "0ne000CBD6C";
     ```
+
+    > **Note**: If you don't have the DPS ID Scope value, you can get a copy from from the Overview pane of the Device Provisioning Service.
 
 1. Locate the **certificateFileName** variable, and notice that its value is set to the default name of the device certificate file that you generated (**new-device.cert.pfx**).
 
@@ -542,7 +563,9 @@ In this task, you will complete the following:
 
 1. At the Terminal command prompt, to verify that you code will build correctly, enter **dotnet build**
 
-    If you see build error listed, fix them now before continuing to the next exercise.
+    +++dotnet build+++
+
+    If you see any build errors listed, you will need to fix them before continuing to the next exercise. Ensure that you updated the code files correctly and that you Saved your changes to the .csproj and .cs files.
 
 ### Exercise 4: Create Additional Instances of your Simulated Device
 
@@ -555,9 +578,9 @@ In this exercise, you will make copies of your simulated device project, and the
 1. In File Explorer, navigate to the **Final** folder for lab 6 (Automatic Enrollment of Devices in DPS).
 
     * Allfiles
-      * Labs
-          * 06-Automatic Enrollment of Devices in DPS
-            * Final
+        * Labs
+            * 06-Automatic Enrollment of Devices in DPS
+                * Final
 
 1. Right-click **ContainerDevice**, and then click **Copy**.
 
