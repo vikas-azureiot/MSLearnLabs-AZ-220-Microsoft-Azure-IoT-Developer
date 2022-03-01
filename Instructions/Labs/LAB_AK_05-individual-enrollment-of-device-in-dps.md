@@ -58,7 +58,7 @@ To ensure these resources are available, complete the following steps.
 
     Once you have signed in, the **Custom deployment** page will be displayed.
 
-1. Under **Project details**, in the **Subscription** dropdown, ensure that the Azure subscription that you intend to use for this lab is selected.
+1. Under **Project details**, in the **Subscription** dropdown, ensure that the "Microsoft Learn Hosting" subscription is selected.
 
 1. In the **Resource group** dropdown, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
@@ -233,7 +233,7 @@ In this exercise, you will configure a Simulated Device written in C# to connect
 
 The simulated device that you create in this exercise represents an IoT device that will be located within a shipping container/box, and will be used to monitor Contoso products while they are in transit. The sensor telemetry from the device that will be sent to Azure IoT Hub includes Temperature, Humidity, Pressure, and Latitude/Longitude coordinates of the container. The device is part of the overall asset tracking solution.
 
-> **Note**: You may have the impression that creating this simulated device is a bit redundant with what you created in the previous lab, but the attestation mechanism that you implement in this lab is quite different from what you did previously. In the previous lab, you used a shared access key to authenticate, which does not require device provisioning, but also does not give the provisioning management benefits (such as leveraging device twins), and it requires fairly large distribution and management of a shared key. In this lab, you are provisioning a unique device through the Device Provisioning Service.
+> **Note**: The attestation mechanism that you implement in this lab is quite different from using a shared access key provided by IoT hub. Registering directly with IoT hub does not provide the provisioning management benefits and it requires fairly large distribution and management of a shared key. In this lab, you are provisioning a unique device through the Device Provisioning Service.
 
 #### Task 1: Create the Simulated Device
 
@@ -342,7 +342,7 @@ In this exercise, you will run the Simulated Device and verify that it's sending
     11/6/2019 6:39:01 PM > Sending message: {"temperature":23.575667940813894,"humidity":77.66409506912534,"pressure":1017.0118147748344,"latitude":40.21020096551372,"longitude":-98.48636739129239}
     ```
 
-    The timestamp value indicates the time difference between telemetry readings. The delay between telemetry messages should be 2 seconds, as configured through the device twin. The **telemetryDelay** variable that was initialized to **1** second in the source code has been updated.
+    The timestamp value indicates the time difference between telemetry readings. The delay between telemetry messages should be 2 seconds, as configured through the device twin. The value assigned to the **telemetryDelay** variable (which was initialized to 1 second in the source code) has been updated.
 
 1. Leave the simulated device app running.
 
@@ -366,7 +366,7 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
 1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
 
-1. Under **Subscription**, ensure the correct subscription is displayed.
+1. Under **Subscription**, ensure the "Microsoft Learn Hosting" subscription is displayed.
 
 1. To specify storage options, click **Show advanced settings**.
 
@@ -413,6 +413,8 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
     The **--device-id** parameter is optional and allows you to monitor the events from a single device. If the parameter is omitted, the command will monitor all events sent to the specified Azure IoT Hub.
 
 1. Notice that your IoT hub is receiving the telemetry messages from the sensor-thl-1000 device.
+
+    > **Note**: If you see a message that says the command was unable to find your IoT Hub in the current subscription, verify that you entered the resource name correctly and re-run the command. If necessary, close and then re-open the Azure Cloud Shell before running the command again.
 
     > **Note**: If the event monitor starts but no telemetry data is displayed, verify that the Device ID is specified correctly.
 
@@ -525,7 +527,7 @@ In this exercise, you will perform the tasks necessary to deprovision the device
 
 1. On the **Remove enrollment** prompt, click **Yes**.
 
-    The individual enrollment is now removed from the Device Provisioning Service (DPS). To complete the deprovisioning process, the **Device ID** for the Simulated Device also must be removed from the **Azure IoT Hub** service.
+    The individual enrollment is now removed from the Device Provisioning Service (DPS). To complete the deprovisioning process, the **Device ID** for the Simulated Device must be removed from the **Azure IoT Hub** service.
 
 #### Task 2: Deregister the device from the IoT Hub
 
