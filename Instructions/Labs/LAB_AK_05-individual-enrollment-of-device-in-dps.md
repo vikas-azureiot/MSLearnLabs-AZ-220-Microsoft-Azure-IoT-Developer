@@ -485,7 +485,7 @@ With the simulated device running, the **telemetryDelay** configuration can be u
 
 1. Locate the JSON for the **properties.reported** object.
 
-    This portion of the JSON contains the state reported by the device. Notice that the **telemetryDelay** property exists here as well, and is also set to **5**. There is also a `$metadata` value that shows you when the reported property was was last updated and when the telemetryDelay value was last updated.
+    This portion of the JSON contains the state reported by the device. Notice that the **telemetryDelay** property exists here as well, and is also set to **5**. There is also a **$metadata** value that shows you when the reported property was was last updated and when the telemetryDelay value was last updated.
 
 1. Close the **Device twin** blade.
 

@@ -47,7 +47,7 @@ In this exercise, you will create your unique ID and review some examples that h
     dm210911
     ```
 
-    Within the lab instructions, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+    Within the lab instructions, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. Make a note of your unique ID. You will use the ID value later in this lab.
 
@@ -57,7 +57,7 @@ In this exercise, you will create your unique ID and review some examples that h
 
 Many of the resources that you create for an Azure IoT solution will have publicly-addressable (although secured) endpoints and therefore must be globally unique. Examples of resources that require globally unique names include IoT Hubs, Device Provisioning Services, and Azure Storage Accounts.
 
-As noted above, when you create these types of resources, you will be provided with a resource name that follows suggested guidelines and you will be instructed to include your unique ID as part of the resource name. To help clarify when you need to enter your unique ID, the suggested resource name will include a placeholder value for your unique ID. You will be instructed to replace the placeholder value, `{your-id}`, with your unique ID.
+As noted above, when you create these types of resources, you will be provided with a resource name that follows suggested guidelines and you will be instructed to include your unique ID as part of the resource name. To help clarify when you need to enter your unique ID, the suggested resource name will include a placeholder value for your unique ID. You will be instructed to replace the placeholder value, **{your-id}**, with your unique ID.
 
 1. Review the following resource naming examples:
 
@@ -79,9 +79,9 @@ As noted above, when you create these types of resources, you will be provided w
     private string _iotHubName = $"iot-az220-training-{_yourId}";
     ```
 
-    In the code above, if the value of your unique ID is `cah211216`, then the line containing `private string _yourId = "{your-id}";` should be updated to `private string _yourId = "cah211216";`
+    In the code above, if the value of your unique ID is **cah211216**, then the line containing **private string _yourId = "{your-id}";** should be updated to **private string _yourId = "cah211216";**
 
-    > **Note**: Notice that you do not change the `_yourId` value on the final code line. Once again, if it isn't `{your-id}` then don't replace it.
+    > **Note**: Notice that you do not change the **_yourId** value on the final code line. Once again, if it isn't **{your-id}** then don't replace it.
 
 1. Notice that not all resource names require you to apply your unique ID.
 
@@ -89,9 +89,9 @@ As noted above, when you create these types of resources, you will be provided w
 
     Some resources, like the Resource Groups, must have a unique name within your subscription, but the name does not need to be globally unique.
 
-1. Apply an additional `01` or `02` if it turns out that your unique ID isn't so unique.
+1. Apply an additional **01** or **02** if it turns out that your unique ID isn't so unique.
 
-    It could happen that two or more people with the same initials start the lab on the same day. You will not know for sure until you create your IoT Hub in the next exercise. Azure will let you know if the suggested resource name, including your unique ID, isn't globally unique. In that case you will need to update your unique ID by appending an additional `##` value. For example, if the value of your unique ID is `cah211216`, your updated unique ID value could become:
+    It could happen that two or more people with the same initials start the lab on the same day. You will not know for sure until you create your IoT Hub in the next exercise. Azure will let you know if the suggested resource name, including your unique ID, isn't globally unique. In that case you will need to update your unique ID by appending an additional **##** value. For example, if the value of your unique ID is **cah211216**, your updated unique ID value could become:
 
     ```text
     cah21121600
@@ -101,7 +101,7 @@ As noted above, when you create these types of resources, you will be provided w
     cah21121699
     ```
 
-    If you do have to update your unique ID, try to use it consistently.
+    If you do have to update your unique ID, use it consistently.
 
 ### Exercise 2: Create an IoT Hub using the Azure portal
 
@@ -242,9 +242,7 @@ In this exercise, you will use the Azure portal to create and configure your IoT
 
     IoT Hub uses Transport Layer Security (TLS) to secure connections from IoT devices and services. Two versions of the TLS protocol are currently supported, namely versions 1.0 and 1.2.
 
-    > [!Important]
-    > The **Minimum TLS Version** property cannot be changed once your IoT Hub resource is created. It is therefore essential that you properly test and validate that all your IoT devices and services are compatible with TLS 1.2 and the recommended ciphers in advance. You can learn more about IoT Hub and TLS below:
-    > * [Transport Layer Security (TLS) support in IoT Hub](https://docs.microsoft.com/azure/iot-hub/iot-hub-tls-support)
+    > **Important**: The **Minimum TLS Version** property cannot be changed once your IoT Hub resource is created. It is therefore essential that you properly test and validate that all your IoT devices and services are compatible with TLS 1.2 and the recommended ciphers in advance. You can learn more about IoT Hub and TLS here: [Transport Layer Security (TLS) support in IoT Hub](https://docs.microsoft.com/azure/iot-hub/iot-hub-tls-support)
 
 1. At the bottom of the blade, click **Review + create**.
 

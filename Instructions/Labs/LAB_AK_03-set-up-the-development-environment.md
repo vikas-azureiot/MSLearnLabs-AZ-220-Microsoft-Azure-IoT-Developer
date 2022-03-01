@@ -294,7 +294,7 @@ You should verify that the development environment has been set up successfully.
     az --version
     ```
 
-    The `az --version` command will output the version information for Azure CLI that you have installed (the `azure-cli` version number). This command also outputs the version number for all the Azure CLI modules installed, including the IoT extension. You should see output similar to the following:
+    The **az --version** command will output the version information for Azure CLI that you have installed (the **azure-cli** version number). This command also outputs the version number for all the Azure CLI modules installed, including the IoT extension. You should see output similar to the following:
 
     ```cmd/sh
     azure-cli                           2.20.0
@@ -312,7 +312,7 @@ You should verify that the development environment has been set up successfully.
     dotnet --version
     ```
 
-    The `dotnet --version` command will output the version of the .NET Core SDK that is currently installed.
+    The **dotnet --version** command will output the version of the .NET Core SDK that is currently installed.
 
 1. Verify that .NET Core 3.1 or higher is installed.
 

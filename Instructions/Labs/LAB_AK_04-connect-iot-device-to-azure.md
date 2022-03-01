@@ -69,7 +69,7 @@ To ensure these resources are available, complete the following steps.
 
     The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example: ccj220101
 
-    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
 
@@ -274,7 +274,7 @@ In this task, you will use Visual Studio Code to review the contents and purpose
 
     The **PropertyGroup** defines the type of output that building this project will produce. In this case you will be building an executable file that targets .NET Core 3.1.
 
-    The **ItemGroup** specifies any external libraries that are required for the application. These particular references are for NuGet packages, and each package reference specifies the package name and the version. The `dotnet add package` commands (that you entered in the steps above) added these references to the project file and the `dotnet restore` command ensured that all of the dependencies were downloaded.
+    The **ItemGroup** specifies any external libraries that are required for the application. These particular references are for NuGet packages, and each package reference specifies the package name and the version. The **dotnet add package** commands (that you entered in the steps above) added these references to the project file and the **dotnet restore** command ensured that all of the dependencies were downloaded.
 
     > **Tip**: You can learn more about NuGet [here](https://docs.microsoft.com/en-us/nuget/what-is-nuget).
 
@@ -303,15 +303,15 @@ In this task, you will use Visual Studio Code to review the contents and purpose
 
     This program simply writes "Hello World!" to the command line window. Even though there isn't much code here, there are still some things worth noting:
 
-    * The `using` area - the source file lists the namespaces that the code is **using** (this is typically done at the top of the file as it is here). In this example, the code specifies that it is using `System`. This means that when your code uses a component that's contained within the **System** namespace, you don't have to explicitly list the word **System** within that code line. For example, in the code above, the `Console` class is used to write "Hello World!". The `Console` class is part of the **System** namespace, but you didn't have to include the word `System` when you used `Console`. The benefit of this becomes more apparent when you consider that some namespaces are nested quite deeply (five or more levels is common). Once again referring to the code above, if you didn't specify `using System;`, you would have to write the console line as:
+    * The **using** area - the source file lists the namespaces that the code is **using** (this is typically done at the top of the file as it is here). In this example, the code specifies that it is using **System**. This means that when your code uses a component that's contained within the **System** namespace, you don't have to explicitly list the word **System** within that code line. For example, in the code above, the **Console** class is used to write "Hello World!". The **Console** class is part of the **System** namespace, but you didn't have to include the word **System** when you used **Console**. The benefit of this becomes more apparent when you consider that some namespaces are nested quite deeply (five or more levels is common). Once again referring to the code above, if you didn't specify **using System;**, you would have to write the console line as:
 
         ```csharp
         System.Console.WriteLine("Hello World!");
         ```
 
-    * The `namespace` area - this specifies that the classes contained with the `{ }` that follow the namespace are part of that namespace. So, similar to how **Console** is part of the **System** namespace, in the example above, the **Program** class is part of the **CaveSensor** namespace, and its full name is **CaveSensor.Program**.
+    * The **namespace** area - this specifies that the classes contained with the **{ }** that follow the namespace are part of that namespace. So, similar to how **Console** is part of the **System** namespace, in the example above, the **Program** class is part of the **CaveSensor** namespace, and its full name is **CaveSensor.Program**.
 
-    * The `class` area - this defines the contents of the **Program** class. You can have more than one class within a single source file
+    * The **class** area - this defines the contents of the **Program** class. You can have more than one class within a single source file
 
     > **Note**: Developers will typically separate classes into their own source file (a single class per source file), especially in larger projects. However, in this lab, you will be including multiple classes per file. This will help to simplify the lab instructions and does not imply best practice.
 
@@ -319,9 +319,9 @@ In this task, you will use Visual Studio Code to review the contents and purpose
 
     This will open the integrated Terminal at the bottom of the Visual Studio Code window. You will be using the Terminal window to compile and run your console application.
 
-1. In the Terminal pane, ensure that the current directory path is set to the `CaveDevice` folder.
+1. In the Terminal pane, ensure that the current directory path is set to the **CaveDevice** folder.
 
-    The Terminal command prompt includes the current directory path. The commands that you enter are run at the current location, so be sure that you are located in the `CaveDevice` folder.
+    The Terminal command prompt includes the current directory path. The commands that you enter are run at the current location, so be sure that you are located in the **CaveDevice** folder.
 
 1. To build and run the **CaveDevice** project, enter the following command:
 
@@ -331,9 +331,9 @@ In this task, you will use Visual Studio Code to review the contents and purpose
 
 1. Notice that **Hello World!** is displayed.
 
-    After a moment, you should see **Hello World!** displayed on the line directly below the `dotnet run` command that you entered.
+    After a moment, you should see **Hello World!** displayed on the line directly below the **dotnet run** command that you entered.
 
-    You will be using the same `Console.WriteLine` approach in your simulated device application to display information locally, which will help you see the information being sent to IoT Hub and keep track of processes that are being completed by your device.
+    You will be using the same **Console.WriteLine** approach in your simulated device application to display information locally, which will help you see the information being sent to IoT Hub and keep track of processes that are being completed by your device.
 
     Although this Hello World app demonstrates some basic concepts, it is clearly not a simulated device. In the next task you will replace this code with the code for your simulated device.
 
@@ -348,7 +348,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     > **Important**: In the next step, you will begin the process ob building your simulated device code. If you are intending to paste the code into a learning environment such as LODS, there are a few things to be aware of:
     >
     > * The **Type text -> Type clipboard text** buffer is limited, so it may truncate the code that is copied - double check your work and add any missing characters.
-    > * As the **Type clipboard text** simulates typing, the default settings in Visual Studio Code will automatically indent code and insert closing braces - `)`, `}` and `]` - resulting in duplicate characters and incorrect indentation. These actions can be turned off in Visual Studio code settings (**File -> Preferences -> Settings**) with the following settings:
+    > * As the **Type clipboard text** simulates typing, the default settings in Visual Studio Code will automatically indent code and insert closing braces - **)**, **}** and **]** - resulting in duplicate characters and incorrect indentation. These actions can be turned off in Visual Studio code settings (**File -> Preferences -> Settings**) with the following settings:
     >    * **Editor: Auto Closing Brackets** - set to **never**
     >    * **Editor: Auto Indent** - set to **none**
     > * The source can be reformatted at any time by using **F1** and entering **Format Document** or by pressing **SHIFT + ALT + F**
@@ -375,7 +375,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     > **Tip**: To reformat the pasted text in Visual Studio Code, press **SHIFT + ALT + F**, or press **F1** to open the command palette and search for **Format Document**.
 
-1. Locate the `// INSERT using statements below here` comment, and then position the cursor on a blank line below the comment.
+1. Locate the **// INSERT using statements below here** comment, and then position the cursor on a blank line below the comment.
 
 1. To specify the namespaces that the application code will be using, enter the following code:
 
@@ -391,7 +391,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     > **Tip**: When inserting code, the code layout may not be ideal. You can have Visual Studio Code format the document for you by right-clicking in the code editor pane and then clicking **Format Document**. You can achieve the same result by opening the **Task** pane (press **F1**) and typing **Format Document** and then pressing **Enter**. And on Windows, the shortcut for this task is **SHIFT+ALT+F**.
 
-1. Locate the `// INSERT variables below here` comment, and then position the cursor on a blank line below the comment.
+1. Locate the **// INSERT variables below here** comment, and then position the cursor on a blank line below the comment.
 
 1. To specify the variables that the program is using, enter the following code:
 
@@ -423,7 +423,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     private readonly static string connectionString = "HostName=iot-az220-training-dm200420.azure-devices.net;DeviceId=sensor-th-0001;SharedAccessKey=hfavUmFgoCPA9feWjyfTx23SUHr+dqG9X193ctdEd90=";
     ```
 
-1. Locate the `// INSERT Main method below here` comment, and then position the cursor on a blank line below the comment.
+1. Locate the **// INSERT Main method below here** comment, and then position the cursor on a blank line below the comment.
 
 1. To construct the **Main** method of your simulated device application, enter the following code:
 
@@ -461,7 +461,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     >
     > **Information**: The supported transport protocols are documented [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-protocols).
 
-1. Locate the `// INSERT - SendDeviceToCloudMessagesAsync below here` comment, and then position the cursor on a blank line below the comment.
+1. Locate the **// INSERT - SendDeviceToCloudMessagesAsync below here** comment, and then position the cursor on a blank line below the comment.
 
 1. To construct the **SendDeviceToCloudMessagesAsync** method, enter the following code:
 
@@ -489,7 +489,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
     }
     ```
 
-    Notice that the declaration for the **SendDeviceToCloudMessagesAsync** method includes the keyword `async`. This specifies that the method contains asynchronous code that uses the `await` keyword and instructs the compiler to handle the callback plumbing for you.
+    Notice that the declaration for the **SendDeviceToCloudMessagesAsync** method includes the keyword **async**. This specifies that the method contains asynchronous code that uses the **await** keyword and instructs the compiler to handle the callback plumbing for you.
 
 1. Take a minute to review the code (and code comments) that you just entered.
 
@@ -505,7 +505,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     * The first thing that your code does is create an instance of the **EnvironmentSensor** class. This is done outside the loop and is used to support simulating the sensor data inside the loop. You will add the **EnvironmentSensor** class shortly.
 
-    * You then start an infinite loop - `while(true) {}` will repeat until the user hits **CTRL+C**.
+    * You then start an infinite loop - **while(true) {}** will repeat until the user hits **CTRL+C**.
 
     * Within the loop, the first thing you do is read the temperature and humidity from your sensor and use those values to create a message string - you will add the code for **CreateMessageString** in a moment as well.
 
@@ -513,15 +513,15 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     * Next, you augment the message with additional properties - here, for example, you set the **temperatureAlert** property to true if the **currentTemperature** is greater than 30, otherwise false.
 
-    * You then send the telemetry message via the `await deviceClient.SendEventAsync(message);` call. Note that this line contains an `await` keyword. This instructs the compiler that the following code is asynchronous and will complete some time in the future - when it does complete, this method will continue executing on the next line.
+    * You then send the telemetry message via the **await deviceClient.SendEventAsync(message);** call. Note that this line contains an **await** keyword. This instructs the compiler that the following code is asynchronous and will complete some time in the future - when it does complete, this method will continue executing on the next line.
 
     * Finally, you write the message string to the local console window to show that telemetry has been sent to IoT Hub, and then wait for 1000 milliseconds (1 second) before repeating the loop.
 
-    > **Information**: You can learn more about `async`, `await` and asynchronous programming in C# [here](https://docs.microsoft.com/en-us/dotnet/csharp/async).
+    > **Information**: You can learn more about **async**, **await** and asynchronous programming in C# [here](https://docs.microsoft.com/en-us/dotnet/csharp/async).
 
     > **Information**: The **Message** class is documented [here](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.devices.client.message?view=azure-dotnet)
 
-1. Locate the `// INSERT CreateMessageString method below here` comment, and then position the cursor on a blank line below the comment.
+1. Locate the **// INSERT CreateMessageString method below here** comment, and then position the cursor on a blank line below the comment.
 
 1. To construct the **CreateMessageString** method that creates a JSON string from the sensor readings, enter the following code:
 
@@ -543,7 +543,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     The value of **telemetryDataPoint** is then converted to a JSON string via the **JsonConvert** class that is part of the **Newtonsoft.Json** package you added earlier. The JSON string value is then returned to be used as the payload in the message.
 
-1. Locate the `// INSERT EnvironmentSensor class below here` comment, and then position the cursor on a blank line below the comment.
+1. Locate the **// INSERT EnvironmentSensor class below here** comment, and then position the cursor on a blank line below the comment.
 
 1. To construct the **EnvironmentSensor** class, enter the following code:
 
@@ -601,7 +601,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
     This command will build and run the Simulated Device application. Be sure the terminal location is set to the directory with the `CaveDevice.cs` file.
 
-    > **Note**:  If the command outputs a `Malformed Token` or other error message, then make sure the **Primary Connection String** value is configured correctly as the value of the `connectionString` variable.
+    > **Note**:  If the command outputs a **Malformed Token** or other error message, then make sure the **Primary Connection String** value is configured correctly as the value of the **connectionString** variable.
 
     If you receive additional error messages, you can verify that you constructed your code correctly by referring to completed solution code that is available for reference in the **Final** folder for this lab. This **Final** folder is included with the lab resources files that you downloaded to the virtual machine environment before starting the lab. The folder path is:
 
@@ -613,7 +613,7 @@ In this task, you will use Visual Studio Code to enter the code that leverages t
 
 1. Observe the message string output displayed in the Terminal.
 
-    Once the Simulated Device application is running, it will be sending event messages to the Azure IoT Hub that include `temperature` and `humidity` values, and displaying message string output in the console.
+    Once the Simulated Device application is running, it will be sending event messages to the Azure IoT Hub that include **temperature** and **humidity** values, and displaying message string output in the console.
 
     The terminal output will look similar to the following:
 
@@ -676,13 +676,13 @@ In this task, you will use the Azure CLI to verify telemetry sent by the simulat
 
     > **Note**: If the Azure CLI extension for IoT has not been installed, you will be prompted to install it now. Enter "Y" at the prompt.
 
-    > **Note**:  If you receive a message stating _"Dependency update required for IoT extension version"_ when running the Azure CLI command, then press `y` to accept the update and press `Enter`. This will allow the command to continue as expected.
+    > **Note**:  If you receive a message stating _"Dependency update required for IoT extension version"_ when running the Azure CLI command, then press `y` to accept the update and press **Enter**. This will allow the command to continue as expected.
 
-    The `monitor-events` command (within the `az iot hub` Azure CLI module) offers the capability to monitor device telemetry and other message types sent to an Azure IoT Hub. This can be a very useful tool during code development, and the convenience of the command-line interface is also nice.
+    The **monitor-events** command (within the **az iot hub** Azure CLI module) offers the capability to monitor device telemetry and other message types sent to an Azure IoT Hub. This can be a very useful tool during code development, and the convenience of the command-line interface is also nice.
 
-    The `--device-id` parameter is optional and allows you to monitor the events from a single device. If the parameter is omitted, the command will monitor all events sent to the specified Azure IoT Hub.
+    The **--device-id** parameter is optional and allows you to monitor the events from a single device. If the parameter is omitted, the command will monitor all events sent to the specified Azure IoT Hub.
 
-1. Notice that the `az iot hub monitor-events` Azure CLI command outputs a JSON representation of the events that are arriving at your specified Azure IoT Hub.
+1. Notice that the **az iot hub monitor-events** Azure CLI command outputs a JSON representation of the events that are arriving at your specified Azure IoT Hub.
 
     > **Note**: If the Azure CLI command returns an error stating that you IoT Hub can not be found in the subscription, use your Azure portal to verify that both the IoT Hub name and subscription number are correct. If the values reported in the Azure Cloud Shell match the values listed in the Azure portal, wait a minute and then re-run the command.
  
