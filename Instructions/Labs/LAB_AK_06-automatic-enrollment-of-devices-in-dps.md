@@ -348,7 +348,7 @@ In this task, you will create a new enrollment group within the Device Provision
 
     This field gives you high-level control over the re-provisioning behavior, where the same device (as indicated through the same Registration ID) submits a later provisioning request after already being provisioned successfully at least once.
 
-1. In the **Initial Device Twin State** field, modify the JSON object as follows:
+1. In the **Initial Device Twin State** field, modify the JSON object to include the **telemetryDelay** desired property as follows:
 
     ```json
     {
@@ -364,6 +364,8 @@ In this task, you will create a new enrollment group within the Device Provision
     This JSON data represents the initial configuration of device twin desired properties for any device that participates in this enrollment group.
 
     The devices will use the **properties.desired.telemetryDelay** property to set the time delay for reading and sending telemetry to IoT Hub.
+
+    > **WARNING**: The automated text entry tool can insert extra squiggly brackets when entering structured JSON objects. If necessary, update your JSON data to ensure that it matches the code structure above.
 
 1. Leave **Enable entry** set to **Enable**.
 
@@ -808,7 +810,7 @@ With the simulated devices running, the **telemetryDelay** configuration can be 
 
 1. Within the **Terminal** pane, to exit the simulated device app, press **Ctrl-C**.
 
-1. Switch to each of your Visual Studio Code windows and use the **Terminal** prompt to close the simulated device apps.
+1. Switch to each of your Visual Studio Code windows and use the **Terminal** prompt to stop the simulated device apps.
 
 1. Switch the Azure portal window.
 
@@ -816,9 +818,11 @@ With the simulated devices running, the **telemetryDelay** configuration can be 
 
 1. On the **sensor-thl-2000** blade, click **Device Twin**.
 
+    Closing and then re-opening the device twin will ensure that the updated contents are displayed.
+
 1. Scroll down to locate the JSON for the **properties.reported** object.
 
-    This contains the state reported by the device.
+    This contains the device state information **reported** by the device.
 
 1. Notice that the **telemetryDelay** property exists here as well, and that it has also been set to **2**.
 
@@ -846,15 +850,13 @@ In this exercise, you will deprovision a single device from an enrollment group.
 
 #### Task 1: Create a disabled individual enrollment for the device.
 
-In this task, you will use the **sensor-thl-2001** device for the individual enrollment.
+In this task, you will configure an individual enrollment for the **sensor-thl-2001** device.
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
     If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this lab.
 
 1. On the Azure portal toolbar, click **Cloud Shell**
-
-    The Azure portal toolbar runs across the top of the portal window. The Cloud Shell button is the 6th in from the right.
 
 1. Verify that the Cloud Shell is using **Bash**.
 
@@ -889,6 +891,10 @@ In this task, you will use the **sensor-thl-2001** device for the individual enr
 1. In the downloads folder, click **sensor-thl-2001-device.cert.pem**, and then click **Open**.
 
 1. On the **Add Enrollment** blade, under **IoT Hub Device ID**, enter **sensor-thl-2001**
+
+    +++sensor-thl-2001+++
+
+1. Scroll to the bottom of the blade.
 
 1. Under **Enable entry**, click **Disable**.
 
@@ -951,7 +957,7 @@ In this exercise, you will deprovision the full enrollment group. Again, this in
 
 In this task, you will delete your Enrollment Group, which will remove the enrolled devices.
 
-1. Navigate to your Azure Dashboard.
+1. Switch to your Azure portal window and then navigate to your Azure Dashboard.
 
 1. On your Resources tile, click **dps-az220-training-{your-id}**.
 
@@ -965,7 +971,7 @@ In this task, you will delete your Enrollment Group, which will remove the enrol
 
 1. At the top of the blade, click **Save**.
 
-    If you run one of your simulated devices now, you will see an error message similar to what you saw with the disabled individual enrollment.
+    If you run the sensor-thl-2000 simulated device now, you will see an error message similar to what you saw with the disabled individual enrollment.
 
     To permanently delete the Enrollment Group, you must delete the enrollment group from DPS.
 
