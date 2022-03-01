@@ -104,7 +104,7 @@ To ensure these resources are available, complete the following steps.
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
-    You will see a notification when deployment of your IoT hub and DPS resources is complete.
+    You will see a notification when the deployment of your IoT hub and DPS resources has completed.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template, click **Outputs**.
 
