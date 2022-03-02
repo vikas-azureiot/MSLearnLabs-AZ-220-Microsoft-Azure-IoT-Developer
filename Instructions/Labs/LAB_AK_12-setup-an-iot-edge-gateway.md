@@ -54,7 +54,7 @@ To ensure these resources are available, complete the following steps.
 
 1. In the virtual machine environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab12.json+++
+   +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab12.json+++
 
     > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
 
@@ -84,9 +84,11 @@ To ensure these resources are available, complete the following steps.
 
     ccj220101
 
-    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
+
+    +++az220+++
 
 1. To validate the template, click **Review and create**.
 
@@ -189,7 +191,7 @@ In this task, you will use an Azure Resource Manager template to provision a Lin
 > * [Manage certificates on an IoT Edge device](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-manage-device-certificates?view=iotedge-2020-11)
 > * [Create demo certificates to test IoT Edge device features](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-test-certificates?view=iotedge-2020-11)
 
-1. In your Web browser, navigate to the following address: 
+1. In your virtual machine environment, open a Web browser and then navigate to the following address: 
 
     +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab12a.json+++
 
@@ -327,7 +329,7 @@ In this exercise, you will explore the **vm-az220-training-gw0001-{your-id}** Vi
 
 1. On the Azure portal toolbar, to open the Azure Cloud Shell, click **Cloud Shell**.
 
-    The Cloud Shell button has an icon that appears to represent a command prompt - **`>_`**.
+    The Cloud Shell button is located to the right of the search field and has an icon that appears to represent a command prompt.
 
     A Cloud Shell window will open near the bottom of the display screen.
 
@@ -343,13 +345,21 @@ In this exercise, you will explore the **vm-az220-training-gw0001-{your-id}** Vi
 
     1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
 
-    1. Under **File share**, select **Create new** and enter the following **cloudshell**.
+        +++stoaz220{your-id}+++
 
-    1. To finish to configuration of the cloud shell, click **Create storage**.
+        > **Note**: Be sure to replace **{your-id}** with your unique ID value.
 
+    1. Under **File share**, select **Create new** and enter the following: **cloudshell**
+
+        +++cloudshell+++
+
+    1. To finish to configuration of the Cloud Shell, click **Create storage**.
+
+        > **Note**: It can take 30+ seconds for the Cloud Shell to configure and open for the first time.
+ 
 1. In the upper left corner of the Cloud Shell window, ensure that **Bash** is selected as the environment option.
 
-    > **Note**:  Both *Bash* and *PowerShell* interfaces for the Azure Cloud Shell support the use of **OpenSSL**.
+    > **Note**: Both *Bash* and *PowerShell* interfaces for the Azure Cloud Shell support the use of **OpenSSL**.
 
 1. At the Cloud Shell command prompt, paste the **ssh** command that you saved to your text editor, and then press **Enter**.
 
@@ -414,7 +424,7 @@ During the initial launch of the VM, a script was executed that configured IoT E
     iotedge --version
     ```
 
-    The version installed at the time of writing is `iotedge 1.2.3`
+    The version installed at the time of writing is **iotedge 1.2.3**
 
 1. To view the IoT Edge configuration, enter the following command:
 
@@ -531,9 +541,10 @@ Next, you need to "download" the **MyEdgeDeviceCA** certificate from the **vm-az
     scp -r -p {username}@{FQDN}:/tmp/lab12 .
     ```
 
-    >**Important**: The command above has a `space` followed by a period `.` at the end.
+    >**Important**: The command above has a **space character** followed by a period **.** at the end of the command.
 
     > **Note**: Replace the **{username}** placeholder with the username of the admin user for the VM, and replace the **{FQDN}** placeholder with the fully qualified domain name for the VM. Refer to the command that you used to open the SSH session if needed.
+    >
     > `scp -r -p vmadmin@vm-az220-training-edge0001-dm080321.centralus.cloudapp.azure.com:/tmp/lab12 .`
 
 1. Enter the Admin password for the VM when prompted.
@@ -678,9 +689,9 @@ The local machine can now resolve the VM name to the appropriate IP Address.
     The Lab 12 **Starter** folder is part of the lab resources that you downloaded before starting this lab. The folder path is:
 
     * Allfiles
-      * Labs
-          * 12-Setup an IoT Edge Gateway
-            * Starter
+        * Labs
+            * 12-Setup an IoT Edge Gateway
+                * Starter
 
     You should see the azure-iot-test-only.root.ca.cert.pem file listed in the EXPLORER pane along with the Program.cs file.
 
@@ -720,7 +731,7 @@ The local machine can now resolve the VM name to the appropriate IP Address.
 
 1. Scroll down to locate the **Main** method, and then take a minute to review the code.
 
-    This method contains the code that instantiates the **DeviceClient** using the configured Connection String, and specifies `MQTT` as the transport protocol to use for communicating with the Azure IoT Edge Gateway.
+    This method contains the code that instantiates the **DeviceClient** using the configured Connection String, and specifies **MQTT** as the transport protocol to use for communicating with the Azure IoT Edge Gateway.
 
     ```csharp
     deviceClient = DeviceClient.CreateFromConnectionString(connectionString, TransportType.Mqtt);
@@ -799,13 +810,13 @@ In this task, you will use the Azure CLI to monitor the events being sent to Azu
     az iot hub monitor-events -n iot-az220-training-{your-id}
     ```
 
-    Be sure to replace the `{your-id}` placeholder for the `-n` parameter with the name of your Azure IoT Hub.
+    Be sure to replace the **{your-id}** placeholder with your unique ID when specifying the name of your Azure IoT Hub.
 
-    The `az iot hub monitor-events` command enables you to monitor device telemetry & messages sent to an Azure IoT Hub. This will verify that events from the simulated device, being sent to the IoT Edge Gateway, are being received by the Azure IoT Hub.
+    The **az iot hub monitor-events** command enables you to monitor device telemetry & messages sent to an Azure IoT Hub. This will verify that events from the simulated device, being sent to the IoT Edge Gateway, are being received by the Azure IoT Hub.
 
-    > **Note**: If prompted `Dependency update (uamqp 1.2) required for IoT extension version: 0.10.13.`, enter **Y*.
+    > **Note**: If prompted **Dependency update (uamqp 1.2) required for IoT extension version: 0.10.13.**, enter **Y**.
 
-1. With everything working correctly, the output from the `az iot hub monitor-events` command will look similar to the following:
+1. With everything working correctly, the output from the **az iot hub monitor-events** command will look similar to the following:
 
     ```text
     chris@Azure:~$ az iot hub monitor-events -n iot-az220-training-1119
