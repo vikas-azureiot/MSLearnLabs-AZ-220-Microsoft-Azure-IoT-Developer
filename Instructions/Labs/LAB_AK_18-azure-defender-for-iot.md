@@ -75,9 +75,17 @@ To ensure these resources are available, complete the following tasks.
 
     > **NOTE**: If the **rg-az220** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
+
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
+
+    +++az220+++
 
 1. To validate the template, click **Review and create**.
 
@@ -87,11 +95,11 @@ To ensure these resources are available, complete the following tasks.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
+
 1. In your text editor, enter the following text labels:
 
     +++connectionString:+++
-
-    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
@@ -384,11 +392,11 @@ In this exercise, you will be adding a security agent for C# that you will deplo
     ssh <admin user>@<ip address>
     ```
 
-    Your command should look similar to: `ssh demouser@52.170.205.79`
+    Your command should look similar to: **ssh demouser@52.170.205.79**
 
 1. On the Azure portal toolbar, click **Cloud Shell**.
 
-    The Cloud Shell button has an icon that appears to represent a command prompt - **`>_`**.
+    The Cloud Shell button has an icon that appears to represent a command prompt.
 
     A Cloud Shell window will open near the bottom of the display screen.
 
@@ -408,7 +416,7 @@ In this exercise, you will be adding a security agent for C# that you will deplo
 
     1. To finish to configuration of the cloud shell, click **Create storage**.
 
-1. At the Cloud Shell command prompt, enter the `ssh` command that you created above, and then press **Enter**.
+1. At the Cloud Shell command prompt, enter the **ssh** command that you created above, and then press **Enter**.
 
 1. When prompted with **Are you sure you want to continue connecting?**, type **yes** and then press **Enter**.
 
@@ -449,7 +457,7 @@ In this lab, you will be using the symmetric key as authentication and will need
 
     This command will create a device Authentication type file with your **vm-az220-training-edge0002-{your-id}** device's **Primary Key**.
 
-    > **Note**: To check if you added the correct Primary key into the file, open your file with `nano s.key` command. Check to see your device's **Primary Key** is in the file. You can exit the nano editor by pressing CTRL+X. If you modified the file, to save your changes on exit, press Y, and then press ENTER.
+    > **Note**: To check if you added the correct Primary key into the file, open your file with **nano s.key** command. Check to see your device's **Primary Key** is in the file. You can exit the nano editor by pressing CTRL+X. If you modified the file, to save your changes on exit, press Y, and then press ENTER.
 
 #### Task 4: Installing Security Agent
 
@@ -463,13 +471,13 @@ In this lab, you will be using the symmetric key as authentication and will need
 
     > **Note**: Notice that the command above targets Ubuntu Server 18.04 LTS
 
-1. At the Cloud Shell command prompt, to extract the contents of the package and navigate to the `/Install` folder, enter the following command:
+1. At the Cloud Shell command prompt, to extract the contents of the package and navigate to the **/Install** folder, enter the following command:
 
     ```bash
     tar -xzvf ubuntu-18.04-x64.tar.gz && cd Install
     ```
 
-1. At the Cloud Shell command prompt, to add execute permissions to the `InstallSecurityAgent` script, enter the following command:
+1. At the Cloud Shell command prompt, to add execute permissions to the **InstallSecurityAgent** script, enter the following command:
 
     ```bash
     chmod +x InstallSecurityAgent.sh
@@ -487,10 +495,10 @@ In this lab, you will be using the symmetric key as authentication and will need
 
     `sudo ./InstallSecurityAgent.sh -i -aui Device -aum SymmetricKey -f ../s.key -hn iot-az220-training-ab200213.azure-devices.net -di vm-az220-training-edge0002-{your-id}`
 
-    > **Note**: Make sure that specify your IoT Hub Hostname instead of the one listed
+    > **Note**: Remember to replace placeholder values before running the command
 
     > **IMPORTANT**:
-    > Ensure you use the full IoT Hub host name - i.e. **iot-az220-training-ab200213.azure-devices.net** for the `-hn` switch value.
+    > Ensure that you use the full IoT Hub host name - i.e. **iot-az220-training-ab200213.azure-devices.net** for the **-hn** switch value, not just the name of your IoT hub resource.
 
     This script performs the following function:
 
@@ -842,7 +850,7 @@ A device must be registered with your IoT hub before it can connect.
 
 1. Open the **Program.cs** file.
 
-    This simulated device includes a delay between telemetry messages so that messages are sent to IoT hub every 10 seconds: `await Task.Delay(10000);`
+    This simulated device includes a delay between telemetry messages so that messages are sent to IoT hub every 10 seconds: **await Task.Delay(10000);**
 
 1. On the **Terminal** menu, click **New Terminal**.
 

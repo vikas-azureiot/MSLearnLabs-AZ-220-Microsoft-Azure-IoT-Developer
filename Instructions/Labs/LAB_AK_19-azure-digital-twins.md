@@ -86,9 +86,17 @@ To ensure these resources are available, complete the following steps.
 
     > **NOTE**: If the **rg-az220** group already exists, the **Region** field is set to the region used by the resource group and is read-only.
 
-1. In the **Your ID** field, enter the unique ID you created in Exercise 1.
+1. In the **Your ID** field, enter a unique ID value that includes your initials followed by the current date (using a "YourInitialsYYMMDD" pattern).
+
+    The first part of your unique ID will be your initials in lower-case. The second part will be the last two digits of the current year, the current numeric month, and the current numeric day. For example:
+
+    ccj220101
+
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
+
+    +++az220+++
 
 1. To determine the current user object ID, open the **Cloud Shell** and execute the following command:
 
@@ -96,7 +104,7 @@ To ensure these resources are available, complete the following steps.
     az ad signed-in-user show --query objectId -o tsv
     ```
 
-    In the Azure portal, the Cloud Shell button has an icon that resembles a command prompt - **`>_`**.
+    In the Azure portal, the Cloud Shell button has an icon that resembles a command prompt.
 
     > **Note**: If the cloud shell has not been configured, follow these steps:
 
@@ -128,6 +136,8 @@ To ensure these resources are available, complete the following steps.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
+
 1. In your text editor, enter the following text labels:
 
     +++connectionString:+++
@@ -137,8 +147,6 @@ To ensure these resources are available, complete the following steps.
     +++devicePrimaryKey:+++
 
     +++storageAccountName:+++
-
-    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
@@ -271,7 +279,7 @@ Considering the hierarchy of Interface definitions above, and the relationships 
 
 When designing the Digital Twin models for an Azure Digital Twins environment, it is best to use a consistent approach for creating the IDs used for the Interfaces, Schemas, and Relationships. Each entity within the environment has an **@id** property (it is required for Interfaces) and should uniquely identify that entity. The format of the ID value is that of a **digital twin model identifier (DTMI)**. A DTMI has three components: scheme, path, and version. The scheme and path are separated by a colon `:`, while path and version are separated by a semicolon `;`. The format looks like this: `<scheme> : <path> ; <version>`. The value for scheme within the DTMI formatted ID is always **dtmi**.
 
-One example for the ID value of a Contoso cheese factory would be: `dtmi:com:contoso:digital_factory:cheese_factory;1`.
+An example for the ID value of a Contoso cheese factory would be: **dtmi:com:contoso:digital_factory:cheese_factory;1**.
 
 In this example, the scheme value is **dtmi** as expected and the version is set to **1**. The `<path>` component within this ID value utilizes the following taxonomy:
 
@@ -299,11 +307,11 @@ And the relationships between IDs could be:
 
 > **NOTE**: The Lab 19 **Models** folder is part of the lab resources that you downloaded before starting this lab. The folder path is:
 >
-> * Allfiles
->   * Labs
->       * 19-Azure Digital Twins
->           * Final
->               * Models
+>   * Allfiles
+>       * Labs
+>           * 19-Azure Digital Twins
+>               * Final
+>                   * Models
 >
 >  The complete models referenced in this exercise are available in this folder location.
 >
@@ -1150,7 +1158,7 @@ In this task you will review the Azure Function that will be executed whenever a
 
 1. In Visual Studio Code, open the **HubToAdtFunction.cs** file.
 
-1. To review the member variables for the function, locate the `//Your Digital Twins URL is stored in an application setting in Azure Functions` comment and review the code below it:
+1. To review the member variables for the function, locate the **//Your Digital Twins URL is stored in an application setting in Azure Functions** comment and review the code below it:
 
     ```csharp
     //Your Digital Twins URL is stored in an application setting in Azure Functions.
@@ -1199,7 +1207,7 @@ In this task you will review the Azure Function that will be executed whenever a
 
     This code checks if the **adtInstanceUrl** variable has been set - if not, the error is logged and the function exits. This demonstrates the value of logging to capture the fact that the function has been incorrectly configured.
 
-1. To ensure any exceptions are logged, a `try..catch` loop is used:
+1. To ensure any exceptions are logged, a **try..catch** loop is used:
 
     ```csharp
     try
@@ -1214,7 +1222,7 @@ In this task you will review the Azure Function that will be executed whenever a
 
     Notice that the exception message is logged.
 
-1. To see how the function app principal is used to authenticate to Azure Digital Twins and create a client instance, locate the `// INSERT authentication code below here` comment and review the following code:
+1. To see how the function app principal is used to authenticate to Azure Digital Twins and create a client instance, locate the **// INSERT authentication code below here** comment and review the following code:
 
     ```csharp
     ManagedIdentityCredential cred = new ManagedIdentityCredential("https://digitaltwins.azure.net");
@@ -1224,7 +1232,7 @@ In this task you will review the Azure Function that will be executed whenever a
 
     Notice the use of the **ManagedIdentityCredential** class. This class attempts authentication using the managed identity that has been assigned to the deployment environment earlier. Once the credential is returned, it is used to construct an instance of the **DigitalTwinsClient**. The client contains methods to retrieve and update digital twin information, like models, components, properties and relationships.
 
-1. To review the code that starts to process the Event Grid event, locate the `// INSERT event processing code below here` comment and review the following code below it:
+1. To review the code that starts to process the Event Grid event, locate the **// INSERT event processing code below here** comment and review the following code below it:
 
     ```csharp
     if (eventGridEvent != null && eventGridEvent.Data != null)
@@ -1267,9 +1275,9 @@ In this task you will review the Azure Function that will be executed whenever a
     }
     ```
 
-    The message **properties** and **systemProperties** are easily accessible using an indexer approach, however where properties are optional, such as **temperatureAlert** and **humidityAlert**, the use of `SelectToken` and a null-coalescing operation is required to prevent an exception being thrown.
+    The message **properties** and **systemProperties** are easily accessible using an indexer approach, however where properties are optional, such as **temperatureAlert** and **humidityAlert**, the use of **SelectToken** and a null-coalescing operation is required to prevent an exception being thrown.
 
-    > **TIP**: To learn more about the null-coalescing operator `??`, review the following content:
+    > **TIP**: To learn more about the null-coalescing operator **??**, review the following content:
     > * [?? and ??= operators (C# reference)](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/null-coalescing-operator)
 
     The message **body** contains the telemetry payload and is ASCII encoded JSON. Therefore, it must first be decoded and then deserialized before the telemetry properties can be accessed.
@@ -1277,7 +1285,7 @@ In this task you will review the Azure Function that will be executed whenever a
     > **TIP**: To learn more about the event schema, review the following resource:
     > * [Event schema](https://docs.microsoft.com/azure/azure-functions/functions-bindings-event-grid-trigger?tabs=csharp%2Cbash#event-schema)
 
-1. To inspect the code that updates the digital twin, locate the `// INSERT ADT update code below here` comment and review the following code below it:
+1. To inspect the code that updates the digital twin, locate the **// INSERT ADT update code below here** comment and review the following code below it:
 
     ```csharp
     //Update twin
@@ -1301,7 +1309,7 @@ In this task you will review the Azure Function that will be executed whenever a
    > * [What is JSON Patch?](http://jsonpatch.com/)
    > * [JsonPatchDocument Class](https://docs.microsoft.com/dotnet/api/azure.jsonpatchdocument?view=azure-dotnet)
 
-   > **IMPORTANT**: The digital twin instance must have existing values before the `AppendReplace` operation is used.
+   > **IMPORTANT**: The digital twin instance must have existing values before the **AppendReplace** operation is used.
 
    Notice that the telemetry data is handled differently than the properties - rather than being used to set digital twin properties, it is instead being published as telemetry events. This mechanism ensures that the telemetry is available to be consumed by any downstream subscribers to the digital twins event route.
 
@@ -1357,7 +1365,7 @@ The function is ready to be published.
 
 In this exercise, you will configure your IoT hub to publish events to the Azure Function that you created in the previous exercise. The events will be published as they occur. The telemetry generated by the simulated device created earlier will then be routed to the Azure Digital Twins instance.
 
-1. Open the browser windows for your Azure portal.
+1. Open the browser window for your Azure portal.
 
 1. Navigate to your **iot-az220-training-{your-id}** IoT hub.
 
@@ -1509,8 +1517,6 @@ The Azure function can serve a number of purposes:
 
 An Event Hubs namespace provides DNS integrated network endpoints and a range of access control and network integration management features such as IP filtering, virtual network service endpoint, and Private Link and is the management container for one of multiple Event Hub instances (or topics, in Kafka parlance). The two Event Hubs required for this solution will be created within this namespace.
 
-1. Login to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
-
 1. Switch to your browser window containing your Azure portal.
 
 1. On the Azure portal menu, click **+ Create a resource**.
@@ -1529,7 +1535,7 @@ An Event Hubs namespace provides DNS integrated network endpoints and a range of
 
     +++evhns-az220-training-{your-id}+++
 
-    Be sure to replace the your-id placeholder. This resource is publicly accessible and must have a unique name.
+    Be sure to replace the **{your-id}** placeholder. This resource is publicly accessible and must have a unique name.
 
 1. To the right of **Location**, open the drop-down list and select the same location that you selected for your resource group.
 
@@ -1599,7 +1605,7 @@ This task will create an Event Hub that will subscribe to the twin telemetry eve
 
 #### Task 3 - Add an authorization rule to the event hub
 
-Each Event Hubs namespace and each Event Hubs entity (an event hub instance or a Kafka topic) has a shared access authorization policy made up of rules. The policy at the namespace level applies to all entities inside the namespace, irrespective of their individual policy configuration. For each authorization policy rule, you decide on three pieces of information: name, scope, and rights. The name is a unique name in that scope. The scope is the URI of the resource in question. For an Event Hubs namespace, the scope is the fully qualified domain name (FQDN), such as `https://evhns-az220-training-{your-id}.servicebus.windows.net/`.
+Each Event Hubs namespace and each Event Hubs entity (an event hub instance or a Kafka topic) has a shared access authorization policy made up of rules. The policy at the namespace level applies to all entities inside the namespace, irrespective of their individual policy configuration. For each authorization policy rule, you decide on three pieces of information: name, scope, and rights. The name is a unique name in that scope. The scope is the URI of the resource in question. For an Event Hubs namespace, the scope is the fully qualified domain name (FQDN), such as **https://evhns-az220-training-{your-id}.servicebus.windows.net/**.
 
 The rights provided by the policy rule can be a combination of:
 
@@ -1717,7 +1723,7 @@ This time, the Event Hub and authorization rule will be created using the Azure 
 
     Remember to replace **{your-id}**.
 
-1. To create an authorization rule with listen and send permissions on the new Event Hub, enter the folowing command:
+1. To create an authorization rule with listen and send permissions on the new Event Hub, enter the following command:
 
     ```powershell
     az eventhubs eventhub authorization-rule create --rights Listen Send --resource-group rg-az220  --eventhub-name evh-az220-func2tsi --name TSIHubPolicy --namespace-name evhns-az220-training-{your-id}
@@ -1761,13 +1767,17 @@ In order for an Azure Function to connect to an Event Hub, it must have access t
 
     +++ADT_HUB_CONNECTIONSTRING+++
 
-1. In the **Value** field, enter the ADT connection string value that was saved to your text file and ends with `EntityPath=evh-az220-adt2func`.
+1. In the **Value** field, enter the ADT connection string value that was saved to your text file and ends with **EntityPath=evh-az220-adt2func**.
 
-    The value should be similar to `Endpoint=sb://evhns-az220-training-dm030821.servicebus.windows.net/;SharedAccessKeyName=ADTHubPolicy;SharedAccessKey=fHnhXtgjRGpC+rR0LFfntlsMg3Z/vjI2z9yBb9MRDGc=;EntityPath=evh-az220-adt2func`.
+    The value should be similar to the following:
+
+    ```
+    Endpoint=sb://evhns-az220-training-dm030821.servicebus.windows.net/;SharedAccessKeyName=ADTHubPolicy;SharedAccessKey=fHnhXtgjRGpC+rR0LFfntlsMg3Z/vjI2z9yBb9MRDGc=;EntityPath=evh-az220-adt2func
+    ```
 
 1. To close the pane, click **OK**.
 
-    > **NOTE**: The setting is not yet saved.
+    > **IMPORTANT**: The setting is not yet saved.
 
 1. To add an environment variable for the func2tsi rule connection string, click **+ New application setting**.
 
@@ -1775,15 +1785,19 @@ In order for an Azure Function to connect to an Event Hub, it must have access t
 
     +++TSI_HUB_CONNECTIONSTRING+++
 
-1. In the **Value** field, enter the authorization rule connection string value that was saved to your text file and ends with `EntityPath=evh-az220-func2tsi`.
+1. In the **Value** field, enter the authorization rule connection string value that was saved to your text file and ends with **EntityPath=evh-az220-func2tsi**.
 
-    The value should be similar to `Endpoint=sb://evhns-az220-training-dm030821.servicebus.windows.net/;SharedAccessKeyName=TSIHubPolicy;SharedAccessKey=x4xItgUG6clhGR9pZe/U6JqrNV+drIfu1rlvYHEdk9I=;EntityPath=evh-az220-func2tsi`
+    The value should be similar to the following:
+
+    ```
+    Endpoint=sb://evhns-az220-training-dm030821.servicebus.windows.net/;SharedAccessKeyName=TSIHubPolicy;SharedAccessKey=x4xItgUG6clhGR9pZe/U6JqrNV+drIfu1rlvYHEdk9I=;EntityPath=evh-az220-func2tsi
+    ```
 
 1. To close the pane, click **OK**.
 
-    > **NOTE**: The setting is not yet saved.
+    > **IMPORTANT**: The setting is not yet saved.
 
-1. To save the both of the new settings, click **Save** and click **Continue**.
+1. To save the both of the new settings, click **Save**, and then click **Continue**.
 
     > **NOTE**: Any change to the application settings will restart the functions.
 
@@ -1842,7 +1856,7 @@ In this task, the second Azure function will be reviewed. This function will be 
 
     As this function is processing a batch of events, a way to handle errors is to create a collection to hold exceptions. The function will then iterate through each event in the batch, catching exceptions and adding them to the collection. Skip[ to the end of the method, and you will see that if there are multiple exceptions, an **AggregaeException** is created with the collection, if a single exception is generated, then the single exception is thrown.
 
-1. To review the code that checks to see if the event contains Cheese Cave Device telemetry, locate the `// INSERT check telemetry below here` comment and review the following code below it:
+1. To review the code that checks to see if the event contains Cheese Cave Device telemetry, locate the **// INSERT check telemetry below here** comment and review the following code below it:
 
     ```csharp
     if ((string)eventData.Properties["cloudEvents:type"] == "microsoft.iot.telemetry" &&
@@ -1859,10 +1873,10 @@ In this task, the second Azure function will be reviewed. This function will be 
 
     This code checks that the current event is telemetry from a Cheese Cave Device digital twin - if not, logs that it isn't and then forces the method to complete asynchronously - this can make better use of resources.
 
-    > **TIP**: To learn more about the use of `await Task.Yield();` review the following resource:
+    > **TIP**: To learn more about the use of **await Task.Yield();** review the following resource:
     > * [Task.Yield Method](https://docs.microsoft.com/dotnet/api/system.threading.tasks.task.yield?view=net-5.0)
 
-1. To review the code that processes the event and creates a message for TSI, locate the `// INSERT TSI Event creation below here` comment and review the following code below it:
+1. To review the code that processes the event and creates a message for TSI, locate the **// INSERT TSI Event creation below here** comment and review the following code below it:
 
     ```csharp
     // The event is Cheese Cave Device Telemetry
@@ -1885,7 +1899,7 @@ In this task, the second Azure function will be reviewed. This function will be 
     > **TIP**: To learn more about an **ArraySegment** review the following content:
     > * [ArraySegment&lt;T&gt; Struct](https://docs.microsoft.com/dotnet/api/system.arraysegment-1?view=net-5.0)
 
-    A **Dictionary** is then instantiated to hold the key/value pairs that will make up the properties sent within the TSI event. Notice that the **cloudEvents:source** property (which contains the fully qualified twin ID - similar to `adt-az220-training-dm030821.api.eus.digitaltwins.azure.net/digitaltwins/sensor-th-0055`) is assigned to the **\$dtId** key. This key has special meaning as the Time Series Insights environment created during setup is using **\$dtId** as the **Time Series ID Property**.
+    A **Dictionary** is then instantiated to hold the key/value pairs that will make up the properties sent within the TSI event. Notice that the **cloudEvents:source** property (which contains the fully qualified twin ID - similar to **adt-az220-training-dm030821.api.eus.digitaltwins.azure.net/digitaltwins/sensor-th-0055**) is assigned to the **\$dtId** key. This key has special meaning as the Time Series Insights environment created during setup is using **\$dtId** as the **Time Series ID Property**.
 
     The **temperature** and **humidity** values are extracted from the message and added to the TSI update.
 
@@ -1912,7 +1926,7 @@ In this task, the second Azure function will be reviewed. This function will be 
 
     ![Visual Studio Code deployment complete - select stream logs](media/LAB_AK_19-function-stream-logs.png)
 
-    Click **Stream logs** and in the confirmation dialog to enable application logging, click **Yes**.
+1. Click **Stream logs**, and then, in the confirmation dialog to enable application logging, click **Yes**.
 
     The **OUTPUT** pane will now display the log stream for the deployed function - this will timeout after 2 hours. There will be some status information displayed, however there will not be any diagnostic information from the function itself until it is launched. That will be covered in the next exercise.
 

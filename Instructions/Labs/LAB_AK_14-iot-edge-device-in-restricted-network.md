@@ -104,7 +104,21 @@ To ensure these resources are available, complete the following steps.
 
 1. While the Azure resources are being created, open a text editor tool in the lab virtual machine environment (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
-    You will be using the text editor to store some configuration values associated with the Azure resources.
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
+
+1. In your text editor, enter the following text labels:
+
+    +++iothubConnectionString:+++
+
+    +++deviceConnectionString:+++
+
+    +++gatewayConnectionString:+++
+
+    +++devicePrimaryKey:+++
+
+    +++publicFQDN:+++
+
+    +++publicSSH:+++
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
@@ -114,7 +128,7 @@ To ensure these resources are available, complete the following steps.
 
     Use Notepad (or another text editor) to create a record of the following outputs:
 
-    * connectionString
+    * connectionString (for IoT hub)
     * deviceConnectionString
     * gatewayConnectionString
     * devicePrimaryKey
@@ -342,13 +356,13 @@ Next, you need to "download" the **MyEdgeDeviceCA** certificate from the **vm-az
 
 Configuring your IoT Edge Devices for extended offline scenarios includes specifying the supported period of time that you may be offline, often referred to as Time-to-Live, and specifying your local storage settings.
 
-The default value for Time-to-Live (TTL) is `7200` (7200 seconds, which is 2 hours). This is plenty of time for quick interruptions, but there are cases when two hours may not be long enough, when a device or solution needs to function in Offline mode for an extended period of time. For the solution to operate without telemetry data loss when extended periods in a disconnected state can occur, you can configure the TTL property of the IoT Edge Hub module to a value up to 1,209,600 seconds (a 2 week TTL period).
+The default value for Time-to-Live (TTL) is 7200 (7200 seconds, which is 2 hours). This is plenty of time for quick interruptions, but there are cases when two hours may not be long enough, when a device or solution needs to function in Offline mode for an extended period of time. For the solution to operate without telemetry data loss when extended periods in a disconnected state can occur, you can configure the TTL property of the IoT Edge Hub module to a value up to 1,209,600 seconds (a 2 week TTL period).
 
-The IoT Edge Hub module (`$edgeHub`) is used to coordinate communications between the the Azure IoT Hub service and the IoT Edge Hub running on the gateway device. Within the Desired Properties for the Module Twin, the `storeAndForwardConfiguration.timeToLiveSecs` property specifies the time in seconds that IoT Edge Hub keeps messages when in a state disconnected from routing endpoints, such as the Azure IoT Hub service. The `timeToLiveSecs` property for the Edge Hub can be specified in the Deployment Manifest on a specific device as part of a single-device or at-scale deployment.
+The IoT Edge Hub module (**$edgeHub**) is used to coordinate communications between the the Azure IoT Hub service and the IoT Edge Hub running on the gateway device. Within the Desired Properties for the Module Twin, the **storeAndForwardConfiguration.timeToLiveSecs** property specifies the time in seconds that IoT Edge Hub keeps messages when in a state disconnected from routing endpoints, such as the Azure IoT Hub service. The **timeToLiveSecs** property for the Edge Hub can be specified in the Deployment Manifest on a specific device as part of a single-device or at-scale deployment.
 
-The IoT Edge Device will automatically store messages when in a disconnected / offline state. The storage location can be configured using a `HostConfig` object.
+The IoT Edge Device will automatically store messages when in a disconnected / offline state. The storage location can be configured using a **HostConfig** object.
 
-In this exercise, you will use the Azure Portal user interface for Azure IoT Hub to modify the `timeToLiveSecs` property for the Edge Hub (`$edgeHub`) module on the single IoT Edge Gateway device. You will also configure the storage location on the IoT Edge Device where the messages are to be stored.
+In this exercise, you will use the Azure Portal user interface for Azure IoT Hub to modify the **timeToLiveSecs** property for the Edge Hub (**$edgeHub**) module on the single IoT Edge Gateway device. You will also configure the storage location on the IoT Edge Device where the messages are to be stored.
 
 #### Task 1: Configure the $edgeHub Module Twin
 
@@ -394,11 +408,11 @@ In this exercise, you will use the Azure Portal user interface for Azure IoT Hub
 
     This specifies a message Time-to-Live value of 2 weeks for the IoT Edge Device, which is the maximum time.
 
-    > **Note**:  There are several things to consider when configuring the **Message Time-to-Live** (TTL) for the Edge Hub (`$edgeHub`) module. When the IoT Edge Device is disconnected, the messages are stored on the local device. You need to calculate how much data will be stored during the TTL period, and make sure there is enough storage on the device for that much data. The amount of storage and TTL configured will need to meet the solutions requirements if you want to avoid the loss of important data.
+    > **Note**:  There are several things to consider when configuring the **Message Time-to-Live** (TTL) for the Edge Hub (**$edgeHub**) module. When the IoT Edge Device is disconnected, the messages are stored on the local device. You need to calculate how much data will be stored during the TTL period, and make sure there is enough storage on the device for that much data. The amount of storage and TTL configured will need to meet the solutions requirements if you want to avoid the loss of important data.
     >
     > If the device does not have enough storage, then you need to configure a shorter TTL. Once the age of a message reaches the TTL time limit, it will be deleted if it has not yet been sent to Azure IoT Hub.
 
-    The IoT Edge Device will automatically store messages when in a disconnected / offline state. The storage location can be configured using a `HostConfig` object.
+    The IoT Edge Device will automatically store messages when in a disconnected / offline state. The storage location can be configured using a **HostConfig** object.
 
 1. Locate the **Environment Variables** area.
 
@@ -410,9 +424,9 @@ In this exercise, you will use the Azure Portal user interface for Azure IoT Hub
 
 1. Locate the **Container Create Options** field.
 
-    Notice that this field contains a `HostConfig` JSON object that can be configured. You will create a `HostConfig` property and an Environment Variable to configure the storage location for your Edge device.
+    Notice that this field contains a **HostConfig** JSON object that can be configured. You will create a **HostConfig** property and an Environment Variable to configure the storage location for your Edge device.
 
-1. In the `HostConfig` object, below the closing bracket of `PortBindings` property, add the following `Binds` property:
+1. In the **HostConfig** object, below the closing bracket of **PortBindings** property, add the following **Binds** property:
 
     ```json
     "Binds": [
@@ -420,7 +434,7 @@ In this exercise, you will use the Azure Portal user interface for Azure IoT Hub
     ]
     ```
 
-    > **Note**: Be sure to separate the `PortBindings` property from the `Binds` property with a comma.
+    > **Note**: Be sure to separate the **PortBindings** property from the **Binds** property with a comma.
 
     The resulting JSON in the **Create Options** textbox should look similar to the following:
 
@@ -451,7 +465,7 @@ In this exercise, you will use the Azure Portal user interface for Azure IoT Hub
     }
     ```
 
-    This `Binds` value configures the `/iotedge/storage/` directory in the Docker container for the Edge Hub Module to be mapped to the `/etc/aziot/storage/` host system directory on the physical IoT Edge Device.
+    This **Binds** value configures the `/iotedge/storage/` directory in the Docker container for the Edge Hub Module to be mapped to the **/etc/aziot/storage/** host system directory on the physical IoT Edge Device.
 
     The value is in the format of `<HostStoragePath>:<ModuleStoragePath>`. The `<HostStoragePath>` value is the host directory location on the IoT Edge Device. The `<ModuleStoragePath>` is the module storage path made available within the container. Both of these values must specify an absolute path.
 
@@ -461,7 +475,7 @@ In this exercise, you will use the Azure Portal user interface for Azure IoT Hub
 
 1. Take a minute to review the contents of the deployment manifest.
 
-    Find your updates within the deployment manifest. You will need to look under both `$edgeAgent` and `$edgeHub` to find them.
+    Find your updates within the deployment manifest. You will need to look under both **$edgeAgent** and **$edgeHub** to find them.
 
 1. At the bottom of the blade, click **Create**.
 
@@ -507,7 +521,7 @@ Before continuing, it is essential for you to ensure that the user profile for t
     iotedge list
     ```
 
-1. Take a moment to review the output of the `iotedge list` command:
+1. Take a moment to review the output of the **iotedge list** command:
 
     You should see that the *edgeHub* has failed to start:
 
@@ -661,7 +675,7 @@ In this task, you will configure the downstream IoT device (child or leaf device
 
 1. On the **View** menu, click **Terminal**.
 
-    Ensure that the **Terminal** command prompt lists the `/Starter/ChildIoTDevice` directory.
+    Ensure that the **Terminal** command prompt lists the **/Starter/ChildIoTDevice** directory.
 
 1. To build and run the **ChildIoTDevice** simulated device, enter the following command:
 
@@ -709,7 +723,7 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
     az iot hub monitor-events --hub-name iot-az220-training-{your-id}
     ```
 
-    Be sure to replace the `{your-id}` placeholder with your unique suffix for our Azure IoT Hub instance.
+    Be sure to replace the **{your-id}** placeholder with your unique suffix for our Azure IoT Hub instance.
 
 1. Notice that telemetry from the **sensor-th-0084** that is getting sent to Azure IoT Hub.
 
@@ -764,15 +778,15 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
 
 1. Go back to the **Cloud Shell** in the Azure portal.
 
-1. If the `az iot hub monitor-events` command is still running, end it by pressing **Ctrl + C**.
+1. If the **az iot hub monitor-events** command is still running, end it by pressing **Ctrl + C**.
 
-1. At the Cloud Shell command prompt, to connect to the **vm-az220-training-gw0002-{your-id}** VM using `ssh`, enter the following command:
+1. At the Cloud Shell command prompt, to connect to the **vm-az220-training-gw0002-{your-id}** VM using **ssh**, enter the following command:
 
     ```sh
     ssh <username>@<ipaddress>
     ```
 
-    Be sure to replace the placeholders with the required values for the `ssh` command:
+    Be sure to replace the placeholders with the required values for the **ssh** command:
 
     | Placeholder | Value to replace |
     | :--- | :--- |
@@ -781,7 +795,7 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
 
 1. When prompted, enter the admin **Password** for the **vm-az220-training-gw0002-{your-id}**.
 
-    The command prompt will be update once you are connected to the **vm-az220-training-gw0002-{your-id}** VM via `ssh`.
+    The command prompt will be update once you are connected to the **vm-az220-training-gw0002-{your-id}** VM via **ssh**.
 
 1. To reset the IoT Edge Runtime, enter the following command:
 
@@ -804,7 +818,7 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
     iotedge list
     ```
 
-1. To end the `ssh` session with the **vm-az220-training-gw0002-{your-id}**, enter the following command:
+1. To end the **ssh** session with the **vm-az220-training-gw0002-{your-id}**, enter the following command:
 
     ```cmd/sh
     exit
@@ -816,7 +830,7 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
     az iot hub monitor-events --hub-name iot-az220-training-{your-id}
     ```
 
-    Be sure to replace the `{your-id}` placeholder with your unique suffix for our Azure IoT Hub instance.
+    Be sure to replace the **{your-id}** placeholder with your unique suffix for our Azure IoT Hub instance.
 
 1. Notice there are no longer any events being received by the **Azure IoT Hub**.
 
@@ -840,7 +854,7 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
 
     Once the **vm-az220-training-gw0002-{your-id}** IoT Edge Transparent Gateway is able to resume connectivity with Azure IoT Hub, it will sync the event telemetry from all connected child devices. This includes the saved telemetry that couldn't be sent while disconnected, and all telemetry still being sent to the gateway.
 
-    > **Note**:  The IoT Edge Gateway device may take a couple minutes to reconnect to Azure IoT Hub and resume sending telemetry. After waiting, you will see events showing up in the `az iot hub monitor-events` command output again.
+    > **Note**:  The IoT Edge Gateway device may take a couple minutes to reconnect to Azure IoT Hub and resume sending telemetry. After waiting, you will see events showing up in the **az iot hub monitor-events** command output again.
 
     In this lab, you verified that an Azure IoT Edge Gateway can use local storage to retain messages that can't be sent due to an interruption in the connection to the IoT Hub. Once the connection was reestablished, you saw that stored messages were delivered to IoT hub.
 

@@ -82,9 +82,11 @@ To ensure these resources are available, complete the following steps.
 
     ccj220101
 
-    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
+
+    +++az220+++
 
 1. To validate the template, click **Review and create**.
 
@@ -93,6 +95,8 @@ To ensure these resources are available, complete the following steps.
     The deployment will start. It will take several minutes to deploy the required Azure resources.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
+
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
 
 1. In your text editor, enter the following text labels:
 
@@ -103,8 +107,6 @@ To ensure these resources are available, complete the following steps.
     +++deviceConnectionString:+++
 
     +++devicePrimaryKey:+++
-
-    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
@@ -164,9 +166,9 @@ You will now configure and run the device simulator.
    On the step before reaching the lab instructions, you downloaded the GitHub repository containing lab resources for this lab. The folder structure includes the following folder path:
 
     * Allfiles
-      * Labs
-          * 17-How to manage your Azure IoT Hub
-            * Final
+        * Labs
+            * 17-How to manage your Azure IoT Hub
+                * Final
 
     > **NOTE**: By default, the **Allfiles** folder is copied to your Windows Desktop in your virtual machine environment.
 
@@ -176,7 +178,7 @@ You will now configure and run the device simulator.
 
 1. Ensure that you have the **Program.cs** file opened in Visual Studio Code.
 
-1. Near the top of the **Program** class, locate the declaration of the `connectionString` variable:
+1. Near the top of the **Program** class, locate the declaration of the **connectionString** variable:
 
     ```csharp
     private readonly static string connectionString = "<your device connection string>";
@@ -211,7 +213,6 @@ You will now configure and run the device simulator.
     10/25/2019 6:10:12 PM > Sending message: {"temperature":27.714212817472504,"humidity":63.88147743599558}
     10/25/2019 6:10:13 PM > Sending message: {"temperature":20.017463779085066,"humidity":64.53511070671263}
     10/25/2019 6:10:14 PM > Sending message: {"temperature":20.723927165718717,"humidity":74.07808918230147}
-     
    ```
 
 Leave the app running, so that a device is connected and telemetry is being sent.
@@ -696,7 +697,7 @@ Earlier in this lab, you set up your diagnostic logs to be exported to blob stor
     }
     ```
 
-    Notice that each individual entry is a single JSON record - although the overall document is not a valid JSON document as the JSON objects are not declared within a JSON array `[]` and comma separated. Within each record you can see details relating to the originating IoT Hub and **properties** for each event. Within the **properties** object, you can see the connecting (or disconnecting) **deviceId**.
+    Notice that each individual entry is a single JSON record - although the overall document is not a valid JSON document as the JSON objects are not declared within a JSON array **[ ]** and comma separated. Within each record you can see details relating to the originating IoT Hub and **properties** for each event. Within the **properties** object, you can see the connecting (or disconnecting) **deviceId**.
 
 #### Task 4: Review resolved Alert
 

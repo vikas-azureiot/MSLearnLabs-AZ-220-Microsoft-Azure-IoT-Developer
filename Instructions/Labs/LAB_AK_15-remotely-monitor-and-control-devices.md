@@ -69,7 +69,7 @@ To ensure these resources are available, complete the following steps.
 
 1. In the virtual machine environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab15.json+++
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab15.json+++
 
     > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
 
@@ -101,9 +101,11 @@ To ensure these resources are available, complete the following steps.
 
     ccj220101
 
-    During this lab, you will see `{your-id}` listed as part of the suggested resource name whenever you need to enter your unique ID. The `{your-id}` portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the `{}`) with your unique value.
+    During this lab, you will see **{your-id}** listed as part of the suggested resource name whenever you need to enter your unique ID. The **{your-id}** portion of the suggested resource name is a placeholder. You will replace the entire placeholder string (including the **{}**) with your unique value.
 
 1. In the **Course ID** field, enter **az220**.
+
+    +++az220+++
 
 1. To validate the template, click **Review and create**.
 
@@ -113,7 +115,21 @@ To ensure these resources are available, complete the following steps.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
-    You will be using the text editor to store some configuration values associated with the Azure resources.
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
+
+1. In your text editor, enter the following text labels:
+
+    +++deviceConnectionString:+++
+
+    +++devicePrimaryKey:+++
+
+    +++eventHubsCompatibleEndpoint:+++
+
+    +++eventHubsCompatiblePath:+++
+
+    +++iotHubSasKey:+++
+
+    +++serviceConnectionString:+++
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
@@ -353,9 +369,9 @@ In this task, you will begin work on the back-end app that will be used to recei
     using Azure.Messaging.EventHubs;
     ```
 
-    This namespace originates from the [**Azure.Messaging.EventHubs** NuGet package](https://www.nuget.org/packages/Azure.Messaging.EventHubs/). This client library allows for both publishing and consuming events using Azure Event Hubs. In this lab, the library will be configured to connect to the IoT Hub built-in EventHub compatible endpoint.
+    This namespace originates from the [Azure.Messaging.EventHubs NuGet package](https://www.nuget.org/packages/Azure.Messaging.EventHubs/). This client library allows for both publishing and consuming events using Azure Event Hubs. In this lab, the library will be configured to connect to the IoT Hub built-in EventHub compatible endpoint.
 
-    > **Note**: The NuGet package can be installed with the following command: `dotnet add package Azure.Messaging.EventHubs` and further information can be found at the link below:
+    > **Note**: The NuGet package can be installed with the following command: **dotnet add package Azure.Messaging.EventHubs** and further information can be found at the link below:
     > * [Azure Event Hubs client library for .NET - Version 5.5.0](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/messaging.eventhubs-readme?view=azure-dotnet)
 
 1. Locate the **Global variables.** comment line within the code.
@@ -376,7 +392,7 @@ In this task, you will begin work on the back-end app that will be used to recei
 
     The **serviceConnectionString** variable will contain the connection string that will enable the operator app to connect to the IoT Hub.
 
-    The **deviceId** variable contains the device ID (`"sensor-th-0055"`) used by the **CheeseCaveDevice** application.
+    The **deviceId** variable contains the device ID (**"sensor-th-0055"**) used by the **CheeseCaveDevice** application.
 
 1. Locate the code line used to assign the service connection string
 
@@ -409,7 +425,7 @@ In this task, you will begin work on the back-end app that will be used to recei
 
     Notice how the connection string is constructed from the values you entered earlier. This, along with the default consumer group is then used to create and configure an instance of the **EventHubConsumerClient**.
 
-    > **Note**: The code `var consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;` assigns the string `"$Default` to the **consumerGroup**. It is common to create a custom consumer group, in which case the name of the consumer group would be used here instead.
+    > **Note**: The code **var consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;** assigns the string **"$Default"** to the **consumerGroup**. It is common to create a custom consumer group, in which case the name of the consumer group would be used here instead.
 
     > **Information**: You can learn more about consumer groups [here](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-features#consumer-groups)
 
@@ -427,7 +443,7 @@ In this task, you will begin work on the back-end app that will be used to recei
 
     Next, the starting position for the first event present in the partition is specified.
 
-    > **Information**: Although `EventPosition.Earliest` may look like it is an enum, `EventPosition` is actually a struct that not only provides definitions for `Earliest` and `Latest`, but also methods that return event positions calculated from enqueued time, offset and sequence number. You can learn more about the **EventPosition Struct** [here](https://docs.microsoft.com/dotnet/api/azure.messaging.eventhubs.consumer.eventposition?view=azure-dotnet).
+    > **Information**: Although **EventPosition.Earliest** may look like it is an enum, **EventPosition** is actually a struct that not only provides definitions for **Earliest** and **Latest**, but also methods that return event positions calculated from enqueued time, offset and sequence number. You can learn more about the **EventPosition Struct** [here](https://docs.microsoft.com/dotnet/api/azure.messaging.eventhubs.consumer.eventposition?view=azure-dotnet).
 
     The next section reads events from the requested partition as an asynchronous enumerable, allowing events to be iterated as they become available on the partition, waiting as necessary should there be no events available.
 
@@ -506,7 +522,7 @@ In this Exercise, you will update your device app by adding the code for a direc
     deviceClient.SetMethodHandlerAsync("SetFanState", SetFanState, null).Wait();
     ```
 
-    Notice that the **SetFanState** direct method handler is also set up by this code. As you can see, the **SetMethodHandlerAsync** method of deviceClient takes the remote method name `"SetFanState"` as an argument, along with the actual local method to call, and a user context object (in this case null).
+    Notice that the **SetFanState** direct method handler is also set up by this code. As you can see, the **SetMethodHandlerAsync** method of deviceClient takes the remote method name **"SetFanState"** as an argument, along with the actual local method to call, and a user context object (in this case null).
 
 1. Locate the **Handle the direct method call** comment line within the code.
 
@@ -570,7 +586,7 @@ You have now completed the coding that is required on the device side. Next, you
 
     Notice how the **ServiceClient** connects using the **serviceConnectionString** defined earlier. The **InvokeMethod** is then called.
 
-    The **CloudToDeviceMethod** class encapsulates the information regarding the direct method - the method name, timeout, and payload. The **ServiceClient** instance created earlier is then used to invoke the direct method via the IoT Hub, returning a response object. A `response.Status` property value of `200` indicates success.
+    The **CloudToDeviceMethod** class encapsulates the information regarding the direct method - the method name, timeout, and payload. The **ServiceClient** instance created earlier is then used to invoke the direct method via the IoT Hub, returning a response object. A **response.Status** property value of **200** indicates success.
 
     > **Information**: The **ServiceClient** class encapsulates interaction with the underlying Azure REST APIs. You can learn more about the underlying REST API for invoking direct methods here - [Understand and invoke direct methods from IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods). You can also find the additional status codes documented:
     > * 200 indicates successful execution of direct method;
@@ -597,7 +613,7 @@ To test the direct method, you will need to start the apps in the correct order.
 
 1. To start the **CheeseCaveOperator** back-end app, open a Terminal pane and then enter a `dotnet run` command.
 
-    > **Note**:  If you see the message `Direct method failed: timed-out` then double check you have saved the changes in the **CheeseCaveDevice** and started the app.
+    > **Note**:  If you see the message **Direct method failed: timed-out** then double check you have saved the changes in the **CheeseCaveDevice** and started the app.
 
     The CheeseCaveOperator back-end app will immediately call the direct method.
 
