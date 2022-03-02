@@ -173,11 +173,11 @@ To ensure these resources are available, complete the following tasks.
 
         If the device isn't listed, on the Devices page, click **Refresh**.
 
-    1. On the sensor-th-truck0001 page, to the right of the Device ID value, click **Copy**, and then save the value to your text editor file.
+    1. On the sensor-th-truck0001 page, to the right of the **Device ID** value, click **Copy**, and then save the value to your text editor file.
 
-    1. Copy the Primary Connection String value, and then save it to your text editor file.
+    1. On the sensor-th-truck0001 page, copy the **Primary Connection String** value, and then save it to your text editor file.
 
-    1. Repeat the previous three steps to record the Device IDs and connection string values for the **sensor-th-airplane0001** and **sensor-th-container0001** devices.
+    1. Repeat the previous three steps to record the Device IDs and Primary Connection String values for the **sensor-th-airplane0001** and **sensor-th-container0001** devices.
 
     1. Navigate back to your IoT hub blade.
 
@@ -202,6 +202,8 @@ In this exercise, you will setup Time Series Insights integration with Azure IoT
 1. On the Azure portal menu, click **+ Create a resource**.
 
 1. On the **New** blade, in the **Search the Marketplace** textbox, enter **time series insights**
+
+    +++time series insights+++
 
 1. In the search results, click **Time Series Insights**.
 
@@ -247,7 +249,7 @@ In this exercise, you will setup Time Series Insights integration with Azure IoT
 
 1. In the **IoT Hub consumer group** box, enter **tsievents** and then click **Add**.
 
-    +++tsievents***
+    +++tsievents+++
 
     This will add a new _Consumer Group_ to use for this Event Source. The Consumer Group needs to be used exclusively for this Event Source, as there can only be a single active reader from a given Consumer Group at a time.
 
