@@ -294,9 +294,9 @@ In this exercise, you will run the simulated devices so they starts sending tele
     In _Lab 3: Setup the Development Environment_, you cloned the GitHub repository containing lab resources by downloading a ZIP file and extracting the contents locally. The extracted folder structure includes the following folder path:
 
     * Allfiles
-      * Labs
-          * 10-Explore and analyze time stamped data with Time Series Insights
-            * Starter
+        * Labs
+            * 10-Explore and analyze time stamped data with Time Series Insights
+                * Starter
 
 1. In the **Open Folder** dialog, click **ContainerSimulation**, and then click **Select Folder**.
 
@@ -320,7 +320,7 @@ In this exercise, you will run the simulated devices so they starts sending tele
 
 1. On the **View** menu, click **Terminal**.
 
-1. Within the **Terminal** pane, ensure that the command prompt specifies the path to the lab 10 `/Starter/ContainerSimulation` directory.
+1. Within the **Terminal** pane, ensure that the command prompt specifies the path to the lab 10 **/Starter/ContainerSimulation** directory.
 
 1. At the command prompt, to build and run the **ContainerSimulation** app, enter the following command:
 
@@ -361,9 +361,7 @@ In this exercise, you will run the simulated devices so they starts sending tele
 
 In this exercise, you will be introduced to working with time series data using the Time Series Insights (TSI) Explorer.
 
-1. If needed, log in to [portal.azure.com](https://portal.azure.com) using your Azure account credentials.
-
-    If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
+1. If needed, log in to the Azure portal using your Azure account credentials.
 
 1. On your Resource group tile, click **tsi-az220-training-{your-id}**.
 
