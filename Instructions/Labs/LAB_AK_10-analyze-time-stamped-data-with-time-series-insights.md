@@ -263,7 +263,7 @@ In this exercise, you will setup Time Series Insights integration with Azure IoT
 
 1. At the bottom of the blade, click **Create**.
 
-    > **Note**:  Deployment of Time Series Insights (TSI) will take a couple minutes to complete.
+    > **Note**:  If you are on the **Summary** tab and **Review + create** is displayed at the bottom of the blade, click **Review + create**.
 
 1. Once your Time Series Insights deployment is complete, navigate back to your dashboard.
 
@@ -281,24 +281,28 @@ In this exercise, you will setup Time Series Insights integration with Azure IoT
 
 1. To view the event source details, click **iot-az220-training-{your-id}**.
 
-    Notice that the configuration of the event source matches what was set when the Time Series Insights resource was created.
+    Notice that the configuration of the event source matches what you specified when the Time Series Insights resource was created.
 
 ### Exercise 3: Run Simulated IoT Devices
 
-In this exercise, you will run the simulated devices so they starts sending telemetry events to Azure IoT Hub.
+In this exercise, you will run the simulated devices so that they start sending telemetry events to Azure IoT Hub.
 
-1. Open **Visual Studio Code**.
+1. In your virtual machine environment, use the **Start** menu to open **Visual Studio Code**.
+
+    > **Tip**: You may find it helpful to maximize the Visual Studio Code window.
 
 1. On the **File** menu, click **Open Folder**.
 
 1. In the **Open Folder** dialog, navigate to the lab 10 Starter folder.
 
-    In _Lab 3: Setup the Development Environment_, you cloned the GitHub repository containing lab resources by downloading a ZIP file and extracting the contents locally. The extracted folder structure includes the following folder path:
+    Before starting the lab instructions, you downloaded a copy of the GitHub repository containing lab resources to the lab virtual machine environment. The folder structure includes the following folder path:
 
     * Allfiles
         * Labs
             * 10-Explore and analyze time stamped data with Time Series Insights
                 * Starter
+
+    > **Note**: If you have trouble locating the **Allfiles** folder, check your Windows **Desktop** folder.
 
 1. In the **Open Folder** dialog, click **ContainerSimulation**, and then click **Select Folder**.
 
@@ -361,9 +365,11 @@ In this exercise, you will run the simulated devices so they starts sending tele
 
 ### Exercise 4: View Time Series Insights Explorer
 
-In this exercise, you will be introduced to working with time series data using the Time Series Insights (TSI) Explorer.
+In this exercise, you will get a quick introduction to working with time series data using the Time Series Insights (TSI) Explorer.
 
-1. If needed, log in to the Azure portal using your Azure account credentials.
+1. Switch to the window containing your Azure portal and navigate to your Dashboard.
+
+    If needed, log in to the Azure portal using your Azure account credentials.
 
 1. On your Resource group tile, click **tsi-az220-training-{your-id}**.
 
@@ -379,31 +385,29 @@ In this exercise, you will be introduced to working with time series data using 
 
 1. To begin to edit a query, click **Add new query**.
 
-1. In the query editor, under **Query 1**, open the **MEASURE** dropdown, and then click **temperature**.
+1. In the left-side pane, under **Query 1**, open the **MEASURE** dropdown, and then click **temperature**.
 
 1. Open the **SPLIT BY** dropdown, and then click **iothub-connection-device-id**.
 
     When you run the query, this will split the graph to show the telemetry from each of the IoT Devices separately on the graph.
 
-1. At the top of the page, to have the display automatically refresh, click **Auto Refresh**.
+1. At the top of the page, to have the display automatically refresh, set the **Auto refresh** toggle to **On**.
 
     When **Auto refresh** is enabled, the display will be updated every _30 seconds_ to display the latest data. This only applies to the last 1 hour of available data.
 
 1. Notice the graph now displays the **temperature** sensor event data from the IoT Devices within Azure IoT Hub in a _Line Chart_.
 
-1. Notice the list of **Device IDs** to the left of the graph.
+1. Notice the list of Device IDs to the left of the graph.
 
     Hovering the mouse over a specific Device ID will highlight it's data on the graph display.
 
 1. Take a moment to examine the temperature data (graphs) for the telemetry streaming into the system from the three simulated devices.
 
-1. Notice that the spikes in **temperature** of the **sensor-th-container0001** correlate with the temperature spikes of either the **sensor-th-truck0001** or the **sensor-th-airplane0001**.
-
-    This gives you an indication that the sensor-th-container0001 is being transported by Truck or Airplane at those times.
+    Notice that the temperature data for the **sensor-th-container0001** is influenced by the temperature of the transport mechanism, either the **sensor-th-truck0001** or the **sensor-th-airplane0001**. This provides an indication whether the sensor-th-container0001 is being transported by Truck or Airplane at those times.
 
 1. To add a second query to the display, click **Add new query**.
 
-1. Under **Query 2**, set the **MEASURE** dropdown to **humidity**, set the **SPLIT BY** dropdown to **iothub-connection-device-id**, and then click **Add**.
+1. Under **Query 2**, set the **MEASURE** dropdown to **humidity**, and then set the **SPLIT BY** dropdown to **iothub-connection-device-id**.
 
     Notice that there are now two graphs displayed. The top graph shows **temperature** while the lower graph shows **humidity**, both using their own Y-axis scale.
 
@@ -411,10 +415,18 @@ In this exercise, you will be introduced to working with time series data using 
 
     Notice that when you hover the mouse cursor over the graph, a popup will display the details for a point on the graph. The popup displays the minimum (**min**), average (**avg**), and maximum (**max**) values for the data points in the graph (over the short time represented by that point). The time range associated with the selected data point is displayed along the time axis at the bottom of the display.
 
-1. Above the vertical axis line, notice the options that you can use to control graph settings.
+1. Along the top of the graph area, notice the options that you can use to control graph settings.
 
-1. Change the Interval setting to 15 seconds.
+1. Click **Change interval size**.
+
+1. On the **Chart setting** pane, change the Interval setting to 15 seconds, and then close **Chart settings**.
 
     Notice how the appearance of the data changes as you increase the interval.
 
-Once you have completed exploring the data, don't forget to stop the container simulator app by pressing **CTRL+C** in the terminal.
+1. Take a minute to explore the chart settings.
+
+1. Once you have completed exploring the data, switch to the Visual Studio Code window.
+
+1. In Visual Studio Code, stop the container simulator app by pressing **CTRL+C** in the terminal.
+
+1. 

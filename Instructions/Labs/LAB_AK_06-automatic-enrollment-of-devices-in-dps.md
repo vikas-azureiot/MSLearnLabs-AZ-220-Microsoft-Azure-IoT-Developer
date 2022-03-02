@@ -467,7 +467,7 @@ In this task, you will complete the following:
                 * Final
                     * ContainerDevice
 
-    > **Note**: If you have trouble locating the **Allfiles** folder, check your Windows **Desktop** folder, which is the default location.
+    > **Note**: If you have trouble locating the **Allfiles** folder, check your Windows **Desktop** folder.
 
 1. Open the **ContainerDevice** folder.
 
