@@ -458,7 +458,7 @@ In this exercise, you will create and test the logging route.
 
     Wait for the success message. Once completed, the route should be listed on the **Message routing** pane.
 
-1. Once you see your new route listed the **Message routing** pane, navigate back to your Azure portal Dashboard.
+1. Once you see your new route listed on the **Message routing** pane, navigate back to your Azure portal Dashboard.
 
 #### Task 4: Verify Data Archival
 
@@ -480,7 +480,7 @@ In this exercise, you will create and test the logging route.
 
     To view the logged data, you will need to navigate down a hierarchy of folders. The first folder will be named for the IoT Hub.
 
-    > **Note**: If no data is displayed, click **Refresh**. You may need to wait a few moments and then try Refresh again.
+    > **Note**: If no data is displayed, click **Refresh**. You may need to wait a minute or two and then try Refresh again.
 
 1. In the right-hand pane, under **NAME**, click **iot-az220-training-{your-id}**, and then use clicks to navigate down into the hierarchy.
 
@@ -664,7 +664,7 @@ This will enable you to verify that your ASA job processes message data to an ou
 
 #### Task 5: Test the Logging Route
 
-Now for the fun part. Does the telemetry your device app is pumping out work its way along the route, and into the storage container?
+Now for the fun part. Is the telemetry from your device app being processed through your ASA job and delivered to the storage container?
 
 1. Ensure that the device app you created in Visual Studio Code is still running.
 
@@ -700,7 +700,7 @@ Now for the fun part. Does the telemetry your device app is pumping out work its
 
 1. On the page displaying file details for the json file, click **Download**.
 
-1. Open the downloaded file with **Visual Studio Code**, and review the JSON data.
+1. Open the downloaded file in **Visual Studio Code**, and review the JSON data.
 
     The data in your json file should appear similar to the following:
 
@@ -715,8 +715,6 @@ Now for the fun part. Does the telemetry your device app is pumping out work its
 
 1. Return to your Azure portal window and navigate to your Dashboard.
 
-1. Navigate back to your Dashboard.
-
 1. On your Resources tile, click **vibrationJob**.
 
 1. On the **vibrationJob** blade, click **Stop**, and then click **Yes**.
@@ -725,4 +723,4 @@ Now for the fun part. Does the telemetry your device app is pumping out work its
 
 1. At the Terminal command prompt, to exit the device simulator app, press **CTRL-C**.
 
-    You've traced the activity from the device app, to the hub, and through either an IoT hub route or Azure Stream Analytics job to a Blob storage container. Great progress!
+    You've traced the message data processes from the device app, to the IoT hub, and then through both an IoT hub route and Azure Stream Analytics job all the way to a Blob storage container. Great progress!
