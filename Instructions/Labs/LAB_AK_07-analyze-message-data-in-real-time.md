@@ -35,12 +35,12 @@ The following resources will be created:
 
 ## In This Lab
 
-In this lab, you will begin by deploying the lab prerequisites to ensure that your Azure subscription includes the required resources. You will then create a simulated device that sends vibration telemetry to your IoT hub. With your simulated data arriving at IoT hub, you will implement an IoT Hub Message Route and Azure Stream Analytics job that can be used to archive data. The lab includes the following exercises:
+In this lab, you will begin by ensuring that your Azure subscription includes the required resources for this lab. You will then create a simulated device that sends vibration telemetry to your IoT hub. With your simulated data arriving at IoT hub, you will implement an IoT hub message route and Azure Stream Analytics job that can be used to process device messages (in both cases data will be delivered to a Blob storage container that is used to verify successful implementation). The lab includes the following exercises:
 
 * Configure Lab Prerequisites
 * Write Code to generate Vibration Telemetry
 * Create a Message Route to Azure Blob Storage
-* Logging Route Azure Stream Analytics Job
+* Create an Azure Stream Analytics Job
 
 ## Lab Instructions
 
@@ -506,9 +506,9 @@ In this exercise, you will create and test the logging route.
 
 1. Return to your Azure portal window and navigate back to your Dashboard.
 
-### Exercise 4: Logging Route Azure Stream Analytics Job
+### Exercise 4: Create an Azure Stream Analytics Job
 
-In this exercise, you will create a Stream Analytics job that outputs live stream messages to Blob storage. You will then use the Storage browser to view the stored data.
+In this exercise, you will create a Stream Analytics job that outputs live stream messages to a Blob storage container. You will then use the Storage browser to verify that your ASA job runs successfully.
 
 This will enable you to verify that your ASA job processes message data to an output location using the following parameters:
 
