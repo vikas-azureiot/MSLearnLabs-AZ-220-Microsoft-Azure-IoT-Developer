@@ -35,7 +35,7 @@ The following resources will be created:
 
 ## In This Lab
 
-In this lab, you will begin by reviewing the lab prerequisites and you will run a script if needed to ensure that your Azure subscription includes the required resources. You will then create a simulated device that sends vibration telemetry to your IoT hub. With your simulated data arriving at IoT hub, you will implement an IoT Hub Message Route and Azure Stream Analytics job that can be used to archive data. The lab includes the following exercises:
+In this lab, you will begin by deploying the lab prerequisites to ensure that your Azure subscription includes the required resources. You will then create a simulated device that sends vibration telemetry to your IoT hub. With your simulated data arriving at IoT hub, you will implement an IoT Hub Message Route and Azure Stream Analytics job that can be used to archive data. The lab includes the following exercises:
 
 * Configure Lab Prerequisites
 * Write Code to generate Vibration Telemetry
@@ -102,7 +102,7 @@ To ensure these resources are available, complete the following steps.
 
 1. If validation passes, click **Create**.
 
-    The deployment will start. It will take several minutes to deploy the required Azure resources.
+    The deployment will start. It will take **5 or more minutes** to deploy the required Azure resources.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
@@ -171,7 +171,7 @@ During your initial prototype phase, you will implement a single IoT device that
 
 In this exercise, you will:
 
-* load the simulated device project
+* open the simulated device project
 * update the connection string for your simulated device and review the project code
 * test your simulated device connection and telemetry communications
 * ensure that telemetry is arriving at your IoT hub
@@ -182,7 +182,7 @@ In this exercise, you will:
 
     > **Tip**: You may find it helpful to maximize the Visual Studio Code window.
 
-1. On the **File** menu, click **Open Folder**.
+1. In Visual Studio Code, on the **File** menu, click **Open Folder**.
 
 1. In the **Open Folder** dialog, navigate to the **Starter** folder for lab 7.
 
@@ -203,15 +203,15 @@ In this exercise, you will:
     * Program.cs
     * VibrationDevice.csproj
 
-    > **Note**: If you are prompted to load required assets, you can do that now.
+    > **Note**: You can ignore the VS Code prompts to load required assets.
 
 1. In the **EXPLORER** pane, click **Program.cs**.
 
-    This simulated device application uses Symmetric Key authentication, sends both telemetry and logging messages to the IoT hub, and simulates the implementation of sensor inputs.
+    This simulated device application uses Symmetric Key authentication, sends both telemetry and logging messages to the IoT hub, and simulates the implementation of sensor inputs. If time permits after after completing the lab tasks, you may want to review the code.
 
 1. On the **Terminal** menu, click **New Terminal**.
 
-    Examine the directory path indicated as part of the command prompt to ensure that you are in the correct location. You do not want to start building this project within the folder structure of a previous lab project.
+    Examine the command prompt to ensure that the VibrationDevice folder is specified. You do not want to start building this project from the wrong folder location.
 
 1. At the terminal command prompt, to verify that the application builds without errors, enter the following command:
 
@@ -256,7 +256,7 @@ The simulated device app that you will build in this task simulates an IoT devic
 
 1. On the **File** menu, click **Save**.
 
-1. Optionally, take a moment to review the code.
+    The updated device connection string must be saved before running the code. 
 
 #### Task 3: Test your code to send telemetry
 
@@ -310,18 +310,18 @@ In this task, you will use the Azure portal to verify that your IoT Hub is recei
 
 IoT solutions often require that incoming message data be sent to multiple endpoint locations, either dependent upon the type of data or for business reasons. Azure IoT hub provides the _message routing_ feature to enable you to direct incoming data to locations required by your solution.
 
-The architecture of our system requires data be sent to two destinations: a storage location for archiving data, and a location for more immediate analysis.
+The architecture of our system requires data be processed in two ways: routed to a storage location for archiving data, streamed in real-time for immediate analysis.
 
-Contoso's vibration monitoring scenario requires you to create two message routes:
+Contoso's vibration monitoring scenario requires you to create the following message processes:
 
-* the first route will be to an Azure Blob storage location for data archiving
-* the second route will be to an Azure Stream Analytics job for real-time analysis
+* the first process is an IoT hub route that delivers message data to an Azure Blob storage location for data archiving
+* the second process is an Azure Stream Analytics job for real-time analysis
 
-Message routes should be built and tested one at a time, so this exercise will focus on the storage route. This route will be referred to as the "logging" route, and it involves digging a few levels deep into the creation of Azure resources.
+Each process should be built and tested separately, so this exercise will focus on the IoT hub routing process. This IoT hub route will be referred to as the "logging" route, and it involves digging a few levels deep into the creation of Azure resources.
 
 One important feature of message routing is the ability to filter incoming data before routing to an endpoint. The filter, written as a SQL query, directs output through a route only when certain conditions are met.
 
-One of the easiest ways to filter data is to evaluate a message property. The code in your simulated device app configures device-to-cloud messages as follows:
+One of the easiest ways to filter data is to evaluate a message property. The code in your simulated device app configures the device-to-cloud messages as follows:
 
 ```csharp
 ...
@@ -330,7 +330,7 @@ telemetryMessage.Properties.Add("sensorID", "VSTel");
 loggingMessage.Properties.Add("sensorID", "VSLog");
 ```
 
-You can embed a SQL query within your IoT hub message route that uses the **sensorID** property as a criteria for choosing the messages that are processed by a route. In this case, when the value assigned to **sensorID** is **VSLog** (vibration sensor log), the message is intended for the storage archive (logging).
+With the messaged tagged in this way, you can embed a SQL query within your IoT hub message route that uses the **sensorID** property as a criteria for choosing the messages that are processed by the route. In this case, when the value assigned to **sensorID** is **VSLog** (vibration sensor log), the message is intended for the storage archive (logging).
 
 In this exercise, you will create and test the logging route.
 
@@ -434,7 +434,6 @@ In this exercise, you will create and test the logging route.
 
 1. Under **Authentication type**, ensure **Key-based** is selected.
 
-
 1. At the bottom of the blade, to create your storage endpoint, click **Create**.
 
     Validation and subsequent creation will take a few moments. Once complete, you should be located back on the **Add a route** blade.
@@ -473,15 +472,15 @@ In this exercise, you will create and test the logging route.
 
 1. On the left-side menu of your **vibrationstore{your-id}** blade, click **Storage browser (preview)**.
 
-    You can use the Storage Explorer to verify that your data is being added to the storage account.
+    You can use the Storage browser to verify that your data is being added to the storage account.
 
-    > **Note**: The Storage Explorer is currently in preview mode, so its exact mode of operation may change.
+    > **Note**: The Storage browser is currently in preview mode, so its exact mode of operation may change.
 
-1. On the **Storage browser (preview)** pane, under **vibrationstore{your-id}**, expand **Blob containers**, and then click **vibrationcontainer**.
+1. On the **Storage browser (preview)** pane, under **vibrationstore{your-id}**, click **Blob containers**, and then click **vibrationcontainer**.
 
     To view the logged data, you will need to navigate down a hierarchy of folders. The first folder will be named for the IoT Hub.
 
-    > **Note**: If no data is displayed, wait a few moments and try again.
+    > **Note**: If no data is displayed, click **Refresh**. You may need to wait a few moments and then try Refresh again.
 
 1. In the right-hand pane, under **NAME**, click **iot-az220-training-{your-id}**, and then use clicks to navigate down into the hierarchy.
 
@@ -505,21 +504,20 @@ In this exercise, you will create and test the logging route.
 
 1. Once you have verified that the file contains your logging data, close the .avro document.
 
-1. Return to your Azure portal Dashboard.
+1. Return to your Azure portal window and navigate back to your Dashboard.
 
 ### Exercise 4: Logging Route Azure Stream Analytics Job
 
-In this exercise, you will create a Stream Analytics job that outputs logging messages to Blob storage. You will then use Storage Explorer in the Azure Portal to view the stored data.
+In this exercise, you will create a Stream Analytics job that outputs live stream messages to Blob storage. You will then use the Storage browser to view the stored data.
 
-This will enable you to verify that your route includes the following settings:
+This will enable you to verify that your ASA job processes message data to an output location using the following parameters:
 
-* **Name** - vibrationLoggingRoute
-* **Data Source** - DeviceMessages
-* **Routing query** - sensorID = 'VSLog'
-* **Endpoint** - vibrationLogEndpoint
-* **Enabled** - true
+* **Name** - vibrationJob
+* **ASA job input** - IoT hub Messaging Endpoint
+* **ASA job output** - Blob storage container
+* **ASA job query** - pass through all messages from input to output
 
-> **Note**: It may seem odd that in this lab you are routing data to storage, and then also sending your data to storage through Azure Stream Analytics. In a production scenario, you wouldn't have both paths long-term. Instead, it is likely that the second path that we're creating here would not exist. You will use it here, in a lab environment, as a way to validate that your routing is working as expected and to show a simple implementation of Azure Stream Analytics.
+> **Note**: It may seem odd that in this lab you are using IoT hub routing to deliver device data to a storage location, and then also processing your device message data through an Azure Stream Analytics job with output to the same storage location. In a real-world scenario you probably wouldn't use both of these message processing tools for processing device data in this way. Instead, it's more common to use an ASA job to invoke a time sensitive action based on analysis of real-time data. However, since this lab is providing an introduction to both of these data processing tools, the Blob storage container provides an easy way to validate that your IoT hub route is working as expected and to show a simple implementation of Azure Stream Analytics.
 
 #### Task 1: Create the Stream Analytics Job
 
@@ -535,25 +533,25 @@ This will enable you to verify that your route includes the following settings:
 
     +++vibrationJob+++
 
-1. Under **Subscription**, choose the subscription you are using for the lab.
+1. Under **Subscription**, ensure that the subscription you are using for the lab is selected.
 
 1. Under **Resource group**, select **@lab.CloudResourceGroup(ResourceGroup1).Name**.
 
-1. Under **Location**, select **@lab.CloudResourceGroup(ResourceGroup1).Location**.
+1. Under **Location**, verify that **@lab.CloudResourceGroup(ResourceGroup1).Location** is selected.
 
 1. Under **Hosting environment**, ensure that **Cloud** is selected.
 
 1. Under **Streaming units**, reduce the number from **3** to **1**.
 
-    This lab does not require 3 units and this will reduce costs.
+    This lab does not require 3 units. Limiting the number of streaming units to what you actually require will help to reduce costs.
 
 1. To create the Stream Analytics job, click **Create**.
 
-1. Wait for the **Your deployment is complete** message, then open the new resource.
+1. Wait for the **Your deployment is complete** message, and then click **Go to resource**.
 
     > **Tip:** If you miss the message to go to the new resource, or need to find a resource at any time, select **Home/All resources**. Enter enough of the resource name for it to appear in the list of resources.
 
-1. Take a moment to examine your new Stream Analytics job.
+1. Take a moment to examine the UI provided by your new Stream Analytics job.
 
     Notice that you have an empty job, showing no inputs or outputs, and a skeleton query. The next step is to populate these entries.
 
@@ -571,8 +569,6 @@ This will enable you to verify that your route includes the following settings:
 
     +++vibrationInput+++
 
-1. Under **IoT Hub**, ensure that your **iot-az220-training-{your-id}** IoT hub is selected.
-
 1. Ensure that **Select IoT Hub from your subscriptions** is selected.
 
 1. Under **Subscription**, ensure that the subscription you used to create the IoT Hub earlier is selected.
@@ -583,7 +579,7 @@ This will enable you to verify that your route includes the following settings:
 
 1. Under **Shared access policy name**, ensure that **iothubowner** is selected.
 
-    > **Note**:  The **Shared access policy key** is populated and read-only.
+    > **Note**: The **Shared access policy key** is populated and read-only.
 
 1. Under **Endpoint**, ensure that **Messaging** is selected.
 
@@ -615,13 +611,11 @@ This will enable you to verify that your route includes the following settings:
 
     +++vibrationOutput+++
 
-1. Ensure that **Select storage from your subscriptions** is selected.
+1. Ensure that **Select Blob storage/ADLS Gen2 from your subscriptions** is selected.
 
 1. Under **Subscription**, select the subscription you are using for this lab.
 
-1. Under **Storage account**, click **vibrationstore{your-id}**.
-
-    > **Note**:  The **Storage account key** is automatically populated and read-only.
+1. Under **Storage account**, ensure that **vibrationstore{your-id}** is selected.
 
 1. Under **Container**, ensure that **Use existing** is selected and that **vibrationcontainer** is selected from the dropdown list.
 
@@ -635,11 +629,11 @@ This will enable you to verify that your route includes the following settings:
 
 1. Under **Event serialization format**, ensure that **JSON** is selected.
 
-1. Under **Encoding**, ensure that **UTF-8** is selected.
-
 1. Under **Format**, ensure that **Line separated** is selected.
 
     > **Note**:  This setting stores each record as a JSON object on each line and, taken as a whole, results in a file that is an invalid JSON record. The other option, **Array**, ensures that the entire document is formatted as a JSON array where each record is an item in the array. This allows the entire file to be parsed as valid JSON.
+
+1. Under **Encoding**, ensure that **UTF-8** is selected.
 
 1. Leave **Minimum rows** blank.
 
@@ -694,17 +688,21 @@ Now for the fun part. Does the telemetry your device app is pumping out work its
 
     You should see activity in the charts.
 
-1. On the left-side menu, click **Storage Explorer (preview)**.
+1. On the left-side menu, click **Storage browser (preview)**.
 
-    You can use Storage Explorer for additional reassurance that all of your data is getting to the storage account.
+    You can use Storage browser for additional reassurance that all of your data is getting to the storage account.
 
-    > **Note**:  The Storage Explorer is currently in preview mode, so its exact mode of operation may change.
+    > **Note**:  The Storage browser is currently in preview mode, so its exact mode of operation may change.
 
-1. In **Storage Explorer (preview)**, under **BLOB CONTAINERS**, click **vibrationcontainer**.
+1. In **Storage browser (preview)**, under **vibrationstore{your-id}**, click **Blob containers**, and then click **vibrationcontainer**.
 
-1. To view the data, select the json file and click **Download**, then click **Click here to download**.
+1. Select the json file.
+
+1. On the page displaying file details for the json file, click **Download**.
 
 1. Open the downloaded file with **Visual Studio Code**, and review the JSON data.
+
+    The data in your json file should appear similar to the following:
 
     ```json
     {"vibration":-0.025974767991863323,"EventProcessedUtcTime":"2021-10-22T22:03:10.8624609Z","PartitionId":3,"EventEnqueuedUtcTime":"2021-10-22T22:02:09.1180000Z","IoTHub":{"MessageId":null,"CorrelationId":null,"ConnectionDeviceId":"sensor-v-3000","ConnectionDeviceGenerationId":"637705296662649188","EnqueuedTime":"2021-10-22T22:02:08.7900000Z"}}
@@ -713,9 +711,9 @@ Now for the fun part. Does the telemetry your device app is pumping out work its
     {"vibration":0.99447803871677132,"EventProcessedUtcTime":"2021-10-22T22:03:10.9718423Z","PartitionId":3,"EventEnqueuedUtcTime":"2021-10-22T22:02:15.2910000Z","IoTHub":{"MessageId":null,"CorrelationId":null,"ConnectionDeviceId":"sensor-v-3000","ConnectionDeviceGenerationId":"637705296662649188","EnqueuedTime":"2021-10-22T22:02:15.2120000Z"}}
     ```
 
-1. Close the **Visual Studio Code** document containing your data.
+1. In Visual Studio Code, close the document containing your json data.
 
-1. Return to your Azure portal Dashboard.
+1. Return to your Azure portal window and navigate to your Dashboard.
 
 1. Navigate back to your Dashboard.
 
@@ -723,8 +721,8 @@ Now for the fun part. Does the telemetry your device app is pumping out work its
 
 1. On the **vibrationJob** blade, click **Stop**, and then click **Yes**.
 
-    You've traced the activity from the device app, to the hub, down the route, and to the storage container. Great progress! You will continue this scenario stream analytics in the next module when you take a quick look at data visualization.
-
 1. Switch to the Visual Studio Code window.
 
 1. At the Terminal command prompt, to exit the device simulator app, press **CTRL-C**.
+
+    You've traced the activity from the device app, to the hub, and through either an IoT hub route or Azure Stream Analytics job to a Blob storage container. Great progress!
