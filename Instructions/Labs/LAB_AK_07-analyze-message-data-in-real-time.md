@@ -58,7 +58,7 @@ To ensure these resources are available, complete the following steps.
 
 1. In the virtual machine environment, open a Microsoft Edge browser window, and then navigate to the following Web address:
 
-    **Web address**: +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab07.json+++
+    +++https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fMicrosoftLearning%2fMSLearnLabs-AZ-220-Microsoft-Azure-IoT-Developer%2fmaster%2fAllfiles%2FARM%2Flab07.json+++
 
     > **NOTE**: Whenever you see the green "T" symbol, for example +++enter this text+++, you can click the associated text and the information will be typed into the current field within the virtual machine environment.
 
@@ -106,7 +106,13 @@ To ensure these resources are available, complete the following steps.
 
 1. While the Azure resources are being created, open a text editor tool (Notepad is accessible from the **Start** menu, under **Windows Accessories**). 
 
-    You will be using the text editor to store some configuration values associated with the Azure resources.
+    > **NOTE**: You will be using the text editor to store some configuration values associated with your Azure resources.
+
+1. In your text editor, enter the following text labels:
+
+    +++connectionString:+++
+
+    +++deviceConnectionString:+++
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
@@ -114,7 +120,7 @@ To ensure these resources are available, complete the following steps.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    > **NOTE**: If the deployment failed during the createDevice operation, the **Outputs** pane will be blank. You will finds steps listed below to create the devices manually.
+    > **NOTE**: If the deployment failed during the final *createDevice* operation, the **Outputs** pane will be blank. Your IoT hub will have deployed successfully and you will find steps listed below to create IoT devices manually.
 
 1. In your text editor, create a record of the following Outputs for use later:
 
@@ -141,9 +147,9 @@ To ensure these resources are available, complete the following steps.
 
     1. On the Devices page, under **Device ID**, click **sensor-v-3000**.
 
-    1. On the sensor-v-3000 page, to the right of the Primary Connection String value, click **Copy**.
+    1. On the sensor-v-3000 page, to the right of the **Primary Connection String** value, click **Copy**.
 
-    1. Save the copied value to Notepad for later use.
+    1. Save the copied device connection string value to Notepad for later use.
 
     1. Navigate back to your IoT hub blade.
 
@@ -151,9 +157,9 @@ To ensure these resources are available, complete the following steps.
 
     1. Click **iothubowner**.
 
-    1. Notice that the IoT hub Primary Connection String is listed.
+    1. Notice that the IoT hub **Primary connection string** is listed.
 
-    1. Copy the value of the IoT hub Primary Connection String to Notepad.
+    1. Copy the IoT hub **Primary connection string** value and save it to Notepad.
 
     The Azure resources required for this lab are now available.
 
@@ -172,11 +178,13 @@ In this exercise, you will:
 
 #### Task 1: Open your simulated device project
 
-1. Open **Visual Studio Code**.
+1. In the virtual machine environment, use the Windows **Start** menu to open **Visual Studio Code**.
+
+    > **Tip**: You may find it helpful to maximize the Visual Studio Code window.
 
 1. On the **File** menu, click **Open Folder**.
 
-1. In the **Open Folder** dialog, navigate to the **07-Device Message Routing** folder.
+1. In the **Open Folder** dialog, navigate to the **Starter** folder for lab 7.
 
     Before starting the lab instructions, you downloaded a copy of the GitHub repository containing lab resources to the lab virtual machine environment. The folder structure includes the following folder path:
 
@@ -186,7 +194,7 @@ In this exercise, you will:
                 * Starter
                     * VibrationDevice
 
-1. Navigate to the **Starter** folder for Lab 7.
+    > **Note**: If you have difficulty locating the **Allfiles** folder, check the Windows **Desktop** folder.
 
 1. Click **VibrationDevice**, and then click **Select Folder**.
 
@@ -199,7 +207,7 @@ In this exercise, you will:
 
 1. In the **EXPLORER** pane, click **Program.cs**.
 
-    A cursory glance will reveal that the **VibrationDevice** application is very similar to those used in the preceding labs. This version of the application uses symmetric Key authentication, sends both telemetry and logging messages to the IoT Hub, and has a more complex sensor implementation.
+    This simulated device application uses Symmetric Key authentication, sends both telemetry and logging messages to the IoT hub, and simulates the implementation of sensor inputs.
 
 1. On the **Terminal** menu, click **New Terminal**.
 
@@ -294,8 +302,6 @@ In this task, you will use the Azure portal to verify that your IoT Hub is recei
 
 1. On the **Overview** pane, scroll down to view the metrics tiles.
 
-1. Adjacent to **Show data for last**, change the time range to one hour.
-
     The **Device to cloud messages** tile should be plotting some current activity. If no activity is shown, wait a short while, as there's some latency.
 
     With your device sending telemetry, and your hub receiving it, the next step is to route the messages to their correct endpoints.
@@ -315,7 +321,7 @@ Message routes should be built and tested one at a time, so this exercise will f
 
 One important feature of message routing is the ability to filter incoming data before routing to an endpoint. The filter, written as a SQL query, directs output through a route only when certain conditions are met.
 
-One of the easiest ways to filter data is to evaluate a message property. You may recall adding message properties to your device messages in the previous exercise. The code that you added looked like the following:
+One of the easiest ways to filter data is to evaluate a message property. The code in your simulated device app configures device-to-cloud messages as follows:
 
 ```csharp
 ...
@@ -324,7 +330,7 @@ telemetryMessage.Properties.Add("sensorID", "VSTel");
 loggingMessage.Properties.Add("sensorID", "VSLog");
 ```
 
-You can now embed a SQL query within your message route that uses **sensorID** as a criteria for the route. In this case, when the value assigned to **sensorID** is **VSLog** (vibration sensor log), the message is intended for the storage archive.
+You can embed a SQL query within your IoT hub message route that uses the **sensorID** property as a criteria for choosing the messages that are processed by a route. In this case, when the value assigned to **sensorID** is **VSLog** (vibration sensor log), the message is intended for the storage archive (logging).
 
 In this exercise, you will create and test the logging route.
 
@@ -453,7 +459,7 @@ In this exercise, you will create and test the logging route.
 
     Wait for the success message. Once completed, the route should be listed on the **Message routing** pane.
 
-1. Navigate back to your Azure portal Dashboard.
+1. Once you see your new route listed the **Message routing** pane, navigate back to your Azure portal Dashboard.
 
 #### Task 4: Verify Data Archival
 
@@ -465,33 +471,39 @@ In this exercise, you will create and test the logging route.
 
     If your Resources tile does not list your Storage account, click the **Refresh** button at the top of the resource group tile, and then follow the instruction above to open your storage account.
 
-1. On the left-side menu of your **vibrationstore{your-id}** blade, click **Storage Explorer (preview)**.
+1. On the left-side menu of your **vibrationstore{your-id}** blade, click **Storage browser (preview)**.
 
     You can use the Storage Explorer to verify that your data is being added to the storage account.
 
     > **Note**: The Storage Explorer is currently in preview mode, so its exact mode of operation may change.
 
-1. In **Storage Explorer (preview)** pane, expand **BLOB CONTAINERS**, and then click **vibrationcontainer**.
+1. On the **Storage browser (preview)** pane, under **vibrationstore{your-id}**, expand **Blob containers**, and then click **vibrationcontainer**.
 
-    To view the data, you will need to navigate down a hierarchy of folders. The first folder will be named for the IoT Hub.
+    To view the logged data, you will need to navigate down a hierarchy of folders. The first folder will be named for the IoT Hub.
 
     > **Note**: If no data is displayed, wait a few moments and try again.
 
-1. In the right-hand pane, under **NAME**, double-click **iot-az220-training-{your-id}**, and then use double-clicks to navigate down into the hierarchy.
+1. In the right-hand pane, under **NAME**, click **iot-az220-training-{your-id}**, and then use clicks to navigate down into the hierarchy.
 
     Under your IoT hub folder, you will see folders for the Partition, then numeric values for the Year, Month, and Day. The final folder represents the Hour, listed in UTC time. The Hour folder will contain a number of Block Blobs that contain your logging message data.
 
-1. Double-click the Block Blob for the data with the earliest time stamp.
+1. Click the Block Blob for the data with the earliest time stamp.
 
-1. Click the **Click here to begin download** link.
+    The .avro files use a naming pattern of **{num}.avro** (i.e. **22.avro**).
 
-    A file named **{day_num}.avro** (i.e. **22.avro**) will be downloaded to the **Downloads** folder.
+1. On the pane displaying the Blob file information, click **Download**.
 
-1. Open the downloaded file with **Visual Studio Code** and click **Do you want to open it anyway**.
+    The file should now be available in the Downloads folder in your virtual machine environment.
 
-    Although the data is not formatted in a way that is easy to read, you should be able to recognize it as your vibration messages.
+1. Open Windows **File Explorer** and navigate to your **Downloads** folder.
 
-1. Close the **Visual Studio Code** document containing your data.
+1. Right-click the .avro file, and then click **Open with Code**.
+
+1. In the Visual Studio Code window, click **Do you want to open it anyway?**
+
+    Although the data is not formatted in a way that is easy to read, if you scroll to the right, you should be able to recognize your vibration messages.
+
+1. Once you have verified that the file contains your logging data, close the .avro document.
 
 1. Return to your Azure portal Dashboard.
 
