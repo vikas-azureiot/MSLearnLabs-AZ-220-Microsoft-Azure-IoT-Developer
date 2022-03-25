@@ -348,8 +348,8 @@ Next, you need to "download" the **MyEdgeDeviceCA** certificate from the **vm-az
 
 1. To download the root cert for use later in this lab, enter the following command:
 
-    ```bashd
-    download ~/lab12/
+    ```bash
+    download ~/lab12/azure-iot-test-only.root.ca.cert.pem
     ```
 
 ### Exercise 3: Configure IoT Edge Device Time-to-Live and Message Storage
