@@ -55,18 +55,18 @@ In this lab, you will set up the base developer tools for your development envir
 
 1. To open the .NET Core download page, use the following link: [.NET Download](https://dotnet.microsoft.com/download)
 
-1. On the .NET download page, under .NET Core, click **Download .NET Core SDK**.
+1. On the .NET download page, click **All .NET versions** and then select the latest **LTS** version of **.NET Core**.
 
     The .NET Core SDK is used to build .NET Core apps. You can use it to build/edit code files during the Microsoft Azure IoT Developer labs on MS Learn.
 
-1. On the popup menu, click **Run**, and then follow the on-screen instructions to complete the installation.
+1. Select the installer download link for your operating system and then follow the onscreen instructions to complete the installation.
 
     The installation should take less than a minute to complete. The following components will be installed:
 
-    * .NET Core SDK 3.1.100 or later
-    * .NET Core Runtime 3.1.100 or later
-    * ASP.NET Core Runtime 3.1.100 or later
-    * .NET Core Windows Desktop Runtime 3.1.0 or later
+    * .NET Core SDK 3.1.417 or later
+    * .NET Core Runtime 3.1.23 or later
+    * ASP.NET Core Runtime 3.1.23 or later
+    * .NET Desktop Runtime 3.1.23 or later
 
     The following resources are available for further information:
 
@@ -88,7 +88,7 @@ Visual Studio Code is a lightweight but powerful source code editor which runs o
 
     When you start the download, two things will happen: a popup dialog opens and some getting started guidance will be displayed.
 
-1. On the popup dialog, to begin the set up process, click **Run** and then follow the on-screen instructions.
+1. On the popup dialog, to begin the set up process, click **Open file** (or **Run**) and then follow the on-screen instructions.
 
     If you choose to Save the installer to your Downloads folder, you you can complete the installation by opening the folder and then double-clicking the VSCodeSetup executable.
 
@@ -110,9 +110,9 @@ Azure CLI is a command-line tool that is designed to make scripting Azure-relate
 
     You will be given detailed instructions for using the Azure CLI tools during the labs in this course, but if you want more information now, see [Get started with Azure CLI](https://docs.microsoft.com/en-us/cli/azure/get-started-with-azure-cli?view=azure-cli-latest)
 
-#### Task 4: Install Python 3.9
+#### Task 4: Install Python 3.9 (or later)
 
-You will be using Python 3.9 in support of IoT Edge and Docker.
+You can use Python 3.9 (or later) in support of IoT Edge and Docker.
 
 1. In the virtual machine environment, open a Microsoft Edge browser window.
 
@@ -122,15 +122,13 @@ You will be using Python 3.9 in support of IoT Edge and Docker.
 
 1. On the Python download page, select the installer file that is appropriate for your Operating System.
 
-1. When prompted, select the option to run the installer
+    You can scroll down to find specific releases by version number.
+ 
+1. When prompted, select the **Open file** or **Run** option to run the installer.
 
-1. On the Install Python  dialog, click **Add Python 3.9 to PATH**.
+1. Follow the onscreen instructions to install Python.
 
-1. Click **Install Now**.
-
-1. When the "Setup was successful" page appears, click **Disable path length limit**.
-
-1. To finish the installation process, click **Close**.
+    Ensure that Python is included on the Windows PATH environmet setting.
 
 #### Task 5: Install Docker Desktop
 
@@ -146,11 +144,13 @@ You will be using Docker Desktop Community (latest stable version) during a lab 
 
     You can use Windows Settings to open the Windows Features dialog, and use that to verify that Hyper-V and Containers are enabled.
 
+    You can now install everything you need to run Windows Subsystem for Linux (WSL) by entering the `wsl --install` command in an administrator PowerShell or Windows Command Prompt and then restarting your machine.
+
 1. Click **Download from Docker Hub**
 
 1. Under Docker Desktop for Windows, click **Get Docker Desktop for Windows (stable)**.
 
-1. To start the installation, click **Run**.
+1. To start the installation, click **Open file** or **Run**.
 
     It can take a little while for the installation dialog for Docker Desktop to appear.
 
@@ -166,7 +166,7 @@ Some sample web applications are run locally using node.js. The following steps 
 
     [Node.js downloads](https://nodejs.org/en/#home-downloadhead)
 
-1. Download the latest LTS (Long Term Support) version - 14.16.0 at the time of writing.
+1. Download the latest LTS (Long Term Support) version - 16.14.2 at the time of writing.
 
 1. When prompted, select the option to run the installer.
 
