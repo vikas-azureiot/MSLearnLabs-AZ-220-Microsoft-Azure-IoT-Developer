@@ -598,7 +598,7 @@ In this exercise, you will make copies of your simulated device project, and the
 
 1. On the **File** menu, click **Open Folder**.
 
-1. Navigate to the lab 6 Starter folder.
+1. Navigate to the lab 6 Final folder.
 
 1. Click **ContainerDevice2001**, and then click **Select Folder**.
 
@@ -636,7 +636,7 @@ In this exercise, you will run the simulated device. When the device is started 
 
 1. On the **File** menu, click **Open Folder**.
 
-1. Navigate to the lab 6 Starter folder.
+1. Navigate to the lab 6 Final folder.
 
 1. Click **ContainerDevice**, and then click **Select Folder**.
 
@@ -648,7 +648,7 @@ In this exercise, you will run the simulated device. When the device is started 
 
     You should see something similar to the following:
 
-    `Allfiles\Labs\06-Automatic Enrollment of Devices in DPS\Starter\ContainerDevice>`
+    `Allfiles\Labs\06-Automatic Enrollment of Devices in DPS\Final\ContainerDevice>`
 
 1. To build and run the **ContainerDevice** project, enter the following command:
 
@@ -723,7 +723,7 @@ In this exercise, you will run the simulated device. When the device is started 
 
 1. In the new Visual Studio Code window, on the **File** menu, click **Open Folder**.
 
-1. Navigate to the lab 6 Starter folder.
+1. Navigate to the lab 6 Final folder.
 
 1. Click **ContainerDevice2001**, and then click **Select Folder**.
 
@@ -942,8 +942,8 @@ In this task, you will configure an individual enrollment for the **sensor-thl-2
     ProvisioningClient AssignedHub: ; DeviceID:
     Unhandled exception. System.Exception: DeviceRegistrationResult.Status is NOT 'Assigned'
     at ContainerDevice.Program.ProvisionDevice(ProvisioningDeviceClient provisioningDeviceClient, SecurityProviderX509Certificate security) in C:\Users\howdc\Allfiles\Labs\06-Automatic Enrollment of Devices
-    in DPS\Starter\ContainerDevice2004\Program.cs:line 107
-    at ContainerDevice.Program.Main(String[] args) in C:\Users\howdc\Allfiles\Labs\06-Automatic Enrollment of Devices in DPS\Starter\ContainerDevice2004\Program.cs:line 49
+    in DPS\Final\ContainerDevice2004\Program.cs:line 107
+    at ContainerDevice.Program.Main(String[] args) in C:\Users\howdc\Allfiles\Labs\06-Automatic Enrollment of Devices in DPS\Final\ContainerDevice2004\Program.cs:line 49
     at ContainerDevice.Program.<Main>(String[] args)
     ```
 
@@ -1009,7 +1009,7 @@ With the group enrollment deleted from the Device Provisioning Service, and the 
 
 1. Switch to the Visual Studio Code window containing your ContainerDevice code project.
 
-    If you closed Visual Studio Code after the previous exercise, use Visual Studio Code to open the lab 6 Starter folder.
+    If you closed Visual Studio Code after the previous exercise, use Visual Studio Code to open the lab 6 Final folder.
 
 1. On the Visual Studio Code **View** menu, click **Terminal**.
 
