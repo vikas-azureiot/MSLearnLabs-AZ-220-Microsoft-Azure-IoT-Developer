@@ -162,7 +162,7 @@ In this task, you will create a new IoT Edge Device Identity within Azure IoT Hu
 
     Be sure to replace the **{your-id}** placeholder with the ID value that you created at the start of this lab. You can use Notepad to make updates to the command.
 
-    > **Note**: You could also create this IoT Edge device using your IoT Hub in the Azure portal: **IoT Hub** -> **IoT Edge** -> **Add an IoT Edge device**.
+    > **Note**: If you receive a message stating that your IoT hub does not exist, create the IoT Edge device manually in the Azure portal using your IoT hub: **IoT Hub** -> **IoT Edge** -> **Add an IoT Edge device**. Name the device `sensor-th-0067` and use the default settings.
 
 1. Review the output that the command created.
 
@@ -214,7 +214,7 @@ In this task, you will create a new IoT Edge Device Identity within Azure IoT Hu
         }
     ```
 
-    > **Note**:  The IoT Edge Device Connection String can also be accessed within the Azure Portal, by navigating to **IoT Hub** -> **IoT Edge** -> **Your Edge Device** -> **Connection String (primary key)**
+    > **Note**:  The IoT Edge Device Connection String can also be accessed within the Azure Portal, by navigating to **IoT Hub** -> **IoT Edge** -> **Your Edge Device** -> **Primary Connection String**
 
 #### Task 2: Provision IoT Edge VM
 
@@ -372,9 +372,9 @@ In this exercise, you will add a Simulated Temperature Sensor as a custom IoT Ed
 
     The name of the custom module can be used to reference the module. 
 
-1. Under **Image URI**, enter **asaedgedockerhubtest/asa-edge-test-module:simulated-temperature-sensor**
+1. Under **Image URI**, enter **mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:1.0.**
 
-    +++asaedgedockerhubtest/asa-edge-test-module:simulated-temperature-sensor+++
+    +++mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:1.0.+++
 
     > **Note**: This image is a published image on Docker Hub that is provided by the Azure product group to support this testing scenario.
 
@@ -424,7 +424,7 @@ In this exercise, you will add a Simulated Temperature Sensor as a custom IoT Ed
                     "modules": {
                         "tempsensor": {
                             "settings": {
-                                "image": "asaedgedockerhubtest/asa-edge-test-module:simulated-temperature-sensor",
+                                "image": "mcr.microsoft.com/azureiotedge-simulated-temperature-sensor",
                                 "createOptions": ""
                             },
                             "type": "docker",
@@ -503,7 +503,7 @@ In this exercise, you will add a Simulated Temperature Sensor as a custom IoT Ed
     NAME             STATUS           DESCRIPTION      CONFIG
     edgeHub          running          Up a minute      mcr.microsoft.com/azureiotedge-hub:1.1
     edgeAgent        running          Up 26 minutes    mcr.microsoft.com/azureiotedge-agent:1.1
-    tempsensor       running          Up 34 seconds    asaedgedockerhubtest/asa-edge-test-module:simulated-temperature-sensor
+    tempsensor       running          Up 34 seconds    mcr.microsoft.com/azureiotedge-simulated-temperature-sensor
     ```
 
     Notice that **tempsensor** is listed as one of the running modules.
@@ -759,7 +759,7 @@ To prepare the Stream Analytics job to be deployed to an IoT Edge Device, it nee
     ```json
     "tempsensor": {
         "settings": {
-            "image": "asaedgedockerhubtest/asa-edge-test-module:simulated-temperature-sensor",
+            "image": "mcr.microsoft.com/azureiotedge-simulated-temperature-sensor",
             "createOptions": ""
         },
         "type": "docker",
@@ -809,7 +809,7 @@ To prepare the Stream Analytics job to be deployed to an IoT Edge Device, it nee
     asa-az220-training-CP1119  running          Up a minute      mcr.microsoft.com/azure-stream-analytics/azureiotedge:1.0.5
     edgeAgent          running          Up 6 hours       mcr.microsoft.com/azureiotedge-agent:1.0
     edgeHub            running          Up 4 hours       mcr.microsoft.com/azureiotedge-hub:1.0
-    tempsensor         running          Up 4 hours       asaedgedockerhubtest/asa-edge-test-module:simulated-temperature-sensor
+    tempsensor         running          Up 4 hours       mcr.microsoft.com/azureiotedge-simulated-temperature-sensor
     ```
 
     > **Note**: If the Stream Analytics module does not show up in the list, wait a minute or two, then try again. It can take a minute for the module deployment to be updated on the IoT Edge Device.

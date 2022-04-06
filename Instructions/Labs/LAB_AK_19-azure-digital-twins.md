@@ -1075,7 +1075,7 @@ A key part of the proof-of-concept is to demonstrate how data from a device can 
 
 In order to configure an IoT Hub event grid endpoint to route telemetry to an Azure Function, it is necessary to first create the Azure Function. In this task, an Azure Function App is created that provides the execution context in which individual Azure Functions run.
 
-In order to access Azure Digital Twins and it's APIs, it is necessary to utilize a service principal with the appropriate permissions. During this task,.a service principal is created for the function app and then assigned the appropriate permission. Once the function app has the appropriate permission, any Azure Functions that execute within the function app context will use that service principal and will therefore have permission to access Azure Digital Twins.
+In order to access Azure Digital Twins and it's APIs, it is necessary to utilize a service principal with the appropriate permissions. During this task, a service principal is created for the function app and then assigned the appropriate permission. Once the function app has the appropriate permission, any Azure Functions that execute within the function app context will use that service principal and will therefore have permission to access Azure Digital Twins.
 
 The function app context also provides an environment for managing app settings for one or more functions. This capability will be used to define a setting that contains the Azure Digital Twins connection string which can then be read by the Azure Functions. Encapsulating connection strings and other configurations values in app settings is considered a much better practice than hard-coding the values in the function code.
 
@@ -1115,7 +1115,7 @@ The function app context also provides an environment for managing app settings 
 
     > **Note**: Remember to replace the **{your-id}** and **{principal-id}** tokens above. The **{principal-id}** value was displayed as the output of the previous step.
 
-    Now that the principal has been assigned to the Azure Function App, that principal must be assigned the **Azure Digital Twins Data Owner** role so that is can access the Azure Digital Twins instance.
+    Now that the principal has been assigned to the Azure Function App, that principal must be assigned the **Azure Digital Twins Data Owner** role so that it can access the Azure Digital Twins instance.
 
 1. In order to supply the Azure Digital Twin instance URL to the Azure Function App as an environment variable, enter the following command:
 
