@@ -287,6 +287,8 @@ In this task, you will use an Azure Resource Manager template to provision a Lin
 
 1. When prompted to enter the password, enter the administrator password that you created when the VM was provisioned.
 
+    > **Note**: The password characters that you enter will not be displayed on screen.
+
 1. Once connected, the terminal command prompt will change to show the name of the Linux VM, similar to the following.
 
     ```bash
@@ -356,7 +358,7 @@ In this exercise, you will add a Simulated Temperature Sensor as a custom IoT Ed
 
 1. Scroll to the bottom of the **sensor-th-0067** blade.
 
-1. Under **Modules**, notice the list of the modules currently configured for the device.
+1. Scroll down to find the **Modules** section and notice the list of the modules currently configured for the device.
 
     Currently, the IoT Edge device is configured with only the Edge Agent ($edgeAgent) and Edge Hub ($edgeHub) modules that are part of the IoT Edge Runtime.
 
@@ -397,7 +399,7 @@ In this exercise, you will add a Simulated Temperature Sensor as a custom IoT Ed
 
     This JSON configures the Edge Module by setting the desired properties of its module twin.
 
-1. Verify that the JSON is entered correctly, and then, at the bottom of the blade, click **Add**.
+1. Verify that the JSON is entered correctly, and then, at the bottom of the blade, click **Update**.
 
 1. On the **Set modules on device: sensor-th-0067** blade, at the bottom of the blade, click **Next: Routes >**.
 
@@ -820,6 +822,8 @@ To prepare the Stream Analytics job to be deployed to an IoT Edge Device, it nee
     iotedge logs tempsensor
     ```
 
+    > **Note**: If the simulated temperature sensor module stopped before the asa module was deployed, you can restart it by running the `iotedge restart tempsensor` command. Let it run for about 30 seconds and then recheck the logs.
+
 1. Take a minute to observe the output.
 
     While watching the temperature telemetry being sent by **tempsensor**, notice that a **reset** command is sent by the Stream Analytics job when the **machine.temperature** reaches an average above **25**. This is the action configured in the Stream Analytics job query.
@@ -836,7 +840,7 @@ To prepare the Stream Analytics job to be deployed to an IoT Edge Device, it nee
     11/14/2019 22:26:45 - Send Json Event : {"machine":{"temperature":320.4,"pressure":0.99945886361358849},"ambient":{"temperature":20.940019742324957,"humidity":26},"timeCreated":"2019-11-14T22:26:45.7931201Z"}
     ```
 
-1. Delete the Azure resources that you created during the lab.
+1. Once you are satified that the IoT Edge modules are performing as expected, delete the Azure resources that you created during the lab.
 
     If you have one or more Azure resource groups dedicated to this lab, it is recommended that you delete them before exiting the lab environment.
 
