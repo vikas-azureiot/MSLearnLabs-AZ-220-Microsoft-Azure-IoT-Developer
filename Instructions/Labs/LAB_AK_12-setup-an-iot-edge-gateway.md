@@ -103,9 +103,13 @@ To ensure these resources are available, complete the following steps.
 1. In your text editor, enter the following text labels:
 
     +++Hub - Connection String:+++
+
     +++Device - Primary Connection String:+++
+
     +++VM Admin - Username & Password:+++
+
     +++Public FQDN:+++
+
     +++Public SSH:+++
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
