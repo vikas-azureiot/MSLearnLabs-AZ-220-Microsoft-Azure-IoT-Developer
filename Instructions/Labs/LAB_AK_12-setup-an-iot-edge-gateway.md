@@ -106,6 +106,8 @@ To ensure these resources are available, complete the following steps.
 
     +++Gateway Device - Primary Connection String:+++
 
+    +++Leaf Device - Primary Connection String:+++
+
     +++VM Admin - Username & Password:+++
 
     +++Public FQDN:+++
@@ -114,15 +116,13 @@ To ensure these resources are available, complete the following steps.
 
     +++Public IP address:+++
 
-    +++Leaf Device - Primary Connection String:+++
-
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
     You will see a notification when deployment is complete.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
-    Use Notepad (or another text editor) to create a record of the following outputs:
+    Use Notepad (or another text editor) to create a record of the IoT Hub connection string:
 
     * connectionString
 
@@ -168,7 +168,7 @@ In this task, you will use Azure IoT Hub to create a new IoT Edge device identit
 
     A copy button is provided to the right of the value.
 
-1. Save the value of the **Primary Connection String** to a file, making a note about which device it is associated with.
+1. Save the **Primary Connection String** value for your IoT Edge gateway device to your text file.
 
 1. On the **vm-az220-training-gw0001-{your-id}** blade, scroll down and notice that the list of **Modules** is limited to **\$edgeAgent** and **\$edgeHub**.
 
@@ -634,9 +634,9 @@ In this task, you will create a new IoT device identity in Azure IoT Hub for the
 
 1. On the IoT Device summary pane, to the right of the **Primary Connection String** field, click **Copy**.
 
-1. Save the connection string for later reference.
+1. Save the Primary Connection String value of your leaf IoT device to your text file for later reference.
 
-    Be sure to note that this connection string is for the sensor-th-0072 child device.
+    Be sure to note that this connection string is for the sensor-th-0072 leaf device.
 
 #### Task 2: Download device x509 certificate
 
