@@ -102,7 +102,11 @@ To ensure these resources are available, complete the following steps.
 
 1. In your text editor, enter the following text labels:
 
-    +++connectionString:+++
+    +++Hub - Connection String:+++
+    +++Device - Primary Connection String:+++
+    +++VM Admin - Username & Password:+++
+    +++Public FQDN:+++
+    +++Public SSH:+++
 
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
@@ -158,7 +162,7 @@ In this task, you will use Azure IoT Hub to create a new IoT Edge device identit
 
 1. Save the value of the **Primary Connection String** to a file, making a note about which device it is associated with.
 
-1. On the **vm-az220-training-gw0001-{your-id}** blade, notice that the list of **Modules** is limited to **\$edgeAgent** and **\$edgeHub**.
+1. On the **vm-az220-training-gw0001-{your-id}** blade, scroll down and notice that the list of **Modules** is limited to **\$edgeAgent** and **\$edgeHub**.
 
     The IoT Edge Agent (**\$edgeAgent**) and IoT Edge Hub (**\$edgeHub**) modules are a part of the IoT Edge Runtime. The Edge Hub is responsible for communication, and the Edge Agent deploys and monitors the modules on the device.
 
@@ -171,9 +175,9 @@ In this task, you will use Azure IoT Hub to create a new IoT Edge device identit
     Under **Routes**, the editor displays a configured default route for the IoT Edge Device. At this time, it should be configured with a route that sends all messages from all modules to Azure IoT Hub. If the route configuration doesn't match this, then update it to match the following route:
 
     * **NAME**: `route`
-    * **VALUE**: `FROM /* INTO $upstream`
+    * **VALUE**: `FROM /messages/* INTO $upstream`
 
-    The `FROM /*` part of the message route will match all device-to-cloud messages or twin change notifications from any module or leaf device. Then, the `INTO $upstream` tells the route to send those messages to the Azure IoT Hub.
+    The `FROM /messages/*` part of the message route will match any device-to-cloud message sent by a module through some or no output, or by a leaf device. Then, the `INTO $upstream` tells the route to send those messages to the Azure IoT Hub.
 
     > **Note**:  To learn more about configuring message routing within Azure IoT Edge, reference the [Learn how to deploy modules and establish routes in IoT Edge](https://docs.microsoft.com/azure/iot-edge/module-composition#declare-routes#declare-routes) documentation article.
 
@@ -217,7 +221,7 @@ In this task, you will use an Azure Resource Manager template to provision a Lin
 
     Be sure to replace {your-id} with the value that you created at the beginning of the lab.
 
-1. In the **Device Connection String** field, enter the connection string value from the previous exercise.
+1. In the **Device Connection String** field, enter the IoT Edge device primary connection string value from the previous exercise.
 
 1. In the **Virtual Machine Size** field, ensure **Standard_DS1_v2** is entered.
 
@@ -229,7 +233,7 @@ In this task, you will use an Azure Resource Manager template to provision a Lin
 
 1. In the **Admin Password Or Key** field, enter the password you wish to use.
 
-    You will need to enter this password when you connect your SSH session later in this lab.
+    > **Note**: You may want to create a record of your username and password in your text file. You will need to enter the password when you connect your SSH session later in this lab.
 
 1. In the **Allow SSH** field, ensure **true** is selected.
 
@@ -258,9 +262,9 @@ The IoT communication protocols supported by Azure IoT Edge have the following p
 
 The IoT communication protocol chosen for your devices will need to have the corresponding port opened for the firewall that secures the IoT Edge Gateway device. In the case of this lab, an Azure Network Security Group (NSG) is used to secure the IoT Edge Gateway, so Inbound security rules for the NSG will be opened on these ports.
 
-In a production scenario, you will want to open only the minimum number of ports for your devices to communicate. If you are using MQTT, then only open port 8883 for inbound communications. Opening additional ports will introduce addition security attack vectors that attackers could take exploit. It is a security best practice to only open the minimum number of ports necessary for your solution.
+In a production scenario, you will want to open only the minimum number of ports for your devices to communicate. If you are using MQTT, then only open port 8883 for inbound communications. Opening additional ports will introduce addition security attack vectors that attackers could exploit. It is a security best practice to only open the minimum number of ports necessary for your solution.
 
-In this task, you will configure the Network Security Group (NSG) that secures access to the Azure IoT Edge Gateway from the Internet. The necessary ports for MQTT, AMQP, and HTTPS communications need to be opened so the downstream IoT device(s) can communicate with the gateway.
+In this task, you will configure the Network Security Group (NSG) that secures access to the Azure IoT Edge Gateway from the Internet. The necessary ports for MQTT, AMQP, and HTTPS communications will be opened so that the downstream IoT device(s) can communicate with the gateway using all three of the communication ports.
 
 1. If necessary, log in to your Azure portal using your Azure account credentials.
 
@@ -323,13 +327,14 @@ In this exercise, you will explore the **vm-az220-training-gw0001-{your-id}** Vi
 
     You can check the Notification pane in the Azure portal.
 
-1. To pin your **rg-az220vm** resource group to the dashboard, navigate to your Azure dashboard, and then complete the following:
+    If you want to pin your **rg-az220vm** resource group to the dashboard, navigate to your Azure dashboard, and then complete the following:
 
     * On the Azure portal menu, click **Resource groups**.
     * On the **Resource groups** blade, under **Name**, locate the **rg-az220vm** resource group.
     * On the **rg-az220vm** row, on the right side of the blade, click **...** and then click **Pin to dashboard**.
+    * On the **Pin to dashboard** dialog, click **Pin**.
 
-    You may want to edit your dashboard to make the RG tiles and listed resources more accessible.
+    You may need to edit your dashboard to make the VM resource group tile more accessible.
 
 1. On the Azure portal toolbar, to open the Azure Cloud Shell, click **Cloud Shell**.
 
@@ -377,6 +382,8 @@ In this exercise, you will explore the **vm-az220-training-gw0001-{your-id}** Vi
 
 1. When prompted to enter the password, enter the administrator password that you created when the Edge Gateway VM was provisioned.
 
+    > **Note**: The typed characters will not be displayed on screen as you enter the password. 
+
 1. Once connected, the terminal will change to show the name of the Linux VM that you are connected to.
 
     The command prompt will now look similar to the following:
@@ -385,20 +392,22 @@ In this exercise, you will explore the **vm-az220-training-gw0001-{your-id}** Vi
     username@vm-az220-training-gw0001-{your-id}:~$
     ```
 
-1. To determine the Virtual Machines public IP address, enter the following command:
+1. To determine the virtual machine's public IP address, enter the following command:
 
     ```bash
-    nslookup vm-az220-training-gw0001-{your-id}.centralus.cloudapp.azure.com
+    nslookup {Public FQDN of your VM}
     ```
 
-    The output will be similar to:
+    > **Note**: You should have saved the fully qualified domain name (FQDN) for your VM earlier in this lab. If not, you can find the public IP address and FQDN (DNS name) on the Overview page for your virtual machine resource in the Azure portal.
+
+    The output from the nslookup command will be similar to:
 
     ```bash
     Server:         127.0.0.53
     Address:        127.0.0.53#53
 
     Non-authoritative answer:
-    Name:   vm-az220-training-gw0001-{your-id}}.centralus.cloudapp.azure.com
+    Name:   vm-az220-training-gw0001-{your-id}.{your location}.cloudapp.azure.com
     Address: 168.61.181.131
     ```
 
@@ -428,7 +437,7 @@ During the initial launch of the VM, a script was executed that configured IoT E
     iotedge --version
     ```
 
-    The version installed at the time of writing is **iotedge 1.2.3**
+    The version installed at the time of writing is **iotedge 1.2.9**
 
 1. To view the IoT Edge configuration, enter the following command:
 
