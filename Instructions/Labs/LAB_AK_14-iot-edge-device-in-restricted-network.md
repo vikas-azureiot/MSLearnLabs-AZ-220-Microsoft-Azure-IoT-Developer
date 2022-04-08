@@ -22,11 +22,7 @@ The following resources will be created:
 
 In this lab, you will complete the following activities:
 
-* Verify that the lab prerequisites are met (that you have the required Azure resources)
-
-  * The script will create an IoT Hub if needed.
-  * The script will create a new device identity needed for this lab.
-
+* Configure lab prerequisites (the required Azure resources)
 * Deploy Azure IoT Edge Enabled Linux VM
 * Setup an IoT Edge Parent device with a Child IoT device
 * Configure the IoT Edge device as Gateway
@@ -37,7 +33,7 @@ In this lab, you will complete the following activities:
 
 ## Lab Instructions
 
-### Exercise 1: Verify Lab Prerequisites
+### Exercise 1: Configure Lab Prerequisites
 
 **Important**: Due to resource/policy restrictions, this lab cannot be run using Azure account credentials provided by the MS Learn lab sandbox. You can complete this lab using a free trial or other personal Azure subscription.
 
@@ -120,6 +116,8 @@ To ensure these resources are available, complete the following steps.
 
     +++publicSSH:+++
 
+    +++public IP address:+++
+
 1. Switch back to the Azure portal window and wait for the deployment to finish.
 
     You will see a notification when deployment is complete.
@@ -135,7 +133,7 @@ To ensure these resources are available, complete the following steps.
     * publicFQDN
     * publicSSH
 
-    The Azure resources required for this lab are now available.
+    The Azure resources required for this lab are now available. You will record the public IP address for your gateway device later in this lab.
 
     > **Note**: In addition to provisioning the VM and IoT Edge, the Azure Resource Manager template also configured the firewall rules for inbound traffic and created the child device.
 
@@ -153,15 +151,41 @@ In this exercise, you will explore the **vm-az220-training-gw0002-{your-id}** Vi
 
 1. On the Azure portal toolbar, click **Cloud Shell**
 
-    > **Note**: If the cloud shell has not been configured, follow the steps in **Lab 3 - Exercise 2 - Task 3: Configure cloud shell storage & Task 4: Install Azure CLI Extension - cloud environment**.
+    > **Note**: If the cloud shell has not been configured, follow these steps:
 
-1. At the Cloud Shell command prompt, paste the **ssh** command that you noted in the earlier task, similar to **ssh vmadmin@vm-az220-training-gw0002-dm080321.centralus.cloudapp.azure.com**, and then press **Enter**.
+    1. When the **Welcome to Azure Cloud Shell** message is displayed, select **Bash**.
+
+    1. Under **Subscription**, ensure the correct subscription is displayed.
+
+    1. To specify storage options, click **Show advanced settings**.
+
+    1. Under **Resource group**, ensure **Use existing** is selected and the **rg-az220** is shown.
+
+    1. Under **Storage account**, select **Create new** and enter the following: **stoaz220{your-id}**.
+
+        +++stoaz220{your-id}+++
+
+        > **Note**: Be sure to replace **{your-id}** with your unique ID value.
+
+    1. Under **File share**, select **Create new** and enter the following: **cloudshell**
+
+        +++cloudshell+++
+
+    1. To finish to configuration of the Cloud Shell, click **Create storage**.
+
+        > **Note**: It can take 30+ seconds for the Cloud Shell to configure and open for the first time.
+
+1. At the Cloud Shell command prompt, paste the **ssh** command that you recorded earlier in the lab, and then press **Enter**.
+
+    The ssh command should follow a pattern that is similar to the following: **ssh vmadmin@vm-az220-training-gw0002-dm080321.centralus.cloudapp.azure.com**
 
 1. When prompted with **Are you sure you want to continue connecting?**, type **yes** and then press **Enter**.
 
     This prompt is a security confirmation since the certificate used to secure the connection to the VM is self-signed. The answer to this prompt will be remembered for subsequent connections, and is only prompted on the first connection.
 
 1. When prompted to enter the password, enter the administrator password that you created when the Edge Gateway VM was provisioned.
+
+    > **Note**: The typed characters will not be displayed on screen as you enter the password. 
 
 1. Once connected, the terminal will change to show the name of the Linux VM, similar to the following. This tells you which VM you are connected to.
 
@@ -172,8 +196,10 @@ In this exercise, you will explore the **vm-az220-training-gw0002-{your-id}** Vi
 1. To determine the Virtual Machines public IP address, enter the following command:
 
     ```bash
-    nslookup vm-az220-training-gw0001-{your-id}.centralus.cloudapp.azure.com
+    nslookup {Public FQDN of your VM}
     ```
+
+    > **Note**: You should have saved the fully qualified domain name (FQDN) for your VM earlier in this lab. If not, you can find the public IP address and FQDN (DNS name) on the Overview page for your virtual machine resource in the Azure portal.
 
     The output will be similar to:
 
@@ -182,7 +208,7 @@ In this exercise, you will explore the **vm-az220-training-gw0002-{your-id}** Vi
     Address:        127.0.0.53#53
 
     Non-authoritative answer:
-    Name:   vm-az220-training-gw0001-{your-id}}.centralus.cloudapp.azure.com
+    Name:   vm-az220-training-gw0001-{your-id}}.{location}.cloudapp.azure.com
     Address: 168.61.181.131
     ```
 
@@ -210,7 +236,7 @@ During the initial launch of the VM, a script was executed that configured IoT E
     iotedge --version
     ```
 
-    The version installed at the time of writing is `iotedge 1.2.3`
+    The version installed at the time of writing is `iotedge 1.2.9`
 
 1. To view the IoT Edge configuration, enter the following command:
 
@@ -320,11 +346,12 @@ Next, you need to "download" the **MyEdgeDeviceCA** certificate from the **vm-az
 
     ```bash
     mkdir lab12
-    scp -r -p <username>@<FQDN>:/tmp/lab12 .
+    scp -r -p {username}@{FQDN}:/tmp/lab12 .
     ```
 
-    > **Note**: Replace the **<username>** placeholder with the username of the admin user for the VM, and replace the **<FQDN>** placeholder with the fully qualified domain name for the VM. Refer to the command that you used to open the SSH session if needed.
-    > `scp -r -p vmadmin@vm-az220-training-edge0001-dm080321.centralus.cloudapp.azure.com:/tmp/lab12 .`
+    > **Note**: Replace the **{username}** placeholder with the username of the admin user for the VM, and replace the **{FQDN}** placeholder with the fully qualified domain name for the VM. Refer to the command that you used to open the SSH session if needed. The command should look similar to the following:
+    >
+    > `scp -r -p vmadmin@vm-az220-training-edge0001-dm080321.centralus.cloudapp.azure.com:/tmp/lab14 .`
 
 1. Enter the Admin password for the VM when prompted.
 
@@ -344,13 +371,17 @@ Next, you need to "download" the **MyEdgeDeviceCA** certificate from the **vm-az
     certs       index.txt  index.txt.attr.old  newcerts       private              serial.old
     ```
 
-    Once the files are copied to Cloud Shell storage from the **vm-az220-training-gw0002-{your-id}** virtual machine, you will be able to easily download any of the IoT Edge Device certificate and key files to your local machine as necessary. Files can be downloaded from the Cloud Shell using the `download <filename>` command. You will do this later in the lab.
+    Once the files are copied to Cloud Shell storage from the **vm-az220-training-gw0002-{your-id}** virtual machine, you will be able to easily download any of the IoT Edge Device certificate and key files to your local machine as necessary. Files can be downloaded from the Cloud Shell using the `download <filename>` command.
 
 1. To download the root cert for use later in this lab, enter the following command:
 
     ```bash
-    download ~/lab12/azure-iot-test-only.root.ca.cert.pem
+    download ~/lab12/certs/azure-iot-test-only.root.ca.cert.pem
     ```
+
+    > **Note**: Your browser UI may prompt you to save the download file. Check the downloads folder in your lab environment to verify that the certificate file has been downloaded. Repeat the command if necessary.
+
+    The Azure IoT Edge Gateway was previously configured in the **/etc/aziot/config.toml** file to use this root CA X.509 certificate for encrypting communications with any downstream devices connecting to the gateway. This X.509 certificate will need to be copied to the downstream devices so they can use it to encrypt communications with the gateway.
 
 ### Exercise 3: Configure IoT Edge Device Time-to-Live and Message Storage
 
@@ -370,9 +401,9 @@ In this exercise, you will use the Azure Portal user interface for Azure IoT Hub
 
     If you have more than one Azure account, be sure that you are logged in with the account that is tied to the subscription that you will be using for this course.
 
-1. On your **rg-az220** resource group tile, click **iot-az220-training-{your-id}**.
+1. On your All resources tile, to open your IoT hub resource, click **iot-az220-training-{your-id}**.
 
-1. On left-side menu of your IoT hub blade, under **Automatic Device Management**, click **IoT Edge**.
+1. On left-side menu of your IoT hub blade, under **Device Management**, click **IoT Edge**.
 
     This pane allows you to manage the IoT Edge devices connected to the IoT Hub.
 
@@ -406,6 +437,8 @@ In this exercise, you will use the Azure Portal user interface for Azure IoT Hub
 
 1. In the **Store and forward configuration - time to live (seconds)** textbox, enter **1209600**
 
+    +++1209600+++
+
     This specifies a message Time-to-Live value of 2 weeks for the IoT Edge Device, which is the maximum time.
 
     > **Note**:  There are several things to consider when configuring the **Message Time-to-Live** (TTL) for the Edge Hub (**$edgeHub**) module. When the IoT Edge Device is disconnected, the messages are stored on the local device. You need to calculate how much data will be stored during the TTL period, and make sure there is enough storage on the device for that much data. The amount of storage and TTL configured will need to meet the solutions requirements if you want to avoid the loss of important data.
@@ -420,7 +453,11 @@ In this exercise, you will use the Azure Portal user interface for Azure IoT Hub
 
 1. Under **Environment Variables**, in the **Name** textbox, enter **storageFolder**
 
+    +++storageFolder+++
+
 1. Under **Environment Variables**, in the **Value** textbox, enter **/iotedge/storage/**
+
+    +++/iotedge/storage/+++
 
 1. Locate the **Container Create Options** field.
 
@@ -434,7 +471,7 @@ In this exercise, you will use the Azure Portal user interface for Azure IoT Hub
     ]
     ```
 
-    > **Note**: Be sure to separate the **PortBindings** property from the **Binds** property with a comma.
+1. After the closing bracket of **PortBindings** property, to separate the **PortBindings** property from the **Binds** property, add a comma.
 
     The resulting JSON in the **Create Options** textbox should look similar to the following:
 
