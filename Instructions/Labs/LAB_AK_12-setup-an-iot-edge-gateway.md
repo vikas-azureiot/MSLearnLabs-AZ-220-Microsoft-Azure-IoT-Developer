@@ -735,16 +735,16 @@ The local machine can now resolve the VM name to the appropriate IP Address.
     The completed connection string values should match the following format:
 
     ```text
-    HostName=<IoT-Hub-Name>.azure-devices.net;DeviceId=sensor-th-0072;SharedAccessKey=<Primary-Key-for-IoT-Device>;GatewayHostName=<Name-of-your-IoT-Edge-Device>
+    HostName={IoT-Hub-Name}.azure-devices.net;DeviceId=sensor-th-0072;SharedAccessKey={Primary-Key-for-IoT-Device};GatewayHostName={Name-of-your-IoT-Edge-Device}
     ```
 
     > **Important**: The **GatewayHostName** must be resolvable to an IP address, which often requires the full DNS name.
 
     Be sure to replace the placeholders shown above with the appropriate values:
 
-    * **\<IoT-Hub-Name\>**: The Name of the Azure IoT Hub.
-    * **\<Primary-Key-for-IoT-Device\>**: The Primary Key for the **sensor-th-0072** IoT device in Azure IoT Hub.
-    * **\<Name-of-your-IoT-Edge-Device\>**: The name of your IoT Edge device: **vm-az220-training-gw0001-{your-id}**
+    * **{IoT-Hub-Name}**: The Name of the Azure IoT Hub.
+    * **{Primary-Key-for-IoT-Device}**: The Primary Key for the **sensor-th-0072** IoT device in Azure IoT Hub.
+    * **{Name-of-your-IoT-Edge-Device}**: The name of your IoT Edge device: **vm-az220-training-gw0001-{your-id}**
 
     The **connectionString** variable with the assembled connection string value will look similar to the following:
 

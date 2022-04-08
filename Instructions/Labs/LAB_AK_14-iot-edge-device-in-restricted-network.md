@@ -351,7 +351,7 @@ Next, you need to "download" the **MyEdgeDeviceCA** certificate from the **vm-az
 
     > **Note**: Replace the **{username}** placeholder with the username of the admin user for the VM, and replace the **{FQDN}** placeholder with the fully qualified domain name for the VM. Refer to the command that you used to open the SSH session if needed. The command should look similar to the following:
     >
-    > `scp -r -p vmadmin@vm-az220-training-edge0001-dm080321.centralus.cloudapp.azure.com:/tmp/lab14 .`
+    > `scp -r -p vmadmin@vm-az220-training-edge0001-dm080321.centralus.cloudapp.azure.com:/tmp/lab12 .`
 
 1. Enter the Admin password for the VM when prompted.
 
@@ -540,9 +540,7 @@ Before continuing, it is essential for you to ensure that the user profile for t
 
 1. At the Cloud Shell command prompt, paste the **ssh** command that you noted in the earlier task, similar to **ssh vmadmin@vm-az220-training-gw0002-dm080321.centralus.cloudapp.azure.com**, and then press **Enter**.
 
-1. When prompted with **Are you sure you want to continue connecting?**, type **yes** and then press **Enter**.
-
-    This prompt is a security confirmation since the certificate used to secure the connection to the VM is self-signed. The answer to this prompt will be remembered for subsequent connections, and is only prompted on the first connection.
+    If prompted with **Are you sure you want to continue connecting?**, type **yes** and then press **Enter**.
 
 1. When prompted to enter the password, enter the administrator password that you created when the Edge Gateway VM was provisioned.
 
@@ -628,6 +626,8 @@ In earlier versions of this lab, the FQDN would be used as the value from the **
 
 1. Open Visual Studio Code.
 
+    > **Note**: You may find it helpful to maximize the Visual Studio Code window.
+
 1. On the **File** menu, click **Open File**.
 
 1. Navigate to the following folder **c:\\Windows\\System32\\Drivers\\etc\\** file, and open the **hosts** file.
@@ -645,7 +645,6 @@ In earlier versions of this lab, the FQDN would be used as the value from the **
 
     ```text
     168.61.181.131 vm-az220-training-gw0002-dm090821
-
     ```
 
 1. Save the file - when prompted that the save failed, click **Retry as Admin...** and in the **User Account Control** dialog, click **Yes**.
@@ -668,11 +667,22 @@ In this task, you will configure the downstream IoT device (child or leaf device
 
 1. Navigate to the lab 14 Starter folder, and then paste the copied file into the **ChildIoTDevice** folder.
 
+    The Lab 14 **Starter** folder is part of the lab resources that you downloaded before starting this lab. The folder path is:
+
+    * Allfiles
+        * Labs
+            * 14-Run an IoT Edge device in restricted network and offline
+                * Starter
+
+    > **Note**: If you have trouble finding the Allfiles folder, check your Windows Desktop folder.
+
 1. Ensure that the copied certificate file is named **azure-iot-test-only.root.ca.cert.pem**
 
     If you already had an azure-iot-test-only.root.ca.cert.pem file in your Downloads folder, the file may have been named azure-iot-test-only.root.ca.cert (1).pem.
 
 1. Open a new instance of Visual Studio Code.
+
+    > **Note**: You may find it helpful to maximize the Visual Studio Code window.
 
 1. On the **File** menu, click **Open Folder**.
 
@@ -686,26 +696,28 @@ In this task, you will configure the downstream IoT device (child or leaf device
 
 1. Replace the placeholder value with the Primary Connection String for the **sensor-th-0084** IoT Device.
 
-1. Append the assigned **connectionString** value with a **GatewayHostName** property, and then set the value of GatewayHostName to be the full DNS name for your IoT Edge gateway device.
+1. Append the assigned **connectionString** value with a **GatewayHostName** property, and then set the value of GatewayHostName to the name of your IoT Edge gateway device.
 
-    The full DNS name of your Edge gateway device is the Device ID, **vm-az220-training-gw0002-{your-id}**, appended with your specified region and the Azure commercial cloud domain name, for example: **.westus2.cloudapp.azure.com**.
+    > **Note**: In the previous task, you updated the local machine's **hosts** file to resolve the IoT Edge device's hostname to an IP Address. As a result, the fully qualified domain name (DNS name) of your Edge gateway device is not required.
 
     The completed connection string values should match the following format:
 
     ```text
-    HostName=<IoT-Hub-Name>.azure-devices.net;DeviceId=sensor-th-0072;SharedAccessKey=<Primary-Key-for-IoT-Device>;GatewayHostName=<DNS-Name-for-IoT-Edge-Device>
+    HostName={IoT-Hub-Name}.azure-devices.net;DeviceId=sensor-th-0072;SharedAccessKey={Primary-Key-for-IoT-Device};GatewayHostName={Name-of-your-IoT-Edge-Device}
     ```
+
+    > **Important**: The **GatewayHostName** must be resolvable to an IP address, which often requires the full DNS name.
 
     Be sure to replace the placeholders shown above with the appropriate values:
 
-    * **\<IoT-Hub-Name\>**: The Name of the Azure IoT Hub.
-    * **\<Primary-Key-for-IoT-Device\>**: The Primary Key for the **sensor-th-0084** IoT device in Azure IoT Hub.
-    * **\<DNS-Name-for-IoT-Edge-Device\>**: The Hostname name of the **vm-az220-training-gw0002-{your-id}** Edge device.
+    * **{IoT-Hub-Name}**: The Name of the Azure IoT Hub.
+    * **{Primary-Key-for-IoT-Device}**: The Primary Key for the **sensor-th-0072** IoT device in Azure IoT Hub.
+    * **{Name-of-your-IoT-Edge-Device}**: The name of your IoT Edge device: **vm-az220-training-gw0001-{your-id}**
 
-    The **connectionString** variable assignment code should look similar to the following:
+    The **connectionString** variable with the assembled connection string value will look similar to the following:
 
     ```csharp
-    private readonly static string connectionString = "HostName=iot-az220-training-1119.azure-devices.net;DeviceId=sensor-th-0084;SharedAccessKey=ygNT/WqWs2d8AbVD9NAlxcoSS2rr628fI7YLPzmBdgE=;GatewayHostName=vm-az220-training-gw0002-{your-id}";
+    private readonly static string connectionString = "HostName=iot-az220-training-abc201119.azure-devices.net;DeviceId=sensor-th-0072;SharedAccessKey=ygNT/WqWs2d8AbVD9NAlxcoSS2rr628fI7YLPzmBdgE=;GatewayHostName=vm-az220-training-gw0001-{your-id}";
     ```
 
 1. On the **File** menu, click **Save**.
@@ -752,6 +764,8 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
 
 1. On the Azure portal toolbar, click **Cloud Shell**.
 
+    > **Note**: If the Cloud Shell is already open and you have a running ssh session, enter **exit** at the command prompt to close the connection to the VM.
+ 
     Ensure that the Environment dropdown is set to **Bash**.
 
 1. At the Cloud Shell command prompt, to start monitoring the Events being received by the Azure IoT Hub, enter the following command:
@@ -794,7 +808,7 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
 
 #### Task3: Add rule to block traffic
 
-1. Within the **Azure portal**, navigate to your Dashboard, and then locate the **rg-az220vm** resource group tile.
+1. Within the **Azure portal**, navigate to your Dashboard, and then locate the **All resources** tile.
 
 1. In the list of resources, to open the **Network Security Group** for the **vm-az220-training-gw0002-{your-id}** virtual machine, click **nsg-vm-az220-training-gw0002-{your-id}**.
 
@@ -891,11 +905,11 @@ In this task, you will monitor events from the **sensor-th-0084** that are being
 
     Once the **vm-az220-training-gw0002-{your-id}** IoT Edge Transparent Gateway is able to resume connectivity with Azure IoT Hub, it will sync the event telemetry from all connected child devices. This includes the saved telemetry that couldn't be sent while disconnected, and all telemetry still being sent to the gateway.
 
-    > **Note**:  The IoT Edge Gateway device may take a couple minutes to reconnect to Azure IoT Hub and resume sending telemetry. After waiting, you will see events showing up in the **az iot hub monitor-events** command output again.
+    > **Note**:  The IoT Edge Gateway device may take a couple minutes to reconnect to Azure IoT Hub and resume sending telemetry. After waiting, you will see events showing up in the **az iot hub monitor-events** command output again. You should notice that a large number of events arrive when the gateway device reconnects to IoT hub, followed by a steady of new events. 
 
     In this lab, you verified that an Azure IoT Edge Gateway can use local storage to retain messages that can't be sent due to an interruption in the connection to the IoT Hub. Once the connection was reestablished, you saw that stored messages were delivered to IoT hub.
 
-    > **Note**:  Once you have finished with the lab, exit the device simulation application by pressing **CTRL+C** in the terminal.
+    > **Note**:  Once you have finished with the lab, exit the device simulation application by pressing **CTRL+C** in the Cloud Shell and Visual Studio Code terminal.
 
 1. Delete the Azure resources that you created during the lab.
 
