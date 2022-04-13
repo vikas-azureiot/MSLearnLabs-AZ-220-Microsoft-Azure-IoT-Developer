@@ -119,7 +119,7 @@ To ensure these resources are available, complete the following tasks.
 
     You will see a notification when deployment is complete.
 
-    > **NOTE**: If the deployment fails during the createDevice operation, you will finds steps listed below to create the devices manually.
+    > **NOTE**: If the deployment fails during the createDevice operation, you will find steps listed below to create the devices manually.
 
 1. Once the deployment has completed, in the left navigation area, to review any output values from the template,  click **Outputs**.
 
@@ -261,9 +261,9 @@ In this exercise, you will setup Time Series Insights integration with Azure IoT
 
     > **Note**: If you are returned immediately to the *Event Source* pane, double check that you clicked **Add** to the right of the **IoT Hub consumer group** field - you cannot create the TSI resource until you have created the consumer group.
 
-1. At the bottom of the blade, click **Create**.
+1. Notice the alert message informing you that Time Series Insights will no longer be supported after March 2025.
 
-    > **Note**:  If you are on the **Summary** tab and **Review + create** is displayed at the bottom of the blade, click **Review + create**.
+1. At the bottom of the blade, click **Review + create**, and then click **OK**.
 
 1. Once your Time Series Insights deployment is complete, navigate back to your dashboard.
 
@@ -391,19 +391,17 @@ In this exercise, you will get a quick introduction to working with time series 
 
     When you run the query, this will split the graph to show the telemetry from each of the IoT Devices separately on the graph.
 
-1. At the top of the page, to have the display automatically refresh, set the **Auto refresh** toggle to **On**.
+1. One the menu bar just above the data graph, click **Settings**.
+ 
+1. On the settings dialog, click **Auto refresh** and configure the display to refresh the most recent 30 minutes of data every 15 seconds.
 
-    When **Auto refresh** is enabled, the display will be updated every _30 seconds_ to display the latest data. This only applies to the last 1 hour of available data.
-
-1. Notice the graph now displays the **temperature** sensor event data from the IoT Devices within Azure IoT Hub in a _Line Chart_.
+1. Notice that the graph displays the **temperature** sensor event data from the IoT Devices within Azure IoT Hub in a _Line Chart_.
 
 1. Notice the list of Device IDs to the left of the graph.
 
     Hovering the mouse over a specific Device ID will highlight it's data on the graph display.
 
 1. Take a moment to examine the temperature data (graphs) for the telemetry streaming into the system from the three simulated devices.
-
-    Notice that the temperature data for the **sensor-th-container0001** is influenced by the temperature of the transport mechanism, either the **sensor-th-truck0001** or the **sensor-th-airplane0001**. This provides an indication whether the sensor-th-container0001 is being transported by Truck or Airplane at those times.
 
 1. To add a second query to the display, click **Add new query**.
 
@@ -417,16 +415,12 @@ In this exercise, you will get a quick introduction to working with time series 
 
 1. Along the top of the graph area, notice the options that you can use to control graph settings.
 
-1. Click **Change interval size**.
-
-1. On the **Chart setting** pane, change the Interval setting to 15 seconds, and then close **Chart settings**.
+1. Click **Settings**, and then change the Interval setting to 15 seconds.
 
     Notice how the appearance of the data changes as you increase the interval.
 
-1. Take a minute to explore the chart settings.
+1. Take a minute to explore the other chart settings options.
 
 1. Once you have completed exploring the data, switch to the Visual Studio Code window.
 
 1. In Visual Studio Code, stop the container simulator app by pressing **CTRL+C** in the terminal.
-
-1. 
