@@ -154,7 +154,7 @@ When Azure Defender for IoT is turned on, an Azure Log Analytics workspace shoul
 
 In this task, you will take a quick look at the workspace configuration of Log Analytics.
 
-1. In the left navigation area, under **Defender for IoT**, click **Settings**..
+1. In the left navigation area, under **Defender for IoT**, click **Settings**.
 
     The **Settings Page** is displayed, listing the four areas that can be configured:
 
@@ -193,7 +193,9 @@ In this task, you will take a quick look at the workspace configuration of Log A
 
     After a few moments, the workspace will be created and the pane will close.
 
-1. Navigate back to your IoT hub blade, and then open the **Settings | Data Collection** page.
+1. Navigate back to your IoT hub blade.
+
+1. In the left navigation area, under **Defender for IoT**, click **Settings**, and then click **Data Collection**.
 
 1. Ensure that the following items are configured:
 
