@@ -156,7 +156,9 @@ In this task, you will use Azure IoT Hub to create a new IoT Edge device identit
 
 1. Under **Authentication type**, ensure that **Symmetric key** is selected, and leave the **Auto-generate keys** box checked.
 
-    This will have IoT Hub automatically generate the symmetric keys for authenticating the device.
+    The the **Auto-generate keys** setting will have IoT Hub automatically generate the symmetric keys for authenticating the device.
+
+    > **Note**: In a production environment, we recommend using X.509 certificates for device authentication whenever possible. We use symmetric key authentication in this lab only because it easier and quicker to configure and security is not a priority. For an example of configuring X.509 device authentication, see [https://docs.microsoft.com/en-us/learn/modules/explore-group-enrollment-tasks/](https://docs.microsoft.com/en-us/learn/modules/explore-group-enrollment-tasks/).
 
 1. Leave the other settings at the default values, and then click **Save**.
 
@@ -280,6 +282,8 @@ In this task, you will configure the Network Security Group (NSG) that secures a
 
 1. On the All resources tile, click **nsg-vm-az220-training-gw0001-{your-id}**.
 
+    > **Note**: If the network security group resource is not listed, click **Refresh**.
+
 1. On the **Network security group** blade, on the left-side menu under **Settings**, click **Inbound security rules**.
 
 1. At the top of the **Inbound security rules** pane, click **Add**.
@@ -323,7 +327,7 @@ In this task, you will configure the Network Security Group (NSG) that secures a
 
    > **Note**: You may need to use the **Refresh** button in the toolbar at the top of the pane to see the new rules appear.
 
-1. With these three ports open on the Network Security Group (NSG), the downstream devices will be able to connect to the IoT Edge Gateway using either MQTT, AMQP, or HTTPS protocols.
+1. With these three ports open on the Network Security Group (NSG), the downstream devices will be able to connect to the IoT Edge Gateway using the MQTT, AMQP, or HTTPS protocols.
 
 ### Exercise 3: Download Device CA Certificate
 
@@ -551,7 +555,7 @@ During the initial launch of the VM, a script was executed that configured IoT E
 
 Next, you need to "download" the **MyEdgeDeviceCA** certificate from the **vm-az220-training-gw0001-{your-id}** virtual machine so that it can be used to encrypt communications between a leaf device and the IoT Edge gateway.
 
-1. On the Azure portal toolbar, click **Cloud Shell**.
+1. Ensure that the **Cloud Shell** is open in your Azure portal window.
 
     > **Note**: If Cloud Shell was already open and you are still connected to the Edge device, use an **exit** command to close the SSH session.
 
