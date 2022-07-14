@@ -340,7 +340,9 @@ In this task, you will use an Azure Resource Manager template to provision a Lin
 
 ### Exercise 3: Add Edge Module to Edge Device
 
-In this exercise, you will add a Simulated Temperature Sensor as a custom IoT Edge Module, and deploy it to run on the IoT Edge Device.
+When a new module instance is created by the IoT Edge runtime, it gets a corresponding module identity. The module identity is stored in IoT Hub, and is used as the addressing and security scope for all local and cloud communications for that module instance. In implementation, modules images exist as container images in a repository, and module instances are containers on devices. The only supported container engine for IoT Edge devices in production is Moby.
+
+In this exercise, you will add a Simulated Temperature Sensor as a custom IoT Edge module, and deploy it to run on the IoT Edge Device. 
 
 #### Task 1: Configure module for deployment
 
